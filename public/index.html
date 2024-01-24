@@ -343,6 +343,8 @@ console.log('SOCKET ASSIGN COLOR');
 //const playerNameT = playerName.name;
 //console.log(`Assign Nombre: ${playerNameT}`);	
 socket.emit('updatePlayersRequest');
+socket.emit('updatePosition', { randomX, randomY });
+
 });
 
 
@@ -913,7 +915,6 @@ console.log(`Random: ${targetVertexNumber}: (${x}, ${y})`);
 	randomX = x;
 	randomY = y;
 
-		    socket.emit('updatePosition', { randomX, randomY });
 	
 
 return; // Termina la función después de encontrar el vértice deseado
