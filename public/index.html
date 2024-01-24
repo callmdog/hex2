@@ -562,7 +562,7 @@ function animateNameLocally(circleElement, start, end) {
 
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
-	
+
 function moveBluePoint( clickX, clickY ) {  
 
   	//CAMARA/////////////////////
@@ -581,35 +581,85 @@ function moveBluePoint( clickX, clickY ) {
     		console.error('No se pudieron obtener las coordenadas de la cámara.');
 		}
         //CAMARA END/////////////////////	
-//currentCameraY3 += 20;
-
-//currentCameraX3 += 20;
-	//camera.setAttribute('transform', `translate(${currentCameraX3}, ${currentCameraY3})`);
-
-
     console.log('Camara:', Camara);
-
-	
-	//mostrarJugadoresConectados();
-
-	//socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
 
 	if (!isMoving) { 
 	console.log('/////Move Player//////')
   	isMoving = true  
-	drawUserCount();
+	drawUserCount();	
 
+const playersContainer = document.getElementById('playersContainer');
 
-//textLine1.textContent =  'bmvjk';
-
-
-/*		textLine1.textContent = 'dsaads'+ '\n';
-     textLine2.textContent =  'adssda'+ '\n';
-     textLine3.textContent = 'adsdsa'+ '\n';
-      textLine4.textContent = 'fff'+ '\n';
-     textLine5.textContent = 'qqq'+ '\n';
-*/
+    // Recorre la variable players y agrega cada jugador al contenedor
+    topplayers.forEach(player => {
+      const playerLine = document.createElement('p');
+      playerLine.style.color = topplayers.color;
+      playerLine.textContent = topplayers.nombre;
+      playersContainer.appendChild(playerLine);
+    });
 		
+	/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+	const destinationX = closestVertex.x;
+        const destinationY = closestVertex.y;
+	console.log(`ClosestVertex: (${closestVertex.x}, ${closestVertex.y})`);
+	animateBluePoint(destinationX, destinationY, function() {
+     	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+        console.log('Mov finalizado'); 
+	});
+	*/
+
+		//////////
+    const closestGreenVertex = 
+	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
+ console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
+
+
+		///////////
+		
+	/*const closestLine = findClosestLine(
+        bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+	const destinationX = closestLine.x2;
+        const destinationY = closestLine.y2;*/
+		
+	animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
+      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+                    findAndMarkClosestVertices();
+
+		console.log('Mov finalizado'); 
+	});
+		
+	//findClosestRedVertexToClick( clickX, clickY);
+
+
+		
+		
+	}
+}	
+	
+function moveBluePoint2( clickX, clickY ) {  
+
+  	//CAMARA/////////////////////
+		// Obtener el atributo 'transform' del elemento camera
+		const transformAttribute = camera.getAttribute('transform');
+		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		// Verificar si se encontraron las coordenadas de traslación
+		if (match) {
+    		// Las coordenadas actuales de la cámara
+    		 currentCameraX4 = parseFloat(match[1]);
+    		 currentCameraY4 = parseFloat(match[2]);
+    		// Haz algo con las coordenadas actuales de la cámara
+    		console.log('Coordenadas finales de la cámara:', currentCameraX4, currentCameraY4);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+        //CAMARA END/////////////////////	
+    console.log('Camara:', Camara);
+
+	if (!isMoving) { 
+	console.log('/////Move Player//////')
+  	isMoving = true  
+	drawUserCount();	
 
 const playersContainer = document.getElementById('playersContainer');
 
@@ -1331,6 +1381,23 @@ function clearAllGreenCircles() {
 
 
 
+
+function findClosestGreenVertexToClick(x, y) {
+    const greenVertices = document.querySelectorAll('circle[fill="red"]');
+    let closestVertex = null;
+    let minDistance = Infinity;
+    greenVertices.forEach((greenVertex) => {
+const x1 = parseFloat(greenVertex.getAttribute('cx')) - currentCameraX3; 
+const y1 = parseFloat(greenVertex.getAttribute('cy')) - currentCameraY3; 
+        const distance = pointToPointDistance2(x, y, x1, y1);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestVertex = { x: x1, y: y1 };
+        }
+    });
+    return closestVertex;
+}
+	
 	
 
 /////////////////////////////////////////////////
