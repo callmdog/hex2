@@ -296,6 +296,9 @@ let currentCameraY3 = 0;
 
 	//camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 
+let currentCameraX4 = 0;	
+let currentCameraY4 = 0;	
+
 
 let textLine1 = document.getElementById('textLine1');
     let textLine2 = document.getElementById('textLine2');
@@ -381,19 +384,7 @@ playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 hexagonGroup.appendChild(playerElement);
 	
-let currentCameraX4 = 0;	
-let currentCameraY4 = 0;	
-//CAMARA/////////////////////
-		const transformAttribute = camera.getAttribute('transform');
-		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
-		if (match) {
-    		 currentCameraX4 = parseFloat(match[1]);
-    		 currentCameraY4 = parseFloat(match[2]);
-    		console.log('Cámara:', currentCameraX4, currentCameraY4);  
-		} else {
-    		console.error('No se pudieron obtener las coordenadas de la cámara.');
-		}
-//CAMARA END/////////////////////  	
+	
 }
 
 //TEXT ELEMENT
@@ -563,6 +554,23 @@ function animateNameLocally(circleElement, start, end) {
 //////////////////////////////////////////////////////////////////////	
 	
 function moveBluePoint( clickX, clickY ) {  
+
+  	//CAMARA/////////////////////
+		// Obtener el atributo 'transform' del elemento camera
+		const transformAttribute = camera.getAttribute('transform');
+		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		// Verificar si se encontraron las coordenadas de traslación
+		if (match) {
+    		// Las coordenadas actuales de la cámara
+    		 currentCameraX4 = parseFloat(match[1]);
+    		 currentCameraY4 = parseFloat(match[2]);
+    		// Haz algo con las coordenadas actuales de la cámara
+    		console.log('Coordenadas finales de la cámara:', currentCameraX4, currentCameraY4);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+        //CAMARA END/////////////////////	
 //currentCameraY3 += 20;
 
 //currentCameraX3 += 20;
@@ -715,7 +723,7 @@ function findClosestVertices(x, y) {
     	// Eliminar los puntos rojos existentes
     	redVerticesArray.forEach((redVertex) => {
         const existingRedDot = document.querySelector
-        (`circle[fill="red"][cx="${redVertex.x}"][cy="${redVertex.y}"]`);
+        (`circle[fill="red"][cx="${redVertex.x+currentCameraX4}"][cy="${redVertex.y+currentCameraY4}"]`);
         if (existingRedDot) {
         svg.removeChild(existingRedDot);
         }
@@ -736,8 +744,8 @@ function findClosestVertices(x, y) {
         redVerticesArray.push({ x: x1, y: y1 });
 	// Dibujamos un círculo rojo en el vértice
         const redDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        redDot.setAttribute('cx', x1);
-        redDot.setAttribute('cy', y1);
+        redDot.setAttribute('cx', x1+currentCameraX4);
+        redDot.setAttribute('cy', y1+currentCameraY4);
         redDot.setAttribute('r', '3');
         redDot.setAttribute('fill', 'red');
 	svg.appendChild(redDot);
