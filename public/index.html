@@ -1254,8 +1254,8 @@ function findAndMarkClosestVertices() {
 
 clearAllGreenCircles();
 
-    const currentX = parseFloat(inicialX - currentCameraX3;
-    const currentY = parseFloat(inicialY - currentCameraY3;
+    const currentX = inicialX - currentCameraX3;
+    const currentY = inicialY - currentCameraY3;
 
     // Encuentra los vértices en un radio de 60 pixeles
     const closestVertices = findVerticesInRadius(currentX, currentY, 60);
