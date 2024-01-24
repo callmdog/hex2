@@ -196,6 +196,8 @@ const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
 const socket = io();
 
+	let NameSecure = '';
+
 ///CAM OPTIONS
 
 let Camara = null;
@@ -225,7 +227,7 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	
 	const playerName = document.getElementById('playerName').value;
 	console.log(`CLIENT EJEC. Name: ${playerName}`);
-
+	NameSecure = playerName;
 
 
 	//Ocultar el formulario y mostrar el canvas
@@ -379,8 +381,12 @@ playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 hexagonGroup.appendChild(playerElement);
 initialCameraX = svgWidth / 2 - player.x;
-initialCameraY = svgHeight / 2 - player.y;	
+initialCameraY = svgHeight / 2 - player.y;
+
+if(NameSecure === player.nombre){
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+	
+}	
 let currentCameraX4 = 0;	
 let currentCameraY4 = 0;	
 //CAMARA/////////////////////
