@@ -272,6 +272,9 @@ let randomV2 = 0;
 	let randomX = 0;	
 let randomY = 0;	
 
+let inicialX = 0;
+let inicialY = 0;
+
 let connectedUsers = 0;
 let isMoving = false
 let FirstMove = true
@@ -432,6 +435,13 @@ initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y;
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 	
+inicialX = player.x;
+inicialY = player.y;
+
+
+findAndMarkClosestVertices();
+
+
 }
 
 	
@@ -1229,6 +1239,89 @@ console.log(`COLISION 1999: ${circle.index}:`);
         }
     }
 }
+
+
+
+
+
+
+//NEW GREEN VERTEX FUNCTIONS!!!!!!!!
+
+
+
+
+function findAndMarkClosestVertices() {
+
+clearAllGreenCircles();
+
+    const currentX = parseFloat(inicialX - currentCameraX3;
+    const currentY = parseFloat(inicialY - currentCameraY3;
+
+    // Encuentra los vértices en un radio de 60 pixeles
+    const closestVertices = findVerticesInRadius(currentX, currentY, 60);
+
+    // Agrega un círculo verde en cada vértice encontrado
+    closestVertices.forEach((vertex) => {
+        markVertexWithGreenCircle(vertex.x + currentCameraX3, vertex.y + currentCameraY3);
+    });
+}
+
+
+
+// Función para encontrar los vértices en un radio dado
+function findVerticesInRadius(x, y, radius) {
+    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+    const result = [];
+
+    hexagons.forEach((hexagon) => {
+        const points = hexagon.getAttribute('points').split(' ');
+
+        // Iteramos sobre los vértices del hexágono
+        for (let i = 0; i < points.length; i++) {
+            const [x1, y1] = points[i].split(',').map(Number);
+
+            // Calculamos la distancia entre el punto azul y el vértice
+            const distance = pointToPointDistance2(x, y, x1, y1);
+
+            // Agregamos el vértice si está dentro del radio especificado
+            if (distance < radius) {
+                result.push({ x: x1, y: y1 });
+            }
+        }
+    });
+
+    return result;
+}
+
+// Luego, puedes llamar a findAndMarkClosestVertices en respuesta a un evento, como un clic:
+
+
+function markVertexWithGreenCircle(x, y) { 
+const svg = document.querySelector('svg'); 
+const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); 
+greenCircle.setAttribute('cx', x); greenCircle.setAttribute('cy', y); greenCircle.setAttribute('r', '3'); greenCircle.setAttribute('fill', 'green');
+
+
+console.log(`Verde agreg: (${x}, ${y}) marcado con círculo rojo.`);
+
+
+
+
+
+// Agrega el nuevo círculo verde al grupo de la cámara 
+const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(greenCircle);
+
+
+ }
+
+function clearAllGreenCircles() {
+
+
+ const svg = document.querySelector('svg'); const greenCircles = document.querySelectorAll('circle[fill="green"]'); greenCircles.forEach((greenCircle) => { 
+ 
+ const cameraGroup = document.getElementById('camera');
+ 
+ cameraGroup.removeChild(greenCircle); }); }
 
 
 
