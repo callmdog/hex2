@@ -523,6 +523,12 @@ function animateCircleLocally(circleElement, start, end) {
 		
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
+
+	////CAMERA MOVEMENT
+	const newXCam = svgWidth / 2 - newX;
+        const newYCam = svgHeight / 2 - newY;	
+	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+	///END CAMERA MOVEMENT
 		
     	if (progress < 1) {
       	requestAnimationFrame(update); } }
@@ -557,10 +563,10 @@ function animateNameLocally(circleElement, start, end) {
 //////////////////////////////////////////////////////////////////////	
 	
 function moveBluePoint( clickX, clickY ) {  
-currentCameraY3 += 20;
+//currentCameraY3 += 20;
 
-currentCameraX3 += 20;
-	camera.setAttribute('transform', `translate(${currentCameraX3}, ${currentCameraY3})`);
+//currentCameraX3 += 20;
+	//camera.setAttribute('transform', `translate(${currentCameraX3}, ${currentCameraY3})`);
 
 
     console.log('Camara:', Camara);
