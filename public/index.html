@@ -1299,10 +1299,13 @@ function findVerticesInRadius(x, y, radius) {
 function markVertexWithGreenCircle(x, y) { 
 const svg = document.querySelector('svg'); 
 const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); 
-greenCircle.setAttribute('cx', x); greenCircle.setAttribute('cy', y); greenCircle.setAttribute('r', '3'); greenCircle.setAttribute('fill', 'green');
+greenCircle.setAttribute('cx', x); 
+	greenCircle.setAttribute('cy', y); 
+	greenCircle.setAttribute('r', '3'); 
+	greenCircle.setAttribute('fill', 'red');
 
 
-console.log(`Verde agreg: (${x}, ${y}) marcado con círculo rojo.`);
+//console.log(`Verde agreg: (${x}, ${y}) marcado con círculo rojo.`);
 
 
 
@@ -1317,7 +1320,9 @@ const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(g
 function clearAllGreenCircles() {
 
 
- const svg = document.querySelector('svg'); const greenCircles = document.querySelectorAll('circle[fill="green"]'); greenCircles.forEach((greenCircle) => { 
+ const svg = document.querySelector('svg');
+	const greenCircles = document.querySelectorAll('circle[fill="red"]');
+	greenCircles.forEach((greenCircle) => { 
  
  const cameraGroup = document.getElementById('camera');
  
