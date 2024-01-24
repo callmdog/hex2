@@ -926,7 +926,7 @@ getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), rando
 
 function newRandomForServer() {
 	    	const coordinatesR = [];
-       	 	coordinatesR.push({ randomX, randomY });
+    coordinatesR.push({ x: randomX, y: randomY });
 	console.log(`CoordsR: ${randomX},${randomY}`);
 		socket.emit('sendCoordinatesR', coordinatesR);
 	
