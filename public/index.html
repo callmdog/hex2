@@ -585,7 +585,12 @@ function moveBluePoint( clickX, clickY ) {
 	if (!isMoving) { 
 	console.log('/////Move Player//////')
   	isMoving = true  
-	drawUserCount();	
+	drawUserCount();
+
+		 const closestGreenVertex = 
+	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
+ console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
+
 
 
 /*
