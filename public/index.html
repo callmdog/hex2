@@ -380,13 +380,7 @@ playerElement.setAttribute('fill', player.color);
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 hexagonGroup.appendChild(playerElement);
-initialCameraX = svgWidth / 2 - player.x;
-initialCameraY = svgHeight / 2 - player.y;
-
-if(NameSecure === player.nombre){
-camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 	
-}	
 let currentCameraX4 = 0;	
 let currentCameraY4 = 0;	
 //CAMARA/////////////////////
@@ -439,6 +433,17 @@ const player = updatedPlayers2[playerId];
 console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
 //console.log(`PLAYER POINTS2: ${player.puntos}`);
 addPlayer(player.nombre, player.puntos, player.color);
+
+
+
+if(NameSecure === player.nombre){
+initialCameraX = svgWidth / 2 - player.x;
+initialCameraY = svgHeight / 2 - player.y;
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+	
+}
+
+	
     }
 
 //getTopPlayers();
@@ -478,6 +483,8 @@ if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].
      // console.log('Color de topPlayers[1]:', topPlayers[1].color);
       //console.log('Color de topPlayers[2]:', topPlayers[2].color);
       //console.log('Color de topPlayers[3]:', topPlayers[3].color);
+
+
 
 	
 	
