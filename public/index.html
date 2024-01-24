@@ -562,9 +562,59 @@ function animateNameLocally(circleElement, start, end) {
 
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
+function moveBluePoint( clickX, clickY ) {  
+
+  	//CAMARA/////////////////////
+		// Obtener el atributo 'transform' del elemento camera
+		const transformAttribute = camera.getAttribute('transform');
+		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		// Verificar si se encontraron las coordenadas de traslación
+		if (match) {
+    		// Las coordenadas actuales de la cámara
+    		 currentCameraX4 = parseFloat(match[1]);
+    		 currentCameraY4 = parseFloat(match[2]);
+    		// Haz algo con las coordenadas actuales de la cámara
+    		console.log('Coordenadas finales de la cámara:', currentCameraX4, currentCameraY4);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+        //CAMARA END/////////////////////	
+    console.log('Camara:', Camara);
+
+	if (!isMoving) { 
+	console.log('/////Move Player//////')
+  	isMoving = true  
+	drawUserCount();	
+
+
+/*
+		//////////
+    const closestGreenVertex = 
+	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
+ console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
+
+
+		///////////
+		
+		
+	animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
+      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+                    findAndMarkClosestVertices();
+
+		console.log('Mov finalizado'); 
+	});
+		
+	//findClosestRedVertexToClick( clickX, clickY);
+
+
+	*/	
+		
+	}
+}	
 
 	
-function moveBluePoint( clickX, clickY ) {  
+function moveBluePoint3( clickX, clickY ) {  
 
   	//CAMARA/////////////////////
 		// Obtener el atributo 'transform' del elemento camera
