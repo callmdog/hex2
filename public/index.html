@@ -591,7 +591,14 @@ function moveBluePoint( clickX, clickY ) {
 	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
  console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
 
-  	isMoving = false;  
+animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
+      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+                 //   findAndMarkClosestVertices();
+
+		console.log('Mov finalizado'); 
+	});
+		
+  	//isMoving = false;  
 
 
 /*
@@ -757,8 +764,49 @@ const playersContainer = document.getElementById('playersContainer');
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
-	
+
 function animateBluePoint(destinationX, destinationY) {
+	const startX = parseFloat(bluePointElement.getAttribute('cx'));
+    	const startY = parseFloat(bluePointElement.getAttribute('cy'));
+	//console.log(`start: ${startX},${startY}`);
+ 	//console.log(`startY: ${startY}`);
+	const startTime = performance.now();
+    	const duration = 100; // 1 segundo
+	function update() {
+        const currentTime = performance.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const newX = startX + progress * (destinationX - startX);
+        const newY = startY + progress * (destinationY - startY);
+		
+    	bluePointElement.setAttribute('cx', newX);
+    	bluePointElement.setAttribute('cy', newY);
+		
+        if (progress < 1) {
+        requestAnimationFrame(update);
+        } else {
+	// Animación completada, emitir datos al servidor
+	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+
+	//findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+		
+	//console.log('Mov finalizado');
+	isMoving = false
+
+	// Supongamos que newPosition es un objeto con las nuevas coordenadas
+	const newPosition = { x:  newX , y: newY };
+	socket.emit('updatePosition', newPosition);
+
+	const playerElement = document.getElementById('nombreDeTuElementoJugador');
+	//detectarColisiones(bluePointElement);
+		handleCollisionWithGreenCircle(newX, newY)
+
+	}
+	}
+	requestAnimationFrame(update);
+}	
+	
+function animateBluePoint2(destinationX, destinationY) {
 	const startX = parseFloat(bluePointElement.getAttribute('cx'));
     	const startY = parseFloat(bluePointElement.getAttribute('cy'));
 	//console.log(`start: ${startX},${startY}`);
