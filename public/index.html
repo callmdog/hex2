@@ -343,9 +343,9 @@ console.log('SOCKET ASSIGN COLOR');
 //const playerNameT = playerName.name;
 //console.log(`Assign Nombre: ${playerNameT}`);	
 socket.emit('updatePlayersRequest');
-	    		console.log('RANDOM X Y:', randomX, randomY);  
+	    		//console.log('RANDOM X Y:', randomX, randomY);  
 
-socket.emit('updatePosition', { randomX, randomY });
+//socket.emit('updatePosition', { randomX, randomY });
 
 });
 
@@ -924,6 +924,13 @@ return; // Termina la función después de encontrar el vértice deseado
 }
 getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), randomV2);
 
+function newRandomForServer() {
+	    	const coordinatesR = [];
+       	 	coordinatesR.push({ randomX, randomY });
+		socket.emit('sendCoordinatesR', coordinatesR);
+
+
+}	
 
 //DRAW GREEN CIRCLES RANDOM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
