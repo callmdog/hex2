@@ -19,6 +19,8 @@ let players = {};
 const greenCircles = [];
 
 const randomCoords = [];
+let ranX = 0;
+let ranY = 0;
 
 function getRandomPosition() {
     const x = Math.floor(Math.random() * 800); // Ajusta según el tamaño de tu área de juego
@@ -54,7 +56,8 @@ greenCircles.push({ x, y });
         // Puedes hacer lo que necesites con estas coordenadas, por ejemplo:
         coordinates.forEach(({ x, y }) => {
 	    console.log(`Coordenada RANDOM X: ${x}, Coordenada RANDOM Y: ${y}`);
-
+		ranX = x;
+		ranY = y;
 
 randomCoords.push({ x, y });	
             // ... (tu código para procesar las coordenadas en el servidor)
@@ -110,8 +113,8 @@ socket.on('assignColor', function (playerName) {
     players[socket.id] = {
     //x: Math.random() * 500,
     //y: Math.random() * 500,
-    x: 200,
-    y: 200,
+    x: ranX,
+    y: ranY,
     color: assignedColors.get(socket.id).color,
     nombre: assignedColors.get(socket.id).name,
     puntos: 0,
