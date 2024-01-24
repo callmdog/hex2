@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <title>Not-Hex-A</title>
+  
+<style>
+//CSS STYLE SCRITPS
+
+//GREEN CIRCLES ANIMATION	  
+@keyframes circleAnimationWithDuration {
+  from { r: 5; }  to { r: 7; }
+}
+
+
+    #fixedText {
+  position: fixed;
+  top: 5vh;
+  right: 5vw;
+  z-index: 999;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 2vw; /* Ajusta el tamaño del texto según sea necesario */
+  max-width: 90%; 
+    }
+
+#mainContainer {
+      position: relative;
+    }
+
+//Top Player Container
+.fixed-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+      text-align: right;
+      z-index: 2;
+      width: 100px; /* Añade el ancho deseado */
+      height: 100px; /* Añade la altura deseada */
+      background-color: red; 
+}
+
+body {
+margin: 0;
+display: flex;
+background-color: #0000FF; }
+form {
+text-align: center; }
+
+#svg-container {
+width: 100vw; /* 100% del ancho de la ventana */
+height: 100vh; /* 100% de la altura de la ventana */
+overflow: auto;
+touch-action: pinch-zoom;
+}
+
+#gameCanvas {
+top: 0;
+left: 0;
+width: 0;
+position: absolute;
+display: none; }
+    
+#hexagonGroup {
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+	
+position: absolute;
+z-index: 1;
+display: none; }
+
+#firstP {
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+	background-color: #000000;
+position: absolute;
+z-index: 1;
+	display: none;
+ }
+    
+#bluePoint {
+display: none; }
+  
+</style>
+
+</head>
+
+<body>
+
+<div class="fixed-container" id="playersContainer">
+    <!-- El contenido se añadirá dinámicamente aquí mediante JavaScript -->
+  </div>
+
+<form id="nameForm">
+    <label for="playerName">Introduce tu nombre:</label>
+    <input type="text" id="playerName" name="playerName" required>
+    <button type="button" id="submitButton">Aceptar</button>
+
+	<div id="cameraOptions">
+        <label>
+            <input type="radio" name="camera" value="1"> Opción 1
+        </label>
+        <label>
+            <input type="radio" name="camera" value="2"> Opción 2
+        </label>
+    </div>
+	
+</form>
+
+<canvas id="gameCanvas" height="0" style="background-color: #ff0000;"></canvas>
+
+<div id="svg-container" ondblclick="preventZoom(event)">
+ 
+</div>
+
+			<div id="fixedText">
+
+     		</div>
+
+
+<svg id="firstP" 
+ xmlns="http://www.w3.org/2000/svg">  
+    <g id="camera">
+	
+<svg id="hexagonGroup" >
+	<text id="textLine1" x="10" y="20" fill="red">
+  </text>
+  <text id="textLine2" x="10" y="40" fill="blue">
+  </text>
+  <text id="textLine3" x="10" y="60" fill="green">
+  </text>
+  <text id="textLine4" x="10" y="80" fill="orange">
+  </text>
+  <text id="textLine5" x="10" y="100" fill="purple">
+  </text>
+</svg>	
+	   	</g>
+ 
+</svg>	
+	
+
+ <!--	
+<svg
+width="100%" height="100vh" xmlns="http://www.w3.org/2000/svg">   
+<g id="camera">
+  <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;">
+<text id="textLine1" x="10" y="20" fill="red">
+  </text>
+  <text id="textLine2" x="10" y="40" fill="blue">
+  </text>
+  <text id="textLine3" x="10" y="60" fill="green">
+  </text>
+  <text id="textLine4" x="10" y="80" fill="orange">
+  </text>
+  <text id="textLine5" x="10" y="100" fill="purple">
+  </text>
+  </svg>
+   </g>
+  </svg>
+ -->
+
+<div id="mainContainer">
+
+</div>
+
+
+	
+
+
+
+
+<circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
+
+<script src="/socket.io/socket.io.js"></script>
+    	  
+<script>
+	  
+// COMIENZA EL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// CLIENT /////////////////////////////////////////////////////
+	  
+document.addEventListener('DOMContentLoaded', function () {
+	
+const nameForm = document.getElementById('nameForm');
+const gameCanvas = document.getElementById('gameCanvas');
+const canvas = document.getElementById('gameCanvas');
+const context = canvas.getContext('2d');
+const socket = io();
+
+///CAM OPTIONS
+
+let Camara = null;
+
+// Evento para manejar cambios en los radio buttons
+document.getElementById('cameraOptions').addEventListener('change', function(event) {
+    const selectedValue = event.target.value;
+
+    // Actualizar la variable Camara según la selección
+    if (selectedValue === '1') {
+        Camara = 1;
+    } else if (selectedValue === '2') {
+        Camara = 2;
+    }
+
+    // Puedes imprimir la variable para verificar en la consola del navegador
+    console.log('Camara:', Camara);
+});	
+
+// DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
+	
+document.getElementById('submitButton').addEventListener('click', function () {
+	//console.log('CLIENTE EJECUTADO');
+	socket.on('connect_error', (error) => {
+    	console.error('Error de conexión:', error);
+	});
+	
+	const playerName = document.getElementById('playerName').value;
+	console.log(`CLIENT EJEC. Name: ${playerName}`);
+
+		    socket.emit('updatePosition', { randomX, randomY });
+
+
+	//Ocultar el formulario y mostrar el canvas
+	nameForm.style.display = 'none';
+	gameCanvas.style.display = 'block';
+	hexagonGroup.style.display = 'block';
+	firstP.style.display = 'block';
+
+	// ACTIVAR EL SERVIDOR
+	socket.emit('playerNameEntered', playerName);
+});
+
+function preventZoom(event) {
+	event.preventDefault();
+}
+
+   
+   const hexagonMap = [
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    // Repite el patrón de filas según sea necesario para tener 20 filas en total
+];
+
+	//CREATE HEXAGON PANAL
+createHexagons();
+	
+
+//VARIABLES 
+let randomV2 = 0;
+
+	let randomX = 0;	
+let randomY = 0;	
+
+let connectedUsers = 0;
+let isMoving = false
+let FirstMove = true
+const hexagonAngle = 0.523598776; // 30 degrees in radians
+const players = {}; // Objeto para almacenar la información de los jugadores
+const hexagonGroup = document.getElementById('hexagonGroup');
+	const firstP = document.getElementById('firstP');
+
+const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
+let topplayers = [];
+
+	const svgWidth = document.documentElement.clientWidth;
+const svgHeight = document.documentElement.clientHeight;
+
+let initialCameraX = svgWidth / 2 ;
+let initialCameraY = svgHeight / 2 ;
+
+let currentCameraX3 = 0;
+let currentCameraY3 = 0;
+	
+	const camera = document.getElementById('camera');
+
+	//camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
+
+let textLine1 = document.getElementById('textLine1');
+    let textLine2 = document.getElementById('textLine2');
+    let textLine3 = document.getElementById('textLine3');
+    let textLine4 = document.getElementById('textLine4');
+    let textLine5 = document.getElementById('textLine5');
+
+
+function addPlayer(nombre, puntos, color) {
+	const nuevoJugador = {
+	nombre: nombre,
+	puntos: puntos,
+	color: color
+	};
+	topplayers.push(nuevoJugador);
+}
+
+//CIRCULO AZUL DEFINIDO
+const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    bluePointElement.setAttribute('id', bluePoint.id);
+    bluePointElement.setAttribute('r', '8');
+    bluePointElement.setAttribute('fill', bluePoint.color);
+    bluePointElement.setAttribute('cx', bluePoint.x);
+    bluePointElement.setAttribute('cy', bluePoint.y);
+
+/////////////////////////////////////////////////////////////////////
+
+//CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+firstP.addEventListener('click', function (event) {
+	//console.log('HEXAGON GROUP LOG');
+	const mouseX = event.clientX - firstP.getBoundingClientRect().left;
+        const mouseY = event.clientY - firstP.getBoundingClientRect().top;
+	
+	moveBluePoint(mouseX, mouseY);
+
+	if(FirstMove){		
+	FirstMove = false;
+	}
+});
+
+//ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+socket.on('assignColor', function (playerName) {
+console.log('SOCKET ASSIGN COLOR');
+//const playerNameT = playerName.name;
+//console.log(`Assign Nombre: ${playerNameT}`);	
+socket.emit('updatePlayersRequest');
+});
+
+
+//UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+socket.on('updatePlayers', function (updatedPlayers) {
+console.log('SOCKET UPDATE PLAYERS');
+//Iterar sobre el objeto de jugadores y actualizar la información
+for (const playerId in updatedPlayers) {
+const player = updatedPlayers[playerId];
+
+//PLAYER ELEMENT 
+const existingPlayerElement = document.getElementById(playerId);
+if (existingPlayerElement) {
+existingPlayerElement.setAttribute('cx', player.x);
+existingPlayerElement.setAttribute('cy', player.y);
+const sizeCalc = player.puntos * 0.1;
+existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
+	
+} else {		
+const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+const sizeCalc = player.puntos * 0.1;
+playerElement.setAttribute('id', playerId);
+playerElement.setAttribute('r', 9+ sizeCalc * 10);
+playerElement.setAttribute('fill', player.color);
+//playerElement.setAttribute('cx', player.x);
+//playerElement.setAttribute('cy', player.y);
+playerElement.setAttribute('cx', player.x);
+playerElement.setAttribute('cy', player.y);
+hexagonGroup.appendChild(playerElement);
+initialCameraX = svgWidth / 2 - player.x;
+initialCameraY = svgHeight / 2 - player.y;	
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+let currentCameraX4 = 0;	
+let currentCameraY4 = 0;	
+//CAMARA/////////////////////
+		const transformAttribute = camera.getAttribute('transform');
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		if (match) {
+    		 currentCameraX4 = parseFloat(match[1]);
+    		 currentCameraY4 = parseFloat(match[2]);
+    		console.log('Cámara:', currentCameraX4, currentCameraY4);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+//CAMARA END/////////////////////  	
+}
+
+//TEXT ELEMENT
+const existingTextElement = document.getElementById(playerId + '-name');
+if (existingTextElement) {
+    existingTextElement.setAttribute('x', player.x);
+    existingTextElement.setAttribute('y', player.y - 8);
+    existingTextElement.textContent = player.nombre + ' ('+ player.puntos + ')';
+} else {
+    const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    textElement2.setAttribute('id', playerId + '-name');
+    textElement2.setAttribute('x', player.x);
+    textElement2.setAttribute('y', player.y - 10);
+    textElement2.setAttribute('text-anchor', 'middle');
+    textElement2.setAttribute('fill', 'green');
+    textElement2.setAttribute('font-size', '16px');
+    textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
+    hexagonGroup.appendChild(textElement2);
+}
+//LOGS		
+//console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
+//console.log(`PLAYER POINTS: ${player.puntos}`);
+    }
+
+});
+
+//UPDATE TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+
+socket.on('updatePlayers2', function (updatedPlayers2) {
+console.log('SOCKET UPDATE PLAYERS 2');
+topplayers = [];
+//Iterar sobre el objeto de jugadores y actualizar la información
+for (const playerId in updatedPlayers2) {
+const player = updatedPlayers2[playerId];
+//LOGS		
+console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
+//console.log(`PLAYER POINTS2: ${player.puntos}`);
+addPlayer(player.nombre, player.puntos, player.color);
+    }
+
+//getTopPlayers();
+const topPlayers = getTopPlayers();
+
+/*	
+textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
+textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
+textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
+textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
+textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
+*/
+textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
+
+if (topPlayers[0] && topPlayers[0].color) {
+	textLine1.style.fill = topPlayers[0].color; 
+		     // console.log('SII');
+
+					  } else {
+	    //  console.log('NOO');
+
+					  }
+
+textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
+if (topPlayers[1] && topPlayers[1].color) {textLine2.style.fill = topPlayers[1].color; } else {}
+
+textLine3.textContent = topPlayers.length >= 3 ? `#3 ${topPlayers[2].nombre}: ${topPlayers[2].puntos}` : '';
+if (topPlayers[2] && topPlayers[2].color) {textLine3.style.fill = topPlayers[2].color; } else {}
+
+textLine4.textContent = topPlayers.length >= 4 ? `#4 ${topPlayers[3].nombre}: ${topPlayers[3].puntos}` : '';
+if (topPlayers[3] && topPlayers[3].color) {textLine4.style.fill = topPlayers[3].color; } else {}
+
+textLine5.textContent = topPlayers.length >= 5 ? `#5 ${topPlayers[4].nombre}: ${topPlayers[4].puntos}` : '';
+if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].color; } else {}
+
+    //  console.log('Color de topPlayers[0]:', topPlayers[0].color);
+     // console.log('Color de topPlayers[1]:', topPlayers[1].color);
+      //console.log('Color de topPlayers[2]:', topPlayers[2].color);
+      //console.log('Color de topPlayers[3]:', topPlayers[3].color);
+
+	
+	
+});
+
+
+//ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+socket.on('animateBluePoint', function (animationData) {
+	//console.log('SOCKET ANIMATE BLUE POINT');
+	const playerId = animationData.playerId;
+    	const data = animationData.data;
+	const txt = animationData.playerName;
+    	// Encuentra el círculo correspondiente al jugador
+    	const playerElement = document.getElementById(playerId);
+   	const textElement2 = document.getElementById(playerId + '-name');
+  
+	animateCircleLocally(playerElement, data.start, data.end);
+	animateNameLocally(textElement2, data.start, data.end);
+});	
+
+
+//ANIMATE CIRCLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+			  
+function animateCircleLocally(circleElement, start, end) {
+	//console.log('ANIMATE CIRCLE LOCALLY');
+	const duration = 100;
+  	const startTime = performance.now();
+	function update() {
+    	const currentTime = performance.now();
+    	const progress = Math.min((currentTime - startTime) / duration, 1);
+	const newX = start.x + progress * (end.x - start.x);
+    	const newY = start.y + progress * (end.y - start.y);
+		
+	circleElement.setAttribute('cx', newX);
+   	circleElement.setAttribute('cy', newY);
+		
+    	if (progress < 1) {
+      	requestAnimationFrame(update); } }
+	requestAnimationFrame(update);
+}
+
+
+//ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function animateNameLocally(circleElement, start, end) {
+	//console.log('ANIMATE CIRCLE LOCALLY');
+	const duration = 100;
+  	const startTime = performance.now();
+	function update() {
+    	const currentTime = performance.now();
+    	const progress = Math.min((currentTime - startTime) / duration, 1);
+	const newX = start.x + progress * (end.x - start.x);
+    	const newY = start.y + progress * (end.y - start.y);
+	
+	circleElement.setAttribute('x', newX);
+   	circleElement.setAttribute('y', newY - 8);
+
+    	if (progress < 1) {
+      	requestAnimationFrame(update); } }
+	requestAnimationFrame(update);
+}
+
+
+
+//MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+	
+function moveBluePoint( clickX, clickY ) {  
+currentCameraY3 += 20;
+
+currentCameraX3 += 20;
+	camera.setAttribute('transform', `translate(${currentCameraX3}, ${currentCameraY3})`);
+
+
+    console.log('Camara:', Camara);
+
+	
+	//mostrarJugadoresConectados();
+
+	//socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
+
+	if (!isMoving) { 
+	console.log('/////Move Player//////')
+  	isMoving = true  
+	drawUserCount();
+
+
+//textLine1.textContent =  'bmvjk';
+
+
+/*		textLine1.textContent = 'dsaads'+ '\n';
+     textLine2.textContent =  'adssda'+ '\n';
+     textLine3.textContent = 'adsdsa'+ '\n';
+      textLine4.textContent = 'fff'+ '\n';
+     textLine5.textContent = 'qqq'+ '\n';
+*/
+		
+
+const playersContainer = document.getElementById('playersContainer');
+
+    // Recorre la variable players y agrega cada jugador al contenedor
+    topplayers.forEach(player => {
+      const playerLine = document.createElement('p');
+      playerLine.style.color = topplayers.color;
+      playerLine.textContent = topplayers.nombre;
+      playersContainer.appendChild(playerLine);
+    });
+		
+	/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+	const destinationX = closestVertex.x;
+        const destinationY = closestVertex.y;
+	console.log(`ClosestVertex: (${closestVertex.x}, ${closestVertex.y})`);
+	animateBluePoint(destinationX, destinationY, function() {
+     	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+        console.log('Mov finalizado'); 
+	});
+	*/
+		
+	const closestLine = findClosestLine(
+        bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+	const destinationX = closestLine.x2;
+        const destinationY = closestLine.y2;
+		
+	animateBluePoint(destinationX, destinationY, function() {
+        findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+	console.log('Mov finalizado'); 
+	});
+		
+	findClosestRedVertexToClick( clickX, clickY);
+		
+	}
+}
+
+
+//ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function animateBluePoint(destinationX, destinationY) {
+	const startX = parseFloat(bluePointElement.getAttribute('cx'));
+    	const startY = parseFloat(bluePointElement.getAttribute('cy'));
+	//console.log(`start: ${startX},${startY}`);
+ 	//console.log(`startY: ${startY}`);
+	const startTime = performance.now();
+    	const duration = 100; // 1 segundo
+	function update() {
+        const currentTime = performance.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const newX = startX + progress * (destinationX - startX);
+        const newY = startY + progress * (destinationY - startY);
+		
+    	bluePointElement.setAttribute('cx', newX);
+    	bluePointElement.setAttribute('cy', newY);
+		
+        if (progress < 1) {
+        requestAnimationFrame(update);
+        } else {
+	// Animación completada, emitir datos al servidor
+	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+
+	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+		
+	//console.log('Mov finalizado');
+	isMoving = false
+
+	// Supongamos que newPosition es un objeto con las nuevas coordenadas
+	const newPosition = { x:  newX , y: newY };
+	socket.emit('updatePosition', newPosition);
+
+	const playerElement = document.getElementById('nombreDeTuElementoJugador');
+	//detectarColisiones(bluePointElement);
+		handleCollisionWithGreenCircle(newX, newY)
+
+	}
+	}
+	requestAnimationFrame(update);
+}
+
+
+
+//FIND CLOSEST RED VERTEX !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+	
+function findClosestRedVertexToClick(x, y) {
+    	let closestVertex = null;
+    	let minDistance = Infinity;
+    	redVerticesArray.forEach((redVertex) => {
+        const x1 = redVertex.x;
+        const y1 = redVertex.y;
+        const distance = pointToPointDistance2(x, y, x1, y1);
+        if (distance < minDistance) {
+        minDistance = distance;
+        closestVertex = { x: x1, y: y1 };
+        }
+    	});
+    	if (closestVertex) {
+    	//bluePoint.setAttribute('cx',  closestVertex.x );
+    	//bluePoint.setAttribute('cy',  closestVertex.y  );          
+	animateBluePoint(closestVertex.x, closestVertex.y, function() { 
+	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+ 	console.log('La animación ha terminado');
+	});
+    	} else {
+        console.log(`No se encontró vértice rojo (${x}, ${y}).`);
+    	}
+    	return closestVertex;
+}
+	
+
+//FIND AND DRAW RED VERTEX !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+let redVerticesArray = [];
+function findClosestVertices(x, y) {
+    	const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+    	let svg = document.querySelector('svg');
+    	let nearbyVertices = [];
+    	// Eliminar los puntos rojos existentes
+    	redVerticesArray.forEach((redVertex) => {
+        const existingRedDot = document.querySelector
+        (`circle[fill="red"][cx="${redVertex.x}"][cy="${redVertex.y}"]`);
+        if (existingRedDot) {
+        svg.removeChild(existingRedDot);
+        }
+    	});
+    	// Limpiar el arreglo de coordenadas de los vértices rojos
+    	redVerticesArray = [];
+	hexagons.forEach((hexagon) => {
+        const points = hexagon.getAttribute('points').split(' ');
+        // Iteramos sobre los vértices del hexágono
+        for (let i = 0; i < points.length; i++) {
+        const [x1, y1] = points[i].split(',').map(Number);
+	// Calculamos la distancia entre el punto azul y el vértice
+        const distance = pointToPointDistance2(x, y, x1, y1);
+	// Marcamos el vértice si está dentro del radio de 50 pixeles alrededor del punto azul
+        if (distance < 60) {
+        nearbyVertices.push({ x: x1, y: y1 });
+	// Almacenamos las coordenadas del vértice rojo
+        redVerticesArray.push({ x: x1, y: y1 });
+	// Dibujamos un círculo rojo en el vértice
+        const redDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        redDot.setAttribute('cx', x1);
+        redDot.setAttribute('cy', y1);
+        redDot.setAttribute('r', '3');
+        redDot.setAttribute('fill', 'red');
+	svg.appendChild(redDot);
+	// Mostramos las coordenadas en la consola
+        //console.log(`Vértice (${x1}, ${y1}) marcado con círculo rojo.`);
+        }
+        }
+    	});
+    	// Encontramos el vértice rojo más cercano al clic
+    	const clickX = x;
+    	const clickY = y;
+    	let closestVertex = null;
+    	let minDistance = Infinity;
+    	redVerticesArray.forEach((redVertex) => {
+        const x1 = redVertex.x;
+        const y1 = redVertex.y;
+	const distance = pointToPointDistance2(clickX, clickY, x1, y1);
+        if (distance < minDistance) {
+        minDistance = distance;
+        closestVertex = { x: x1, y: y1 };
+	}
+    	});
+	if (closestVertex) {
+        //console.log(`Vértice rojo más cercano al clic: 
+        //(${closestVertex.x}, ${closestVertex.y})`);
+        } else {
+        console.log('No se encontraron vértices rojos cercanos');
+	}
+    	return nearbyVertices;
+}
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////		
+	
+//POINT TO DISTANCE//////////////////////////////
+/////////////////////////////////////////////////
+	
+function pointToPointDistance2(x1, y1, x2, y2) {
+    	const dx = x1 - x2;
+    	const dy = y1 - y2;
+    	return Math.sqrt(dx * dx + dy * dy);
+}
+
+//CREATE HEXAGONS///////////////////////////!!!!!!!!!!!
+///////////////////////////////////////////////// !!!!!
+
+function createHexagons(callback) {
+     const hexagonGroup = document.getElementById('hexagonGroup');
+    const hexagonSize = 30;
+    const numRows = hexagonMap.length;
+    const numCols = hexagonMap[0].length;
+    const hexWidth = hexagonSize * Math.sqrt(3);
+    const hexHeight = hexagonSize * Math.sqrt(3);
+
+    for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
+            const x = col * (hexWidth * 0.87);
+            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+
+            const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+            hexagon.setAttribute('fill', 'none');
+            hexagon.setAttribute('stroke', 'gray');
+            hexagon.setAttribute('stroke-width', '2');
+            // Accede al mapa de hexágonos para obtener la dirección
+            const direction = hexagonMap[row][col].direction;
+            hexagon.addEventListener('click', function() {
+                console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
+            });
+            hexagonGroup.appendChild(hexagon);
+        }
+    }
+if (callback) {
+callback(); }
+}
+
+createHexagons(function() {
+console.log("createHexagons end");
+//DRAW GREEN RANDOM CIRCLES	
+drawGreenCirclesOnRandomPoints();	
+});
+
+
+//GET HEXAGON POINTS///////////////////////////!!!!!!!!!
+///////////////////////////////////////////////!!!!!!!!!
+
+function getHexagonPoints(x, y, size) {
+//console.log('Hexagon Points');
+const points = [];
+for (let i = 0; i < 6; i++) {
+const angle = (2 * Math.PI / 6) * i;
+const pointX = x + size * Math.cos(angle);
+const pointY = y + size * Math.sin(angle);
+//points.push(`${pointX},${pointY}`);
+const coordinate = `${pointX},${pointY}`;   
+//console.log(`Coordenada: (${coordinate})`); 
+// Imprime la coordenada en consola
+points.push(coordinate);
+}
+return points.join(' ');
+}
+
+
+//CONNECTED USERS////////////////////////////////
+///////////////////////////////////////////////// 
+//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
+  socket.on('userCount', function (count) {
+    connectedUsers = count;
+    drawUserCount(); // Llamar a la función para actualizar el texto en el canvas
+  });
+  function drawUserCount() {
+    context.fillStyle = 'black';
+    context.font = '16px Arial';
+    context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 5);
+  }
+
+		
+//END CODE DOM///////////////////////////////////
+///////////////////////////////////////////////// 
+
+//FIND CLOSEST LINE//////////////////////////////
+/////////////////////////////////////////////////
+    
+function findClosestLine(x, y) {
+      const lines = document.querySelectorAll('#hexagonGroup polygon');
+      let closestLine = null;
+      let minDistance = Infinity;
+      lines.forEach((hexagon) => {
+        const points = hexagon.getAttribute('points').split(' ');
+        for (let i = 0; i < points.length; i++) {
+          const [x1, y1] = points[i].split(',').map(Number);
+          const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
+          const distance = pointToLineDistance(x, y, x1, y1, x2, y2);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestLine = { x1, y1, x2, y2 };
+          }}});
+      return closestLine;
+}
+
+   
+//POINT TO LINE DISTANCE//////////////////////////
+/////////////////////////////////////////////////
+
+function pointToLineDistance(x, y, x1, y1, x2, y2) {   
+const A = x - x1;
+const B = y - y1;
+const C = x2 - x1;
+const D = y2 - y1;
+const dot = A * C + B * D;
+const len_sq = C * C + D * D;
+const param = dot / len_sq;
+let xx, yy;
+if (param < 0 || (x1 === x2 && y1 === y2)) {
+xx = x1;
+yy = y1;
+} else if (param > 1) {
+xx = x2;
+yy = y2;
+} else {
+xx = x1 + param * C;
+yy = y1 + param * D;
+}
+const dx = x - xx;
+const dy = y - yy;
+return Math.sqrt(dx * dx + dy * dy);
+}
+   
+    //CODE END////////////////////////////////////////
+
+//COORDS OF RANDOM VERTEX!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+
+function printRandomValue(min, max) {
+  const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+ return randomValue;
+}
+randomV2 = printRandomValue(1, 500);
+//console.log(randomV2);	
+
+function getCoordinatesOfVertex(hexagons, targetVertexNumber) {
+let currentVertex = 0;
+for (const hexagon of hexagons) {
+const points = hexagon.getAttribute('points').split(' ');
+for (const point of points) {
+const [x, y] = point.split(',').map(Number);
+currentVertex++;
+if (currentVertex === targetVertexNumber) {
+console.log(`Random: ${targetVertexNumber}: (${x}, ${y})`);
+	randomX = x;
+	randomY = y;
+
+return; // Termina la función después de encontrar el vértice deseado
+}}} console.log(`No se encontraron coordenadas para el vértice ${targetVertexNumber}`);
+}
+getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), randomV2);
+
+
+//DRAW GREEN CIRCLES RANDOM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+
+function drawGreenCirclesOnRandomPoints() {
+const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+const svg = document.querySelector('svg');
+	    const coordinates = [];
+
+for (let i = 0; i < 30; i++) {
+// Selecciona un hexágono al azar
+const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
+const points = randomHexagon.getAttribute('points').split(' ');
+
+// Selecciona dos puntos aleatorios que conformen una línea dentro del hexágono
+const randomPointIndex1 = Math.floor(Math.random() * points.length);
+const randomPointIndex2 = (randomPointIndex1 + 1) % points.length;
+
+const [x1, y1] = points[randomPointIndex1].split(',').map(Number);
+const [x2, y2] = points[randomPointIndex2].split(',').map(Number);
+
+// Elije un punto aleatorio entre los dos puntos seleccionados
+const randomT = Math.random();
+const x = x1 + randomT * (x2 - x1);
+const y = y1 + randomT * (y2 - y1);
+
+// Crea y agrega un círculo verde en el punto seleccionado
+const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+greenCircle.setAttribute('cx', x);
+greenCircle.setAttribute('cy', y);
+greenCircle.setAttribute('r', '8');
+greenCircle.setAttribute('fill', 'red');
+
+        coordinates.push({ x, y });
+	
+//greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
+//svg.appendChild(greenCircle);
+
+	   anime({
+          targets: greenCircle,
+          r: 7,
+          duration: 2000, // 2 segundos
+          easing: 'easeInOutSine',
+          direction: 'alternate',
+          loop: true
+        });
+  
+//console.log(`green cire: (${x}, ${y})`); 
+    }
+	    socket.emit('sendCoordinates', coordinates);
+
+}
+	
+
+//DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function detectarColisiones(playerElement) {
+	//Obtener las coordenadas del círculo azul
+	const blueX = parseFloat(playerElement.getAttribute('cx'));
+	const blueY = parseFloat(playerElement.getAttribute('cy'));
+	const blueRadius = 9; // Radio del círculo azul (jugador)
+	// Iterar sobre los círculos verdes y verificar colisiones con el círculo azul
+    	document.querySelectorAll('circle[fill="green"]').forEach((greenCircle) => {
+        const greenX = parseFloat(greenCircle.getAttribute('cx'));
+        const greenY = parseFloat(greenCircle.getAttribute('cy'));
+        // Obtener los radios de los círculos
+        const greenRadius = parseFloat(greenCircle.getAttribute('r'));
+        // Calcular las coordenadas de los cuadros delimitadores
+        const blueBoundingBox = {
+        x1: blueX - blueRadius,
+        y1: blueY - blueRadius,
+        x2: blueX + blueRadius,
+        y2: blueY + blueRadius };
+        const greenBoundingBox = {
+        x1: greenX - greenRadius,
+        y1: greenY - greenRadius,
+        x2: greenX + greenRadius,
+        y2: greenY + greenRadius};
+        // Verificar la colisión entre los cuadros delimitadores
+        if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
+            blueBoundingBox.x2 > greenBoundingBox.x1 &&
+            blueBoundingBox.y1 < greenBoundingBox.y2 &&
+            blueBoundingBox.y2 > greenBoundingBox.y1 ) {
+            // Eliminar el círculo verde del SVG
+            greenCircle.parentNode.removeChild(greenCircle);
+            console.log('Colisión detectada. Círculo verde eliminado.');
+	    socket.emit('greenCircleEaten');}
+    	});
+
+	//COLISION DETECTAR JUGADORES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+	document.querySelectorAll('circle').forEach((otherCircle) => {
+	const playerIdN = otherCircle.getAttribute('id');
+	if (playerIdN !== socket.id && playerIdN !== null) {
+	const greenX = parseFloat(otherCircle.getAttribute('cx'));
+        const greenY = parseFloat(otherCircle.getAttribute('cy'));
+	console.log(`Colision con: (${playerIdN})`); 
+	console.log(`SOCKET ID: (${socket.id})`); 
+        // Obtener los radios de los círculos
+        const greenRadius = parseFloat(otherCircle.getAttribute('r'));
+        // Calcular las coordenadas de los cuadros delimitadores
+        const blueBoundingBox = {
+        x1: blueX - blueRadius,
+        y1: blueY - blueRadius,
+        x2: blueX + blueRadius,
+        y2: blueY + blueRadius };
+        const greenBoundingBox = {
+        x1: greenX - greenRadius,
+        y1: greenY - greenRadius,
+        x2: greenX + greenRadius,
+        y2: greenY + greenRadius};
+        // Verificar la colisión entre los cuadros delimitadores
+        if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
+            blueBoundingBox.x2 > greenBoundingBox.x1 &&
+            blueBoundingBox.y1 < greenBoundingBox.y2 &&
+            blueBoundingBox.y2 > greenBoundingBox.y1 ) {
+            // Eliminar el círculo verde del SVG
+            //otherCircle.parentNode.removeChild(otherCircle);
+            console.log('Colisión detectada. Círculo verde eliminado.');
+	    //socket.emit('greenCircleEaten');
+	}}});
+console.log('La detección de colisiones ha terminado.');
+}
+
+//GET TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function getTopPlayers() {
+// Ordena los jugadores por puntos de forma descendente.
+const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
+// Toma solo los primeros 5 jugadores.
+const topPlayersx = sortedPlayers.slice(0, 5);
+// Imprime en la consola en formato "Jugador: Puntos".
+//console.log('Top 5 jugadores:');
+topPlayersx.forEach(topplayer => {
+//console.log(`${topplayer.nombre}: ${topplayer.puntos}: ${topplayer.color}`);
+});
+// Devuelve la lista de los mejores jugadores.
+return topPlayersx;
+}
+
+
+
+	
+
+/////////PRUEBA CIRCULOS PARA TODOS VERDES?//////
+// Agrega la función para generar círculos verdes
+
+	let greenCircles = [];
+	let greenCircles2 = [];
+
+function generateGreenCircles() {
+	            console.log('GENERATE GREEN CIRCLES 1.');
+
+    const svg = document.querySelector('svg');
+    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+
+    // Borra los círculos verdes existentes
+    document.querySelectorAll('circle[fill="green"]').forEach(circle => {
+        circle.parentNode.removeChild(circle);
+    });
+
+let i = 0;
+    // Dibuja los círculos verdes en las coordenadas recibidas del servidor
+ // greenCircles = [];
+    greenCircles.forEach(({ x, y }) => {
+//console.log(`${x}: ${y}:`);
+        const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        greenCircle.setAttribute('cx', x);
+        greenCircle.setAttribute('cy', y);
+        greenCircle.setAttribute('r', '8');
+        greenCircle.setAttribute('fill', 'green');
+        svg.appendChild(greenCircle);
+
+	     anime({
+          targets: greenCircle,
+          r: 6,
+          duration: 1000, // 2 segundos
+          easing: 'easeInOutSine',
+          direction: 'alternate',
+          loop: true
+        });
+
+        greenCircles2.push({ x, y, index: i });
+
+i+=1;
+//console.log(`Valor de I: ${i}:${x}:${y}`);
+		//console.log(`LENGTH: ${greenCircles2.length}:`);
+
+    });
+
+   socket.emit('greenCirclesGenerated', greenCircles);
+}
+
+/*
+	function generateGreenCircles3() {
+    const svg = document.querySelector('svg');
+    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+
+    document.querySelectorAll('circle[fill="green"]').forEach(circle => {
+        circle.parentNode.removeChild(circle);
+    });
+
+//   greenCircles = [];
+    for (let i = 0; i < 30; i++) {
+        const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
+        const points = randomHexagon.getAttribute('points').split(' ');
+        const randomPointIndex = Math.floor(Math.random() * points.length);
+        const [x, y] = points[randomPointIndex].split(',').map(Number);
+
+        const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        greenCircle.setAttribute('cx', x);
+        greenCircle.setAttribute('cy', y);
+        greenCircle.setAttribute('r', '8');
+        greenCircle.setAttribute('fill', 'green');
+        svg.appendChild(greenCircle);
+
+        // Almacena las coordenadas y el índice de cada círculo verde
+        greenCircles.push({ x, y, index: i });
+	    console.log(`Valor de I: ${i}:`);
+
+    }
+
+ //   socket.emit('greenCirclesGenerated', greenCircles);
+}
+
+*/
+
+	
+// Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
+socket.on('greenCirclesGenerated', (circles) => {
+	            console.log('GREEN CIRCLES GENERATED 2.');
+
+	greenCircles = [];
+	greenCircles2 = [];
+   //greenCircles.length = 0;
+    greenCircles.push(...circles);
+	console.log(`LENGTH2: ${greenCircles.length}:`);
+
+    generateGreenCircles();
+});
+
+	function handleCollisionWithGreenCircle(playerX, playerY) {
+    // Verificar colisión con cada círculo verde
+    for (const circle of greenCircles2) {
+
+
+//console.log(`COLISION133: ${circle.lenght}:`);
+
+        const distance = Math.sqrt((playerX - circle.x) ** 2 + (playerY - circle.y) ** 2);
+
+
+
+//console.log(`COLISION 1334: ${distance}:`);
+
+        if (distance < 20) {
+
+
+console.log(`COLISION 1999: ${circle.index}:`);
+
+            // Emitir evento al servidor indicando el índice del círculo verde colisionado
+            socket.emit('collisionWithGreenCircle', circle.index);
+			    socket.emit('greenCircleEaten');
+
+            break; // No es necesario verificar más círculos
+        }
+    }
+}
+
+
+
+
+	
+
+/////////////////////////////////////////////////
+
+
+
+	
+//END DOM	 
+});
+//END DOM
+	
+</script>
+  
+</body>
+</html>
