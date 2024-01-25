@@ -509,6 +509,12 @@ socket.on('animateBluePoint', function (animationData) {
   
 	animateCircleLocally(playerElement, data.start, data.end);
 	animateNameLocally(textElement2, data.start, data.end);
+
+	animateCircleLocally(circleElement, start, end, function() {
+  console.log('La animación ha terminado');
+  // Haz lo que necesites después de que la animación haya terminado
+});
+	
 });	
 
 
@@ -548,10 +554,7 @@ function animateCircleLocally(circleElement, start, end, callback) {
 	requestAnimationFrame(update);
 }
 
-animateCircleLocally(circleElement, start, end, function() {
-  console.log('La animación ha terminado');
-  // Haz lo que necesites después de que la animación haya terminado
-});	
+	
 
 
 //ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
