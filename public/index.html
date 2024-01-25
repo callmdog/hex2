@@ -1656,9 +1656,9 @@ function calculateHexagonVertices() {
 
 // Imprimir las coordenadas de los vértices en la consola
     hexagonVertices.forEach((vertices, hexIndex) => {
-        console.log(`Hexágono ${hexIndex + 1}:`);
+     //   console.log(`Hexágono ${hexIndex + 1}:`);
         vertices.forEach((vertex, index) => {
-            console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
+     //       console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
         });
     });
 }
@@ -1697,6 +1697,8 @@ calculateHexagonVertices();
 paintBlueCirclesOnHexVertices();
 
 	
+
+console.log("Longitud de hexagonVertices:", hexagonVertices.length);
 
 /////////////////////////////////////////////////
 
