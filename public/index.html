@@ -1616,8 +1616,8 @@ function paintGreenCirclesOnHexVertices() {
 
             // Crear un círculo verde en el vértice ajustado
             const greenDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            greenDot.setAttribute('cx', adjustedX + currentCameraX3);
-            greenDot.setAttribute('cy', adjustedY + currentCameraY3);
+            greenDot.setAttribute('cx', x);
+            greenDot.setAttribute('cy', y);
             greenDot.setAttribute('r', '3');
             greenDot.setAttribute('fill', 'green');
             
