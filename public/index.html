@@ -612,6 +612,10 @@ function animateNameLocally(circleElement, start, end) {
 //////////////////////////////////////////////////////////////////////	
 function moveBluePoint( clickX, clickY ) {  
 
+
+
+
+
   	//CAMARA/////////////////////
 		// Obtener el atributo 'transform' del elemento camera
 		const transformAttribute = camera.getAttribute('transform');
@@ -629,6 +633,13 @@ function moveBluePoint( clickX, clickY ) {
 		}
         //CAMARA END/////////////////////	
     console.log('Camara:', Camara);
+
+
+
+
+paintGreenCirclesOnHexVertices();
+
+
 
 	if (!isMoving) { 
 	console.log('/////Move Player//////')
@@ -1581,6 +1592,44 @@ const y1 = parseFloat(greenVertex.getAttribute('cy')) - currentCameraY3;
     return closestVertex;
 }
 	
+
+
+
+function paintGreenCirclesOnHexVertices() {
+    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+    const svg = document.querySelector('svg');
+
+    // Eliminar los círculos verdes existentes
+    const existingGreenDots = document.querySelectorAll('circle[fill="green"]');
+    existingGreenDots.forEach(dot => svg.removeChild(dot));
+
+    hexagons.forEach((hexagon, hexIndex) => {
+        const points = hexagon.getAttribute('points').split(' ');
+
+        // Iterar sobre los vértices del hexágono
+        for (let i = 0; i < points.length; i++) {
+            const [x, y] = points[i].split(',').map(Number);
+
+            // Ajustar las coordenadas según la posición de la cámara
+            const adjustedX = x - currentCameraX3;
+            const adjustedY = y - currentCameraY3;
+
+            // Crear un círculo verde en el vértice ajustado
+            const greenDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            greenDot.setAttribute('cx', adjustedX + currentCameraX3);
+            greenDot.setAttribute('cy', adjustedY + currentCameraY3);
+            greenDot.setAttribute('r', '3');
+            greenDot.setAttribute('fill', 'green');
+            
+            
+            console.log(`Green agreg: (${nuevoX}, ${nuevoY}) marcado con círculo rojo.`);
+
+            svg.appendChild(greenDot);
+        }
+    });
+}
+
+
 	
 
 /////////////////////////////////////////////////
