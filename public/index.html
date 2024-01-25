@@ -1713,6 +1713,61 @@ console.log("RandomHex:", randomC);
 console.log("Elemento de hexagonVertices:"    , hexagonVertices[randomC][randomC6]);
 
 
+
+
+
+// Función para calcular las líneas que forman los hexágonos
+function calculateHexagonLines() {
+    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+    const hexagonLines = [];
+
+    hexagons.forEach(hexagon => {
+        const points = hexagon.getAttribute('points').split(' ');
+
+        // Iterar sobre los vértices del hexágono
+        for (let i = 0; i < points.length; i++) {
+            const [x1, y1] = points[i].split(',').map(Number);
+            const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
+
+            hexagonLines.push({ x1, y1, x2, y2 });
+        }
+    });
+
+    return hexagonLines;
+}
+
+// Función para dibujar 100 puntos amarillos aleatorios en las líneas de los hexágonos
+function drawRandomYellowPointsOnHexLines() {
+    const svg = document.querySelector('svg');
+    const hexagonLines = calculateHexagonLines();
+
+    for (let i = 0; i < 100; i++) {
+        // Elegir aleatoriamente una línea de los hexágonos
+        const randomLine = hexagonLines[Math.floor(Math.random() * hexagonLines.length)];
+
+        // Calcular una posición aleatoria a lo largo de la línea
+        const randomX = Math.random() * (randomLine.x2 - randomLine.x1) + randomLine.x1;
+        const randomY = Math.random() * (randomLine.y2 - randomLine.y1) + randomLine.y1;
+
+        // Crear un círculo amarillo en la posición aleatoria
+        const yellowDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        yellowDot.setAttribute('cx', randomX);
+        yellowDot.setAttribute('cy', randomY);
+        yellowDot.setAttribute('r', '2');
+        yellowDot.setAttribute('fill', 'yellow');
+
+
+
+const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(yellowDot);
+
+       // svg.appendChild(yellowDot);
+    }
+}
+
+// Llama a esta función cada vez que desees dibujar los puntos amarillos aleatorios en las líneas de los hexágonos
+drawRandomYellowPointsOnHexLines();
+
+
 /////////////////////////////
 
 ////////////////////
