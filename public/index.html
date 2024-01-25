@@ -433,6 +433,9 @@ addPlayer(player.nombre, player.puntos, player.color);
 if(NameSecure === player.nombre){
 initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y;
+
+	    		console.log('Coord circ:', initialCameraX, initialCameraY);  
+
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 	
 inicialX = player.x;
