@@ -596,7 +596,7 @@ function moveBluePoint( clickX, clickY ) {
 
 animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
       //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-                 //   findAndMarkClosestVertices();
+                    findAndMarkClosestVertices();
 
 		console.log('Mov finalizado'); 
 	});
@@ -799,6 +799,11 @@ function animateBluePoint(destinationX, destinationY) {
 	// Supongamos que newPosition es un objeto con las nuevas coordenadas
 	const newPosition = { x:  newX , y: newY };
 	socket.emit('updatePosition', newPosition);
+
+	inicialX = newX;
+	inicialY = newY;
+	        console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
+	
 
 	const playerElement = document.getElementById('nombreDeTuElementoJugador');
 	//detectarColisiones(bluePointElement);
