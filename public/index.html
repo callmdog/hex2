@@ -1390,7 +1390,11 @@ let i = 0;
         greenCircle.setAttribute('cy', y);
         greenCircle.setAttribute('r', '8');
         greenCircle.setAttribute('fill', 'green');
-        svg.appendChild(greenCircle);
+     //   svg.appendChild(greenCircle);
+
+
+
+const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(greenCircle);
 
 	     anime({
           targets: greenCircle,
@@ -1457,7 +1461,7 @@ socket.on('greenCirclesGenerated', (circles) => {
     greenCircles.push(...circles);
 	console.log(`LENGTH2: ${greenCircles.length}:`);
 
-   // generateGreenCircles();
+    generateGreenCircles();
 });
 
 	function handleCollisionWithGreenCircle(playerX, playerY) {
