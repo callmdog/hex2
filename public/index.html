@@ -431,8 +431,8 @@ addPlayer(player.nombre, player.puntos, player.color);
 
 
 if(NameSecure === player.nombre){
-initialCameraX = player.x - svgWidth / 2 ;
-initialCameraY =  player.y - svgHeight / 2 ;
+initialCameraX =   svgWidth / 2 - player.x;
+initialCameraY =   svgHeight / 2 - player.y  ;
 
 	    		console.log('Coord circ:', initialCameraX, initialCameraY);  
 
