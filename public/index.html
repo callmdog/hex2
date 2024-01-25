@@ -637,7 +637,7 @@ function moveBluePoint( clickX, clickY ) {
 
 
 
-paintGreenCirclesOnHexVertices();
+//paintGreenCirclesOnHexVertices();
 
 
 
@@ -1629,6 +1629,62 @@ function paintGreenCirclesOnHexVertices() {
     });
 }
 
+
+
+
+// Lista para almacenar las coordenadas de los vértices de los hexágonos
+const hexagonVertices = [];
+
+// Función para calcular las coordenadas de los vértices de los hexágonos
+function calculateHexagonVertices() {
+    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+
+    hexagons.forEach(hexagon => {
+        const points = hexagon.getAttribute('points').split(' ');
+        const vertices = [];
+
+        // Iterar sobre los vértices del hexágono
+        for (let i = 0; i < points.length; i++) {
+            const [x, y] = points[i].split(',').map(Number);
+            vertices.push({ x, y });
+        }
+
+        hexagonVertices.push(vertices);
+    });
+}
+
+// Función para dibujar los círculos azules en los vértices de los hexágonos
+function paintBlueCirclesOnHexVertices() {
+    const svg = document.querySelector('svg');
+
+    // Eliminar los círculos azules existentes
+    const existingBlueDots = document.querySelectorAll('circle[fill="blue"]');
+    existingBlueDots.forEach(dot => svg.removeChild(dot));
+
+    // Iterar sobre los vértices de los hexágonos
+    hexagonVertices.forEach(vertices => {
+        vertices.forEach(vertex => {
+            // Crear un círculo azul en el vértice
+            const blueDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            blueDot.setAttribute('cx', vertex.x);
+            blueDot.setAttribute('cy', vertex.y);
+            blueDot.setAttribute('r', '3');
+            blueDot.setAttribute('fill', 'blue');
+
+
+const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(blueDot);
+
+
+         //   svg.appendChild(blueDot);
+        });
+    });
+}
+
+// Llama a esta función una vez al principio para calcular las coordenadas de los vértices
+calculateHexagonVertices();
+
+// Llama a esta función cada vez que sea necesario dibujar los círculos azules
+paintBlueCirclesOnHexVertices();
 
 	
 
