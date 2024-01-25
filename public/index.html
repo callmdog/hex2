@@ -294,6 +294,10 @@ let initialCameraY = svgHeight / 2 ;
 
 let currentCameraX3 = 0;
 let currentCameraY3 = 0;
+
+	let currentCamera10 = 0;
+let currentCameraY10 = 0;
+	
 	
 	const camera = document.getElementById('camera');
 
@@ -439,6 +443,26 @@ initialCameraY =   svgHeight / 2 - 100  ;
 console.log('Coord circ:', initialCameraX, initialCameraY);  
 
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
+console.log('R. NUmbers:', randomX, randomY);  
+	
+
+//CAMARA/////////////////////
+		// Obtener el atributo 'transform' del elemento camera
+		const transformAttribute = camera.getAttribute('transform');
+		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		// Verificar si se encontraron las coordenadas de traslación
+		if (match) {
+    		// Las coordenadas actuales de la cámara
+    		 currentCameraX10 = parseFloat(match[1]);
+    		 currentCameraY10 = parseFloat(match[2]);
+    		// Haz algo con las coordenadas actuales de la cámara
+    		console.log('Coordenadas finales de la cámara:', currentCameraX10, currentCameraY10);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+        //CAMARA END/////////////////////
 	
 inicialX = player.x;
 inicialY = player.y;
