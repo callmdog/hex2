@@ -1651,6 +1651,16 @@ function calculateHexagonVertices() {
 
         hexagonVertices.push(vertices);
     });
+
+
+
+// Imprimir las coordenadas de los vértices en la consola
+    hexagonVertices.forEach((vertices, hexIndex) => {
+        console.log(`Hexágono ${hexIndex + 1}:`);
+        vertices.forEach((vertex, index) => {
+            console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
+        });
+    });
 }
 
 // Función para dibujar los círculos azules en los vértices de los hexágonos
