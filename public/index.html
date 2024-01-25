@@ -1203,7 +1203,10 @@ console.log(`Random: ${targetVertexNumber}: (${x}, ${y})`);
 return; // Termina la función después de encontrar el vértice deseado
 }}} console.log(`No se encontraron coordenadas para el vértice ${targetVertexNumber}`);
 }
-getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), randomV2);
+//getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), randomV2);
+
+
+
 
 function newRandomForServer() {
 	    	const coordinatesR = [];
@@ -1714,7 +1717,8 @@ console.log("Elemento de hexagonVertices:"    , hexagonVertices[randomC][randomC
 
 
 
-
+randomX = hexagonVertices[randomC][randomC6].x;
+randomY = hexagonVertices[randomC][randomC6].y;
 
 // Función para calcular las líneas que forman los hexágonos
 function calculateHexagonLines() {
