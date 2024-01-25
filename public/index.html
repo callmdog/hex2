@@ -515,7 +515,7 @@ socket.on('animateBluePoint', function (animationData) {
 //ANIMATE CIRCLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 			  
-function animateCircleLocally(circleElement, start, end) {
+function animateCircleLocally(circleElement, start, end, callback) {
 	//console.log('ANIMATE CIRCLE LOCALLY');
 	const duration = 100;
   	const startTime = performance.now();
@@ -535,9 +535,23 @@ function animateCircleLocally(circleElement, start, end) {
 	///END CAMERA MOVEMENT
 		
     	if (progress < 1) {
-      	requestAnimationFrame(update); } }
+      	requestAnimationFrame(update); 
+	} else {
+      // La animación ha terminado
+      if (typeof callback === 'function') {
+        callback();
+      }
+	}	
+	
+	
+	}
 	requestAnimationFrame(update);
 }
+
+animateCircleLocally(circleElement, start, end, function() {
+  console.log('La animación ha terminado');
+  // Haz lo que necesites después de que la animación haya terminado
+});	
 
 
 //ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
