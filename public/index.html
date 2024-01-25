@@ -1025,10 +1025,23 @@ function createHexagons(callback) {
     const hexWidth = hexagonSize * Math.sqrt(3);
     const hexHeight = hexagonSize * Math.sqrt(3);
 
+
+let minX = Infinity;
+    let maxX = -Infinity;
+    let minY = Infinity;
+    let maxY = -Infinity;
+
+
     for (let row = 0; row < numRows; row++) {
         for (let col = 0; col < numCols; col++) {
             const x = col * (hexWidth * 0.87);
             const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+
+
+minX = Math.min(minX, x);
+            maxX = Math.max(maxX, x);
+            minY = Math.min(minY, y);
+            maxY = Math.max(maxY, y);
 
             const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
             hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
@@ -1043,6 +1056,17 @@ function createHexagons(callback) {
             hexagonGroup.appendChild(hexagon);
         }
     }
+
+
+const mapWidth = maxX - minX + hexWidth;
+    const mapHeight = maxY - minY + hexHeight;
+
+    console.log('Ancho total del mapa hexagonal:', mapWidth);
+    console.log('Altura total del mapa hexagonal:', mapHeight);
+
+
+
+
 if (callback) {
 callback(); }
 }
