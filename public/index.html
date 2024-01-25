@@ -512,6 +512,8 @@ socket.on('animateBluePoint', function (animationData) {
 
 	animateCircleLocally(playerElement, data.start, data.end, function() {
   console.log('La animación ha terminado');
+		                    findAndMarkClosestVertices();
+
   // Haz lo que necesites después de que la animación haya terminado
 });
 	
@@ -613,7 +615,7 @@ function moveBluePoint( clickX, clickY ) {
 
 animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
       //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-                    findAndMarkClosestVertices();
+                   // findAndMarkClosestVertices();
 
 		console.log('Mov finalizado'); 
 	});
