@@ -385,10 +385,10 @@ const sizeCalc = player.puntos * 0.1;
 playerElement.setAttribute('id', playerId);
 playerElement.setAttribute('r', 9+ sizeCalc * 10);
 playerElement.setAttribute('fill', player.color);
-//playerElement.setAttribute('cx', player.x);
-//playerElement.setAttribute('cy', player.y);
-playerElement.setAttribute('cx', 600);
-playerElement.setAttribute('cy', 600);
+playerElement.setAttribute('cx', player.x);
+playerElement.setAttribute('cy', player.y);
+//playerElement.setAttribute('cx', 600);
+//playerElement.setAttribute('cy', 600);
 hexagonGroup.appendChild(playerElement);
 	
 	
@@ -435,11 +435,11 @@ addPlayer(player.nombre, player.puntos, player.color);
 
 
 if(NameSecure === player.nombre){
-//initialCameraX =   svgWidth / 2 - player.x;
-//initialCameraY =   svgHeight / 2 - player.y  ;
+initialCameraX =   svgWidth / 2 - player.x;
+initialCameraY =   svgHeight / 2 - player.y  ;
 
-initialCameraX =   svgWidth / 2 - 600;
-initialCameraY =   svgHeight / 2 - 600  ;	
+//initialCameraX =   svgWidth / 2 - 600;
+//initialCameraY =   svgHeight / 2 - 600  ;	
 console.log('Coord circ:', initialCameraX, initialCameraY);  
 
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
