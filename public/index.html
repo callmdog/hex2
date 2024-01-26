@@ -542,10 +542,10 @@ socket.on('animateBluePoint', function (animationData) {
 	console.log('PLAYER ID MOVE2:', playerId);  
 
   
-	animateCircleLocally(playerElement, data.start, data.end);
+	animateCircleLocally(playerElement, data.start, data.end, playerId);
 	animateNameLocally(textElement2, data.start, data.end);
 
-	animateCircleLocally(playerElement, data.start, data.end, function() {
+	animateCircleLocally(playerElement, data.start, data.end,playerId, function() {
   console.log('La animación ha terminado');
 		                    findAndMarkClosestVertices();
 
@@ -561,7 +561,7 @@ socket.on('animateBluePoint', function (animationData) {
 //ANIMATE CIRCLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 			  
-function animateCircleLocally(circleElement, start, end, callback) {
+function animateCircleLocally(circleElement, start, end, playerId, callback) {
 	//console.log('ANIMATE CIRCLE LOCALLY');
 	const duration = 2000;
   	const startTime = performance.now();
@@ -574,10 +574,23 @@ function animateCircleLocally(circleElement, start, end, callback) {
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
 
+
+
+
+
 	////CAMERA MOVEMENT
+
+console.log("Mi player ID:", playerId);
+console.log("Mi socket ID:", socket.id);
+
+
+if (socket.id===playerId) {
 	const newXCam = svgWidth / 2 - newX;
         const newYCam = svgHeight / 2 - newY;	
 	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+}
+
+
 	///END CAMERA MOVEMENT
 		
     	if (progress < 1) {
