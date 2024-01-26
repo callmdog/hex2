@@ -442,6 +442,11 @@ initialCameraY =   svgHeight / 2 - player.y  ;
 //initialCameraY =   svgHeight / 2 - 600  ;	
 console.log('Coord circ:', initialCameraX, initialCameraY);  
 
+
+
+            bluePointElement.setAttribute('cx', player.x);
+            bluePointElement.setAttribute('cy', player.y);
+
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 
 console.log('R. NUmbers:', randomX, randomY);  
