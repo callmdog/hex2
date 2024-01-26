@@ -545,6 +545,9 @@ socket.on('animateBluePoint', function (animationData) {
   console.log('La animación ha terminado');
 		                    findAndMarkClosestVertices();
 
+
+	isMoving = false;
+
   // Haz lo que necesites después de que la animación haya terminado
 });
 	
@@ -855,7 +858,7 @@ function animateBluePoint(destinationX, destinationY) {
 	//findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		
 	//console.log('Mov finalizado');
-	isMoving = false
+//	isMoving = false
 
 	// Supongamos que newPosition es un objeto con las nuevas coordenadas
 	const newPosition = { x:  newX , y: newY };
