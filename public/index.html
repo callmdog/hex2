@@ -560,10 +560,13 @@ function animateNameLocally(circleElement, start, end) {
 }
 
 
-
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
 function moveBluePoint( clickX, clickY ) {  
+
+
+
+
 
   	//CAMARA/////////////////////
 		// Obtener el atributo 'transform' del elemento camera
@@ -583,6 +586,13 @@ function moveBluePoint( clickX, clickY ) {
         //CAMARA END/////////////////////	
     console.log('Camara:', Camara);
 
+
+
+
+//paintGreenCirclesOnHexVertices();
+
+
+
 	if (!isMoving) { 
 	console.log('/////Move Player//////')
   	isMoving = true;  
@@ -592,10 +602,40 @@ function moveBluePoint( clickX, clickY ) {
 	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
  console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
 
+animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
+      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+                   // findAndMarkClosestVertices();
+
+		console.log('Mov finalizado'); 
+	});
+		
+  	//isMoving = false;  
+
+
+/*
+		//////////
+    const closestGreenVertex = 
+	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
+ console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
+
+
+		///////////
+		
+		
+	animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
+      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+                    findAndMarkClosestVertices();
+
+		console.log('Mov finalizado'); 
+	});
+		
+	//findClosestRedVertexToClick( clickX, clickY);
+
+
+	*/	
 		
 	}
 }	
-
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
