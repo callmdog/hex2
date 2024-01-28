@@ -306,6 +306,9 @@ let currentCameraY10 = 0;
 let currentCameraX4 = 0;	
 let currentCameraY4 = 0;	
 
+let JugadorDatos = [];
+	
+
 
 let textLine1 = document.getElementById('textLine1');
     let textLine2 = document.getElementById('textLine2');
@@ -553,6 +556,15 @@ socket.on('animateBluePoint', function (animationData) {
 	isMoving = false;
 
   // Haz lo que necesites después de que la animación haya terminado
+
+
+//////////
+
+
+//////////		
+
+
+		
 });
 	
 });	
@@ -887,8 +899,8 @@ function animateBluePoint(destinationX, destinationY) {
 	
 
 	const playerElement = document.getElementById('nombreDeTuElementoJugador');
-	//detectarColisiones(bluePointElement);
-		handleCollisionWithGreenCircle(newX, newY)
+	detectarColisiones(bluePointElement);
+	handleCollisionWithGreenCircle(newX, newY)
 
 	}
 	}
@@ -1305,7 +1317,7 @@ function detectarColisiones(playerElement) {
 	const blueY = parseFloat(playerElement.getAttribute('cy'));
 	const blueRadius = 9; // Radio del círculo azul (jugador)
 	// Iterar sobre los círculos verdes y verificar colisiones con el círculo azul
-    	document.querySelectorAll('circle[fill="green"]').forEach((greenCircle) => {
+   /* 	document.querySelectorAll('circle[fill="green"]').forEach((greenCircle) => {
         const greenX = parseFloat(greenCircle.getAttribute('cx'));
         const greenY = parseFloat(greenCircle.getAttribute('cy'));
         // Obtener los radios de los círculos
@@ -1331,7 +1343,7 @@ function detectarColisiones(playerElement) {
             console.log('Colisión detectada. Círculo verde eliminado.');
 	    socket.emit('greenCircleEaten');}
     	});
-
+*/
 	//COLISION DETECTAR JUGADORES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 	document.querySelectorAll('circle').forEach((otherCircle) => {
