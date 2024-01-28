@@ -133,27 +133,6 @@ display: none; }
     <g id="camera">
 	
 <g id="hexagonGroup" >
-	<text id="textLine1" x="10" y="20" fill="red">
-  </text>
-  <text id="textLine2" x="10" y="40" fill="blue">
-  </text>
-  <text id="textLine3" x="10" y="60" fill="green">
-  </text>
-  <text id="textLine4" x="10" y="80" fill="orange">
-  </text>
-  <text id="textLine5" x="10" y="100" fill="purple">
-  </text>
-</g>	
-	   	</g>
- 
-</svg>	
-	
-
- <!--	
-<svg
-width="100%" height="100vh" xmlns="http://www.w3.org/2000/svg">   
-<g id="camera">
-  <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;">
 <text id="textLine1" x="10" y="20" fill="red">
   </text>
   <text id="textLine2" x="10" y="40" fill="blue">
@@ -164,20 +143,13 @@ width="100%" height="100vh" xmlns="http://www.w3.org/2000/svg">  
   </text>
   <text id="textLine5" x="10" y="100" fill="purple">
   </text>
-  </svg>
-   </g>
-  </svg>
- -->
-
-<div id="mainContainer">
-
-</div>
-
-
+</g>	
+</g>
+ 
+</svg>	
 	
 
-
-
+<div id="mainContainer"> </div>
 
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
@@ -414,9 +386,6 @@ if (existingTextElement) {
     textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
     hexagonGroup.appendChild(textElement2);
 }
-//LOGS		
-//console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
-//console.log(`PLAYER POINTS: ${player.puntos}`);
     }
 
 });
@@ -435,20 +404,14 @@ console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${
 //console.log(`PLAYER POINTS2: ${player.puntos}`);
 addPlayer(player.nombre, player.puntos, player.color);
 
-
-
 if(NameSecure === player.nombre){
 initialCameraX =   svgWidth / 2 - player.x;
 initialCameraY =   svgHeight / 2 - player.y  ;
 
-//initialCameraX =   svgWidth / 2 - 600;
-//initialCameraY =   svgHeight / 2 - 600  ;	
 console.log('Coord circ:', initialCameraX, initialCameraY);  
 
-
-
-            bluePointElement.setAttribute('cx', player.x);
-            bluePointElement.setAttribute('cy', player.y);
+bluePointElement.setAttribute('cx', player.x);
+bluePointElement.setAttribute('cy', player.y);
 
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 
@@ -484,27 +447,11 @@ findAndMarkClosestVertices();
 	
     }
 
-//getTopPlayers();
 const topPlayers = getTopPlayers();
-
-/*	
-textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
-textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
-textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
-textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
-textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
-*/
 textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
 
 if (topPlayers[0] && topPlayers[0].color) {
-	textLine1.style.fill = topPlayers[0].color; 
-		     // console.log('SII');
-
-					  } else {
-	    //  console.log('NOO');
-
-					  }
-
+	textLine1.style.fill = topPlayers[0].color;  } else {  }
 textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
 if (topPlayers[1] && topPlayers[1].color) {textLine2.style.fill = topPlayers[1].color; } else {}
 
@@ -516,15 +463,6 @@ if (topPlayers[3] && topPlayers[3].color) {textLine4.style.fill = topPlayers[3].
 
 textLine5.textContent = topPlayers.length >= 5 ? `#5 ${topPlayers[4].nombre}: ${topPlayers[4].puntos}` : '';
 if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].color; } else {}
-
-    //  console.log('Color de topPlayers[0]:', topPlayers[0].color);
-     // console.log('Color de topPlayers[1]:', topPlayers[1].color);
-      //console.log('Color de topPlayers[2]:', topPlayers[2].color);
-      //console.log('Color de topPlayers[3]:', topPlayers[3].color);
-
-
-
-	
 	
 });
 
@@ -543,27 +481,15 @@ socket.on('animateBluePoint', function (animationData) {
 
 	console.log('PLAYER ID MOVE:', playerElement);  
 	console.log('PLAYER ID MOVE2:', playerId);  
-
   
 	animateCircleLocally(playerElement, data.start, data.end, playerId);
 	animateNameLocally(textElement2, data.start, data.end);
 
 	animateCircleLocally(playerElement, data.start, data.end,playerId, function() {
   console.log('La animación ha terminado');
-		                    findAndMarkClosestVertices();
-
+	findAndMarkClosestVertices();
 
 	isMoving = false;
-
-  // Haz lo que necesites después de que la animación haya terminado
-
-
-//////////
-
-
-//////////		
-
-
 		
 });
 	
@@ -586,10 +512,6 @@ function animateCircleLocally(circleElement, start, end, playerId, callback) {
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
 
-
-
-
-
 	////CAMERA MOVEMENT
 
 //console.log("Mi player ID:", playerId);
@@ -601,8 +523,6 @@ if (socket.id===playerId) {
         const newYCam = svgHeight / 2 - newY;	
 	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
 }
-
-
 	///END CAMERA MOVEMENT
 		
     	if (progress < 1) {
@@ -613,15 +533,11 @@ if (socket.id===playerId) {
         callback();
       }
 	}	
-	
-	
 	}
 	requestAnimationFrame(update);
 }
 
 	
-
-
 //ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
@@ -649,10 +565,6 @@ function animateNameLocally(circleElement, start, end) {
 //////////////////////////////////////////////////////////////////////	
 function moveBluePoint( clickX, clickY ) {  
 
-
-
-
-
   	//CAMARA/////////////////////
 		// Obtener el atributo 'transform' del elemento camera
 		const transformAttribute = camera.getAttribute('transform');
@@ -670,13 +582,6 @@ function moveBluePoint( clickX, clickY ) {
 		}
         //CAMARA END/////////////////////	
     console.log('Camara:', Camara);
-
-
-
-
-//paintGreenCirclesOnHexVertices();
-
-
 
 	if (!isMoving) { 
 	console.log('/////Move Player//////')
@@ -687,175 +592,9 @@ function moveBluePoint( clickX, clickY ) {
 	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
  console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
 
-animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
-      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-                   // findAndMarkClosestVertices();
-
-		console.log('Mov finalizado'); 
-	});
-		
-  	//isMoving = false;  
-
-
-/*
-		//////////
-    const closestGreenVertex = 
-	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
- console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
-
-
-		///////////
-		
-		
-	animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
-      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-                    findAndMarkClosestVertices();
-
-		console.log('Mov finalizado'); 
-	});
-		
-	//findClosestRedVertexToClick( clickX, clickY);
-
-
-	*/	
 		
 	}
 }	
-
-	
-function moveBluePoint3( clickX, clickY ) {  
-
-  	//CAMARA/////////////////////
-		// Obtener el atributo 'transform' del elemento camera
-		const transformAttribute = camera.getAttribute('transform');
-		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
-		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
-		// Verificar si se encontraron las coordenadas de traslación
-		if (match) {
-    		// Las coordenadas actuales de la cámara
-    		 currentCameraX4 = parseFloat(match[1]);
-    		 currentCameraY4 = parseFloat(match[2]);
-    		// Haz algo con las coordenadas actuales de la cámara
-    		console.log('Coordenadas finales de la cámara:', currentCameraX4, currentCameraY4);  
-		} else {
-    		console.error('No se pudieron obtener las coordenadas de la cámara.');
-		}
-        //CAMARA END/////////////////////	
-    console.log('Camara:', Camara);
-
-	if (!isMoving) { 
-	console.log('/////Move Player//////')
-  	isMoving = true  
-	drawUserCount();	
-
-const playersContainer = document.getElementById('playersContainer');
-
-    // Recorre la variable players y agrega cada jugador al contenedor
-    topplayers.forEach(player => {
-      const playerLine = document.createElement('p');
-      playerLine.style.color = topplayers.color;
-      playerLine.textContent = topplayers.nombre;
-      playersContainer.appendChild(playerLine);
-    });
-		
-	/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-	const destinationX = closestVertex.x;
-        const destinationY = closestVertex.y;
-	console.log(`ClosestVertex: (${closestVertex.x}, ${closestVertex.y})`);
-	animateBluePoint(destinationX, destinationY, function() {
-     	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-        console.log('Mov finalizado'); 
-	});
-	*/
-
-		//////////
-    const closestGreenVertex = 
-	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
- console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
-
-
-		///////////
-		
-/*const closestLine = findClosestLine(
-        bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-	const destinationX = closestLine.x2;
-        const destinationY = closestLine.y2;*/
-		
-	animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
-      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-                    findAndMarkClosestVertices();
-
-		console.log('Mov finalizado'); 
-	});
-		
-	//findClosestRedVertexToClick( clickX, clickY);
-
-
-		
-		
-	}
-}	
-
-	
-function moveBluePoint2( clickX, clickY ) {  
-
-  	//CAMARA/////////////////////
-		// Obtener el atributo 'transform' del elemento camera
-		const transformAttribute = camera.getAttribute('transform');
-		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
-		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
-		// Verificar si se encontraron las coordenadas de traslación
-		if (match) {
-    		// Las coordenadas actuales de la cámara
-    		 currentCameraX4 = parseFloat(match[1]);
-    		 currentCameraY4 = parseFloat(match[2]);
-    		// Haz algo con las coordenadas actuales de la cámara
-    		console.log('Coordenadas finales de la cámara:', currentCameraX4, currentCameraY4);  
-		} else {
-    		console.error('No se pudieron obtener las coordenadas de la cámara.');
-		}
-        //CAMARA END/////////////////////	
-    console.log('Camara:', Camara);
-
-	if (!isMoving) { 
-	console.log('/////Move Player//////')
-  	isMoving = true  
-	drawUserCount();	
-
-const playersContainer = document.getElementById('playersContainer');
-
-    // Recorre la variable players y agrega cada jugador al contenedor
-    topplayers.forEach(player => {
-      const playerLine = document.createElement('p');
-      playerLine.style.color = topplayers.color;
-      playerLine.textContent = topplayers.nombre;
-      playersContainer.appendChild(playerLine);
-    });
-		
-	/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-	const destinationX = closestVertex.x;
-        const destinationY = closestVertex.y;
-	console.log(`ClosestVertex: (${closestVertex.x}, ${closestVertex.y})`);
-	animateBluePoint(destinationX, destinationY, function() {
-     	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-        console.log('Mov finalizado'); 
-	});
-	*/
-		
-	const closestLine = findClosestLine(
-        bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-	const destinationX = closestLine.x2;
-        const destinationY = closestLine.y2;
-		
-	animateBluePoint(destinationX, destinationY, function() {
-        findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-	console.log('Mov finalizado'); 
-	});
-		
-	findClosestRedVertexToClick( clickX, clickY);
-		
-	}
-}
 
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -883,21 +622,14 @@ function animateBluePoint(destinationX, destinationY) {
         } else {
 	// Animación completada, emitir datos al servidor
 	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
-
-	//findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		
-	//console.log('Mov finalizado');
-//	isMoving = false
-
 	// Supongamos que newPosition es un objeto con las nuevas coordenadas
 	const newPosition = { x:  newX , y: newY };
 	socket.emit('updatePosition', newPosition);
 
 	inicialX = newX;
 	inicialY = newY;
-	        console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
-	
-
+	console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
 	const playerElement = document.getElementById('nombreDeTuElementoJugador');
 	detectarColisiones(bluePointElement);
 	handleCollisionWithGreenCircle(newX, newY)
@@ -907,142 +639,7 @@ function animateBluePoint(destinationX, destinationY) {
 	requestAnimationFrame(update);
 }	
 	
-function animateBluePoint2(destinationX, destinationY) {
-	const startX = parseFloat(bluePointElement.getAttribute('cx'));
-    	const startY = parseFloat(bluePointElement.getAttribute('cy'));
-	//console.log(`start: ${startX},${startY}`);
- 	//console.log(`startY: ${startY}`);
-	const startTime = performance.now();
-    	const duration = 100; // 1 segundo
-	function update() {
-        const currentTime = performance.now();
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const newX = startX + progress * (destinationX - startX);
-        const newY = startY + progress * (destinationY - startY);
-		
-    	bluePointElement.setAttribute('cx', newX);
-    	bluePointElement.setAttribute('cy', newY);
-		
-        if (progress < 1) {
-        requestAnimationFrame(update);
-        } else {
-	// Animación completada, emitir datos al servidor
-	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
 
-	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-		
-	//console.log('Mov finalizado');
-	isMoving = false
-
-	// Supongamos que newPosition es un objeto con las nuevas coordenadas
-	const newPosition = { x:  newX , y: newY };
-	socket.emit('updatePosition', newPosition);
-
-	const playerElement = document.getElementById('nombreDeTuElementoJugador');
-	//detectarColisiones(bluePointElement);
-		handleCollisionWithGreenCircle(newX, newY)
-
-	}
-	}
-	requestAnimationFrame(update);
-}
-
-
-
-//FIND CLOSEST RED VERTEX !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////	
-	
-function findClosestRedVertexToClick(x, y) {
-    	let closestVertex = null;
-    	let minDistance = Infinity;
-    	redVerticesArray.forEach((redVertex) => {
-        const x1 = redVertex.x;
-        const y1 = redVertex.y;
-        const distance = pointToPointDistance2(x, y, x1, y1);
-        if (distance < minDistance) {
-        minDistance = distance;
-        closestVertex = { x: x1, y: y1 };
-        }
-    	});
-    	if (closestVertex) {
-    	//bluePoint.setAttribute('cx',  closestVertex.x );
-    	//bluePoint.setAttribute('cy',  closestVertex.y  );          
-	animateBluePoint(closestVertex.x, closestVertex.y, function() { 
-	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
- 	console.log('La animación ha terminado');
-	});
-    	} else {
-        console.log(`No se encontró vértice rojo (${x}, ${y}).`);
-    	}
-    	return closestVertex;
-}
-	
-
-//FIND AND DRAW RED VERTEX !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-let redVerticesArray = [];
-function findClosestVertices(x, y) {
-    	const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-    	let svg = document.querySelector('svg');
-    	let nearbyVertices = [];
-    	// Eliminar los puntos rojos existentes
-    	redVerticesArray.forEach((redVertex) => {
-        const existingRedDot = document.querySelector
-        (`circle[fill="red"][cx="${redVertex.x+currentCameraX4}"][cy="${redVertex.y+currentCameraY4}"]`);
-        if (existingRedDot) {
-        svg.removeChild(existingRedDot);
-        }
-    	});
-    	// Limpiar el arreglo de coordenadas de los vértices rojos
-    	redVerticesArray = [];
-	hexagons.forEach((hexagon) => {
-        const points = hexagon.getAttribute('points').split(' ');
-        // Iteramos sobre los vértices del hexágono
-        for (let i = 0; i < points.length; i++) {
-        const [x1, y1] = points[i].split(',').map(Number);
-	// Calculamos la distancia entre el punto azul y el vértice
-        const distance = pointToPointDistance2(x, y, x1, y1);
-	// Marcamos el vértice si está dentro del radio de 50 pixeles alrededor del punto azul
-        if (distance < 60) {
-        nearbyVertices.push({ x: x1, y: y1 });
-	// Almacenamos las coordenadas del vértice rojo
-        redVerticesArray.push({ x: x1, y: y1 });
-	// Dibujamos un círculo rojo en el vértice
-        const redDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        redDot.setAttribute('cx', x1+currentCameraX4);
-        redDot.setAttribute('cy', y1+currentCameraY4);
-        redDot.setAttribute('r', '3');
-        redDot.setAttribute('fill', 'red');
-	svg.appendChild(redDot);
-	// Mostramos las coordenadas en la consola
-        //console.log(`Vértice (${x1}, ${y1}) marcado con círculo rojo.`);
-        }
-        }
-    	});
-    	// Encontramos el vértice rojo más cercano al clic
-    	const clickX = x;
-    	const clickY = y;
-    	let closestVertex = null;
-    	let minDistance = Infinity;
-    	redVerticesArray.forEach((redVertex) => {
-        const x1 = redVertex.x;
-        const y1 = redVertex.y;
-	const distance = pointToPointDistance2(clickX, clickY, x1, y1);
-        if (distance < minDistance) {
-        minDistance = distance;
-        closestVertex = { x: x1, y: y1 };
-	}
-    	});
-	if (closestVertex) {
-        //console.log(`Vértice rojo más cercano al clic: 
-        //(${closestVertex.x}, ${closestVertex.y})`);
-        } else {
-        console.log('No se encontraron vértices rojos cercanos');
-	}
-    	return nearbyVertices;
-}
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
@@ -1073,18 +670,15 @@ function createHexagons(callback) {
     const hexWidth = hexagonSize * Math.sqrt(3);
     const hexHeight = hexagonSize * Math.sqrt(3);
 
-
 let minX = Infinity;
     let maxX = -Infinity;
     let minY = Infinity;
     let maxY = -Infinity;
 
-
     for (let row = 0; row < numRows; row++) {
         for (let col = 0; col < numCols; col++) {
             const x = col * (hexWidth * 0.87);
             const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-
 
 minX = Math.min(minX, x);
             maxX = Math.max(maxX, x);
@@ -1105,15 +699,11 @@ minX = Math.min(minX, x);
         }
     }
 
-
 const mapWidth = maxX - minX + hexWidth;
     const mapHeight = maxY - minY + hexHeight;
 
     console.log('Ancho total del mapa hexagonal:', mapWidth);
     console.log('Altura total del mapa hexagonal:', mapHeight);
-
-
-
 
 if (callback) {
 callback(); }
@@ -1162,54 +752,7 @@ return points.join(' ');
 		
 //END CODE DOM///////////////////////////////////
 ///////////////////////////////////////////////// 
-
-//FIND CLOSEST LINE//////////////////////////////
-/////////////////////////////////////////////////
-    
-function findClosestLine(x, y) {
-      const lines = document.querySelectorAll('#hexagonGroup polygon');
-      let closestLine = null;
-      let minDistance = Infinity;
-      lines.forEach((hexagon) => {
-        const points = hexagon.getAttribute('points').split(' ');
-        for (let i = 0; i < points.length; i++) {
-          const [x1, y1] = points[i].split(',').map(Number);
-          const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
-          const distance = pointToLineDistance(x, y, x1, y1, x2, y2);
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestLine = { x1, y1, x2, y2 };
-          }}});
-      return closestLine;
-}
-
    
-//POINT TO LINE DISTANCE//////////////////////////
-/////////////////////////////////////////////////
-
-function pointToLineDistance(x, y, x1, y1, x2, y2) {   
-const A = x - x1;
-const B = y - y1;
-const C = x2 - x1;
-const D = y2 - y1;
-const dot = A * C + B * D;
-const len_sq = C * C + D * D;
-const param = dot / len_sq;
-let xx, yy;
-if (param < 0 || (x1 === x2 && y1 === y2)) {
-xx = x1;
-yy = y1;
-} else if (param > 1) {
-xx = x2;
-yy = y2;
-} else {
-xx = x1 + param * C;
-yy = y1 + param * D;
-}
-const dx = x - xx;
-const dy = y - yy;
-return Math.sqrt(dx * dx + dy * dy);
-}
    
     //CODE END////////////////////////////////////////
 
@@ -1223,26 +766,6 @@ function printRandomValue(min, max) {
 randomV2 = printRandomValue(1, 500);
 //console.log(randomV2);	
 
-function getCoordinatesOfVertex(hexagons, targetVertexNumber) {
-let currentVertex = 0;
-for (const hexagon of hexagons) {
-const points = hexagon.getAttribute('points').split(' ');
-for (const point of points) {
-const [x, y] = point.split(',').map(Number);
-currentVertex++;
-if (currentVertex === targetVertexNumber) {
-console.log(`Random: ${targetVertexNumber}: (${x}, ${y})`);
-	randomX = x;
-	randomY = y;
-
-	
-
-return; // Termina la función después de encontrar el vértice deseado
-}}} console.log(`No se encontraron coordenadas para el vértice ${targetVertexNumber}`);
-}
-//getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), randomV2);
-
-
 
 
 function newRandomForServer() {
@@ -1251,8 +774,6 @@ function newRandomForServer() {
 	console.log(`CoordsR: ${randomX},${randomY}`);
 		socket.emit('sendCoordinatesR', coordinatesR);
 	
-
-
 }	
 
 //DRAW GREEN CIRCLES RANDOM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1453,40 +974,6 @@ i+=1;
    socket.emit('greenCirclesGenerated', greenCircles);
 }
 
-/*
-	function generateGreenCircles3() {
-    const svg = document.querySelector('svg');
-    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-
-    document.querySelectorAll('circle[fill="green"]').forEach(circle => {
-        circle.parentNode.removeChild(circle);
-    });
-
-//   greenCircles = [];
-    for (let i = 0; i < 30; i++) {
-        const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
-        const points = randomHexagon.getAttribute('points').split(' ');
-        const randomPointIndex = Math.floor(Math.random() * points.length);
-        const [x, y] = points[randomPointIndex].split(',').map(Number);
-
-        const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        greenCircle.setAttribute('cx', x);
-        greenCircle.setAttribute('cy', y);
-        greenCircle.setAttribute('r', '8');
-        greenCircle.setAttribute('fill', 'green');
-        svg.appendChild(greenCircle);
-
-        // Almacena las coordenadas y el índice de cada círculo verde
-        greenCircles.push({ x, y, index: i });
-	    console.log(`Valor de I: ${i}:`);
-
-    }
-
- //   socket.emit('greenCirclesGenerated', greenCircles);
-}
-
-*/
-
 	
 // Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
 socket.on('greenCirclesGenerated', (circles) => {
@@ -1505,12 +992,7 @@ socket.on('greenCirclesGenerated', (circles) => {
     // Verificar colisión con cada círculo verde
     for (const circle of greenCircles2) {
 
-
-//console.log(`COLISION133: ${circle.lenght}:`);
-
         const distance = Math.sqrt((playerX - circle.x) ** 2 + (playerY - circle.y) ** 2);
-
-
 
 //console.log(`COLISION 1334: ${distance}:`);
 
@@ -1529,14 +1011,7 @@ console.log(`COLISION 1999: ${circle.index}:`);
 }
 
 
-
-
-
-
 //NEW GREEN VERTEX FUNCTIONS!!!!!!!!
-
-
-
 
 function findAndMarkClosestVertices() {
 
@@ -1639,189 +1114,78 @@ const y1 = parseFloat(greenVertex.getAttribute('cy')) - currentCameraY3;
 
 
 
-function paintGreenCirclesOnHexVertices() {
-    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-    const svg = document.querySelector('svg');
-
-    // Eliminar los círculos verdes existentes
-    const existingGreenDots = document.querySelectorAll('circle[fill="green"]');
-    existingGreenDots.forEach(dot => svg.removeChild(dot));
-
-    hexagons.forEach((hexagon, hexIndex) => {
-        const points = hexagon.getAttribute('points').split(' ');
-
-        // Iterar sobre los vértices del hexágono
-        for (let i = 0; i < points.length; i++) {
-            const [x, y] = points[i].split(',').map(Number);
-
-            // Ajustar las coordenadas según la posición de la cámara
-            const adjustedX = x - currentCameraX3;
-            const adjustedY = y - currentCameraY3;
-
-            // Crear un círculo verde en el vértice ajustado
-            const greenDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            greenDot.setAttribute('cx', x);
-            greenDot.setAttribute('cy', y);
-            greenDot.setAttribute('r', '3');
-            greenDot.setAttribute('fill', 'green');
-            
-            
-          //  console.log(`Green agreg: (${nuevoX}, ${nuevoY}) marcado con círculo rojo.`);
-
-            svg.appendChild(greenDot);
-        }
-    });
-}
-
-
-
-
-// Lista para almacenar las coordenadas de los vértices de los hexágonos
 const hexagonVertices = [];
-
-// Función para calcular las coordenadas de los vértices de los hexágonos
 function calculateHexagonVertices() {
     const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-
     hexagons.forEach(hexagon => {
         const points = hexagon.getAttribute('points').split(' ');
         const vertices = [];
-
         // Iterar sobre los vértices del hexágono
         for (let i = 0; i < points.length; i++) {
             const [x, y] = points[i].split(',').map(Number);
             vertices.push({ x, y });
         }
-
         hexagonVertices.push(vertices);
     });
-
-
-
 // Imprimir las coordenadas de los vértices en la consola
     hexagonVertices.forEach((vertices, hexIndex) => {
-     //   console.log(`Hexágono ${hexIndex + 1}:`);
+	//console.log(`Hexágono ${hexIndex + 1}:`);
         vertices.forEach((vertex, index) => {
-     //       console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
-        });
-    });
+     	//console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
+        });});
 }
-
-
-
-//BUENA FUNCION
-// Función para dibujar los círculos azules en los vértices de los hexágonos
-function paintBlueCirclesOnHexVertices() {
-    const svg = document.querySelector('svg');
-
-    // Eliminar los círculos azules existentes
-    const existingBlueDots = document.querySelectorAll('circle[fill="blue"]');
-//    existingBlueDots.forEach(dot => svg.removeChild(dot));
-
-    // Iterar sobre los vértices de los hexágonos
-    hexagonVertices.forEach(vertices => {
-        vertices.forEach(vertex => {
-            // Crear un círculo azul en el vértice
-            const blueDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            blueDot.setAttribute('cx', vertex.x);
-            blueDot.setAttribute('cy', vertex.y);
-            blueDot.setAttribute('r', '3');
-            blueDot.setAttribute('fill', 'blue');
-
-
-const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(blueDot);
-
-
-         //   svg.appendChild(blueDot);
-        });
-    });
-}
-
-// Llama a esta función una vez al principio para calcular las coordenadas de los vértices
 calculateHexagonVertices();
-
-// Llama a esta función cada vez que sea necesario dibujar los círculos azules
-//paintBlueCirclesOnHexVertices();
-
-	
-
 console.log("Longitud de hexagonVertices:", hexagonVertices.length);
-
-
 let randomC = printRandomValue(1,  hexagonVertices.length  );
-
-
 let randomC6 = printRandomValue(0, 5 );
-
-
 console.log("RandomHex:", randomC);
+console.log("Elemento de hexagonVertices:", hexagonVertices[randomC][randomC6]);
 
 
-console.log("Elemento de hexagonVertices:"    , hexagonVertices[randomC][randomC6]);
-
-
-
+// YELLOW POINTS CERCA DE LINEAS !!!!!!!!!!!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////
+	
 randomX = hexagonVertices[randomC][randomC6].x;
 randomY = hexagonVertices[randomC][randomC6].y;
-
 // Función para calcular las líneas que forman los hexágonos
 function calculateHexagonLines() {
     const hexagons = document.querySelectorAll('#hexagonGroup polygon');
     const hexagonLines = [];
-
     hexagons.forEach(hexagon => {
         const points = hexagon.getAttribute('points').split(' ');
-
         // Iterar sobre los vértices del hexágono
         for (let i = 0; i < points.length; i++) {
             const [x1, y1] = points[i].split(',').map(Number);
             const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
-
             hexagonLines.push({ x1, y1, x2, y2 });
         }
     });
-
     return hexagonLines;
-}
-
+}	
 // Función para dibujar 100 puntos amarillos aleatorios en las líneas de los hexágonos
 function drawRandomYellowPointsOnHexLines() {
     const svg = document.querySelector('svg');
     const hexagonLines = calculateHexagonLines();
-
     for (let i = 0; i < 100; i++) {
         // Elegir aleatoriamente una línea de los hexágonos
         const randomLine = hexagonLines[Math.floor(Math.random() * hexagonLines.length)];
-
         // Calcular una posición aleatoria a lo largo de la línea
         const randomX = Math.random() * (randomLine.x2 - randomLine.x1) + randomLine.x1;
         const randomY = Math.random() * (randomLine.y2 - randomLine.y1) + randomLine.y1;
-
         // Crear un círculo amarillo en la posición aleatoria
         const yellowDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         yellowDot.setAttribute('cx', randomX);
         yellowDot.setAttribute('cy', randomY);
         yellowDot.setAttribute('r', '2');
         yellowDot.setAttribute('fill', 'yellow');
-
-
-
-const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(yellowDot);
-
-       // svg.appendChild(yellowDot);
+	const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(yellowDot);
     }
 }
-
-// Llama a esta función cada vez que desees dibujar los puntos amarillos aleatorios en las líneas de los hexágonos
 //drawRandomYellowPointsOnHexLines();
 
 
-/////////////////////////////
-
-////////////////////
-
-
-
+/////////////////////////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 //END DOM	 
 });
