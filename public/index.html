@@ -543,7 +543,7 @@ if (socket.id===playerId) {
 	
 function animateNameLocally(circleElement, start, end) {
 	//console.log('ANIMATE CIRCLE LOCALLY');
-	const duration = 100;
+	const duration = 50;
   	const startTime = performance.now();
 	function update() {
     	const currentTime = performance.now();
@@ -646,7 +646,7 @@ function animateBluePoint(destinationX, destinationY) {
 	//console.log(`start: ${startX},${startY}`);
  	//console.log(`startY: ${startY}`);
 	const startTime = performance.now();
-    	const duration = 100; // 1 segundo
+    	const duration = 50; // 1 segundo
 	function update() {
         const currentTime = performance.now();
         const elapsed = currentTime - startTime;
