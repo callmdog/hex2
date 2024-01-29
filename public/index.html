@@ -4,19 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
   <title>Not-Hex-A</title>
-  
-<style>
-//CSS STYLE SCRITPS
-
-//GREEN CIRCLES ANIMATION	  
+	
+<style>	  
 @keyframes circleAnimationWithDuration {
   from { r: 5; }  to { r: 7; }
 }
-
-
-    #fixedText {
+#fixedText {
   position: fixed;
   top: 5vh;
   right: 5vw;
@@ -25,14 +19,12 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
-  font-size: 2vw; /* Ajusta el tamaño del texto según sea necesario */
+  font-size: 2vw;
   max-width: 90%; 
-    }
-
+}
 #mainContainer {
       position: relative;
-    }
-
+}
 //Top Player Container
 .fixed-container {
       position: fixed;
@@ -45,94 +37,70 @@
       height: 100px; /* Añade la altura deseada */
       background-color: red; 
 }
-
 body {
 margin: 0;
 display: flex;
 background-color: #0000FF; }
 form {
 text-align: center; }
-
 #svg-container {
-width: 100vw; /* 100% del ancho de la ventana */
-height: 100vh; /* 100% de la altura de la ventana */
+width: 100vw;
+height: 100vh;
 overflow: auto;
 touch-action: pinch-zoom;
 }
-
 #gameCanvas {
 top: 0;
 left: 0;
 width: 0;
 position: absolute;
 display: none; }
-    
 #hexagonGroup {
 top: 0;
 left: 0;
 width: 100vw;
-height: 100vh;
-	
+height: 100vh;	
 position: absolute;
 z-index: 1;
 display: none; }
-
 #firstP {
 top: 0;
 left: 0;
 width: 100vw;
 height: 100vh;
-	background-color: #000000;
+background-color: #000000;
 position: absolute;
 z-index: 1;
-	display: none;
- }
-    
-#bluePoint {
-display: none; }
+display: none;
+}
+#bluePoint { display: none; }
   
 </style>
-
 </head>
 
 <body>
 
-<div class="fixed-container" id="playersContainer">
-    <!-- El contenido se añadirá dinámicamente aquí mediante JavaScript -->
-  </div>
+<div class="fixed-container" id="playersContainer"> </div>
 
 <form id="nameForm">
     <label for="playerName">Introduce tu nombre:</label>
     <input type="text" id="playerName" name="playerName" required>
     <button type="button" id="submitButton">Aceptar</button>
-
 	<div id="cameraOptions">
-        <label>
-            <input type="radio" name="camera" value="1"> Opción 1
-        </label>
-        <label>
-            <input type="radio" name="camera" value="2"> Opción 2
-        </label>
-    </div>
-	
+	<label> <input type="radio" name="camera" value="1"> Opción 1 </label>
+	<label> <input type="radio" name="camera" value="2"> Opción 2 </label>
+	</div>	
 </form>
 
-<canvas id="gameCanvas" height="0" style="background-color: #ff0000;"></canvas>
+<canvas id="gameCanvas" height="0" style="background-color: #ff0000;"> </canvas>
 
-<div id="svg-container" ondblclick="preventZoom(event)">
- 
-</div>
+<div id="svg-container" ondblclick="preventZoom(event)"> </div>
 
-			<div id="fixedText">
+<div id="fixedText"> </div>
 
-     		</div>
-
-
-<svg id="firstP" 
- xmlns="http://www.w3.org/2000/svg">  
-    <g id="camera">
-	
-<g id="hexagonGroup" >
+<svg id="firstP" xmlns="http://www.w3.org/2000/svg">  
+<g id="camera">
+<g id="hexagonGroup">
 <text id="textLine1" x="10" y="20" fill="red">
   </text>
   <text id="textLine2" x="10" y="40" fill="blue">
@@ -143,20 +111,16 @@ display: none; }
   </text>
   <text id="textLine5" x="10" y="100" fill="purple">
   </text>
-</g>	
-</g>
- 
+</g> </g>
 </svg>	
 	
-
 <div id="mainContainer"> </div>
 
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
 <script src="/socket.io/socket.io.js"></script>
     	  
-<script>
-	  
+<script>  
 // COMIENZA EL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // CLIENT /////////////////////////////////////////////////////
 	  
@@ -168,7 +132,7 @@ const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
 const socket = io();
 
-	let NameSecure = '';
+let NameSecure = '';
 
 ///CAM OPTIONS
 
@@ -571,11 +535,6 @@ function animateNameLocally(circleElement, start, end) {
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
 function moveBluePoint( clickX, clickY ) {  
-
-
-
-
-
   	//CAMARA/////////////////////
 		// Obtener el atributo 'transform' del elemento camera
 		const transformAttribute = camera.getAttribute('transform');
@@ -594,53 +553,21 @@ function moveBluePoint( clickX, clickY ) {
         //CAMARA END/////////////////////	
     console.log('Camara:', Camara);
 
-
-
-
-//paintGreenCirclesOnHexVertices();
-
-
-
 	if (!isMoving) { 
 	console.log('/////Move Player//////')
   	isMoving = true;  
 	drawUserCount();
 
-		 const closestGreenVertex = 
-	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
- console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
+const closestGreenVertex = 
+findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
+ 
+console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
 
 animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
-      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-                   // findAndMarkClosestVertices();
+      
 
 		console.log('Mov finalizado'); 
 	});
-		
-  	//isMoving = false;  
-
-
-/*
-		//////////
-    const closestGreenVertex = 
-	    findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
- console.log('Vértice verde más cercano - X:', closestGreenVertex.x, 'Y:', closestGreenVertex.y); 
-
-
-		///////////
-		
-		
-	animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
-      //  findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-                    findAndMarkClosestVertices();
-
-		console.log('Mov finalizado'); 
-	});
-		
-	//findClosestRedVertexToClick( clickX, clickY);
-
-
-	*/	
 		
 	}
 }	
