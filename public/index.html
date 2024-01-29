@@ -128,6 +128,7 @@ console.log('Camara:', Camara);
 });	
 
 // DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 	
 document.getElementById('submitButton').addEventListener('click', function () {
 	socket.on('connect_error', (error) => {
@@ -230,152 +231,6 @@ firstP.addEventListener('click', function (event) {
 	moveBluePoint(mouseX, mouseY);
 });
 
-
-
-
-
-
-//ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-socket.on('animateBluePoint', function (animationData) {
-console.log('SOCKET ANIMATE BLUE POINT');
-const playerId = animationData.playerId;
-const data = animationData.data;
-const txt = animationData.playerName;
-// Encuentra el círculo correspondiente al jugador
-const playerElement = document.getElementById(playerId);
-const textElement2 = document.getElementById(playerId + '-name');
-
-console.log('PLAYER ID MOVE:', playerElement);  
-console.log('PLAYER ID MOVE2:', playerId);  
-
-animateCircleLocally(playerElement, data.start, data.end, playerId);
-animateNameLocally(textElement2, data.start, data.end);
-
-//FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
-animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
-	console.log('La animación ha terminado');
-	findAndMarkClosestVertices();
-	isMoving = false;
-	});
-});	
-
-
-//ANIMATE CIRCLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-			  
-function animateCircleLocally(circleElement, start, end, playerId, callback) {
-//console.log('ANIMATE CIRCLE LOCALLY');
-const duration = 50;
-const startTime = performance.now();
-function update() {
-const currentTime = performance.now();
-const progress = Math.min((currentTime - startTime) / duration, 1);
-const newX = start.x + progress * (end.x - start.x);
-const newY = start.y + progress * (end.y - start.y);
-		
-circleElement.setAttribute('cx', newX);
-circleElement.setAttribute('cy', newY);
-
-////CAMERA MOVEMENT
-if (socket.id===playerId) {
-	const newXCam = svgWidth / 2 - newX;
-	const newYCam = svgHeight / 2 - newY;	
-	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
-}
-////END CAMERA MOVEMENT
-		
-if (progress < 1) { requestAnimationFrame(update); } 
-else {
-// La animación ha terminado
-if (typeof callback === 'function') { callback(); } }	
-} requestAnimationFrame(update);
-	
-}
-
-	
-//ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-function animateNameLocally(circleElement, start, end) {
-//console.log('ANIMATE TEXT LOCALLY');
-const duration = 50;
-const startTime = performance.now();
-function update() {
-const currentTime = performance.now();
-const progress = Math.min((currentTime - startTime) / duration, 1);
-const newX = start.x + progress * (end.x - start.x);
-const newY = start.y + progress * (end.y - start.y);
-	
-circleElement.setAttribute('x', newX);
-circleElement.setAttribute('y', newY - 8);
-
-if (progress < 1) {
-requestAnimationFrame(update); } }
-requestAnimationFrame(update);
-	
-}
-
-
-
-
-//ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-/////////////////////////////////////////////////////////////////////////////
-
-function animateBluePoint(destinationX, destinationY) {
-console.log('ANIMATE BLUE POINT');
-const startX = parseFloat(bluePointElement.getAttribute('cx'));
-const startY = parseFloat(bluePointElement.getAttribute('cy'));
-const startTime = performance.now();
-const duration = 50; // 1 seg
-function update() {
-const currentTime = performance.now();
-const elapsed = currentTime - startTime;
-const progress = Math.min(elapsed / duration, 1);
-const newX = startX + progress * (destinationX - startX);
-const newY = startY + progress * (destinationY - startY);
-		
-bluePointElement.setAttribute('cx', newX);
-bluePointElement.setAttribute('cy', newY);
-		
-if (progress < 1) { requestAnimationFrame(update);
-} else {
-// Animación completada, emitir datos al servidor
-socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
-// Supongamos que newPosition es un objeto con las nuevas coordenadas
-const newPosition = { x:  newX , y: newY };
-socket.emit('updatePosition', newPosition);
-inicialX = newX; inicialY = newY;
-console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
-const playerElement = document.getElementById('nombreDeTuElementoJugador');
-detectarColisiones(bluePointElement);
-handleCollisionWithGreenCircle(newX, newY)
-}
-} requestAnimationFrame(update);
-}	
-	
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////	
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////	
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////	
-		
-	
-//POINT TO DISTANCE//////////////////////////////
-/////////////////////////////////////////////////
-	
-function pointToPointDistance2(x1, y1, x2, y2) {
-    	const dx = x1 - x2;
-    	const dy = y1 - y2;
-    	return Math.sqrt(dx * dx + dy * dy);
-}
-
-
-
-
 //CONNECTED USERS////////////////////////////////
 ///////////////////////////////////////////////// 
 	
@@ -388,217 +243,18 @@ function pointToPointDistance2(x1, y1, x2, y2) {
     context.fillStyle = 'black';
     context.font = '16px Arial';
     context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 5);
-  }
+  }	
 
 
-//PRINT RANDOM VALUE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-
-function printRandomValue(min, max) {
-	const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
-	return randomValue;
-}
-
-//RANDOM X e Y for SERVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-
-function newRandomForServer() {
-	const coordinatesR = [];
-	coordinatesR.push({ x: randomX, y: randomY });
-	console.log(`CoordsR: ${randomX},${randomY}`);
-	socket.emit('sendCoordinatesR', coordinatesR);	
-}	
-
-
-	
-
-//DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-function detectarColisiones(playerElement) {
-const blueX = parseFloat(playerElement.getAttribute('cx'));
-const blueY = parseFloat(playerElement.getAttribute('cy'));
-const blueRadius = 9; // Radio del círculo azul (jugador)
-
-//COLISION DETECTAR JUGADORES!!!!!!!!!!!!!!!!!!
-	
-document.querySelectorAll('circle').forEach((otherCircle) => {
-const playerIdN = otherCircle.getAttribute('id');
-if (playerIdN !== socket.id && playerIdN !== null) {
-const greenX = parseFloat(otherCircle.getAttribute('cx'));
-const greenY = parseFloat(otherCircle.getAttribute('cy'));
-	
-console.log(`Colision con: (${playerIdN})`); 
-console.log(`SOCKET ID: (${socket.id})`); 
-
-//console.log(`RADIO playerE: (${ playerElement })`);
-
-console.log(`RADIO tuyo: (${ radioJugador  })`); 
-
-console.log(`RADIO enemigo: (${ otherCircle.getAttribute('r')   })`); 
-
-let radioEnemigo = otherCircle.getAttribute('r');
-
-if (radioJugador > radioEnemigo){ 
-console.log(`HAS COMIDO AL OTRO JUGADOR`); 
-}else if (radioJugador < radioEnemigo){
-console.log(`GAME OVER`); 
-}
-
-// Obtener los radios de los círculos
-const greenRadius = parseFloat(otherCircle.getAttribute('r'));
-// Calcular las coordenadas de los cuadros delimitadores
-const blueBoundingBox = {
-x1: blueX - blueRadius, y1: blueY - blueRadius,
-x2: blueX + blueRadius, y2: blueY + blueRadius };
-const greenBoundingBox = {
-x1: greenX - greenRadius, y1: greenY - greenRadius,
-x2: greenX + greenRadius, y2: greenY + greenRadius};
-// Verificar la colisión entre los cuadros delimitadores
-if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
-blueBoundingBox.x2 > greenBoundingBox.x1 &&
-blueBoundingBox.y1 < greenBoundingBox.y2 &&
-blueBoundingBox.y2 > greenBoundingBox.y1 ) {
-// Eliminar el círculo verde del SVG
-//otherCircle.parentNode.removeChild(otherCircle);
-console.log('Colisión detectada. Círculo verde eliminado.');
-//socket.emit('greenCircleEaten');
-}}});
-console.log('La detección de colisiones ha terminado.');
-}
-
-
-
-
-
-//COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-function handleCollisionWithGreenCircle(playerX, playerY) {
-// Verificar colisión con cada círculo verde
-for (const circle of greenCircles2) {
-const distance = Math.sqrt((playerX - circle.x) ** 2 + (playerY - circle.y) ** 2);
-//console.log(`COLISION distance: ${distance}:`);
-if (distance < 20) {
-console.log(`COLISION Index: ${circle.index}:`);
-// Emitir evento al servidor indicando el índice del círculo verde colisionado
-socket.emit('collisionWithGreenCircle', circle.index);
-socket.emit('greenCircleEaten');
-break; // No es necesario verificar más círculos
-} }
-}
-
-
-//MARK RED VERTEX NEAR!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-function findAndMarkClosestVertices() {
-clearAllGreenCircles();
-const currentX = inicialX - currentCameraX3;
-const currentY = inicialY - currentCameraY3;
-// Encuentra los vértices en un radio de 60 pixeles
-const closestVertices = findVerticesInRadius(currentX, currentY, 60);
-// Agrega un círculo verde en cada vértice encontrado
-closestVertices.forEach((vertex) => {
-markVertexWithGreenCircle(vertex.x + currentCameraX3, vertex.y + currentCameraY3);
-});
-}
-	
-function clearAllGreenCircles() {
-const svg = document.querySelector('svg');
-const greenCircles = document.querySelectorAll('circle[fill="red"]');
-greenCircles.forEach((greenCircle) => { 
-const cameraGroup = document.getElementById('camera');
-cameraGroup.removeChild(greenCircle); }); 
-}	
-	
-function findVerticesInRadius(x, y, radius) {
-const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-const result = [];
-hexagons.forEach((hexagon) => {
-const points = hexagon.getAttribute('points').split(' ');
-// Iteramos sobre los vértices del hexágono
-for (let i = 0; i < points.length; i++) {
-const [x1, y1] = points[i].split(',').map(Number);
-// Calculamos la distancia entre el punto azul y el vértice
-const distance = pointToPointDistance2(x, y, x1, y1);
-// Agregamos el vértice si está dentro del radio especificado
-if (distance < radius) {
-result.push({ x: x1, y: y1 }); } } });
-return result;
-}
-
-function markVertexWithGreenCircle(x, y) { 
-const svg = document.querySelector('svg'); 
-const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); 
-greenCircle.setAttribute('cx', x); 
-greenCircle.setAttribute('cy', y); 
-greenCircle.setAttribute('r', '3'); 
-greenCircle.setAttribute('fill', 'red');
-//console.log(`Verde agreg: (${x}, ${y}) marcado con círculo rojo.`);
-const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(greenCircle);
-}
-	
-//FIND CLOSES VERTEX TO CLICK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-
-function findClosestGreenVertexToClick(x, y) {
-const greenVertices = document.querySelectorAll('circle[fill="red"]');
-let closestVertex = null; let minDistance = Infinity;
-greenVertices.forEach((greenVertex) => {
-const x1 = parseFloat(greenVertex.getAttribute('cx')) - currentCameraX3; 
-const y1 = parseFloat(greenVertex.getAttribute('cy')) - currentCameraY3; 
-const distance = pointToPointDistance2(x, y, x1, y1);
-if (distance < minDistance) {
-minDistance = distance; closestVertex = { x: x1, y: y1 }; }
-});
-return closestVertex;
-}
-	
-
-
-
-// YELLOW POINTS CERCA DE LINEAS !!!!!!!!!!!!!!!!!!!!!!!!!!!
-////////////////////////////////////////////////////////////
-	
-// Función para calcular las líneas que forman los hexágonos
-function calculateHexagonLines() {
-const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-const hexagonLines = [];
-hexagons.forEach(hexagon => {
-const points = hexagon.getAttribute('points').split(' ');
-// Iterar sobre los vértices del hexágono
-for (let i = 0; i < points.length; i++) {
-const [x1, y1] = points[i].split(',').map(Number);
-const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
-hexagonLines.push({ x1, y1, x2, y2 }); } });
-return hexagonLines;
-}	
-// Función para dibujar 100 puntos amarillos aleatorios en las líneas de los hexágonos
-function drawRandomYellowPointsOnHexLines() {
-const svg = document.querySelector('svg');
-const hexagonLines = calculateHexagonLines();
-for (let i = 0; i < 100; i++) {
-// Elegir aleatoriamente una línea de los hexágonos
-const randomLine = hexagonLines[Math.floor(Math.random() * hexagonLines.length)];
-// Calcular una posición aleatoria a lo largo de la línea
-const randomX = Math.random() * (randomLine.x2 - randomLine.x1) + randomLine.x1;
-const randomY = Math.random() * (randomLine.y2 - randomLine.y1) + randomLine.y1;
-// Crear un círculo amarillo en la posición aleatoria
-const yellowDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-yellowDot.setAttribute('cx', randomX); yellowDot.setAttribute('cy', randomY);
-yellowDot.setAttribute('r', '2'); yellowDot.setAttribute('fill', 'yellow');
-const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(yellowDot); }
-}
-//drawRandomYellowPointsOnHexLines();
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
 //IN ORDER FUNCIONTS OF GAME
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //IN ORDER FUNCIONTS OF GAME
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 //1. CREATE HEXAGONS///////////////////////////!!!!!!!!
-///////////////////////////////////////////////// !!!!!
+/////////////////////////////////////////////////!!!!!!
 
 function createHexagons(callback) {
 const hexagonGroup = document.getElementById('hexagonGroup');
@@ -715,14 +371,26 @@ vertices.forEach((vertex, index) => {
 //console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
 });});
 }
-calculateHexagonVertices();
+calculateHexagonVertices();	
 console.log("Longitud de hexagonVertices:", hexagonVertices.length);
+function printRandomValue(min, max) {
+	const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+	return randomValue;
+}	
 let randomC = printRandomValue(1,  hexagonVertices.length  );
 let randomC6 = printRandomValue(0, 5 );
 randomX = hexagonVertices[randomC][randomC6].x;
 randomY = hexagonVertices[randomC][randomC6].y;
 console.log("RandomHex:", randomC);
 console.log("Elemento de hexagonVertices:", hexagonVertices[randomC][randomC6]);
+
+//RANDOM X e Y for SERVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function newRandomForServer() {
+	const coordinatesR = [];
+	coordinatesR.push({ x: randomX, y: randomY });
+	console.log(`CoordsR: ${randomX},${randomY}`);
+	socket.emit('sendCoordinatesR', coordinatesR);	
+}	
 
 //5. ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
@@ -878,9 +546,9 @@ if (existingTextElement) {
 }
 });
 
-//WHEN MOVE FUNCTIONS
+//WHEN MOVE FUNCTIONS```````````````````````````````````````````````````
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//WHEN MOVE FUNCTIONS
+//WHEN MOVE FUNCTIONS```````````````````````````````````````````````````
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //1. MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -911,8 +579,306 @@ animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 		
 }
 	
+}	
+
+//2. FIND CLOSES VERTEX TO CLICK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+
+function findClosestGreenVertexToClick(x, y) {
+const greenVertices = document.querySelectorAll('circle[fill="red"]');
+let closestVertex = null; let minDistance = Infinity;
+greenVertices.forEach((greenVertex) => {
+const x1 = parseFloat(greenVertex.getAttribute('cx')) - currentCameraX3; 
+const y1 = parseFloat(greenVertex.getAttribute('cy')) - currentCameraY3; 
+const distance = pointToPointDistance2(x, y, x1, y1);
+if (distance < minDistance) {
+minDistance = distance; closestVertex = { x: x1, y: y1 }; }
+});
+return closestVertex;
+}	
+function pointToPointDistance2(x1, y1, x2, y2) {
+const dx = x1 - x2;
+const dy = y1 - y2;
+return Math.sqrt(dx * dx + dy * dy);
+}
+
+//3. ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/////////////////////////////////////////////////////////////////////////////
+
+function animateBluePoint(destinationX, destinationY) {
+console.log('ANIMATE BLUE POINT');
+const startX = parseFloat(bluePointElement.getAttribute('cx'));
+const startY = parseFloat(bluePointElement.getAttribute('cy'));
+const startTime = performance.now();
+const duration = 50; // 1 seg
+function update() {
+const currentTime = performance.now();
+const elapsed = currentTime - startTime;
+const progress = Math.min(elapsed / duration, 1);
+const newX = startX + progress * (destinationX - startX);
+const newY = startY + progress * (destinationY - startY);
+		
+bluePointElement.setAttribute('cx', newX);
+bluePointElement.setAttribute('cy', newY);
+		
+if (progress < 1) { requestAnimationFrame(update);
+} else {
+// Animación completada, emitir datos al servidor
+socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+// Supongamos que newPosition es un objeto con las nuevas coordenadas
+const newPosition = { x:  newX , y: newY };
+socket.emit('updatePosition', newPosition);
+inicialX = newX; inicialY = newY;
+console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
+const playerElement = document.getElementById('nombreDeTuElementoJugador');
+detectarColisiones(bluePointElement);
+handleCollisionWithGreenCircle(newX, newY)
+}
+} requestAnimationFrame(update);
 }		
 
+//4. SOCKET ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+socket.on('animateBluePoint', function (animationData) {
+console.log('SOCKET ANIMATE BLUE POINT');
+const playerId = animationData.playerId;
+const data = animationData.data;
+const txt = animationData.playerName;
+// Encuentra el círculo correspondiente al jugador
+const playerElement = document.getElementById(playerId);
+const textElement2 = document.getElementById(playerId + '-name');
+
+console.log('PLAYER ID MOVE:', playerElement);  
+console.log('PLAYER ID MOVE2:', playerId);  
+
+animateCircleLocally(playerElement, data.start, data.end, playerId);
+animateNameLocally(textElement2, data.start, data.end);
+
+//FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
+animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
+	console.log('La animación ha terminado');
+	findAndMarkClosestVertices();
+	isMoving = false;
+	});
+});	
+
+
+//5. ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+			  
+function animateCircleLocally(circleElement, start, end, playerId, callback) {
+//console.log('ANIMATE CIRCLE LOCALLY');
+const duration = 50;
+const startTime = performance.now();
+function update() {
+const currentTime = performance.now();
+const progress = Math.min((currentTime - startTime) / duration, 1);
+const newX = start.x + progress * (end.x - start.x);
+const newY = start.y + progress * (end.y - start.y);
+		
+circleElement.setAttribute('cx', newX);
+circleElement.setAttribute('cy', newY);
+
+////CAMERA MOVEMENT
+if (socket.id===playerId) {
+	const newXCam = svgWidth / 2 - newX;
+	const newYCam = svgHeight / 2 - newY;	
+	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+}
+////END CAMERA MOVEMENT
+		
+if (progress < 1) { requestAnimationFrame(update); } 
+else {
+// La animación ha terminado
+if (typeof callback === 'function') { callback(); } }	
+} requestAnimationFrame(update);
+	
+}
+
+	
+//6. ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function animateNameLocally(circleElement, start, end) {
+//console.log('ANIMATE TEXT LOCALLY');
+const duration = 50;
+const startTime = performance.now();
+function update() {
+const currentTime = performance.now();
+const progress = Math.min((currentTime - startTime) / duration, 1);
+const newX = start.x + progress * (end.x - start.x);
+const newY = start.y + progress * (end.y - start.y);
+	
+circleElement.setAttribute('x', newX);
+circleElement.setAttribute('y', newY - 8);
+
+if (progress < 1) {
+requestAnimationFrame(update); } }
+requestAnimationFrame(update);
+	
+}	
+
+//7. MARK RED VERTEX NEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function findAndMarkClosestVertices() {
+clearAllGreenCircles();
+const currentX = inicialX - currentCameraX3;
+const currentY = inicialY - currentCameraY3;
+// Encuentra los vértices en un radio de 60 pixeles
+const closestVertices = findVerticesInRadius(currentX, currentY, 60);
+// Agrega un círculo verde en cada vértice encontrado
+closestVertices.forEach((vertex) => {
+markVertexWithGreenCircle(vertex.x + currentCameraX3, vertex.y + currentCameraY3);
+});
+}
+	
+function clearAllGreenCircles() {
+const svg = document.querySelector('svg');
+const greenCircles = document.querySelectorAll('circle[fill="red"]');
+greenCircles.forEach((greenCircle) => { 
+const cameraGroup = document.getElementById('camera');
+cameraGroup.removeChild(greenCircle); }); 
+}	
+	
+function findVerticesInRadius(x, y, radius) {
+const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+const result = [];
+hexagons.forEach((hexagon) => {
+const points = hexagon.getAttribute('points').split(' ');
+// Iteramos sobre los vértices del hexágono
+for (let i = 0; i < points.length; i++) {
+const [x1, y1] = points[i].split(',').map(Number);
+// Calculamos la distancia entre el punto azul y el vértice
+const distance = pointToPointDistance2(x, y, x1, y1);
+// Agregamos el vértice si está dentro del radio especificado
+if (distance < radius) {
+result.push({ x: x1, y: y1 }); } } });
+return result;
+}
+
+function markVertexWithGreenCircle(x, y) { 
+const svg = document.querySelector('svg'); 
+const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); 
+greenCircle.setAttribute('cx', x); 
+greenCircle.setAttribute('cy', y); 
+greenCircle.setAttribute('r', '3'); 
+greenCircle.setAttribute('fill', 'red');
+//console.log(`Verde agreg: (${x}, ${y}) marcado con círculo rojo.`);
+const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(greenCircle);
+}
+	
+
+//8. DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function detectarColisiones(playerElement) {
+const blueX = parseFloat(playerElement.getAttribute('cx'));
+const blueY = parseFloat(playerElement.getAttribute('cy'));
+const blueRadius = 9; // Radio del círculo azul (jugador)
+
+//COLISION DETECTAR JUGADORES!!!!!!!!!!!!!!!!!!
+	
+document.querySelectorAll('circle').forEach((otherCircle) => {
+const playerIdN = otherCircle.getAttribute('id');
+if (playerIdN !== socket.id && playerIdN !== null) {
+const greenX = parseFloat(otherCircle.getAttribute('cx'));
+const greenY = parseFloat(otherCircle.getAttribute('cy'));
+	
+console.log(`Colision con: (${playerIdN})`); 
+console.log(`SOCKET ID: (${socket.id})`); 
+
+//console.log(`RADIO playerE: (${ playerElement })`);
+
+console.log(`RADIO tuyo: (${ radioJugador  })`); 
+
+console.log(`RADIO enemigo: (${ otherCircle.getAttribute('r')   })`); 
+
+let radioEnemigo = otherCircle.getAttribute('r');
+
+if (radioJugador > radioEnemigo){ 
+console.log(`HAS COMIDO AL OTRO JUGADOR`); 
+}else if (radioJugador < radioEnemigo){
+console.log(`GAME OVER`); 
+}
+
+// Obtener los radios de los círculos
+const greenRadius = parseFloat(otherCircle.getAttribute('r'));
+// Calcular las coordenadas de los cuadros delimitadores
+const blueBoundingBox = {
+x1: blueX - blueRadius, y1: blueY - blueRadius,
+x2: blueX + blueRadius, y2: blueY + blueRadius };
+const greenBoundingBox = {
+x1: greenX - greenRadius, y1: greenY - greenRadius,
+x2: greenX + greenRadius, y2: greenY + greenRadius};
+// Verificar la colisión entre los cuadros delimitadores
+if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
+blueBoundingBox.x2 > greenBoundingBox.x1 &&
+blueBoundingBox.y1 < greenBoundingBox.y2 &&
+blueBoundingBox.y2 > greenBoundingBox.y1 ) {
+// Eliminar el círculo verde del SVG
+//otherCircle.parentNode.removeChild(otherCircle);
+console.log('Colisión detectada. Círculo verde eliminado.');
+//socket.emit('greenCircleEaten');
+}}});
+console.log('La detección de colisiones ha terminado.');
+}
+
+
+//9. COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function handleCollisionWithGreenCircle(playerX, playerY) {
+// Verificar colisión con cada círculo verde
+for (const circle of greenCircles2) {
+const distance = Math.sqrt((playerX - circle.x) ** 2 + (playerY - circle.y) ** 2);
+//console.log(`COLISION distance: ${distance}:`);
+if (distance < 20) {
+console.log(`COLISION Index: ${circle.index}:`);
+// Emitir evento al servidor indicando el índice del círculo verde colisionado
+socket.emit('collisionWithGreenCircle', circle.index);
+socket.emit('greenCircleEaten');
+break; // No es necesario verificar más círculos
+} }
+}
+
+
+////////////////////////////////////////////////////////////	
+//YELLOW POINTS CERCA DE LINEAS !!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////
+	
+// Función para calcular las líneas que forman los hexágonos
+function calculateHexagonLines() {
+const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+const hexagonLines = [];
+hexagons.forEach(hexagon => {
+const points = hexagon.getAttribute('points').split(' ');
+// Iterar sobre los vértices del hexágono
+for (let i = 0; i < points.length; i++) {
+const [x1, y1] = points[i].split(',').map(Number);
+const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
+hexagonLines.push({ x1, y1, x2, y2 }); } });
+return hexagonLines;
+}	
+// Función para dibujar 100 puntos amarillos aleatorios en las líneas de los hexágonos
+function drawRandomYellowPointsOnHexLines() {
+const svg = document.querySelector('svg');
+const hexagonLines = calculateHexagonLines();
+for (let i = 0; i < 100; i++) {
+// Elegir aleatoriamente una línea de los hexágonos
+const randomLine = hexagonLines[Math.floor(Math.random() * hexagonLines.length)];
+// Calcular una posición aleatoria a lo largo de la línea
+const randomX = Math.random() * (randomLine.x2 - randomLine.x1) + randomLine.x1;
+const randomY = Math.random() * (randomLine.y2 - randomLine.y1) + randomLine.y1;
+// Crear un círculo amarillo en la posición aleatoria
+const yellowDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+yellowDot.setAttribute('cx', randomX); yellowDot.setAttribute('cy', randomY);
+yellowDot.setAttribute('r', '2'); yellowDot.setAttribute('fill', 'yellow');
+const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(yellowDot); }
+}
+//drawRandomYellowPointsOnHexLines();	
+	
 
 /////////////////////////////////////////////////////////////
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
