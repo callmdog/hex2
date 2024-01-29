@@ -232,53 +232,6 @@ firstP.addEventListener('click', function (event) {
 
 
 
-//UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-socket.on('updatePlayers', function (updatedPlayers) {
-console.log('SOCKET UPDATE PLAYERS');
-//Iterar sobre el objeto de jugadores y actualizar la información
-for (const playerId in updatedPlayers) {
-const player = updatedPlayers[playerId];
-
-//PLAYER ELEMENT 
-const existingPlayerElement = document.getElementById(playerId);
-if (existingPlayerElement) {
-	existingPlayerElement.setAttribute('cx', player.x);
-	existingPlayerElement.setAttribute('cy', player.y);
-	const sizeCalc = player.puntos * 0.1;
-	existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
-} else {		
-	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-	const sizeCalc = player.puntos * 0.1;
-	playerElement.setAttribute('id', playerId);
-	playerElement.setAttribute('r', 9+ sizeCalc * 10);
-	playerElement.setAttribute('fill', player.color);
-	playerElement.setAttribute('cx', player.x);
-	playerElement.setAttribute('cy', player.y);
-	hexagonGroup.appendChild(playerElement);	
-	}
-
-//TEXT ELEMENT
-const existingTextElement = document.getElementById(playerId + '-name');
-if (existingTextElement) {
-	existingTextElement.setAttribute('x', player.x);
-	existingTextElement.setAttribute('y', player.y - 8);
-	existingTextElement.textContent = player.nombre + ' ('+ player.puntos + ')';
-} else {
-	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-	textElement2.setAttribute('id', playerId + '-name');
-	textElement2.setAttribute('x', player.x);
-	textElement2.setAttribute('y', player.y - 10);
-	textElement2.setAttribute('text-anchor', 'middle');
-	textElement2.setAttribute('fill', 'green');
-	textElement2.setAttribute('font-size', '16px');
-	textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
-	hexagonGroup.appendChild(textElement2);
-	}
-}
-});
-
 
 
 
@@ -365,35 +318,7 @@ requestAnimationFrame(update);
 }
 
 
-//MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////////
-	
-function moveBluePoint( clickX, clickY ) {
-console.log('Camara:', Camara);
 
-//CAMARA/////////////////////
-const transformAttribute = camera.getAttribute('transform');
-const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
-if (match) {
-currentCameraX4 = parseFloat(match[1]);
-currentCameraY4 = parseFloat(match[2]);
-console.log('Coordenadas cámara:', currentCameraX4, currentCameraY4);  
-} else { console.error('No cámara.'); }
-//CAMARA END/////////////////////
-	
-if (!isMoving) { 
-console.log('/////Move Player//////')
-isMoving = true;  
-drawUserCount();
-
-const closestGreenVertex = findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
-console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y); 
-
-animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
-		
-}
-	
-}	
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /////////////////////////////////////////////////////////////////////////////
@@ -636,8 +561,6 @@ return closestVertex;
 // YELLOW POINTS CERCA DE LINEAS !!!!!!!!!!!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////
 	
-randomX = hexagonVertices[randomC][randomC6].x;
-randomY = hexagonVertices[randomC][randomC6].y;
 // Función para calcular las líneas que forman los hexágonos
 function calculateHexagonLines() {
 const hexagons = document.querySelectorAll('#hexagonGroup polygon');
@@ -670,7 +593,9 @@ const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(y
 //drawRandomYellowPointsOnHexLines();
 
 //IN ORDER FUNCIONTS OF GAME
-//!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//IN ORDER FUNCIONTS OF GAME
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 //1. CREATE HEXAGONS///////////////////////////!!!!!!!!
 ///////////////////////////////////////////////// !!!!!
@@ -794,6 +719,8 @@ calculateHexagonVertices();
 console.log("Longitud de hexagonVertices:", hexagonVertices.length);
 let randomC = printRandomValue(1,  hexagonVertices.length  );
 let randomC6 = printRandomValue(0, 5 );
+randomX = hexagonVertices[randomC][randomC6].x;
+randomY = hexagonVertices[randomC][randomC6].y;
 console.log("RandomHex:", randomC);
 console.log("Elemento de hexagonVertices:", hexagonVertices[randomC][randomC6]);
 
@@ -903,6 +830,88 @@ i+=1;
 });
 socket.emit('greenCirclesGenerated', greenCircles);
 }
+
+//9. UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+socket.on('updatePlayers', function (updatedPlayers) {
+console.log('SOCKET UPDATE PLAYERS');
+//Iterar sobre el objeto de jugadores y actualizar la información
+for (const playerId in updatedPlayers) {
+const player = updatedPlayers[playerId];
+
+//PLAYER ELEMENT 
+const existingPlayerElement = document.getElementById(playerId);
+if (existingPlayerElement) {
+	existingPlayerElement.setAttribute('cx', player.x);
+	existingPlayerElement.setAttribute('cy', player.y);
+	const sizeCalc = player.puntos * 0.1;
+	existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
+} else {		
+	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	const sizeCalc = player.puntos * 0.1;
+	playerElement.setAttribute('id', playerId);
+	playerElement.setAttribute('r', 9+ sizeCalc * 10);
+	playerElement.setAttribute('fill', player.color);
+	playerElement.setAttribute('cx', player.x);
+	playerElement.setAttribute('cy', player.y);
+	hexagonGroup.appendChild(playerElement);	
+	}
+
+//TEXT ELEMENT
+const existingTextElement = document.getElementById(playerId + '-name');
+if (existingTextElement) {
+	existingTextElement.setAttribute('x', player.x);
+	existingTextElement.setAttribute('y', player.y - 8);
+	existingTextElement.textContent = player.nombre + ' ('+ player.puntos + ')';
+} else {
+	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+	textElement2.setAttribute('id', playerId + '-name');
+	textElement2.setAttribute('x', player.x);
+	textElement2.setAttribute('y', player.y - 10);
+	textElement2.setAttribute('text-anchor', 'middle');
+	textElement2.setAttribute('fill', 'green');
+	textElement2.setAttribute('font-size', '16px');
+	textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
+	hexagonGroup.appendChild(textElement2);
+	}
+}
+});
+
+//WHEN MOVE FUNCTIONS
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//WHEN MOVE FUNCTIONS
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//1. MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////////
+	
+function moveBluePoint( clickX, clickY ) {
+console.log('Camara:', Camara);
+
+//CAMARA/////////////////////
+const transformAttribute = camera.getAttribute('transform');
+const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+if (match) {
+currentCameraX4 = parseFloat(match[1]);
+currentCameraY4 = parseFloat(match[2]);
+console.log('Coordenadas cámara:', currentCameraX4, currentCameraY4);  
+} else { console.error('No cámara.'); }
+//CAMARA END/////////////////////
+	
+if (!isMoving) { 
+console.log('/////Move Player//////')
+isMoving = true;  
+drawUserCount();
+
+const closestGreenVertex = findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
+console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y); 
+
+animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
+		
+}
+	
+}		
 
 
 /////////////////////////////////////////////////////////////
