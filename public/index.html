@@ -592,8 +592,39 @@ return Math.sqrt(dx * dx + dy * dy);
 
 //3. ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /////////////////////////////////////////////////////////////////////////////
-
 function animateBluePoint(destinationX, destinationY) {
+console.log('ANIMATE BLUE POINT');
+const startX = parseFloat(bluePointElement.getAttribute('cx'));
+const startY = parseFloat(bluePointElement.getAttribute('cy'));
+const startTime = performance.now();
+const duration = 2000; // 1 seg
+//function update() {
+const currentTime = performance.now();
+const elapsed = currentTime - startTime;
+const progress = Math.min(elapsed / duration, 1);
+const newX = startX + progress * (destinationX - startX);
+const newY = startY + progress * (destinationY - startY);
+		
+bluePointElement.setAttribute('cx', newX);
+bluePointElement.setAttribute('cy', newY);
+		
+if (progress < 1) { requestAnimationFrame(update);
+} else {
+// Animación completada, emitir datos al servidor
+socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+// Supongamos que newPosition es un objeto con las nuevas coordenadas
+const newPosition = { x:  newX , y: newY };
+socket.emit('updatePosition', newPosition);
+inicialX = newX; inicialY = newY;
+console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
+//const playerElement = document.getElementById('nombreDeTuElementoJugador');
+detectarColisiones(bluePointElement);
+handleCollisionWithGreenCircle(newX, newY)
+}
+//} requestAnimationFrame(update);
+}		
+
+function animateBluePoint2(destinationX, destinationY) {
 console.log('ANIMATE BLUE POINT');
 const startX = parseFloat(bluePointElement.getAttribute('cx'));
 const startY = parseFloat(bluePointElement.getAttribute('cy'));
