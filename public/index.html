@@ -333,7 +333,7 @@ if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].
 //////////////////////////////////////////////////////////////////////
 	
 socket.on('animateBluePoint', function (animationData) {
-//console.log('SOCKET ANIMATE BLUE POINT');
+console.log('SOCKET ANIMATE BLUE POINT');
 const playerId = animationData.playerId;
 const data = animationData.data;
 const txt = animationData.playerName;
@@ -439,6 +439,8 @@ console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y);
 //FINISHED ANIMATE BLUE POINT!!!!//////////////////////////////////////	
 animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
 	console.log('Mov finalizado'); 
+	console.log('SOCKET ANIMATE BLUE POINT2222222222');
+
 });
 		
 }
