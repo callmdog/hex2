@@ -618,9 +618,10 @@ const newPosition = { x:  newX , y: newY };
 socket.emit('updatePosition', newPosition);
 inicialX = newX; inicialY = newY;
 console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
-//const playerElement = document.getElementById('nombreDeTuElementoJugador');
-detectarColisiones(bluePointElement);
-handleCollisionWithGreenCircle(newX, newY)
+	
+//detectarColisiones(bluePointElement);
+//handleCollisionWithGreenCircle(newX, newY);
+	
 }
 } requestAnimationFrame(update);
 }		
@@ -679,7 +680,12 @@ if (socket.id===playerId) {
 if (progress < 1) { requestAnimationFrame(update); } 
 else {
 // La animación ha terminado
-if (typeof callback === 'function') { callback(); } }	
+if (typeof callback === 'function') { callback(); } 
+
+detectarColisiones(circleElement);
+handleCollisionWithGreenCircle(newX, newY);	
+	
+}	
 } requestAnimationFrame(update);
 	
 }
