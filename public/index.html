@@ -776,7 +776,7 @@ const blueRadius = 9; // Radio del círculo azul (jugador)
 	
 document.querySelectorAll('circle').forEach((otherCircle) => {
 const playerIdN = otherCircle.getAttribute('id');
-if (playerIdN !== socket.id && playerIdN !== null) {
+if (playerIdN !== socket.id && playerIdN !== null && playerIdN !== 'bluePoint') {
 const greenX = parseFloat(otherCircle.getAttribute('cx'));
 const greenY = parseFloat(otherCircle.getAttribute('cy'));
 	
