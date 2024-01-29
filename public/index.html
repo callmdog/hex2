@@ -7,9 +7,10 @@
   <title>Not-Hex-A</title>
 	
 <style>	  
+	
 @keyframes circleAnimationWithDuration {
-  from { r: 5; }  to { r: 7; }
-}
+from { r: 5; }  to { r: 7; } }
+	
 #fixedText {
 position: fixed;
 top: 5vh;
@@ -20,26 +21,28 @@ color: white;
 padding: 10px;
 border-radius: 5px;
 font-size: 2vw;
-max-width: 90%; 
-}
+max-width: 90%; }
+	
 body {
 margin: 0;
 display: flex;
 background-color: #0000FF; }
+	
 form {
 text-align: center; }
 #svg-container {
 width: 100vw;
 height: 100vh;
 overflow: auto;
-touch-action: pinch-zoom;
-}
+touch-action: pinch-zoom; }
+	
 #gameCanvas {
 top: 0;
 left: 0;
 width: 0;
 position: absolute;
 display: none; }
+	
 #hexagonGroup {
 top: 0;
 left: 0;
@@ -48,6 +51,7 @@ height: 100vh;
 position: absolute;
 z-index: 1;
 display: none; }
+	
 #firstP {
 top: 0;
 left: 0;
@@ -56,8 +60,8 @@ height: 100vh;
 background-color: #000000;
 position: absolute;
 z-index: 1;
-display: none;
-}
+display: none; }
+	
 #bluePoint { display: none; }
   
 </style>
@@ -126,7 +130,6 @@ console.log('Camara:', Camara);
 // DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
 	
 document.getElementById('submitButton').addEventListener('click', function () {
-	//console.log('CLIENTE EJECUTADO');
 	socket.on('connect_error', (error) => {
     	console.error('Error de conexión:', error); });
 	const playerName = document.getElementById('playerName').value;
@@ -165,52 +168,38 @@ const hexagonMap = [
 //CREATE HEXAGON PANAL
 createHexagons();
 	
-//VARIABLES 
+//VARIABLES/////////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
 let randomX = 0;	
 let randomY = 0;	
 let inicialX = 0;
 let inicialY = 0;
 let connectedUsers = 0;
 let isMoving = false
-let FirstMove = true
-const hexagonAngle = 0.523598776; // 30 degrees in radians
 const players = {}; // Objeto para almacenar la información de los jugadores
 const hexagonGroup = document.getElementById('hexagonGroup');
 const firstP = document.getElementById('firstP');
-
 const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
 let topplayers = [];
-
-	const svgWidth = document.documentElement.clientWidth;
+const svgWidth = document.documentElement.clientWidth;
 const svgHeight = document.documentElement.clientHeight;
-
 let initialCameraX = svgWidth / 2 ;
 let initialCameraY = svgHeight / 2 ;
-
 let currentCameraX3 = 0;
 let currentCameraY3 = 0;
-
-	let currentCamera10 = 0;
+let currentCamera10 = 0;
 let currentCameraY10 = 0;
-	
-	
-	const camera = document.getElementById('camera');
-
-	//camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-
+const camera = document.getElementById('camera');
 let currentCameraX4 = 0;	
 let currentCameraY4 = 0;	
-
 let JugadorDatos = [];
 let radioJugador = 0;
-
-
 let textLine1 = document.getElementById('textLine1');
-    let textLine2 = document.getElementById('textLine2');
-    let textLine3 = document.getElementById('textLine3');
-    let textLine4 = document.getElementById('textLine4');
-    let textLine5 = document.getElementById('textLine5');
-
+let textLine2 = document.getElementById('textLine2');
+let textLine3 = document.getElementById('textLine3');
+let textLine4 = document.getElementById('textLine4');
+let textLine5 = document.getElementById('textLine5');
 
 function addPlayer(nombre, puntos, color) {
 	const nuevoJugador = {
@@ -239,10 +228,6 @@ firstP.addEventListener('click', function (event) {
         const mouseY = event.clientY - firstP.getBoundingClientRect().top;
 	
 	moveBluePoint(mouseX, mouseY);
-
-	if(FirstMove){		
-	FirstMove = false;
-	}
 });
 
 //ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -250,15 +235,9 @@ firstP.addEventListener('click', function (event) {
 	
 socket.on('assignColor', function (playerName) {
 console.log('SOCKET ASSIGN COLOR');
-//const playerNameT = playerName.name;
-//console.log(`Assign Nombre: ${playerNameT}`);	
 socket.emit('updatePlayersRequest');
-	    		//console.log('RANDOM X Y:', randomX, randomY);  
-
-//socket.emit('updatePosition', { randomX, randomY });
 newRandomForServer();
 });
-
 
 //UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
@@ -272,45 +251,39 @@ const player = updatedPlayers[playerId];
 //PLAYER ELEMENT 
 const existingPlayerElement = document.getElementById(playerId);
 if (existingPlayerElement) {
-existingPlayerElement.setAttribute('cx', player.x);
-existingPlayerElement.setAttribute('cy', player.y);
-const sizeCalc = player.puntos * 0.1;
-existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
-	
+	existingPlayerElement.setAttribute('cx', player.x);
+	existingPlayerElement.setAttribute('cy', player.y);
+	const sizeCalc = player.puntos * 0.1;
+	existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
 } else {		
-const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-const sizeCalc = player.puntos * 0.1;
-playerElement.setAttribute('id', playerId);
-playerElement.setAttribute('r', 9+ sizeCalc * 10);
-playerElement.setAttribute('fill', player.color);
-playerElement.setAttribute('cx', player.x);
-playerElement.setAttribute('cy', player.y);
-//playerElement.setAttribute('cx', 600);
-//playerElement.setAttribute('cy', 600);
-hexagonGroup.appendChild(playerElement);
-	
-	
-}
+	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	const sizeCalc = player.puntos * 0.1;
+	playerElement.setAttribute('id', playerId);
+	playerElement.setAttribute('r', 9+ sizeCalc * 10);
+	playerElement.setAttribute('fill', player.color);
+	playerElement.setAttribute('cx', player.x);
+	playerElement.setAttribute('cy', player.y);
+	hexagonGroup.appendChild(playerElement);	
+	}
 
 //TEXT ELEMENT
 const existingTextElement = document.getElementById(playerId + '-name');
 if (existingTextElement) {
-    existingTextElement.setAttribute('x', player.x);
-    existingTextElement.setAttribute('y', player.y - 8);
-    existingTextElement.textContent = player.nombre + ' ('+ player.puntos + ')';
+	existingTextElement.setAttribute('x', player.x);
+	existingTextElement.setAttribute('y', player.y - 8);
+	existingTextElement.textContent = player.nombre + ' ('+ player.puntos + ')';
 } else {
-    const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    textElement2.setAttribute('id', playerId + '-name');
-    textElement2.setAttribute('x', player.x);
-    textElement2.setAttribute('y', player.y - 10);
-    textElement2.setAttribute('text-anchor', 'middle');
-    textElement2.setAttribute('fill', 'green');
-    textElement2.setAttribute('font-size', '16px');
-    textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
-    hexagonGroup.appendChild(textElement2);
+	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+	textElement2.setAttribute('id', playerId + '-name');
+	textElement2.setAttribute('x', player.x);
+	textElement2.setAttribute('y', player.y - 10);
+	textElement2.setAttribute('text-anchor', 'middle');
+	textElement2.setAttribute('fill', 'green');
+	textElement2.setAttribute('font-size', '16px');
+	textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
+	hexagonGroup.appendChild(textElement2);
+	}
 }
-    }
-
 });
 
 //UPDATE TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
