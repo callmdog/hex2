@@ -436,12 +436,7 @@ drawUserCount();
 const closestGreenVertex = findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
 console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y); 
 
-//FINISHED ANIMATE BLUE POINT!!!!//////////////////////////////////////	
-animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
-	console.log('Mov finalizado'); 
-	console.log('SOCKET ANIMATE BLUE POINT2222222222');
-
-});
+animateBluePoint(closestGreenVertex.x, closestGreenVertex.y):
 		
 }
 	
@@ -451,42 +446,35 @@ animateBluePoint(closestGreenVertex.x, closestGreenVertex.y, function() {
 /////////////////////////////////////////////////////////////////////////////
 
 function animateBluePoint(destinationX, destinationY) {
-		console.log('SOCKET ANIMATE BLUE POINT33333333');
-
-	const startX = parseFloat(bluePointElement.getAttribute('cx'));
-    	const startY = parseFloat(bluePointElement.getAttribute('cy'));
-	const startTime = performance.now();
-    	const duration = 50; // 1 seg
-	function update() {
-        const currentTime = performance.now();
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const newX = startX + progress * (destinationX - startX);
-        const newY = startY + progress * (destinationY - startY);
+console.log('ANIMATE BLUE POINT');
+const startX = parseFloat(bluePointElement.getAttribute('cx'));
+const startY = parseFloat(bluePointElement.getAttribute('cy'));
+const startTime = performance.now();
+const duration = 50; // 1 seg
+function update() {
+const currentTime = performance.now();
+const elapsed = currentTime - startTime;
+const progress = Math.min(elapsed / duration, 1);
+const newX = startX + progress * (destinationX - startX);
+const newY = startY + progress * (destinationY - startY);
 		
-    	bluePointElement.setAttribute('cx', newX);
-    	bluePointElement.setAttribute('cy', newY);
+bluePointElement.setAttribute('cx', newX);
+bluePointElement.setAttribute('cy', newY);
 		
-        if (progress < 1) {
-        requestAnimationFrame(update);
-        } else {
-		
-	// Animación completada, emitir datos al servidor
-	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
-	// Supongamos que newPosition es un objeto con las nuevas coordenadas
-	const newPosition = { x:  newX , y: newY };
-	socket.emit('updatePosition', newPosition);
-
-	inicialX = newX;
-	inicialY = newY;
-	console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
-	const playerElement = document.getElementById('nombreDeTuElementoJugador');
-	detectarColisiones(bluePointElement);
-	handleCollisionWithGreenCircle(newX, newY)
-
-	}
-	}
-	requestAnimationFrame(update);
+if (progress < 1) { requestAnimationFrame(update);
+} else {
+// Animación completada, emitir datos al servidor
+socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+// Supongamos que newPosition es un objeto con las nuevas coordenadas
+const newPosition = { x:  newX , y: newY };
+socket.emit('updatePosition', newPosition);
+inicialX = newX; inicialY = newY;
+console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
+const playerElement = document.getElementById('nombreDeTuElementoJugador');
+detectarColisiones(bluePointElement);
+handleCollisionWithGreenCircle(newX, newY)
+}
+} requestAnimationFrame(update);
 }	
 	
 
@@ -507,65 +495,7 @@ function pointToPointDistance2(x1, y1, x2, y2) {
     	return Math.sqrt(dx * dx + dy * dy);
 }
 
-//CREATE HEXAGONS///////////////////////////!!!!!!!!!!!
-///////////////////////////////////////////////// !!!!!
 
-function createHexagons(callback) {
-const hexagonGroup = document.getElementById('hexagonGroup');
-const hexagonSize = 50;
-const numRows = hexagonMap.length;
-const numCols = hexagonMap[0].length;
-const hexWidth = hexagonSize * Math.sqrt(3);
-const hexHeight = hexagonSize * Math.sqrt(3);
-let minX = Infinity; let maxX = -Infinity;
-let minY = Infinity; let maxY = -Infinity;
-for (let row = 0; row < numRows; row++) {
-for (let col = 0; col < numCols; col++) {
-const x = col * (hexWidth * 0.87);
-const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-minX = Math.min(minX, x); maxX = Math.max(maxX, x);
-minY = Math.min(minY, y); maxY = Math.max(maxY, y);
-const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
-hexagon.setAttribute('fill', 'none');
-hexagon.setAttribute('stroke', 'gray');
-hexagon.setAttribute('stroke-width', '2');
-// Accede al mapa de hexágonos para obtener la dirección
-const direction = hexagonMap[row][col].direction;
-hexagon.addEventListener('click', function() {
-console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
-});
-hexagonGroup.appendChild(hexagon);
-} }
-const mapWidth = maxX - minX + hexWidth;
-const mapHeight = maxY - minY + hexHeight;
-console.log('Ancho total del mapa hexagonal:', mapWidth);
-console.log('Altura total del mapa hexagonal:', mapHeight);
-if (callback) {
-callback(); }
-}
-createHexagons(function() {
-console.log("createHexagons end");
-//DRAW GREEN RANDOM CIRCLES WHEN FINISHED	
-drawGreenCirclesOnRandomPoints();	
-});
-
-
-//GET HEXAGON POINTS///////////////////////////!!!!!!!!!
-///////////////////////////////////////////////!!!!!!!!!
-
-function getHexagonPoints(x, y, size) {
-const points = [];
-for (let i = 0; i < 6; i++) {
-const angle = (2 * Math.PI / 6) * i;
-const pointX = x + size * Math.cos(angle);
-const pointY = y + size * Math.sin(angle);
-const coordinate = `${pointX},${pointY}`;   
-//console.log(`Coordenada: (${coordinate})`); 
-// Imprime la coordenada en consola
-points.push(coordinate);
-} return points.join(' ');
-}
 
 
 //CONNECTED USERS////////////////////////////////
@@ -601,42 +531,7 @@ function newRandomForServer() {
 	socket.emit('sendCoordinatesR', coordinatesR);	
 }	
 
-//DRAW GREEN CIRCLES RANDOM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
 
-function drawGreenCirclesOnRandomPoints() {
-const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-const svg = document.querySelector('svg');
-const coordinates = [];
-for (let i = 0; i < 30; i++) {
-// Selecciona un hexágono al azar
-const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
-const points = randomHexagon.getAttribute('points').split(' ');
-// Selecciona dos puntos aleatorios que conformen una línea dentro del hexágono
-const randomPointIndex1 = Math.floor(Math.random() * points.length);
-const randomPointIndex2 = (randomPointIndex1 + 1) % points.length;
-const [x1, y1] = points[randomPointIndex1].split(',').map(Number);
-const [x2, y2] = points[randomPointIndex2].split(',').map(Number);
-// Elije un punto aleatorio entre los dos puntos seleccionados
-const randomT = Math.random();
-const x = x1 + randomT * (x2 - x1);
-const y = y1 + randomT * (y2 - y1);
-// Crea y agrega un círculo verde en el punto seleccionado
-const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-greenCircle.setAttribute('cx', x);
-greenCircle.setAttribute('cy', y);
-greenCircle.setAttribute('r', '8');
-greenCircle.setAttribute('fill', 'red');
-coordinates.push({ x, y });
-//ANIMACION CIRCULO VERDE	
-anime({ targets: greenCircle, r: 7,
-duration: 2000, easing: 'easeInOutSine',
-direction: 'alternate', loop: true });
-//console.log(`Green Circle: (${x}, ${y})`); 
-}
-socket.emit('sendCoordinates', coordinates);
-
-}
 	
 
 //DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -902,6 +797,105 @@ const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(y
 }
 //drawRandomYellowPointsOnHexLines();
 
+//IN ORDER FUNCIONTS OF GAME
+//!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+//1. CREATE HEXAGONS///////////////////////////!!!!!!!!
+///////////////////////////////////////////////// !!!!!
+
+function createHexagons(callback) {
+const hexagonGroup = document.getElementById('hexagonGroup');
+const hexagonSize = 50;
+const numRows = hexagonMap.length;
+const numCols = hexagonMap[0].length;
+const hexWidth = hexagonSize * Math.sqrt(3);
+const hexHeight = hexagonSize * Math.sqrt(3);
+let minX = Infinity; let maxX = -Infinity;
+let minY = Infinity; let maxY = -Infinity;
+for (let row = 0; row < numRows; row++) {
+for (let col = 0; col < numCols; col++) {
+const x = col * (hexWidth * 0.87);
+const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+minX = Math.min(minX, x); maxX = Math.max(maxX, x);
+minY = Math.min(minY, y); maxY = Math.max(maxY, y);
+const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+hexagon.setAttribute('fill', 'none');
+hexagon.setAttribute('stroke', 'gray');
+hexagon.setAttribute('stroke-width', '2');
+// Accede al mapa de hexágonos para obtener la dirección
+const direction = hexagonMap[row][col].direction;
+hexagon.addEventListener('click', function() {
+console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
+});
+hexagonGroup.appendChild(hexagon);
+} }
+const mapWidth = maxX - minX + hexWidth;
+const mapHeight = maxY - minY + hexHeight;
+console.log('Ancho total del mapa hexagonal:', mapWidth);
+console.log('Altura total del mapa hexagonal:', mapHeight);
+if (callback) {
+callback(); }
+}
+createHexagons(function() {
+console.log("createHexagons end");
+//DRAW GREEN RANDOM CIRCLES WHEN FINISHED	
+drawGreenCirclesOnRandomPoints();	
+});
+	
+//2. GET HEXAGON POINTS///////////////////////////!!!!!!
+///////////////////////////////////////////////!!!!!!!!!
+	
+function getHexagonPoints(x, y, size) {
+const points = [];
+for (let i = 0; i < 6; i++) {
+const angle = (2 * Math.PI / 6) * i;
+const pointX = x + size * Math.cos(angle);
+const pointY = y + size * Math.sin(angle);
+const coordinate = `${pointX},${pointY}`;   
+//console.log(`Coordenada: (${coordinate})`); 
+// Imprime la coordenada en consola
+points.push(coordinate);
+} return points.join(' ');
+}
+
+//3. DRAW GREEN CIRCLES RANDOM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+
+function drawGreenCirclesOnRandomPoints() {
+const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+const svg = document.querySelector('svg');
+const coordinates = [];
+for (let i = 0; i < 30; i++) {
+// Selecciona un hexágono al azar
+const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
+const points = randomHexagon.getAttribute('points').split(' ');
+// Selecciona dos puntos aleatorios que conformen una línea dentro del hexágono
+const randomPointIndex1 = Math.floor(Math.random() * points.length);
+const randomPointIndex2 = (randomPointIndex1 + 1) % points.length;
+const [x1, y1] = points[randomPointIndex1].split(',').map(Number);
+const [x2, y2] = points[randomPointIndex2].split(',').map(Number);
+// Elije un punto aleatorio entre los dos puntos seleccionados
+const randomT = Math.random();
+const x = x1 + randomT * (x2 - x1);
+const y = y1 + randomT * (y2 - y1);
+// Crea y agrega un círculo verde en el punto seleccionado
+/*const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+greenCircle.setAttribute('cx', x);
+greenCircle.setAttribute('cy', y);
+greenCircle.setAttribute('r', '8');
+greenCircle.setAttribute('fill', 'red');
+coordinates.push({ x, y });
+//ANIMACION CIRCULO VERDE	
+anime({ targets: greenCircle, r: 7,
+duration: 2000, easing: 'easeInOutSine',
+direction: 'alternate', loop: true });
+*/	
+//console.log(`Green Circle: (${x}, ${y})`); 	
+}
+socket.emit('sendCoordinates', coordinates);
+
+}	
 
 /////////////////////////////////////////////////////////////
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
