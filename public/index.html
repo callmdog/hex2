@@ -168,6 +168,8 @@ const hexagonMap = [
 
 //CREATE HEXAGON PANAL
 createHexagons();
+
+console.log('Camara:', Camara);	
 	
 //VARIABLES/////////////////////////////////////////////
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -543,7 +545,6 @@ if (existingTextElement) {
 //////////////////////////////////////////////////////////////////////////
 	
 function moveBluePoint( clickX, clickY ) {
-console.log('Camara:', Camara);
 
 //CAMARA/////////////////////
 const transformAttribute = camera.getAttribute('transform');
@@ -551,7 +552,7 @@ const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
 if (match) {
 currentCameraX4 = parseFloat(match[1]);
 currentCameraY4 = parseFloat(match[2]);
-console.log('Coordenadas cámara:', currentCameraX4, currentCameraY4);  
+//console.log('Coordenadas cámara:', currentCameraX4, currentCameraY4);  
 } else { console.error('No cámara.'); }
 //CAMARA END/////////////////////
 	
@@ -561,8 +562,7 @@ isMoving = true;
 drawUserCount();
 
 const closestGreenVertex = findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
-console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y); 
-
+//console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y); 
 animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 		
 }
@@ -617,7 +617,7 @@ socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, 
 const newPosition = { x:  newX , y: newY };
 socket.emit('updatePosition', newPosition);
 inicialX = newX; inicialY = newY;
-console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
+//console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
 	
 //detectarColisiones(bluePointElement);
 //handleCollisionWithGreenCircle(newX, newY);
@@ -638,8 +638,8 @@ const txt = animationData.playerName;
 const playerElement = document.getElementById(playerId);
 const textElement2 = document.getElementById(playerId + '-name');
 
-console.log('PLAYER ID MOVE:', playerElement);  
-console.log('PLAYER ID MOVE2:', playerId);  
+//console.log('PLAYER ID MOVE:', playerElement);  
+//console.log('PLAYER ID MOVE2:', playerId);  
 
 animateCircleLocally(playerElement, data.start, data.end, playerId);
 animateNameLocally(textElement2, data.start, data.end);
