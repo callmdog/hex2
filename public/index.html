@@ -914,6 +914,12 @@ function detectarColisiones(playerElement) {
         const greenY = parseFloat(otherCircle.getAttribute('cy'));
 	console.log(`Colision con: (${playerIdN})`); 
 	console.log(`SOCKET ID: (${socket.id})`); 
+
+
+console.log(`RADIO tuyo: (${ playerElement.getAttribute('r')   })`); 
+
+console.log(`RADIO enemigo: (${ otherCircle.getAttribute('r')   })`); 
+
         // Obtener los radios de los círculos
         const greenRadius = parseFloat(otherCircle.getAttribute('r'));
         // Calcular las coordenadas de los cuadros delimitadores
