@@ -657,7 +657,7 @@ animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
 			  
 function animateCircleLocally(circleElement, start, end, playerId, callback) {
 //console.log('ANIMATE CIRCLE LOCALLY');
-const duration = 50;
+const duration = 100;
 const startTime = performance.now();
 function update() {
 const currentTime = performance.now();
@@ -690,7 +690,7 @@ if (typeof callback === 'function') { callback(); } }
 	
 function animateNameLocally(circleElement, start, end) {
 //console.log('ANIMATE TEXT LOCALLY');
-const duration = 50;
+const duration = 100;
 const startTime = performance.now();
 function update() {
 const currentTime = performance.now();
