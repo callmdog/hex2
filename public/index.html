@@ -409,11 +409,11 @@ if(NameSecure === player.nombre){
 radioJugador = player.puntos;
 initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y  ;
-console.log('Coord circ:', initialCameraX, initialCameraY);  
+//console.log('Coord circ:', initialCameraX, initialCameraY);  
 bluePointElement.setAttribute('cx', player.x);
 bluePointElement.setAttribute('cy', player.y);
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-console.log('R. NUmbers:', randomX, randomY);  
+console.log('R. Numbers:', randomX, randomY);  
 inicialX = player.x;
 inicialY = player.y;
 findAndMarkClosestVertices();
