@@ -279,7 +279,7 @@ let currentCameraX4 = 0;
 let currentCameraY4 = 0;	
 
 let JugadorDatos = [];
-	
+let radioJugador = 0;
 
 
 let textLine1 = document.getElementById('textLine1');
@@ -405,6 +405,9 @@ console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${
 addPlayer(player.nombre, player.puntos, player.color);
 
 if(NameSecure === player.nombre){
+
+radioJugador = player.puntos;
+
 initialCameraX =   svgWidth / 2 - player.x;
 initialCameraY =   svgHeight / 2 - player.y  ;
 
@@ -481,7 +484,9 @@ socket.on('animateBluePoint', function (animationData) {
 
 	console.log('PLAYER ID MOVE:', playerElement);  
 	console.log('PLAYER ID MOVE2:', playerId);  
-  
+
+let radio = playerElement.getAttribute('r');
+
 	animateCircleLocally(playerElement, data.start, data.end, playerId);
 	animateNameLocally(textElement2, data.start, data.end);
 
@@ -491,6 +496,9 @@ socket.on('animateBluePoint', function (animationData) {
 
 	isMoving = false;
 		
+
+
+
 });
 	
 });	
@@ -917,11 +925,27 @@ function detectarColisiones(playerElement) {
 
 
 
-console.log(`RADIO playerE: (${ playerElement })`);
+//console.log(`RADIO playerE: (${ playerElement })`);
 
-console.log(`RADIO tuyo: (${ playerElement.getAttribute('r')   })`); 
+console.log(`RADIO tuyo: (${ radioJugador  })`); 
 
 console.log(`RADIO enemigo: (${ otherCircle.getAttribute('r')   })`); 
+
+let radioEnemigo = otherCircle.getAttribute('r');
+
+if (radioJugador > radioEnemigo){ 
+
+
+console.log(`HAS COMIDO AL OTRO JUGADOR`); 
+
+}else if (radioJugador < radioEnemigo){
+
+
+
+console.log(`GAME OVER`); 
+}
+
+
 
         // Obtener los radios de los círculos
         const greenRadius = parseFloat(otherCircle.getAttribute('r'));
