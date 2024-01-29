@@ -333,16 +333,16 @@ const randomT = Math.random();
 const x = x1 + randomT * (x2 - x1);
 const y = y1 + randomT * (y2 - y1);
 // Crea y agrega un círculo verde en el punto seleccionado
-const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-greenCircle.setAttribute('cx', x);
-greenCircle.setAttribute('cy', y);
-greenCircle.setAttribute('r', '8');
-greenCircle.setAttribute('fill', 'red');
+//const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+//greenCircle.setAttribute('cx', x);
+//greenCircle.setAttribute('cy', y);
+//greenCircle.setAttribute('r', '8');
+//greenCircle.setAttribute('fill', 'red');
 coordinates.push({ x, y });
 //ANIMACION CIRCULO VERDE	
-anime({ targets: greenCircle, r: 7,
-duration: 2000, easing: 'easeInOutSine',
-direction: 'alternate', loop: true });
+//anime({ targets: greenCircle, r: 7,
+//duration: 2000, easing: 'easeInOutSine',
+//direction: 'alternate', loop: true });
 	
 //console.log(`Green Circle: (${x}, ${y})`); 	
 }
