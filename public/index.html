@@ -230,14 +230,7 @@ firstP.addEventListener('click', function (event) {
 	moveBluePoint(mouseX, mouseY);
 });
 
-//ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-socket.on('assignColor', function (playerName) {
-console.log('SOCKET ASSIGN COLOR');
-socket.emit('updatePlayersRequest');
-newRandomForServer();
-});
+
 
 //UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
@@ -286,47 +279,7 @@ if (existingTextElement) {
 }
 });
 
-//2 UPDATE TOP PLAYERS 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////	
 
-socket.on('updatePlayers2', function (updatedPlayers2) {
-console.log('SOCKET UPDATE PLAYERS 2');
-topplayers = [];
-//Iterar sobre el objeto de jugadores y actualizar la información
-for (const playerId in updatedPlayers2) {
-const player = updatedPlayers2[playerId];
-//LOGS		
-console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
-addPlayer(player.nombre, player.puntos, player.color);
-
-if(NameSecure === player.nombre){
-radioJugador = player.puntos;
-initialCameraX = svgWidth / 2 - player.x;
-initialCameraY = svgHeight / 2 - player.y  ;
-console.log('Coord circ:', initialCameraX, initialCameraY);  
-bluePointElement.setAttribute('cx', player.x);
-bluePointElement.setAttribute('cy', player.y);
-camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-console.log('R. NUmbers:', randomX, randomY);  
-inicialX = player.x;
-inicialY = player.y;
-findAndMarkClosestVertices();
-}
-	
-}
-
-const topPlayers = getTopPlayers();
-textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
-if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}
-textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
-if (topPlayers[1] && topPlayers[1].color) {textLine2.style.fill = topPlayers[1].color; } else {}
-textLine3.textContent = topPlayers.length >= 3 ? `#3 ${topPlayers[2].nombre}: ${topPlayers[2].puntos}` : '';
-if (topPlayers[2] && topPlayers[2].color) {textLine3.style.fill = topPlayers[2].color; } else {}
-textLine4.textContent = topPlayers.length >= 4 ? `#4 ${topPlayers[3].nombre}: ${topPlayers[3].puntos}` : '';
-if (topPlayers[3] && topPlayers[3].color) {textLine4.style.fill = topPlayers[3].color; } else {}
-textLine5.textContent = topPlayers.length >= 5 ? `#5 ${topPlayers[4].nombre}: ${topPlayers[4].puntos}` : '';
-if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].color; } else {}
-});
 
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -436,7 +389,7 @@ drawUserCount();
 const closestGreenVertex = findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4); 
 console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y); 
 
-animateBluePoint(closestGreenVertex.x, closestGreenVertex.y):
+animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 		
 }
 	
@@ -589,62 +542,9 @@ console.log('Colisión detectada. Círculo verde eliminado.');
 console.log('La detección de colisiones ha terminado.');
 }
 
-//GET TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-function getTopPlayers() {
-const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
-const topPlayersx = sortedPlayers.slice(0, 5);
-topPlayersx.forEach(topplayer => { });
-return topPlayersx;
-}
 
-//GENERA CIRCULOS VERDES EN SERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
 
-let greenCircles = [];
-let greenCircles2 = [];
-function generateGreenCircles() {
-console.log('GENERATE GREEN CIRCLES 1.');
-const svg = document.querySelector('svg');
-const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-// Borra los círculos verdes existentes
-document.querySelectorAll('circle[fill="green"]').forEach(circle => {
-circle.parentNode.removeChild(circle);
-});
-let i = 0;
-// Dibuja los círculos verdes en las coordenadas recibidas del servidor
-greenCircles.forEach(({ x, y }) => {
-//console.log(`${x}: ${y}:`);
-const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-greenCircle.setAttribute('cx', x);
-greenCircle.setAttribute('cy', y);
-greenCircle.setAttribute('r', '8');
-greenCircle.setAttribute('fill', 'green');
-//svg.appendChild(greenCircle);
-const cameraGroup = document.getElementById('camera'); 
-cameraGroup.appendChild(greenCircle);
-//ANIMACION CIRCULO VERDE
-anime({ targets: greenCircle, r: 6,
-duration: 1000, easing: 'easeInOutSine',
-direction: 'alternate', loop: true });
 
-greenCircles2.push({ x, y, index: i });
-
-i+=1;
-});
-socket.emit('greenCirclesGenerated', greenCircles);
-}
-
-// Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
-socket.on('greenCirclesGenerated', (circles) => {
-console.log('GREEN CIRCLES GENERATED 2.');
-greenCircles = [];
-greenCircles2 = [];
-greenCircles.push(...circles);
-console.log(`LENGTH2: ${greenCircles.length}:`);
-generateGreenCircles();
-});
 
 //COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
@@ -730,35 +630,7 @@ minDistance = distance; closestVertex = { x: x1, y: y1 }; }
 return closestVertex;
 }
 	
-//CALCULATE HEXAGON VERTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////	
 
-const hexagonVertices = [];
-function calculateHexagonVertices() {
-const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-hexagons.forEach(hexagon => {
-const points = hexagon.getAttribute('points').split(' ');
-const vertices = [];
-// Iterar sobre los vértices del hexágono
-for (let i = 0; i < points.length; i++) {
-const [x, y] = points[i].split(',').map(Number);
-vertices.push({ x, y });
-}
-hexagonVertices.push(vertices);
-});
-// Imprimir las coordenadas de los vértices en la consola
-hexagonVertices.forEach((vertices, hexIndex) => {
-//console.log(`Hexágono ${hexIndex + 1}:`);
-vertices.forEach((vertex, index) => {
-//console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
-});});
-}
-calculateHexagonVertices();
-console.log("Longitud de hexagonVertices:", hexagonVertices.length);
-let randomC = printRandomValue(1,  hexagonVertices.length  );
-let randomC6 = printRandomValue(0, 5 );
-console.log("RandomHex:", randomC);
-console.log("Elemento de hexagonVertices:", hexagonVertices[randomC][randomC6]);
 
 
 // YELLOW POINTS CERCA DE LINEAS !!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -896,6 +768,142 @@ direction: 'alternate', loop: true });
 socket.emit('sendCoordinates', coordinates);
 
 }	
+
+//4. CALCULATE HEXAGON VERTEX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+
+const hexagonVertices = [];
+function calculateHexagonVertices() {
+const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+hexagons.forEach(hexagon => {
+const points = hexagon.getAttribute('points').split(' ');
+const vertices = [];
+// Iterar sobre los vértices del hexágono
+for (let i = 0; i < points.length; i++) {
+const [x, y] = points[i].split(',').map(Number);
+vertices.push({ x, y }); }
+hexagonVertices.push(vertices); });
+// Imprimir las coordenadas de los vértices en la consola
+hexagonVertices.forEach((vertices, hexIndex) => {
+//console.log(`Hexágono ${hexIndex + 1}:`);
+vertices.forEach((vertex, index) => {
+//console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
+});});
+}
+calculateHexagonVertices();
+console.log("Longitud de hexagonVertices:", hexagonVertices.length);
+let randomC = printRandomValue(1,  hexagonVertices.length  );
+let randomC6 = printRandomValue(0, 5 );
+console.log("RandomHex:", randomC);
+console.log("Elemento de hexagonVertices:", hexagonVertices[randomC][randomC6]);
+
+//5. ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+socket.on('assignColor', function (playerName) {
+console.log('SOCKET ASSIGN COLOR');
+socket.emit('updatePlayersRequest');
+//X e Y random for Player al principio	
+newRandomForServer();
+});	
+
+//6. UPDATE TOP PLAYERS 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+
+socket.on('updatePlayers2', function (updatedPlayers2) {
+console.log('SOCKET UPDATE PLAYERS 2');
+topplayers = [];
+//Iterar sobre el objeto de jugadores y actualizar la información
+for (const playerId in updatedPlayers2) {
+const player = updatedPlayers2[playerId];
+//LOGS		
+console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
+addPlayer(player.nombre, player.puntos, player.color);
+
+if(NameSecure === player.nombre){
+radioJugador = player.puntos;
+initialCameraX = svgWidth / 2 - player.x;
+initialCameraY = svgHeight / 2 - player.y  ;
+console.log('Coord circ:', initialCameraX, initialCameraY);  
+bluePointElement.setAttribute('cx', player.x);
+bluePointElement.setAttribute('cy', player.y);
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+console.log('R. NUmbers:', randomX, randomY);  
+inicialX = player.x;
+inicialY = player.y;
+findAndMarkClosestVertices();
+}
+	
+}
+
+const topPlayers = getTopPlayers();
+textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
+if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}
+textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
+if (topPlayers[1] && topPlayers[1].color) {textLine2.style.fill = topPlayers[1].color; } else {}
+textLine3.textContent = topPlayers.length >= 3 ? `#3 ${topPlayers[2].nombre}: ${topPlayers[2].puntos}` : '';
+if (topPlayers[2] && topPlayers[2].color) {textLine3.style.fill = topPlayers[2].color; } else {}
+textLine4.textContent = topPlayers.length >= 4 ? `#4 ${topPlayers[3].nombre}: ${topPlayers[3].puntos}` : '';
+if (topPlayers[3] && topPlayers[3].color) {textLine4.style.fill = topPlayers[3].color; } else {}
+textLine5.textContent = topPlayers.length >= 5 ? `#5 ${topPlayers[4].nombre}: ${topPlayers[4].puntos}` : '';
+if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].color; } else {}
+});	
+
+//7. GET TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+function getTopPlayers() {
+const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
+const topPlayersx = sortedPlayers.slice(0, 5);
+topPlayersx.forEach(topplayer => { });
+return topPlayersx;
+}	
+
+//8. GENERA CIRCULOS VERDES DEL SERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+
+let greenCircles = [];
+let greenCircles2 = [];
+// Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
+socket.on('greenCirclesGenerated', (circles) => {
+console.log('GREEN CIRCLES GENERATED.');
+greenCircles = [];
+greenCircles2 = [];
+greenCircles.push(...circles);
+console.log(`LENGTH2: ${greenCircles.length}:`);
+generateGreenCircles();
+});	
+	
+function generateGreenCircles() {
+console.log('GENERATE GREEN CIRCLES 2.');
+const svg = document.querySelector('svg');
+const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+// Borra los círculos verdes existentes
+document.querySelectorAll('circle[fill="green"]').forEach(circle => {
+circle.parentNode.removeChild(circle);
+});
+let i = 0;
+// Dibuja los círculos verdes en las coordenadas recibidas del servidor
+greenCircles.forEach(({ x, y }) => {
+//console.log(`${x}: ${y}:`);
+const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+greenCircle.setAttribute('cx', x);
+greenCircle.setAttribute('cy', y);
+greenCircle.setAttribute('r', '8');
+greenCircle.setAttribute('fill', 'green');
+//svg.appendChild(greenCircle);
+const cameraGroup = document.getElementById('camera'); 
+cameraGroup.appendChild(greenCircle);
+//ANIMACION CIRCULO VERDE
+anime({ targets: greenCircle, r: 6,
+duration: 1000, easing: 'easeInOutSine',
+direction: 'alternate', loop: true });
+greenCircles2.push({ x, y, index: i });
+i+=1;
+});
+socket.emit('greenCirclesGenerated', greenCircles);
+}
+
 
 /////////////////////////////////////////////////////////////
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
