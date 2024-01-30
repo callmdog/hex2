@@ -695,8 +695,19 @@ else {
 // La animación ha terminado
 if (typeof callback === 'function') { callback(); } 
 
-detectarColisiones(circleElement);
-handleCollisionWithGreenCircle(newX, newY);	
+//detectarColisiones(circleElement);
+//handleCollisionWithGreenCircle(newX, newY);	
+
+  const greenVertices = document.querySelectorAll('circle[fill="green"]');
+    greenVertices.forEach((greenVertex) => {
+        if (detectarColisionesGenerales(circleElement, greenVertex)) {
+	console.log(`COLISION DETECTADA verde.`);
+	
+            // Manejar la colisión, por ejemplo, eliminar el círculo verde
+            greenVertex.parentNode.removeChild(greenVertex);
+            // Realizar otras acciones necesarias
+        }
+    });	
 	
 }	
 } requestAnimationFrame(update);
@@ -889,6 +900,24 @@ yellowDot.setAttribute('r', '2'); yellowDot.setAttribute('fill', 'yellow');
 const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(yellowDot); }
 }
 //drawRandomYellowPointsOnHexLines();	
+
+////////////////////////////////////////////////////////////
+///NUEVAS PRUEBAS !!!!!!!!!
+
+function detectarColisionesGenerales(elemento1, elemento2) {
+	
+    const x1 = parseFloat(elemento1.getAttribute('cx'));
+    const y1 = parseFloat(elemento1.getAttribute('cy'));
+    const radio1 = parseFloat(elemento1.getAttribute('r'));
+
+    const x2 = parseFloat(elemento2.getAttribute('cx'));
+    const y2 = parseFloat(elemento2.getAttribute('cy'));
+    const radio2 = parseFloat(elemento2.getAttribute('r'));
+
+    const distancia = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
+
+    return distancia < radio1 + radio2;
+}
 	
 
 /////////////////////////////////////////////////////////////
