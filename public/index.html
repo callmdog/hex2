@@ -967,7 +967,7 @@ return true;
 return false;
 }
 
-socket.on('collisionWithGreenCircle2', (collisionIndex) => {
+socket.on('greenCircleCollision', (collisionIndex) => {
 console.log(`collisionWithGreenCircle2!!!!!!`);	
     // Seleccionar el círculo verde colisionado por su índice y eliminarlo del DOM
     const greenCircleElement = document.querySelector(`#camera circle:nth-child(${collisionIndex + 1})`);
