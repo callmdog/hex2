@@ -928,21 +928,13 @@ function detectarColisionesGenerales(elemento1, elemento2) {
     return distancia < radio1 + radio2+20;
 }
 
-	function detectarColisionesRectangulares2(blueX, blueY, blueRadius, greenCircles) {
-    for (const circle of greenCircles) {
+	function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
+    		for (const circle of greenCircles) {
         const greenX = circle.x;
         const greenY = circle.y;
         //const greenRadius = circle.radius;
         const greenRadius = 8;
-	    const greenIndex = circle.index;
-    
-
-	   // 			console.log(`Length Colision`, greenCircles.length);
-	   // 			console.log(`Length Colision X`, greenX);
-	   // 			console.log(`Length Colision Y`, greenY);
-	   // 			console.log(`Length Colision R`, greenRadius);
-
-
+	const greenIndex = circle.index;
         // Calcular las coordenadas de los rectángulos delimitadores
         const blueBoundingBox = {
             x1: blueX - blueRadius,
@@ -971,41 +963,18 @@ socket.emit('greenCircleEaten');
 const cameraGroup = document.getElementById('camera');
 greenCircles.splice(  circle.index   , 1);
 
-
-
-
-
-
 const greenCircleElement = document.querySelector(`#camera circle:nth-child(${circle.index + 1})`);
                 if (greenCircleElement) {
+				console.log(`COLISION greenCircleElement: ${greenCircleElement}:`);
+
                     greenCircleElement.parentNode.removeChild(greenCircleElement);
                 }
-
-
-
-
-  /*const greenVertices = document.querySelectorAll('circle[fill="green"]');
-    greenVertices.forEach((greenVertex) => {
-        if (detectarColisionesGenerales(circleElement, greenVertex)) {
-        console.log(`COLISION DETECTADA verde.`);
-        
-            // Manejar la colisión, por ejemplo, eliminar el círculo verde
-            greenVertex.parentNode.removeChild(greenVertex);
-
-                socket.emit('greenCircleEaten');
-        
-            // Realizar otras acciones necesarias
-        }
-    });        */
-
-
-
 
             // Colisión detectada
             return true;
         }
     }
-			console.log(`NO COLISION`);
+	console.log(`NO COLISION`);
 	
     // No hay colisión
     return false;
@@ -1043,7 +1012,7 @@ function manejarColisionConCirculoVerde(jugador, circuloVerde) {
 
 
 
-function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
+function detectarColisionesRectangulares2(blueX, blueY, blueRadius, greenCircles) {
     for (const [index, circle] of greenCircles.entries()) {
 
 
