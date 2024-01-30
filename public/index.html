@@ -629,8 +629,6 @@ inicialX = newX; inicialY = newY;
 	//console.log(`GreenCirclesLength: ${greenCircles.length}`);
 	//console.log(`GreenCircles1: ${greenCircles[1].x},${greenCircles[1].y}`);
 
-	//detectarColisionesRectangulares(newX, newY, 12, greenCircles2 );
-
 	
 }
 } requestAnimationFrame(update);
@@ -678,8 +676,11 @@ const newY = start.y + progress * (end.y - start.y);
 		
 circleElement.setAttribute('cx', newX);
 circleElement.setAttribute('cy', newY);
+		console.log(`RADIO circleElement:`, circleElement.getAttribute('r'));
 
-detectarColisionesConCirculosVerdes(newX, newY, 12, circleElement );	
+
+//detectarColisionesConCirculosVerdes(newX, newY, 12, circleElement );	
+detectarColisionesRectangulares(newX, newY, 12, greenCircles2 );
 	
 
 ////CAMERA MOVEMENT
