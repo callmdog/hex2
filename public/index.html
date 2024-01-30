@@ -635,8 +635,8 @@ inicialX = newX; inicialY = newY;
 //detectarColisiones(bluePointElement);
 //handleCollisionWithGreenCircle(newX, newY);
 
-	console.log(`GreenCirclesLength: ${greenCircles.length}`);
-	console.log(`GreenCircles1: ${greenCircles[1].x},${greenCircles[1].y}`);
+	//console.log(`GreenCirclesLength: ${greenCircles.length}`);
+	//console.log(`GreenCircles1: ${greenCircles[1].x},${greenCircles[1].y}`);
 
 	detectarColisionesRectangulares(newX, newY, 12, greenCircles2 );	
 
@@ -967,6 +967,8 @@ function detectarColisionesGenerales(elemento1, elemento2) {
             blueBoundingBox.y2 > greenBoundingBox.y1) {
 		console.log(`COLISION Detectada`);
 	console.log(`COLISION Index: ${greenIndex}:`);
+		socket.emit('collisionWithGreenCircle', circle.index);
+socket.emit('greenCircleEaten');
 
             // Colisión detectada
             return true;
