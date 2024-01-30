@@ -973,10 +973,32 @@ greenCircles.splice(  circle.index   , 1);
 
 
 
-const greenCircleElement = document.querySelector(`#camera circle:nth-child(${   circle.index  + 1})`);
+
+
+
+const greenCircleElement = document.querySelector(`#camera circle:nth-child(${circle.index + 1})`);
                 if (greenCircleElement) {
-                    cameraGroup.removeChild(greenCircleElement);
+                    greenCircleElement.parentNode.removeChild(greenCircleElement);
                 }
+
+
+
+
+  /*const greenVertices = document.querySelectorAll('circle[fill="green"]');
+    greenVertices.forEach((greenVertex) => {
+        if (detectarColisionesGenerales(circleElement, greenVertex)) {
+        console.log(`COLISION DETECTADA verde.`);
+        
+            // Manejar la colisión, por ejemplo, eliminar el círculo verde
+            greenVertex.parentNode.removeChild(greenVertex);
+
+                socket.emit('greenCircleEaten');
+        
+            // Realizar otras acciones necesarias
+        }
+    });        */
+
+
 
 
             // Colisión detectada
