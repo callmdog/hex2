@@ -619,8 +619,8 @@ socket.emit('updatePosition', newPosition);
 inicialX = newX; inicialY = newY;
 //console.log(`NUEVAS COORDS (${inicialX}, ${inicialY}).`);
 	
-//detectarColisiones(bluePointElement);
-//handleCollisionWithGreenCircle(newX, newY);
+detectarColisiones(bluePointElement);
+handleCollisionWithGreenCircle(newX, newY);
 	
 }
 } requestAnimationFrame(update);
@@ -682,8 +682,8 @@ else {
 // La animación ha terminado
 if (typeof callback === 'function') { callback(); } 
 
-detectarColisiones(circleElement);
-handleCollisionWithGreenCircle(newX, newY);	
+//detectarColisiones(circleElement);
+//handleCollisionWithGreenCircle(newX, newY);	
 	
 }	
 } requestAnimationFrame(update);
