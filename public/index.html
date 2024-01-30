@@ -832,7 +832,7 @@ function handleCollisionWithGreenCircle(playerX, playerY) {
 for (const circle of greenCircles2) {
 const distance = Math.sqrt((playerX - circle.x) ** 2 + (playerY - circle.y) ** 2);
 //console.log(`COLISION distance: ${distance}:`);
-if (distance < 20) {
+if (distance < 10) {
 console.log(`COLISION Index: ${circle.index}:`);
 // Emitir evento al servidor indicando el índice del círculo verde colisionado
 socket.emit('collisionWithGreenCircle', circle.index);
