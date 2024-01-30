@@ -937,7 +937,7 @@ function detectarColisionesGenerales(elemento1, elemento2) {
         const greenY = circle.y;
         //const greenRadius = circle.radius;
         const greenRadius = 8;
-	console.log(`COLISION Index: ${circle.index}:`);
+	    const greenIndex = circle.index;
     
 
 	   // 			console.log(`Length Colision`, greenCircles.length);
@@ -966,6 +966,7 @@ function detectarColisionesGenerales(elemento1, elemento2) {
             blueBoundingBox.y1 < greenBoundingBox.y2 &&
             blueBoundingBox.y2 > greenBoundingBox.y1) {
 		console.log(`COLISION Detectada`);
+	console.log(`COLISION Index: ${greenIndex}:`);
 
             // Colisión detectada
             return true;
