@@ -972,6 +972,8 @@ console.log(`collisionWithGreenCircle2!!!!!!`);
     // Seleccionar el círculo verde colisionado por su índice y eliminarlo del DOM
     const greenCircleElement = document.querySelector(`#camera circle:nth-child(${collisionIndex + 1})`);
     if (greenCircleElement) {
+	   console.log(`collisionWithGreenCircle2!!!!!!`, greenCircleElement);	
+ 
         greenCircleElement.parentNode.removeChild(greenCircleElement);
     }
 });
