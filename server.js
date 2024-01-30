@@ -28,6 +28,68 @@ function getRandomPosition() {
     return { x, y };
 }
 
+/////HEX TEST
+function generateHexagonPoints(hexagonSize, numRows, numCols) {
+    const hexagonPoints = [];
+
+    const hexWidth = hexagonSize * Math.sqrt(3);
+    const hexHeight = hexagonSize * Math.sqrt(3);
+
+    for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
+            const x = col * (hexWidth * 0.87);
+            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+
+            hexagonPoints.push({ x, y });
+        }
+    }
+
+    return hexagonPoints;
+}
+
+const hexagonSize = 50;
+const numRows = 10; // Define el número de filas de hexágonos
+const numCols = 10; // Define el número de columnas de hexágonos
+
+const hexagonPoints = generateHexagonPoints(hexagonSize, numRows, numCols);
+
+console.log("Puntos de los hexágonos:", hexagonPoints);
+
+function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
+    const coordinates = [];
+
+    for (let i = 0; i < 6; i++) {
+        // Selecciona un hexágono al azar
+        const randomHexagonIndex = Math.floor(Math.random() * hexagonPoints.length);
+        const hexagon = hexagonPoints[randomHexagonIndex];
+        // Calcula los puntos del hexágono
+        const points = hexagon.points;
+
+        // Selecciona dos puntos aleatorios que conformen una línea dentro del hexágono
+        const randomPointIndex1 = Math.floor(Math.random() * points.length);
+        const randomPointIndex2 = (randomPointIndex1 + 1) % points.length;
+        const point1 = points[randomPointIndex1];
+        const point2 = points[randomPointIndex2];
+
+        // Elije un punto aleatorio entre los dos puntos seleccionados
+        const randomT = Math.random();
+        const x = point1.x + randomT * (point2.x - point1.x);
+        const y = point1.y + randomT * (point2.y - point1.y);
+
+console.log("Puntos x:", x);
+console.log("Puntos y:", y);
+ 
+
+        coordinates.push({ x, y });
+    }
+
+    return coordinates;
+}
+
+generateRandomCoordinatesWithinHexagons(hexagonPoints);
+
+////
+
 
 app.use(express.static('public'));
 
