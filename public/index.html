@@ -779,6 +779,8 @@ const blueRadius = 9; // Radio del círculo azul (jugador)
 //COLISION DETECTAR JUGADORES!!!!!!!!!!!!!!!!!!
 	
 document.querySelectorAll('circle').forEach((otherCircle) => {
+console.log('COLISION DETECTADA.');
+	
 const playerIdN = otherCircle.getAttribute('id');
 if (playerIdN !== socket.id && playerIdN !== null && playerIdN !== 'bluePoint') {
 const greenX = parseFloat(otherCircle.getAttribute('cx'));
