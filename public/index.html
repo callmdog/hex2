@@ -472,6 +472,8 @@ greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
 greenCircle.setAttribute('r', '8');
 greenCircle.setAttribute('fill', 'green');
+greenCircle.setAttribute('data-index', i); // Asigna un índice único
+	
 //svg.appendChild(greenCircle);
 const cameraGroup = document.getElementById('camera'); 
 cameraGroup.appendChild(greenCircle);
@@ -973,7 +975,12 @@ console.log(`collisionWithGreenCircle2!!!!!!`);
     const greenCircleElement = document.querySelector(`#camera circle:nth-child(${collisionIndex})`);
     if (greenCircleElement) {
 	   console.log(`collisionWithGreenCircle2!!!!!!`, greenCircleElement);	
- 
+
+	const index = greenCircle.getAttribute('data-index');
+	    	   console.log(`Circle index!!!!!!`, index);	
+
+
+	    
         greenCircleElement.parentNode.removeChild(greenCircleElement);
     }
 });
