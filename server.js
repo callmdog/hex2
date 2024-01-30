@@ -29,7 +29,7 @@ function getRandomPosition() {
 }
 
 /////HEX TEST
-function generateHexagonPoints(hexagonSize, numRows, numCols) {
+function generateHexagonPoints(hexagonSize, numRows, numCols, callback) {
     const hexagonPoints = [];
 
     const hexWidth = hexagonSize * Math.sqrt(3);
@@ -45,6 +45,9 @@ function generateHexagonPoints(hexagonSize, numRows, numCols) {
     }
 
     return hexagonPoints;
+	if (callback) {
+        callback(hexagonPoints); // Llamar a la devolución de llamada con los puntos generados
+    }
 }
 
 const hexagonSize = 50;
@@ -54,6 +57,7 @@ const numCols = 10; // Define el número de columnas de hexágonos
 const hexagonPoints = generateHexagonPoints(hexagonSize, numRows, numCols);
 
 console.log("Puntos de los hexágonos:", hexagonPoints);
+
 
 function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
     const coordinates = [];
@@ -86,7 +90,12 @@ console.log("Puntos y:", y);
     return coordinates;
 }
 
-generateRandomCoordinatesWithinHexagons(hexagonPoints);
+//generateRandomCoordinatesWithinHexagons(hexagonPoints);
+generateHexagonPoints(hexagonSize, numRows, numCols, function(hexagonPoints) {
+    // Esta función se ejecutará cuando generateHexagonPoints haya terminado y haya proporcionado los puntos de los hexágonos
+    generateRandomCoordinatesWithinHexagons(hexagonPoints);
+});
+
 
 ////
 
