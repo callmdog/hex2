@@ -221,6 +221,9 @@ const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 
     bluePointElement.setAttribute('cx', bluePoint.x);
     bluePointElement.setAttribute('cy', bluePoint.y);
 
+let bX = 0;
+let bY = 0;
+
 /////////////////////////////////////////////////////////////////////
 
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -410,8 +413,10 @@ radioJugador = player.puntos;
 initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y  ;
 //console.log('Coord circ:', initialCameraX, initialCameraY);  
-bluePointElement.setAttribute('cx', player.x);
-bluePointElement.setAttribute('cy', player.y);
+//bluePointElement.setAttribute('cx', player.x);
+//bluePointElement.setAttribute('cy', player.y);
+bX = player.x;
+bY = player.y;
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 console.log('R. Numbers:', randomX, randomY);  
 inicialX = player.x;
@@ -599,8 +604,10 @@ return Math.sqrt(dx * dx + dy * dy);
 
 function animateBluePoint(destinationX, destinationY) {
 console.log('ANIMATE BLUE POINT');
-const startX = parseFloat(bluePointElement.getAttribute('cx'));
-const startY = parseFloat(bluePointElement.getAttribute('cy'));
+//const startX = parseFloat(bluePointElement.getAttribute('cx'));
+//const startY = parseFloat(bluePointElement.getAttribute('cy'));
+const startX = bX;
+const startY = bY;
 const startTime = performance.now();
 const duration = 50; // 1 seg
 function update() {
@@ -610,8 +617,10 @@ const progress = Math.min(elapsed / duration, 1);
 const newX = startX + progress * (destinationX - startX);
 const newY = startY + progress * (destinationY - startY);
 		
-bluePointElement.setAttribute('cx', newX);
-bluePointElement.setAttribute('cy', newY);
+//bluePointElement.setAttribute('cx', newX);
+//bluePointElement.setAttribute('cy', newY);
+bX = newX;
+bY = newY;	
 		
 if (progress < 1) { requestAnimationFrame(update);
 } else {
