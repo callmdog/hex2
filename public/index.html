@@ -679,6 +679,9 @@ const newY = start.y + progress * (end.y - start.y);
 circleElement.setAttribute('cx', newX);
 circleElement.setAttribute('cy', newY);
 
+detectarColisionesConCirculosVerdes(newX, newY, 12, circleElement );	
+	
+
 ////CAMERA MOVEMENT
 if (socket.id===playerId) {
 	const newXCam = svgWidth / 2 - newX;
@@ -692,7 +695,6 @@ else {
 // La animación ha terminado
 if (typeof callback === 'function') { callback(); } 
 
-detectarColisionesConCirculosVerdes(newX, newY, 12, circleElement );	
 	
 
 //detectarColisiones(circleElement);
