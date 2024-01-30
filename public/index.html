@@ -937,6 +937,12 @@ function detectarColisionesGenerales(elemento1, elemento2) {
         const greenY = circle.y;
         const greenRadius = circle.radius;
 
+	    			console.log(`Length Colision`, greenCircles.length);
+	    			console.log(`Length Colision X`, greenX);
+	    			console.log(`Length Colision Y`, greenY);
+	    			console.log(`Length Colision R`, greenRadius);
+
+
         // Calcular las coordenadas de los rectángulos delimitadores
         const blueBoundingBox = {
             x1: blueX - blueRadius,
