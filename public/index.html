@@ -634,6 +634,12 @@ inicialX = newX; inicialY = newY;
 	
 //detectarColisiones(bluePointElement);
 //handleCollisionWithGreenCircle(newX, newY);
+
+	console.log(`GreenCirclesLength: (${greenCircles.length}`);
+	console.log(`GreenCircles1: (${greenCircles[1]}`);
+
+	detectarColisionesRectangulares(newX, newY, 10, greenCircles );	
+
 	
 }
 } requestAnimationFrame(update);
@@ -713,7 +719,6 @@ if (typeof callback === 'function') { callback(); }
     });	*/
 
 
-detectarColisionesRectangulares(newX, newY, 10, greenCircles );	
 	
 }	
 } requestAnimationFrame(update);
