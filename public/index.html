@@ -629,7 +629,8 @@ inicialX = newX; inicialY = newY;
 	//console.log(`GreenCirclesLength: ${greenCircles.length}`);
 	//console.log(`GreenCircles1: ${greenCircles[1].x},${greenCircles[1].y}`);
 
-	detectarColisionesRectangulares(newX, newY, 12, greenCircles2 );	
+	//detectarColisionesRectangulares(newX, newY, 12, greenCircles2 );
+detectarColisionesConCirculosVerdes(newX, newY, 12);	
 
 	
 }
@@ -969,6 +970,34 @@ socket.emit('greenCircleEaten');
 	
     // No hay colisión
     return false;
+}
+
+
+
+	function detectarColisionesConCirculosVerdes(blueX, blueY, blueRadius) {
+   
+    document.querySelectorAll('circle[fill="red"]').forEach((otroCirculo) => {
+        const greenX = parseFloat(otroCirculo.getAttribute('cx'));
+        const greenY = parseFloat(otroCirculo.getAttribute('cy'));
+        const greenRadius = parseFloat(otroCirculo.getAttribute('r'));
+
+        if (hayColision(blueX, blueY, blueRadius, greenX, greenY, greenRadius)) {
+            manejarColisionConCirculoVerde(jugador, otroCirculo);
+        }
+    });
+}
+
+function hayColision(blueX, blueY, blueRadius, greenX, greenY, greenRadius) {
+    const distancia = Math.sqrt((blueX - greenX) ** 2 + (blueY - greenY) ** 2);
+    return distancia < blueRadius + greenRadius;
+}
+
+function manejarColisionConCirculoVerde(jugador, circuloVerde) {
+    // Acciones a realizar cuando hay una colisión con un círculo verde
+    // Ejemplo: Eliminar el círculo verde del SVG
+    circuloVerde.parentNode.removeChild(circuloVerde);
+
+    // Aquí puedes agregar más acciones según tus necesidades
 }
 	
 
