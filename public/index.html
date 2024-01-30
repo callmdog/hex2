@@ -978,7 +978,7 @@ socket.emit('greenCircleEaten');
 
 	function detectarColisionesConCirculosVerdes(blueX, blueY, blueRadius, jugador) {
    
-    document.querySelectorAll('circle[fill="red"]').forEach((otroCirculo) => {
+    document.querySelectorAll('circle[fill="green"]').forEach((otroCirculo) => {
         const greenX = parseFloat(otroCirculo.getAttribute('cx'));
         const greenY = parseFloat(otroCirculo.getAttribute('cy'));
         const greenRadius = parseFloat(otroCirculo.getAttribute('r'));
