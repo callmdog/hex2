@@ -472,7 +472,8 @@ greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
 greenCircle.setAttribute('r', '8');
 greenCircle.setAttribute('fill', 'green');
-greenCircle.setAttribute('data-index', i); // Asigna un índice único
+//greenCircle.setAttribute('data-index', i); // Asigna un índice único
+greenCircle.setAttribute('id', 'greenCircle_' + i); // Asignar un ID único
 	
 //svg.appendChild(greenCircle);
 const cameraGroup = document.getElementById('camera'); 
@@ -971,17 +972,26 @@ return false;
 
 socket.on('greenCircleCollision', (collisionIndex) => {
 console.log(`collisionWithGreenCircle2!!!!!!`);	
+
+const circleToRemove = document.getElementById('greenCircle_1'); // ID del círculo a eliminar
+if (circleToRemove) {
+	    	   console.log(`Circle getElementById!!!!!!`, circleToRemove);	
+	
+    circleToRemove.parentNode.removeChild(circleToRemove);
+}
+
+	
     // Seleccionar el círculo verde colisionado por su índice y eliminarlo del DOM
     const greenCircleElement = document.querySelector(`#camera circle:nth-child(${collisionIndex})`);
     if (greenCircleElement) {
 	   console.log(`collisionWithGreenCircle2!!!!!!`, greenCircleElement);	
 
-	const index = greenCircleElement.getAttribute('data-index');
-	    	   console.log(`Circle index!!!!!!`, index);	
+	//const index = greenCircleElement.getAttribute('data-index');
+	  //  	   console.log(`Circle index!!!!!!`, index);	
 
 
 	    
-        greenCircleElement.parentNode.removeChild(greenCircleElement);
+        //greenCircleElement.parentNode.removeChild(greenCircleElement);
     }
 });
 	
