@@ -957,18 +957,18 @@ function detectarColisionesGenerales(elemento1, elemento2) {
 		console.log(`COLISION Detectada`);
 	console.log(`COLISION Index: ${greenIndex}:`);
 	//	socket.emit('collisionWithGreenCircle', circle.index);
-socket.emit('greenCircleEaten');
+	socket.emit('greenCircleEaten');
 
+	const indexToRemove = greenCircles.indexOf(circle);
 
-const cameraGroup = document.getElementById('camera');
-greenCircles.splice(  circle.index   , 1);
+            // Elimina el círculo del array usando splice
+            if (indexToRemove !== -1) {
+		    
+                greenCircles.splice(indexToRemove, 1);
+            }
 
-const greenCircleElement = document.querySelector(`#camera circle:nth-child(${circle.index + 1})`);
-                if (greenCircleElement) {
-				console.log(`COLISION greenCircleElement: ${greenCircleElement}:`);
+	
 
-                    greenCircleElement.parentNode.removeChild(greenCircleElement);
-                }
 
             // Colisión detectada
             return true;
