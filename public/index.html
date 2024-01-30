@@ -698,7 +698,7 @@ if (typeof callback === 'function') { callback(); }
 //detectarColisiones(circleElement);
 //handleCollisionWithGreenCircle(newX, newY);	
 
-  const greenVertices = document.querySelectorAll('circle[fill="green"]');
+  /*const greenVertices = document.querySelectorAll('circle[fill="green"]');
     greenVertices.forEach((greenVertex) => {
         if (detectarColisionesGenerales(circleElement, greenVertex)) {
 	console.log(`COLISION DETECTADA verde.`);
@@ -710,7 +710,10 @@ if (typeof callback === 'function') { callback(); }
 	
             // Realizar otras acciones necesarias
         }
-    });	
+    });	*/
+
+
+detectarColisionesRectangulares(newX, newY, 10, greenCircles );	
 	
 }	
 } requestAnimationFrame(update);
@@ -921,6 +924,39 @@ function detectarColisionesGenerales(elemento1, elemento2) {
 
 
     return distancia < radio1 + radio2+20;
+}
+
+	function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
+    for (const circle of greenCircles) {
+        const greenX = circle.x;
+        const greenY = circle.y;
+        const greenRadius = circle.radius;
+
+        // Calcular las coordenadas de los rectángulos delimitadores
+        const blueBoundingBox = {
+            x1: blueX - blueRadius,
+            y1: blueY - blueRadius,
+            x2: blueX + blueRadius,
+            y2: blueY + blueRadius
+        };
+        const greenBoundingBox = {
+            x1: greenX - greenRadius,
+            y1: greenY - greenRadius,
+            x2: greenX + greenRadius,
+            y2: greenY + greenRadius
+        };
+
+        // Verificar la colisión entre los rectángulos delimitadores
+        if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
+            blueBoundingBox.x2 > greenBoundingBox.x1 &&
+            blueBoundingBox.y1 < greenBoundingBox.y2 &&
+            blueBoundingBox.y2 > greenBoundingBox.y1) {
+            // Colisión detectada
+            return true;
+        }
+    }
+    // No hay colisión
+    return false;
 }
 	
 
