@@ -235,6 +235,8 @@ socket.on('collisionWithGreenCircle2', (collisionIndex) => {
     if (collisionIndex >= 0 && collisionIndex < greenCircles.length) {
         // Eliminar el círculo verde colisionado del array
         greenCircles.splice(collisionIndex, 1);
+	io.emit('greenCircleCollision', collisionIndex);
+ 
     }
 });
 
