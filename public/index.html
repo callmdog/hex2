@@ -964,9 +964,12 @@ function detectarColisionesGenerales(elemento1, elemento2) {
             blueBoundingBox.y2 > greenBoundingBox.y1) {
 		console.log(`COLISION Detectada`);
 	console.log(`COLISION Index: ${greenIndex}:`);
-		socket.emit('collisionWithGreenCircle', circle.index);
+	//	socket.emit('collisionWithGreenCircle', circle.index);
 socket.emit('greenCircleEaten');
 
+
+
+greenCircles.splice(i, 1);
             // Colisión detectada
             return true;
         }
