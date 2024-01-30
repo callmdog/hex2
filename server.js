@@ -211,8 +211,16 @@ console.log(`LENGTH1: ${greenCircles.length}:`);
 // Manejar la generación de nuevos círculos verdes
 socket.on('generateGreenCircles', () => 
 {
-	generateGreenCircles();
-	console.log(`LENGTH2: ${greenCircles.length}:`);
+
+
+	const intervalo = 10 * 1000; // Convertir segundos a milisegundos
+setInterval(() => {
+    generateGreenCircles();
+    console.log(`LENGTH2: ${greenCircles.length}:`);
+}, intervalo);
+
+	//generateGreenCircles();
+	//console.log(`LENGTH2: ${greenCircles.length}:`);
 });
 
 	    
