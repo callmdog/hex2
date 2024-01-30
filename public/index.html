@@ -966,7 +966,7 @@ function detectarColisionesGenerales(elemento1, elemento2) {
 		    
                 greenCircles.splice(indexToRemove, 1);
 
-		socket.emit('collisionWithGreenCircle', circle.index);
+		socket.emit('collisionWithGreenCircle2', circle.index);
 		socket.emit('greenCircleEaten');
 		    
             }
@@ -984,6 +984,14 @@ function detectarColisionesGenerales(elemento1, elemento2) {
     return false;
 }
 
+socket.on('collisionWithGreenCircle2', (collisionIndex) => {
+    // Seleccionar el círculo verde colisionado por su índice y eliminarlo del DOM
+    const greenCircleElement = document.querySelector(`#camera circle:nth-child(${collisionIndex + 1})`);
+    if (greenCircleElement) {
+        greenCircleElement.parentNode.removeChild(greenCircleElement);
+    }
+});
+	
 
 
 	function detectarColisionesConCirculosVerdes(blueX, blueY, blueRadius, jugador) {
