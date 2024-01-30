@@ -969,11 +969,11 @@ socket.emit('greenCircleEaten');
 
 
 
-greenCircles.splice(i, 1);
+greenCircles.splice(  circle.index   , 1);
 
 
 
-const greenCircleElement = document.querySelector(`#camera circle:nth-child(${i + 1})`);
+const greenCircleElement = document.querySelector(`#camera circle:nth-child(${   circle.index  + 1})`);
                 if (greenCircleElement) {
                     cameraGroup.removeChild(greenCircleElement);
                 }
