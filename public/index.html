@@ -911,7 +911,7 @@ const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(y
 
 ////////////////////////////////////////////////////////////
 ///NUEVAS PRUEBAS !!!!!!!!!
-
+/*
 function detectarColisionesGenerales(elemento1, elemento2) {
 	
     const x1 = parseFloat(elemento1.getAttribute('cx'));
@@ -927,64 +927,48 @@ function detectarColisionesGenerales(elemento1, elemento2) {
 
     return distancia < radio1 + radio2+20;
 }
-
-	function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
-    		for (const circle of greenCircles) {
-        const greenX = circle.x;
-        const greenY = circle.y;
-        //const greenRadius = circle.radius;
-        const greenRadius = 8;
-	const greenIndex = circle.index;
-        // Calcular las coordenadas de los rectángulos delimitadores
-        const blueBoundingBox = {
-            x1: blueX - blueRadius,
-            y1: blueY - blueRadius,
-            x2: blueX + blueRadius,
-            y2: blueY + blueRadius
-        };
-        const greenBoundingBox = {
-            x1: greenX - greenRadius,
-            y1: greenY - greenRadius,
-            x2: greenX + greenRadius,
-            y2: greenY + greenRadius
-        };
-
-        // Verificar la colisión entre los rectángulos delimitadores
-        if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
-            blueBoundingBox.x2 > greenBoundingBox.x1 &&
-            blueBoundingBox.y1 < greenBoundingBox.y2 &&
-            blueBoundingBox.y2 > greenBoundingBox.y1) {
-		console.log(`COLISION Detectada`);
-	console.log(`COLISION Index: ${greenIndex}:`);
+*/
 	
+function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
+for (const circle of greenCircles) {
+const greenX = circle.x;
+const greenY = circle.y;
+//const greenRadius = circle.radius;
+const greenRadius = 8;
+const greenIndex = circle.index;
+// Calcular las coordenadas de los rectángulos delimitadores
+const blueBoundingBox = {
+x1: blueX - blueRadius, y1: blueY - blueRadius,
+x2: blueX + blueRadius, y2: blueY + blueRadius };
+const greenBoundingBox = {
+x1: greenX - greenRadius, y1: greenY - greenRadius,
+x2: greenX + greenRadius, y2: greenY + greenRadius };
 
-	const indexToRemove = greenCircles.indexOf(circle);
+// Verificar la colisión entre los rectángulos delimitadores
+if (blueBoundingBox.x1 < greenBoundingBox.x2 && blueBoundingBox.x2 > greenBoundingBox.x1 &&
+blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBox.y1) {
+console.log(`COLISION Detectada`);
+console.log(`COLISION Index: ${greenIndex}:`);
+const indexToRemove = greenCircles.indexOf(circle);
 
-            // Elimina el círculo del array usando splice
-            if (indexToRemove !== -1) {
-
+// Elimina el círculo del array usando splice
+if (indexToRemove !== -1) {
+greenCircles.splice(indexToRemove, 1);
+socket.emit('collisionWithGreenCircle2', circle.index);
+socket.emit('greenCircleEaten');
 		    
-                greenCircles.splice(indexToRemove, 1);
-
-		socket.emit('collisionWithGreenCircle2', circle.index);
-		socket.emit('greenCircleEaten');
-		    
-            }
-
-	
-
-
-            // Colisión detectada
-            return true;
-        }
-    }
-	//console.log(`NO COLISION`);
-	
-    // No hay colisión
-    return false;
+}
+// Colisión detectada
+return true;
+}
+}
+//console.log(`NO COLISION`);
+// No hay colisión
+return false;
 }
 
 socket.on('collisionWithGreenCircle2', (collisionIndex) => {
+console.log(`collisionWithGreenCircle2!!!!!!`);	
     // Seleccionar el círculo verde colisionado por su índice y eliminarlo del DOM
     const greenCircleElement = document.querySelector(`#camera circle:nth-child(${collisionIndex + 1})`);
     if (greenCircleElement) {
@@ -993,7 +977,7 @@ socket.on('collisionWithGreenCircle2', (collisionIndex) => {
 });
 	
 
-
+/*
 	function detectarColisionesConCirculosVerdes(blueX, blueY, blueRadius, jugador) {
    
     document.querySelectorAll('circle[fill="green"]').forEach((otroCirculo) => {
@@ -1020,10 +1004,10 @@ function manejarColisionConCirculoVerde(jugador, circuloVerde) {
     // Aquí puedes agregar más acciones según tus necesidades
 }
 
+*/
 
 
-
-
+/*
 function detectarColisionesRectangulares2(blueX, blueY, blueRadius, greenCircles) {
     for (const [index, circle] of greenCircles.entries()) {
 
@@ -1033,13 +1017,6 @@ function detectarColisionesRectangulares2(blueX, blueY, blueRadius, greenCircles
         //const greenRadius = circle.radius;
         const greenRadius = 8;
             const greenIndex = circle.index;
-
-
-           //                         console.log(`Length Colision`, greenCircles.length);
-           //                         console.log(`Length Colision X`, greenX);
-           //                         console.log(`Length Colision Y`, greenY);
-           //                         console.log(`Length Colision R`, greenRadius);
-
 
         // Calcular las coordenadas de los rectángulos delimitadores
         const blueBoundingBox = {
@@ -1083,9 +1060,7 @@ function detectarColisionesRectangulares2(blueX, blueY, blueRadius, greenCircles
     return false;
 }
 
-
-
-	
+*/
 
 /////////////////////////////////////////////////////////////
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
