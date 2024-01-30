@@ -630,7 +630,6 @@ inicialX = newX; inicialY = newY;
 	//console.log(`GreenCircles1: ${greenCircles[1].x},${greenCircles[1].y}`);
 
 	//detectarColisionesRectangulares(newX, newY, 12, greenCircles2 );
-detectarColisionesConCirculosVerdes(newX, newY, 12);	
 
 	
 }
@@ -692,6 +691,9 @@ if (progress < 1) { requestAnimationFrame(update); }
 else {
 // La animación ha terminado
 if (typeof callback === 'function') { callback(); } 
+
+detectarColisionesConCirculosVerdes(newX, newY, 12, circleElement );	
+	
 
 //detectarColisiones(circleElement);
 //handleCollisionWithGreenCircle(newX, newY);	
@@ -974,7 +976,7 @@ socket.emit('greenCircleEaten');
 
 
 
-	function detectarColisionesConCirculosVerdes(blueX, blueY, blueRadius) {
+	function detectarColisionesConCirculosVerdes(blueX, blueY, blueRadius, jugador) {
    
     document.querySelectorAll('circle[fill="red"]').forEach((otroCirculo) => {
         const greenX = parseFloat(otroCirculo.getAttribute('cx'));
