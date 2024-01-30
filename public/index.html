@@ -791,6 +791,8 @@ document.querySelectorAll('circle').forEach((otherCircle) => {
 console.log('COLISION DETECTADA.');
 	
 const playerIdN = otherCircle.getAttribute('id');
+console.log(`COLISION ID: (${playerIdN})`); 
+	
 if (playerIdN !== socket.id && playerIdN !== null && playerIdN !== 'bluePoint') {
 const greenX = parseFloat(otherCircle.getAttribute('cx'));
 const greenY = parseFloat(otherCircle.getAttribute('cy'));
