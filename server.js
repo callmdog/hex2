@@ -45,6 +45,7 @@ points.push(coordinate);
 } return points.join(' ');
 }
 // Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
+// Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
 function generateRandomLineCoordinates() {
     const hexagonMap = [
         [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
@@ -62,37 +63,42 @@ function generateRandomLineCoordinates() {
 
     const coordinates = [];
 
+    // Generar coordenadas medias entre los vértices adyacentes
     for (let row = 0; row < numRows; row++) {
         for (let col = 0; col < numCols; col++) {
             const x = col * (hexWidth * 0.87);
             const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
             const points = getHexagonPoints(x, y, hexagonSize);
 
-            // Calcular puntos medios entre los vértices adyacentes para aproximar las líneas
             for (let i = 0; i < points.length; i++) {
                 const nextIndex = (i + 1) % points.length;
                 const point1 = points[i].split(',').map(Number);
                 const point2 = points[nextIndex].split(',').map(Number);
                 const midX = (point1[0] + point2[0]) / 2;
                 const midY = (point1[1] + point2[1]) / 2;
-                coordinates.push({ x: midX, y: midY });
+
+                // Asegurarse de que las coordenadas generadas estén dentro del rango del hexágono
+                if (!isNaN(midX) && !isNaN(midY)) {
+                    coordinates.push({ x: midX, y: midY });
+                }
             }
         }
     }
 
     // Seleccionar seis coordenadas aleatorias de las líneas
     const randomCoordinates = [];
-for (let i = 0; i < 6; i++) {
-    const randomIndex = Math.floor(Math.random() * coordinates.length);
-    const randomCoordinate = coordinates[randomIndex];
-    randomCoordinates.push(randomCoordinate);
+    for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * coordinates.length);
+        const randomCoordinate = coordinates[randomIndex];
+        randomCoordinates.push(randomCoordinate);
 
-    // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
-    console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
+        // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
+        console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
+    }
+
+    return randomCoordinates;
 }
 
-return randomCoordinates;
-}
 
 
 generateRandomLineCoordinates();
