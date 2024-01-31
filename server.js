@@ -282,8 +282,14 @@ socket.on('updatePlayersRequest', () => {
 	    
     
 //io.emit('generateGreenCircles', greenCirclesS);
+
+const intervalo = 10 * 1000; // Convertir segundos a milisegundos
+setInterval(() => {
+    generateGreenCircles();
+    console.log(`LENGTH INTERVAL: ${greenCirclesS.length}:`);
+}, intervalo);	    
 	    
-generateGreenCircles();
+//generateGreenCircles();
 
 // Función para generar círculos verdes
 function generateGreenCircles() 
