@@ -71,22 +71,18 @@ function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
         const randomHexagonIndex = Math.floor(Math.random() * hexagonPoints.length);
         const { x: hexX, y: hexY } = hexagonPoints[randomHexagonIndex];
         
-        // Calcula dos puntos aleatorios dentro del hexágono
+        // Calcula un punto aleatorio dentro del hexágono
         const randomT1 = Math.random();
         const randomT2 = Math.random();
 
-        const x1 = hexX - randomT1 * 25;  // Ajusta el valor 25 según la dispersión deseada
-        const y1 = hexY - randomT2 * 25;
-        
-        const x2 = hexX + randomT1 * 25;
-        const y2 = hexY + randomT2 * 25;
+        const x = hexX + (randomT1 - 0.5) * 25;  // Ajusta el valor 25 según la dispersión deseada
+        const y = hexY + (randomT2 - 0.5) * 25;
 
         // Agrega las coordenadas aleatorias al arreglo de coordenadas
-        coordinates.push({ x: x1, y: y1 });
-        coordinates.push({ x: x2, y: y2 });
-	   console.log(`Coordenada 1 - x: ${x1}, y: ${y1}`);
-        console.log(`Coordenada 2 - x: ${x2}, y: ${y2}`);
- 
+        coordinates.push({ x, y });
+
+        // Imprime las coordenadas en la consola
+        console.log(`Coordenada - x: ${x}, y: ${y}`);
     }
 
     return coordinates;
