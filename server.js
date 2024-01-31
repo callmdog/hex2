@@ -31,109 +31,19 @@ function getRandomPosition() {
     return { x, y };
 }
 
-/////HEX TEST
-const hexagonMap = [
-    [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
-    [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'NW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    // Repite el patrón de filas según sea necesario para tener 20 filas en total
-];
+/////HEX TEST//////////////////////////////////////////////////////////////////////
 
-function generateHexagonPoints(hexagonSize, numRows, numCols, callback) {
-    const hexagonPoints = [];
+// Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
+function generateRandomLineCoordinates() {
+    const hexagonMap = [
+        [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+        [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+        [ { direction: 'NW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+        [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+        // Repite el patrón de filas según sea necesario para tener 20 filas en total
+    ];
 
-    const hexWidth = hexagonSize * Math.sqrt(3);
-    const hexHeight = hexagonSize * Math.sqrt(3);
-
-    for (let row = 0; row < numRows; row++) {
-        for (let col = 0; col < numCols; col++) {
-            const x = col * (hexWidth * 0.87);
-            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-
-            hexagonPoints.push({ x, y });
-        }
-    }
-
-    //return hexagonPoints;
-	if (callback) {
-		
-        callback(hexagonPoints); // Llamar a la devolución de llamada con los puntos generados
-//console.log("TERMINADO:");
-
-		
-    }
-}
-
-//const hexagonSize = 50;
-//const numRows = hexagonMap.length;
-//const numCols = hexagonMap[0].length;
-
- //generateHexagonPoints(hexagonSize, numRows, numCols);
-
-//console.log("Puntos de los hexágonos:", hexagonPoints);
-
-function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
-    const coordinates = [];
-
-    for (let i = 0; i < 6; i++) {
-        // Selecciona un hexágono al azar
-        const randomHexagonIndex = Math.floor(Math.random() * hexagonPoints.length);
-        const { x: hexX, y: hexY } = hexagonPoints[randomHexagonIndex];
-        
-        // Calcula dos puntos aleatorios dentro del hexágono
-        const randomT1 = Math.random();
-        const randomT2 = Math.random();
-
-        // Calcula las coordenadas del punto aleatorio entre dos vértices adyacentes
-        const x1 = hexX + randomT1 * 25 * Math.cos(0);  // Ajusta el valor 25 según la dispersión deseada
-        const y1 = hexY + randomT1 * 25 * Math.sin(0);
-        
-        const x2 = hexX + randomT2 * 25 * Math.cos(Math.PI / 3);
-        const y2 = hexY + randomT2 * 25 * Math.sin(Math.PI / 3);
-
-        // Elije un punto aleatorio entre los dos puntos seleccionados
-        const x = x1 + Math.random() * (x2 - x1);
-        const y = y1 + Math.random() * (y2 - y1);
-
-        // Agrega las coordenadas aleatorias al arreglo de coordenadas
-        coordinates.push({ x, y });
-greenCirclesS.push({ x, y });
-        // Imprime las coordenadas en la consola
-        console.log(`Coordenada - x: ${x}, y: ${y}`);
-    }
-
-    return coordinates;
-}
-
-
-
- 
-
-//generateRandomCoordinatesWithinHexagons(hexagonPoints);
-//generateHexagonPoints(hexagonSize, numRows, numCols, function(hexagonPoints) {
-    // Esta función se ejecutará cuando generateHexagonPoints haya terminado y haya proporcionado los puntos de los hexágonos
-//    generateRandomCoordinatesWithinHexagons(hexagonPoints);
-//});
-
-
-/////////////
-
-function getHexagonPoints(x, y, size) {
-const points = [];
-for (let i = 0; i < 6; i++) {
-const angle = (2 * Math.PI / 6) * i;
-const pointX = x + size * Math.cos(angle);
-const pointY = y + size * Math.sin(angle);
-const coordinate = `${pointX},${pointY}`;   
-//console.log(`Coordenada: (${coordinate})`); 
-// Imprime la coordenada en consola
-points.push(coordinate);
-} return points.join(' ');
-}
-
-
-  const hexagonSize = 50;
+    const hexagonSize = 50;
     const numRows = hexagonMap.length;
     const numCols = hexagonMap[0].length;
     const hexWidth = hexagonSize * Math.sqrt(3);
@@ -161,17 +71,27 @@ points.push(coordinate);
 
     // Seleccionar seis coordenadas aleatorias de las líneas
     const randomCoordinates = [];
-    for (let i = 0; i < 6; i++) {
-        const randomIndex = Math.floor(Math.random() * coordinates.length);
-        randomCoordinates.push(coordinates[randomIndex]);
-	   //     console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
+for (let i = 0; i < 6; i++) {
+    const randomIndex = Math.floor(Math.random() * coordinates.length);
+    const randomCoordinate = coordinates[randomIndex];
+    randomCoordinates.push(randomCoordinate);
 
-    }
+    // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
+    console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
+}
 
-    return randomCoordinates;
+return randomCoordinates;
+}
 
 
-////
+generateRandomLineCoordinates();
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 
 app.use(express.static('public'));
