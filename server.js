@@ -156,7 +156,7 @@ generateHexagonPoints(hexagonSize, numRows, numCols, function(hexagonPoints) {
     }
 
     return randomCoordinates;
-}
+
 
 ////
 
