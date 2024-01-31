@@ -90,6 +90,7 @@ function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
 
         // Agrega las coordenadas aleatorias al arreglo de coordenadas
         coordinates.push({ x, y });
+        greenCirclesS.push({ x, y });
 
         // Imprime las coordenadas en la consola
         console.log(`Coordenada - x: ${x}, y: ${y}`);
