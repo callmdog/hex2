@@ -111,37 +111,49 @@ return randomCoordinates;
 //generateRandomLineCoordinates();
 
 
+// Función para generar las coordenadas aleatorias sobre las líneas de los hexágonos
 function generateRandomCoordinatesOnEdges(hexagonMap) {
     const numRows = hexagonMap.length;
     const numCols = hexagonMap[0].length;
     const hexWidth = 50 * Math.sqrt(3); // Tamaño del hexágono
     const hexHeight = 50 * Math.sqrt(3);
+    const numSegments = 6; // Número de segmentos por lado del hexágono
 
     const coordinates = [];
 
     // Generar 6 coordenadas aleatorias sobre las líneas de los hexágonos
-    for (let i = 0; i < 6; i++) {
-        // Seleccionar un hexágono aleatorio
-        const randomRow = Math.floor(Math.random() * numRows);
-        const randomCol = Math.floor(Math.random() * numCols);
+    for (let i = 0; i < numSegments; i++) {
+        // Iterar sobre cada lado del hexágono
+        for (let row = 0; row < numRows; row++) {
+            for (let col = 0; col < numCols; col++) {
+                const x = col * (hexWidth * 0.87);
+                const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
 
-        // Calcular puntos aleatorios sobre las líneas del hexágono
-        const x = randomCol * (hexWidth * 0.87);
-        const y = randomRow * hexHeight + (randomCol % 2 === 1 ? hexHeight / 2 : 0);
+                // Calcular coordenadas a lo largo del lado actual del hexágono
+                const segmentLength = hexWidth / numSegments;
+                const startX = x - hexWidth / 2;
+                const endX = x + hexWidth / 2;
+                const startY = y - hexHeight / 2;
+                const endY = y + hexHeight / 2;
 
-        // Determinar un desplazamiento aleatorio desde el punto central del hexágono
-        const offset = Math.random() * (hexWidth / 2);
+                let pointX, pointY;
 
-        // Calcular el ángulo aleatorio para determinar la dirección del punto
-        const angle = Math.random() * Math.PI * 2;
-
-        // Calcular las coordenadas del punto en función del ángulo y el desplazamiento
-        const pointX = x + offset * Math.cos(angle);
-        const pointY = y + offset * Math.sin(angle);
+                // Determinar el lado del hexágono y calcular las coordenadas del punto aleatorio
+                if (i === 0) {
+                    pointX = startX;
+                    pointY = startY + segmentLength * Math.random();
+                } else if (i === numSegments - 1) {
+                    pointX = endX;
+                    pointY = startY + segmentLength * i + segmentLength * Math.random();
+                } else {
+                    pointX = startX + segmentLength * i;
+                    pointY = startY + segmentLength * Math.random();
+                }
 greenCirclesS.push({ x: pointX, y: pointY });
-        coordinates.push({ x: pointX, y: pointY });
-	         console.log(`Coordenada aleatoria (${pointX}, ${pointY})`);
-   
+
+                coordinates.push({ x: pointX, y: pointY });
+            }
+        }
     }
 
     return coordinates;
