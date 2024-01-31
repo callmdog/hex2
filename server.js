@@ -108,7 +108,54 @@ return randomCoordinates;
 
 
 
-generateRandomLineCoordinates();
+//generateRandomLineCoordinates();
+
+
+function generateRandomCoordinatesOnEdges(hexagonMap) {
+    const numRows = hexagonMap.length;
+    const numCols = hexagonMap[0].length;
+    const hexWidth = 50 * Math.sqrt(3); // Tamaño del hexágono
+    const hexHeight = 50 * Math.sqrt(3);
+
+    const coordinates = [];
+
+    // Generar 6 coordenadas aleatorias sobre las líneas de los hexágonos
+    for (let i = 0; i < 6; i++) {
+        // Seleccionar un hexágono aleatorio
+        const randomRow = Math.floor(Math.random() * numRows);
+        const randomCol = Math.floor(Math.random() * numCols);
+
+        // Calcular puntos aleatorios sobre las líneas del hexágono
+        const x = randomCol * (hexWidth * 0.87);
+        const y = randomRow * hexHeight + (randomCol % 2 === 1 ? hexHeight / 2 : 0);
+
+        // Determinar un desplazamiento aleatorio desde el punto central del hexágono
+        const offset = Math.random() * (hexWidth / 2);
+
+        // Calcular el ángulo aleatorio para determinar la dirección del punto
+        const angle = Math.random() * Math.PI * 2;
+
+        // Calcular las coordenadas del punto en función del ángulo y el desplazamiento
+        const pointX = x + offset * Math.cos(angle);
+        const pointY = y + offset * Math.sin(angle);
+greenCirclesS.push({ x: pointX, y: pointY });
+        coordinates.push({ x: pointX, y: pointY });
+	         console.log(`Coordenada aleatoria (${pointX}, ${pointY})`);
+   
+    }
+
+    return coordinates;
+}
+
+// Ejemplo de uso
+const hexagonMap = [
+    [{}, {}, {}],
+    [{}, {}, {}],
+    [{}, {}, {}]
+];
+
+const randomCoordinates = generateRandomCoordinatesOnEdges(hexagonMap);
+console.log(randomCoordinates);
 
 
 ////////////////////////////////////////////////////////////////////////////////////
