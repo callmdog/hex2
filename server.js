@@ -32,7 +32,18 @@ function getRandomPosition() {
 }
 
 /////HEX TEST//////////////////////////////////////////////////////////////////////
-
+function getHexagonPoints(x, y, size) {
+const points = [];
+for (let i = 0; i < 6; i++) {
+const angle = (2 * Math.PI / 6) * i;
+const pointX = x + size * Math.cos(angle);
+const pointY = y + size * Math.sin(angle);
+const coordinate = `${pointX},${pointY}`;   
+console.log(`Coordenada: (${coordinate})`); 
+// Imprime la coordenada en consola
+points.push(coordinate);
+} return points.join(' ');
+}
 // Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
 function generateRandomLineCoordinates() {
     const hexagonMap = [
