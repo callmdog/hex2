@@ -62,26 +62,26 @@ function generateRandomLineCoordinates() {
     const coordinates = [];
 
     // Generar coordenadas medias entre los vértices adyacentes
-    for (let row = 0; row < numRows; row++) {
-        for (let col = 0; col < numCols; col++) {
-            const x = col * (hexWidth * 0.87);
-            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-            const points = getHexagonPoints(x, y, hexagonSize);
+  for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < numCols; col++) {
+        const x = col * (hexWidth * 0.87);
+        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+        const points = getHexagonPoints(x, y, hexagonSize);
 
-            for (let i = 0; i < points.length; i++) {
-                const nextIndex = (i + 1) % points.length;
-                const point1 = points[i].split(',').map(Number);
-                const point2 = points[nextIndex].split(',').map(Number);
-                const midX = (point1[0] + point2[0]) / 2;
-                const midY = (point1[1] + point2[1]) / 2;
+        for (let i = 0; i < points.length; i++) {
+            const nextIndex = (i + 1) % points.length;
+            const point1 = points[i];
+            const point2 = points[nextIndex];
+            const midX = (point1.x + point2.x) / 2;
+            const midY = (point1.y + point2.y) / 2;
 
-                // Asegurarse de que las coordenadas generadas estén dentro del rango del hexágono
-                if (!isNaN(midX) && !isNaN(midY)) {
-                    coordinates.push({ x: midX, y: midY });
-                }
+            // Asegurarse de que las coordenadas generadas estén dentro del rango del hexágono
+            if (!isNaN(midX) && !isNaN(midY)) {
+                coordinates.push({ x: midX, y: midY });
             }
         }
     }
+}
 
  const randomCoordinates = [];
 for (let i = 0; i < 6; i++) {
