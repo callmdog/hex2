@@ -69,7 +69,7 @@ const hexagonSize = 50;
 const numRows = hexagonMap.length;
 const numCols = hexagonMap[0].length;
 
- generateHexagonPoints(hexagonSize, numRows, numCols);
+ //generateHexagonPoints(hexagonSize, numRows, numCols);
 
 //console.log("Puntos de los hexágonos:", hexagonPoints);
 
@@ -116,6 +116,47 @@ generateHexagonPoints(hexagonSize, numRows, numCols, function(hexagonPoints) {
     generateRandomCoordinatesWithinHexagons(hexagonPoints);
 });
 
+
+/////////////
+
+
+  const hexagonSize = 50;
+    const numRows = hexagonMap.length;
+    const numCols = hexagonMap[0].length;
+    const hexWidth = hexagonSize * Math.sqrt(3);
+    const hexHeight = hexagonSize * Math.sqrt(3);
+
+    const coordinates = [];
+
+    for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
+            const x = col * (hexWidth * 0.87);
+            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+            const points = getHexagonPoints(x, y, hexagonSize);
+
+            // Calcular puntos medios entre los vértices adyacentes para aproximar las líneas
+            for (let i = 0; i < points.length; i++) {
+                const nextIndex = (i + 1) % points.length;
+                const point1 = points[i].split(',').map(Number);
+                const point2 = points[nextIndex].split(',').map(Number);
+                const midX = (point1[0] + point2[0]) / 2;
+                const midY = (point1[1] + point2[1]) / 2;
+                coordinates.push({ x: midX, y: midY });
+            }
+        }
+    }
+
+    // Seleccionar seis coordenadas aleatorias de las líneas
+    const randomCoordinates = [];
+    for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * coordinates.length);
+        randomCoordinates.push(coordinates[randomIndex]);
+	        console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
+
+    }
+
+    return randomCoordinates;
+}
 
 ////
 
