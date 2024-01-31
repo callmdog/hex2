@@ -451,7 +451,7 @@ console.log('GREEN CIRCLES GENERATED.');
 greenCircles = [];
 greenCircles2 = [];
 greenCircles.push(...circles);
-console.log(`LENGTH2: ${greenCircles.length}:`);
+console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
 generateGreenCircles();
 });	
 	
@@ -466,7 +466,7 @@ circle.parentNode.removeChild(circle);
 let i = 0;
 // Dibuja los círculos verdes en las coordenadas recibidas del servidor
 greenCircles.forEach(({ x, y }) => {
-//console.log(`${x}: ${y}:`);
+console.log(`${i}: ${x}, ${y}`);
 const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
