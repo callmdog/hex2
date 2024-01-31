@@ -113,7 +113,13 @@ return randomCoordinates;
 
 
 
+
+const intervalo = 10 * 1000; // Convertir segundos a milisegundos
+setInterval(() => {
 generateRandomLineCoordinates();
+    console.log(`LENGTH INTERVAL: ${greenCirclesS.length}:`);
+}, intervalo);	    
+//generateRandomLineCoordinates();
 
 
 
