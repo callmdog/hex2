@@ -60,7 +60,7 @@ const numCols = 10; // Define el número de columnas de hexágonos
 
  generateHexagonPoints(hexagonSize, numRows, numCols);
 
-console.log("Puntos de los hexágonos:", hexagonPoints);
+//console.log("Puntos de los hexágonos:", hexagonPoints);
 
 
 function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
