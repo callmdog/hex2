@@ -93,7 +93,7 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
     }
 }
  const randomCoordinates = [];
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < 30; i++) {
     const randomIndex = Math.floor(Math.random() * coordinates.length);
     const randomCoordinate = coordinates[randomIndex];
     
