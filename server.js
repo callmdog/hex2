@@ -65,9 +65,9 @@ function generateHexagonPoints(hexagonSize, numRows, numCols, callback) {
     }
 }
 
-const hexagonSize = 50;
-const numRows = hexagonMap.length;
-const numCols = hexagonMap[0].length;
+//const hexagonSize = 50;
+//const numRows = hexagonMap.length;
+//const numCols = hexagonMap[0].length;
 
  //generateHexagonPoints(hexagonSize, numRows, numCols);
 
