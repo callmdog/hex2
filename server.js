@@ -164,7 +164,7 @@ points.push(coordinate);
     for (let i = 0; i < 6; i++) {
         const randomIndex = Math.floor(Math.random() * coordinates.length);
         randomCoordinates.push(coordinates[randomIndex]);
-	        console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
+	   //     console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
 
     }
 
