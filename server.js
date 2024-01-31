@@ -65,7 +65,6 @@ const numCols = 10; // Define el número de columnas de hexágonos
 
 //console.log("Puntos de los hexágonos:", hexagonPoints);
 
-
 function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
     const coordinates = [];
 
@@ -74,17 +73,23 @@ function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
         const randomHexagonIndex = Math.floor(Math.random() * hexagonPoints.length);
         const { x: hexX, y: hexY } = hexagonPoints[randomHexagonIndex];
         
-        // Calcula un punto aleatorio dentro del hexágono
+        // Calcula dos puntos aleatorios a lo largo de una línea dentro del hexágono
         const randomT1 = Math.random();
         const randomT2 = Math.random();
 
-        const x = hexX + (randomT1 - 0.5) * 25;  // Ajusta el valor 25 según la dispersión deseada
-        const y = hexY + (randomT2 - 0.5) * 25;
+        // Calcula las coordenadas del punto aleatorio entre dos vértices adyacentes
+        const x1 = hexX + randomT1 * 25 * Math.cos(0);  // Ajusta el valor 25 según la dispersión deseada
+        const y1 = hexY + randomT1 * 25 * Math.sin(0);
+        
+        const x2 = hexX + randomT2 * 25 * Math.cos(Math.PI / 3);
+        const y2 = hexY + randomT2 * 25 * Math.sin(Math.PI / 3);
+
+        // Elije un punto aleatorio entre los dos puntos seleccionados
+        const x = x1 + Math.random() * (x2 - x1);
+        const y = y1 + Math.random() * (y2 - y1);
 
         // Agrega las coordenadas aleatorias al arreglo de coordenadas
         coordinates.push({ x, y });
-	           greenCirclesS.push({ x, y });
- 
 
         // Imprime las coordenadas en la consola
         console.log(`Coordenada - x: ${x}, y: ${y}`);
