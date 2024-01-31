@@ -44,11 +44,11 @@ function generateHexagonPoints(hexagonSize, numRows, numCols, callback) {
         }
     }
 
-    return hexagonPoints;
+    //return hexagonPoints;
 	if (callback) {
 		
         callback(hexagonPoints); // Llamar a la devolución de llamada con los puntos generados
-console.log("TERMINADO:");
+//console.log("TERMINADO:");
 
 		
     }
@@ -58,7 +58,7 @@ const hexagonSize = 50;
 const numRows = 10; // Define el número de filas de hexágonos
 const numCols = 10; // Define el número de columnas de hexágonos
 
-const hexagonPoints = generateHexagonPoints(hexagonSize, numRows, numCols);
+ generateHexagonPoints(hexagonSize, numRows, numCols);
 
 console.log("Puntos de los hexágonos:", hexagonPoints);
 
