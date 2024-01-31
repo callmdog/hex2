@@ -91,6 +91,7 @@ for (let i = 0; i < 6; i++) {
     // Verificar si randomCoordinate está definido
     if (randomCoordinate) {
         randomCoordinates.push(randomCoordinate);
+	    greenCirclesS.push(randomCoordinate);
         
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
         console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
