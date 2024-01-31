@@ -289,7 +289,7 @@ callback(); }
 createHexagons(function() {
 console.log("createHexagons end");
 //DRAW GREEN RANDOM CIRCLES WHEN FINISHED	
-drawGreenCirclesOnRandomPoints();	
+//drawGreenCirclesOnRandomPoints();	
 });
 	
 //2. GET HEXAGON POINTS///////////////////////////!!!!!!
@@ -311,7 +311,7 @@ points.push(coordinate);
 //3. DRAW GREEN CIRCLES RANDOM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 
-function drawGreenCirclesOnRandomPoints() {
+/*function drawGreenCirclesOnRandomPoints() {
 const hexagons = document.querySelectorAll('#hexagonGroup polygon');
 const svg = document.querySelector('svg');
 const coordinates = [];
@@ -333,7 +333,7 @@ coordinates.push({ x, y });
 }
 socket.emit('sendCoordinates', coordinates);
 }	
-
+*/
 //4. CALCULATE HEXAGON VERTEX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
 
@@ -485,7 +485,7 @@ direction: 'alternate', loop: true });
 greenCircles2.push({ x, y, index: i });
 i+=1;
 });
-socket.emit('greenCirclesGenerated', greenCircles);
+//socket.emit('greenCirclesGenerated', greenCircles);
 }
 
 //9. UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
