@@ -106,7 +106,7 @@ function generateRandomLineCoordinates() {
 
         // Añadir la coordenada aleatoria al arreglo
         randomCoordinates.push({ x: randomX, y: randomY });
-	    greenCirclesS..push({ x: randomX, y: randomY });
+	    greenCirclesS.push({ x: randomX, y: randomY });
 
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
         console.log(`Coordenada aleatoria ${i + 1}: (${randomX}, ${randomY})`);
