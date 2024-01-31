@@ -111,10 +111,10 @@ greenCirclesS.push({ x, y });
  
 
 //generateRandomCoordinatesWithinHexagons(hexagonPoints);
-generateHexagonPoints(hexagonSize, numRows, numCols, function(hexagonPoints) {
+//generateHexagonPoints(hexagonSize, numRows, numCols, function(hexagonPoints) {
     // Esta función se ejecutará cuando generateHexagonPoints haya terminado y haya proporcionado los puntos de los hexágonos
-    generateRandomCoordinatesWithinHexagons(hexagonPoints);
-});
+//    generateRandomCoordinatesWithinHexagons(hexagonPoints);
+//});
 
 
 /////////////
