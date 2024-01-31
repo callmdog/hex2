@@ -32,6 +32,14 @@ function getRandomPosition() {
 }
 
 /////HEX TEST
+const hexagonMap = [
+    [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'NW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    // Repite el patrón de filas según sea necesario para tener 20 filas en total
+];
+
 function generateHexagonPoints(hexagonSize, numRows, numCols, callback) {
     const hexagonPoints = [];
 
@@ -58,8 +66,8 @@ function generateHexagonPoints(hexagonSize, numRows, numCols, callback) {
 }
 
 const hexagonSize = 50;
-const numRows = 10; // Define el número de filas de hexágonos
-const numCols = 10; // Define el número de columnas de hexágonos
+const numRows = hexagonMap.length;
+const numCols = hexagonMap[0].length;
 
  generateHexagonPoints(hexagonSize, numRows, numCols);
 
@@ -73,7 +81,7 @@ function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
         const randomHexagonIndex = Math.floor(Math.random() * hexagonPoints.length);
         const { x: hexX, y: hexY } = hexagonPoints[randomHexagonIndex];
         
-        // Calcula dos puntos aleatorios a lo largo de una línea dentro del hexágono
+        // Calcula dos puntos aleatorios dentro del hexágono
         const randomT1 = Math.random();
         const randomT2 = Math.random();
 
@@ -90,14 +98,14 @@ function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
 
         // Agrega las coordenadas aleatorias al arreglo de coordenadas
         coordinates.push({ x, y });
-        greenCirclesS.push({ x, y });
-
+greenCirclesS.push({ x, y });
         // Imprime las coordenadas en la consola
         console.log(`Coordenada - x: ${x}, y: ${y}`);
     }
 
     return coordinates;
 }
+
 
 
  
