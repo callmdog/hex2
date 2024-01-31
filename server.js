@@ -44,7 +44,7 @@ function getHexagonPoints(x, y, size) {
 }
 // Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
 // Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
-function generateRandomLineCoordinates() {
+function generateRandomLineCoordinates(callback) {
     const hexagonMap = [
         [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
         [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
@@ -109,7 +109,17 @@ for (let i = 0; i < 30; i++) {
 }
 
 return randomCoordinates;
+
+if (callback) {
+callback(); }	
 }
+
+
+generateRandomLineCoordinates(function() {
+console.log("generateRandomLineCoordinates end");
+
+});
+
 
 
 
@@ -122,6 +132,12 @@ generateRandomLineCoordinates();
 //generateRandomLineCoordinates();
 
 
+/*const intervalo = 10 * 1000; // Convertir segundos a milisegundos
+setInterval(() => {
+    generateGreenCircles();
+    console.log(`LENGTH INTERVAL: ${greenCirclesS.length}:`);
+}, intervalo);	  
+*/
 
 
 
@@ -289,11 +305,7 @@ socket.on('updatePlayersRequest', () => {
     
 //io.emit('generateGreenCircles', greenCirclesS);
 
-const intervalo = 10 * 1000; // Convertir segundos a milisegundos
-setInterval(() => {
-    generateGreenCircles();
-    console.log(`LENGTH INTERVAL: ${greenCirclesS.length}:`);
-}, intervalo);	    
+  
 	    
 //generateGreenCircles();
 
