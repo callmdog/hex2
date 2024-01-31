@@ -18,7 +18,7 @@ let players = {};
 
 const greenCircles = [];
 
-const greenCirclesS = [];
+let greenCirclesS = [];
 
 
 const randomCoords = [];
