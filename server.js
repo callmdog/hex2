@@ -84,7 +84,7 @@ function generateRandomLineCoordinates() {
 }
 
   const randomCoordinates = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 6; i++) {
         const randomIndex = Math.floor(Math.random() * coordinates.length);
         const randomCoordinate = coordinates[randomIndex];
         const nextIndex = (randomIndex + 1) % coordinates.length; // Índice del siguiente punto en el arreglo
@@ -93,13 +93,20 @@ function generateRandomLineCoordinates() {
         const point1 = coordinates[randomIndex];
         const point2 = coordinates[nextIndex];
 
-        // Calcular coordenadas aleatorias entre los puntos adyacentes
-        const randomX = point1.x + Math.random() * (point2.x - point1.x);
-        const randomY = point1.y + Math.random() * (point2.y - point1.y);
+        // Calcular las diferencias entre los puntos
+        const diffX = point2.x - point1.x;
+        const diffY = point2.y - point1.y;
+
+        // Generar un factor aleatorio para determinar la posición a lo largo de la línea
+        const randomFactor = Math.random();
+
+        // Calcular las coordenadas del punto aleatorio a lo largo de la línea
+        const randomX = point1.x + diffX * randomFactor;
+        const randomY = point1.y + diffY * randomFactor;
 
         // Añadir la coordenada aleatoria al arreglo
         randomCoordinates.push({ x: randomX, y: randomY });
-	    greenCirclesS.push({ x: randomX, y: randomY });
+	    greenCirclesS..push({ x: randomX, y: randomY });
 
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
         console.log(`Coordenada aleatoria ${i + 1}: (${randomX}, ${randomY})`);
