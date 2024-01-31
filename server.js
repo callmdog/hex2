@@ -18,6 +18,9 @@ let players = {};
 
 const greenCircles = [];
 
+const greenCirclesS = [];
+
+
 const randomCoords = [];
 let ranX = 0;
 let ranY = 0;
@@ -80,6 +83,8 @@ function generateRandomCoordinatesWithinHexagons(hexagonPoints) {
 
         // Agrega las coordenadas aleatorias al arreglo de coordenadas
         coordinates.push({ x, y });
+	           greenCirclesS.push({ x, y });
+ 
 
         // Imprime las coordenadas en la consola
         console.log(`Coordenada - x: ${x}, y: ${y}`);
@@ -256,29 +261,29 @@ socket.on('updatePlayersRequest', () => {
 
 	    
     
-io.emit('generateGreenCircles', greenCircles);
+//io.emit('generateGreenCircles', greenCirclesS);
 	    
 generateGreenCircles();
 
 // Función para generar círculos verdes
 function generateGreenCircles() 
 {
-	if (greenCircles.length<50)	{
+	if (greenCirclesS.length<50)	{
 //		for (let i = 0; i < 30; i++) 
 //		{
 //			const position = getRandomPosition();
 //			greenCircles.push(position);
 //		}
 	}
-	console.log(`LENGTH0: ${greenCircles.length}:`);
+	console.log(`LENGTH0: ${greenCirclesS.length}:`);
 	//socket.emit('greenCirclesGenerated', greenCircles);
-	io.emit('greenCirclesGenerated', greenCircles);
+	io.emit('greenCirclesGenerated', greenCirclesS);
 }
 
 // Llamar a la función al iniciar el servidor para generar círculos iniciales
 //generateGreenCircles();
 
-console.log(`LENGTH1: ${greenCircles.length}:`);
+console.log(`LENGTH1: ${greenCirclesS.length}:`);
 
 // Manejar la generación de nuevos círculos verdes
 socket.on('generateGreenCircles', () => 
@@ -288,7 +293,7 @@ socket.on('generateGreenCircles', () =>
 	const intervalo = 10 * 1000; // Convertir segundos a milisegundos
 setInterval(() => {
     generateGreenCircles();
-    console.log(`LENGTH2: ${greenCircles.length}:`);
+    console.log(`LENGTH2: ${greenCirclesS.length}:`);
 }, intervalo);
 
 	//generateGreenCircles();
@@ -299,22 +304,22 @@ setInterval(() => {
 socket.on('collisionWithGreenCircle', (collisionIndex) => 
 {
 	// Verificar si el índice es válido
-	if (collisionIndex >= 0 && collisionIndex < greenCircles.length) 
+	if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) 
 	{
 		// Eliminar el círculo verde colisionado
-		greenCircles.splice(collisionIndex, 1);
+		greenCirclesS.splice(collisionIndex, 1);
 		//Emitir evento a todos los clientes para actualizar los círculos verdes
 		//io.emit('updateGreenCircles', greenCircles);
-		io.emit('greenCirclesGenerated', greenCircles);
+		io.emit('greenCirclesGenerated', greenCirclesS);
 	}
 });
 
 	    
 socket.on('collisionWithGreenCircle2', (collisionIndex) => {
     // Verificar si el índice es válido
-    if (collisionIndex >= 0 && collisionIndex < greenCircles.length) {
+    if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
         // Eliminar el círculo verde colisionado del array
-        greenCircles.splice(collisionIndex, 1);
+        greenCirclesS.splice(collisionIndex, 1);
 	io.emit('greenCircleCollision', collisionIndex);
  
     }
