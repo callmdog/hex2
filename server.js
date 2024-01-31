@@ -46,7 +46,11 @@ function generateHexagonPoints(hexagonSize, numRows, numCols, callback) {
 
     return hexagonPoints;
 	if (callback) {
+		
         callback(hexagonPoints); // Llamar a la devolución de llamada con los puntos generados
+console.log("TERMINADO:");
+
+		
     }
 }
 
