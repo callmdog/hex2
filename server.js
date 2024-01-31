@@ -44,7 +44,7 @@ function getHexagonPoints(x, y, size) {
 }
 // Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
 // Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
-function generateRandomLineCoordinates(callback) {
+function generateRandomLineCoordinates() {
     const hexagonMap = [
         [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
         [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
@@ -100,7 +100,7 @@ for (let i = 0; i < 30; i++) {
     // Verificar si randomCoordinate está definido
     if (randomCoordinate) {
         randomCoordinates.push(randomCoordinate);
-        greenCirclesS.push(randomCoordinate);
+    //    greenCirclesS.push(randomCoordinate);
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
         console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
     } else {
@@ -110,20 +110,16 @@ for (let i = 0; i < 30; i++) {
 
 return randomCoordinates;
 
-if (callback) {
-callback(); }	
+
 }
 
 
-generateRandomLineCoordinates(function() {
-console.log("generateRandomLineCoordinates end");
-
-});
 
 
 
 
 
+/*
 const intervalo = 10 * 1000; // Convertir segundos a milisegundos
 setInterval(() => {
 generateRandomLineCoordinates();
@@ -152,6 +148,17 @@ app.use(express.static('public'));
 
 io.on('connection', (socket) => {
 
+	////
+
+greenCirclesS = generateRandomLineCoordinates();
+console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
+io.emit('greenCirclesGenerated', greenCirclesS);
+
+	
+////
+
+
+	
     socket.on('sendCoordinates', (coordinates) => {
         // 'coordinates' ahora contiene las coordenadas enviadas desde el cliente
       //  console.log('Coordenadas recibidas:', coordinates);
