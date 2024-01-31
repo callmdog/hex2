@@ -85,18 +85,23 @@ function generateRandomLineCoordinates() {
         }
     }
 
-    // Seleccionar seis coordenadas aleatorias de las líneas
-    const randomCoordinates = [];
-    for (let i = 0; i < 6; i++) {
-        const randomIndex = Math.floor(Math.random() * coordinates.length);
-        const randomCoordinate = coordinates[randomIndex];
+ const randomCoordinates = [];
+for (let i = 0; i < 6; i++) {
+    const randomIndex = Math.floor(Math.random() * coordinates.length);
+    const randomCoordinate = coordinates[randomIndex];
+    
+    // Verificar si randomCoordinate está definido
+    if (randomCoordinate) {
         randomCoordinates.push(randomCoordinate);
-
+        
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
         console.log(`Coordenada aleatoria ${i + 1}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
+    } else {
+        console.log(`Error: No se pudo obtener la coordenada aleatoria ${i + 1}`);
     }
+}
 
-    return randomCoordinates;
+return randomCoordinates;
 }
 
 
