@@ -317,7 +317,7 @@ socket.on('updatePlayersRequest', () => {
 //generateGreenCircles();
 
 // Función para generar círculos verdes
-function generateGreenCircles() 
+/*function generateGreenCircles() 
 {
 	if (greenCirclesS.length<50)	{
 //		for (let i = 0; i < 30; i++) 
@@ -329,7 +329,7 @@ function generateGreenCircles()
 	console.log(`LENGTH0: ${greenCirclesS.length}:`);
 	//socket.emit('greenCirclesGenerated', greenCircles);
 	io.emit('greenCirclesGenerated', greenCirclesS);
-}
+}*/
 
 // Llamar a la función al iniciar el servidor para generar círculos iniciales
 //generateGreenCircles();
@@ -337,7 +337,7 @@ function generateGreenCircles()
 console.log(`LENGTH1: ${greenCirclesS.length}:`);
 
 // Manejar la generación de nuevos círculos verdes
-socket.on('generateGreenCircles', () => 
+/*socket.on('generateGreenCircles', () => 
 {
 
 
@@ -349,11 +349,13 @@ setInterval(() => {
 
 	//generateGreenCircles();
 	//console.log(`LENGTH2: ${greenCircles.length}:`);
-});
+});*/
 
 	    
 socket.on('collisionWithGreenCircle', (collisionIndex) => 
 {
+	console.log(`COLISION: ${greenCircles.length}:`);
+	
 	// Verificar si el índice es válido
 	if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) 
 	{
@@ -367,6 +369,8 @@ socket.on('collisionWithGreenCircle', (collisionIndex) =>
 
 	    
 socket.on('collisionWithGreenCircle2', (collisionIndex) => {
+	console.log(`COLISION: ${greenCircles.length}:`);
+	
     // Verificar si el índice es válido
     if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
         // Eliminar el círculo verde colisionado del array
