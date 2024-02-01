@@ -954,7 +954,12 @@ blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBo
 console.log(`COLISION Detectada`);
 console.log(`COLISION Index: ${greenIndex}:`);
 const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
-console.log(`Circle TO REMOVE !!!!!!`, circleToRemoveC);	
+console.log(`Circle TO REMOVE !!!!!!`, circleToRemoveC);
+
+if (circleToRemoveC) {
+	
+    circleToRemoveC.parentNode.removeChild(circleToRemoveC);
+}
 	
 const indexToRemove = greenCircles.indexOf(circle);
 
@@ -981,7 +986,7 @@ const circleToRemove = document.getElementById('greenCircle_1'); // ID del círc
 if (circleToRemove) {
 	    	   console.log(`Circle getElementById!!!!!!`, circleToRemove);	
 	
-    circleToRemove.parentNode.removeChild(circleToRemove);
+   // circleToRemove.parentNode.removeChild(circleToRemove);
 }
 
 	
