@@ -140,6 +140,7 @@ setInterval(() => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 
+greenCirclesS = generateRandomLineCoordinates();
 
 
 
@@ -150,7 +151,6 @@ io.on('connection', (socket) => {
 
 	////
 
-greenCirclesS = generateRandomLineCoordinates();
 console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
 io.emit('greenCirclesGenerated', greenCirclesS);
 
