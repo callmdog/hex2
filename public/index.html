@@ -616,7 +616,10 @@ const newY = startY + progress * (destinationY - startY);
 //bluePointElement.setAttribute('cy', newY);
 bX = newX;
 bY = newY;	
-		
+
+detectarColisionesRectangulares(newX, newY, 10 , greenCircles2 );
+
+	
 if (progress < 1) { requestAnimationFrame(update);
 } else {
 // Animación completada, emitir datos al servidor
@@ -684,8 +687,8 @@ circleElement.setAttribute('cy', newY);
 
 
 //detectarColisionesConCirculosVerdes(newX, newY, 12, circleElement );	
-detectarColisionesRectangulares(newX, newY, circleElement.getAttribute('r') , greenCircles2 );
-	
+//	detectarColisionesRectangulares(newX, newY, circleElement.getAttribute('r') , greenCircles2 );
+
 
 ////CAMERA MOVEMENT
 if (socket.id===playerId) {
