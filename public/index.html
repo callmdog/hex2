@@ -932,6 +932,9 @@ function detectarColisionesGenerales(elemento1, elemento2) {
     return distancia < radio1 + radio2+20;
 }
 */
+
+//DETECTAR COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////	
 	
 function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
 for (const circle of greenCircles) {
@@ -952,24 +955,29 @@ x2: greenX + greenRadius, y2: greenY + greenRadius };
 if (blueBoundingBox.x1 < greenBoundingBox.x2 && blueBoundingBox.x2 > greenBoundingBox.x1 &&
 blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBox.y1) {
 console.log(`COLISION Detectada`);
-console.log(`COLISION Index: ${greenIndex}:`);
+
+
+
+/////	
+
+console.log(`COLISION Index: ${greenIndex}:`);	
 const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
 console.log(`Circle TO REMOVE !!!!!!`, circleToRemoveC);
-
 if (circleToRemoveC) {
-	
     circleToRemoveC.parentNode.removeChild(circleToRemoveC);
 }
-	
 const indexToRemove = greenCircles.indexOf(circle);
-
 // Elimina el círculo del array usando splice
 if (indexToRemove !== -1) {
-greenCircles.splice(indexToRemove, 1);
-socket.emit('collisionWithGreenCircle2', circle.index);
-socket.emit('greenCircleEaten');
-		    
+//greenCircles.splice(indexToRemove, 1);
+//socket.emit('collisionWithGreenCircle2', circle.index);
+socket.emit('greenCircleEaten');		    
 }
+
+
+
+
+	
 // Colisión detectada
 return true;
 }
@@ -979,29 +987,25 @@ return true;
 return false;
 }
 
+
+//MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////	
+
 socket.on('greenCircleCollision', (collisionIndex) => {
 console.log(`collisionWithGreenCircle2!!!!!!`);	
-
 const circleToRemove = document.getElementById('greenCircle_1'); // ID del círculo a eliminar
 if (circleToRemove) {
-	    	   console.log(`Circle getElementById!!!!!!`, circleToRemove);	
-	
-   // circleToRemove.parentNode.removeChild(circleToRemove);
+console.log(`Circle getElementById!!!!!!`, circleToRemove);	
+// circleToRemove.parentNode.removeChild(circleToRemove);
+}	
+// Seleccionar el círculo verde colisionado por su índice y eliminarlo del DOM
+const greenCircleElement = document.querySelector(`#camera circle:nth-child(${collisionIndex})`);
+if (greenCircleElement) {
+console.log(`collisionWithGreenCircle2!!!!!!`, greenCircleElement);	
+//const index = greenCircleElement.getAttribute('data-index');
+//  	  console.log(`Circle index!!!!!!`, index);	    
+//greenCircleElement.parentNode.removeChild(greenCircleElement);
 }
-
-	
-    // Seleccionar el círculo verde colisionado por su índice y eliminarlo del DOM
-    const greenCircleElement = document.querySelector(`#camera circle:nth-child(${collisionIndex})`);
-    if (greenCircleElement) {
-	   console.log(`collisionWithGreenCircle2!!!!!!`, greenCircleElement);	
-
-	//const index = greenCircleElement.getAttribute('data-index');
-	  //  	   console.log(`Circle index!!!!!!`, index);	
-
-
-	    
-        //greenCircleElement.parentNode.removeChild(greenCircleElement);
-    }
 });
 	
 
