@@ -352,7 +352,7 @@ setInterval(() => {
 });*/
 
 	    
-socket.on('collisionWithGreenCircle', (collisionIndex) => 
+/*socket.on('collisionWithGreenCircle', (collisionIndex) => 
 {
 	console.log(`COLISION: ${greenCircles.length}:`);
 	
@@ -366,7 +366,7 @@ socket.on('collisionWithGreenCircle', (collisionIndex) =>
 		io.emit('greenCirclesGenerated', greenCirclesS);
 	}
 });
-
+*/
 	    
 socket.on('collisionWithGreenCircle2', (collisionIndex) => {
 	console.log(`COLISION: ${greenCircles.length}:`);
