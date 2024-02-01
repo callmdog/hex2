@@ -1000,20 +1000,21 @@ return false;
 socket.on('greenCircleCollision', (collisionIndex) => {
 
 
-/*
-console.log(`COLISION Index: ${ collisionIndex  }:`);	
+
+console.log(`greenCircleCollision Index: ${ collisionIndex  }:`);	
 const circleToRemoveC = document.getElementById('greenCircle_'+ collisionIndex   );
-console.log(`Circle TO REMOVE !!!!!!`, circleToRemoveC);
+console.log(`greenCircleCollision !!!!!!`, circleToRemoveC);
 if (circleToRemoveC) {
-    circleToRemoveC.parentNode.removeChild(circleToRemoveC);
+  //  circleToRemoveC.parentNode.removeChild(circleToRemoveC);
 }
+	
 //const indexToRemove = greenCircles.indexOf(circle);
 // Elimina el círculo del array usando splice
 //if (indexToRemove !== -1) {
-greenCircles.splice(  collisionIndex -1 , 1);
+//greenCircles.splice(  collisionIndex -1 , 1);
 //}
 
-*/
+
 });
 	
 
