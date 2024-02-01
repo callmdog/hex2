@@ -975,7 +975,9 @@ const indexToRemove = greenCircles.indexOf(circle);
 if (indexToRemove !== -1) {
 console.log(`indexToRemove !!!!!!`, indexToRemove);
 	
-greenCircles.splice(indexToRemove, 1);
+//greenCircles.splice(indexToRemove, 1);
+removeCircleById('greenCircle_'+greenIndex);
+	
 socket.emit('collisionWithGreenCircle2', circle.index);
 socket.emit('greenCircleEaten');		    
 }
@@ -1011,11 +1013,21 @@ if (circleToRemoveC) {
 //const indexToRemove = greenCircles.indexOf(circle);
 // Elimina el círculo del array usando splice
 //if (indexToRemove !== -1) {
-greenCircles.splice(  collisionIndex -1 , 1);
+//greenCircles.splice(  collisionIndex -1 , 1);
+removeCircleById('greenCircle_'+collisionIndex);
+	
 //}
 
 
 });
+
+
+function removeCircleById(id) {
+    const indexToRemove = greenCircles.findIndex(circle => circle.getAttribute('id') === id);
+    if (indexToRemove !== -1) { // Si se encontró el círculo
+        greenCircles.splice(indexToRemove, 1);
+    }
+}
 	
 
 /*
