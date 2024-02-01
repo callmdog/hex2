@@ -466,6 +466,7 @@ circle.parentNode.removeChild(circle);
 let i = 0;
 // Dibuja los círculos verdes en las coordenadas recibidas del servidor
 greenCircles.forEach(({ x, y }) => {
+	i+=1;
 console.log(`${i}: ${x}, ${y}`);
 const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 greenCircle.setAttribute('cx', x);
@@ -483,7 +484,7 @@ anime({ targets: greenCircle, r: 6,
 duration: 1000, easing: 'easeInOutSine',
 direction: 'alternate', loop: true });
 greenCircles2.push({ x, y, index: i });
-i+=1;
+
 });
 //socket.emit('greenCirclesGenerated', greenCircles);
 }
@@ -952,6 +953,9 @@ if (blueBoundingBox.x1 < greenBoundingBox.x2 && blueBoundingBox.x2 > greenBoundi
 blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBox.y1) {
 console.log(`COLISION Detectada`);
 console.log(`COLISION Index: ${greenIndex}:`);
+const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
+console.log(`Circle TO REMOVE !!!!!!`, circleToRemove);	
+	
 const indexToRemove = greenCircles.indexOf(circle);
 
 // Elimina el círculo del array usando splice
