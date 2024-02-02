@@ -974,17 +974,33 @@ console.log(`Circle TO REMOVE !!!!!!`, circleToRemoveC);
 if (circleToRemoveC) {
     circleToRemoveC.parentNode.removeChild(circleToRemoveC);
 }
+
+
+	
 	
 const indexToRemove = greenCircles.indexOf(circle);
 comprobadorIndex = indexToRemove;	
 // Elimina el círculo del array usando splice
 if (indexToRemove !== -1) {
 console.log(`indexToRemove !!!!!!`, indexToRemove);
-greenCircles.splice(indexToRemove, 1);
-//removeCircleById('greenCircle_'+greenIndex);
-socket.emit('collisionWithGreenCircle2', circle.index, indexToRemove);
-socket.emit('greenCircleEaten');		    
+//greenCircles.splice(indexToRemove, 1);
 }
+	
+
+const indexToRemove = circle.findIndex(circle => circle.getAttribute('id') === 'greenCircle_'+greenIndex);
+
+    if (indexToRemove !== -1) {
+        greenCircles.splice(indexToRemove, 1);
+	console.log(`indexToRemove !!!!!!`, indexToRemove);
+	socket.emit('collisionWithGreenCircle2', circle.index, indexToRemove);
+	socket.emit('greenCircleEaten');		    
+
+    }	
+
+
+	
+//removeCircleById('greenCircle_'+greenIndex);
+
 
 
 
@@ -998,6 +1014,15 @@ return true;
 // No hay colisión
 return false;
 }
+
+function removeCircleById(circleId) {
+    const indexToRemove = greenCircles.findIndex(circle => circle.getAttribute('id') === circleId);
+
+    if (indexToRemove !== -1) {
+        greenCircles.splice(indexToRemove, 1);
+    }
+}
+	
 
 
 //MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
