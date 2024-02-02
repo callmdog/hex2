@@ -968,8 +968,7 @@ console.log(`COLISION Detectada`);
 console.log(`COLISION Index: ${greenIndex}:`);	
 
 	
-	console.log(`Green IndexNuevo : ${greenCircles[greenIndex].index
-}:`);	
+	//console.log(`Green IndexNuevo : ${greenCircles[greenIndex].index}:`);	
 
 	
 const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
@@ -1004,9 +1003,12 @@ console.log(`indexToRemove !!!!!!`, indexToRemove);
 	
 //removeCircleById('greenCircle_'+greenIndex);
 
+	
 var indexToRemove = greenCircles.findIndex(function(circle) {
     return circle.index === greenIndex;
 });
+comprobadorIndex = indexToRemove;	
+	
 
 // Verifica si se encontró un elemento con z igual a zValue
 if (indexToRemove !== -1) {
