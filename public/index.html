@@ -466,9 +466,9 @@ circle.parentNode.removeChild(circle);
 });
 let i = 0;
 // Dibuja los círculos verdes en las coordenadas recibidas del servidor
-greenCircles.forEach(({ x, y, index }) => {
+greenCircles.forEach(({ x, y, z }) => {
 	i+=1;
-console.log(`${i}: ${x}, ${y}, ${index}`);
+console.log(`${i}: ${x}, ${y}, ${z}`);
 const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
@@ -1005,7 +1005,7 @@ console.log(`indexToRemove !!!!!!`, indexToRemove);
 
 	
 var indexToRemove = greenCircles.findIndex(function(circle) {
-    return circle.index === greenIndex;
+    return circle.z === greenIndex;
 });
 console.log(`indexToRemove2 !!!!!!`, indexToRemove);
 	
