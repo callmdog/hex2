@@ -164,11 +164,17 @@ setInterval(() => {
 
 
 greenCirclesS = generateRandomLineCoordinates();
-
 for (let i = 0; i < greenCirclesS.length; i++) {
+    const { x, y, z } = greenCirclesS[i];
+    console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}`);
+}
+
+
+
+for (let i = 1; i < greenCirclesS.length; i++) {
     console.log(`Valor Z: ${i}:`);
 
-    greenCirclesS[i].z = i+1;
+    greenCirclesS[i].z = i;
 }
 
 
