@@ -978,7 +978,7 @@ if (indexToRemove !== -1) {
 console.log(`indexToRemove !!!!!!`, indexToRemove);
 greenCircles.splice(indexToRemove, 1);
 //removeCircleById('greenCircle_'+greenIndex);
-//socket.emit('collisionWithGreenCircle2', circle.index);
+socket.emit('collisionWithGreenCircle2', circle.index, indexToRemove);
 socket.emit('greenCircleEaten');		    
 }
 
@@ -999,7 +999,7 @@ return false;
 //MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////	
 
-socket.on('greenCircleCollision', (collisionIndex) => {
+socket.on('greenCircleCollision', (collisionIndex, indexToRemove) => {
 
 
 
@@ -1012,11 +1012,11 @@ if (circleToRemoveC) {
 	
 //const indexToRemove = greenCircles.indexOf(circle);
 // Elimina el círculo del array usando splice
-//if (indexToRemove !== -1) {
-//greenCircles.splice(  collisionIndex -1 , 1);
-removeCircleById('greenCircle_'+collisionIndex);
+if (indexToRemove !== -1) {
+greenCircles.splice(indexToRemove -1 , 1);
+//removeCircleById('greenCircle_'+collisionIndex);
 	
-//}
+}
 
 
 });
