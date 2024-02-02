@@ -86,7 +86,7 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
             // Asegurarse de que las coordenadas generadas estén dentro del rango del hexágono
             if (!isNaN(midX) && !isNaN(midY)) {
                // coordinates.push({ x: midX, y: midY });
-		    coordinates.push({ x: randomX, y: randomY });
+		    coordinates.push({ x: randomX, y: randomY, z: 0 });
 
             }
         }
@@ -122,7 +122,6 @@ while (randomCoordinates.size < 10) {
     
     // Verificar si randomCoordinate está definido
     if (randomCoordinate) {
-	randomCoordinate.z = 0;    
         randomCoordinates.add(randomCoordinate); // Agregamos la coordenada al conjunto
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
         console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
