@@ -175,8 +175,8 @@ for (let i = 0; i < greenCirclesS.length; i++) {
 }
 
 for (let i = 0; i < greenCirclesS.length; i++) {
-    const { x, y, z } = greenCirclesS[i];
-    console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}`);
+    const { x, y, z, index } = greenCirclesS[i];
+    console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}, index = ${index}`);
 }
 
 
