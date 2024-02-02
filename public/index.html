@@ -938,7 +938,8 @@ function detectarColisionesGenerales(elemento1, elemento2) {
 */
 
 //DETECTAR COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!
-////////////////////////////////////////////////////////////	
+////////////////////////////////////////////////////////////
+let comprobadorIndex = -10;	
 	
 function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
 for (const circle of greenCircles) {
@@ -965,6 +966,8 @@ console.log(`COLISION Detectada`);
 /////	
 
 console.log(`COLISION Index: ${greenIndex}:`);	
+
+	
 	
 const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
 console.log(`Circle TO REMOVE !!!!!!`, circleToRemoveC);
@@ -973,6 +976,7 @@ if (circleToRemoveC) {
 }
 	
 const indexToRemove = greenCircles.indexOf(circle);
+comprobadorIndex = indexToRemove;	
 // Elimina el círculo del array usando splice
 if (indexToRemove !== -1) {
 console.log(`indexToRemove !!!!!!`, indexToRemove);
@@ -1001,6 +1005,9 @@ return false;
 
 socket.on('greenCircleCollision', (collisionIndex, indexToRemove) => {
 
+if (comprobadorIndex !== indexToRemove) {
+console.log(`BORRADOR ACTIVADO!!!`);	
+	
 
 
 console.log(`greenCircleCollision Index: ${ collisionIndex  }:`);	
@@ -1018,6 +1025,7 @@ greenCircles.splice(indexToRemove -1 , 1);
 	
 }
 
+}	
 
 });
 
