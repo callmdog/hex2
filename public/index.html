@@ -466,9 +466,9 @@ circle.parentNode.removeChild(circle);
 });
 let i = 0;
 // Dibuja los círculos verdes en las coordenadas recibidas del servidor
-greenCircles.forEach(({ x, y }) => {
+greenCircles.forEach(({ x, y, index }) => {
 	i+=1;
-console.log(`${i}: ${x}, ${y}`);
+console.log(`${i}: ${x}, ${y}, ${index}`);
 const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
