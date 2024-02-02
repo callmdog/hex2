@@ -1002,7 +1002,7 @@ console.log(`indexToRemove !!!!!!`, indexToRemove);
 
 	
 //removeCircleById('greenCircle_'+greenIndex);
-
+/*
 	
 var indexToRemove = greenCircles.findIndex(function(circle) {
     return circle.z === greenIndex;
@@ -1021,6 +1021,18 @@ if (indexToRemove !== -1) {
 	
 } else {
     console.log('No se encontró ningún elemento con z igual a ' + greenIndex);
+}
+	*/
+
+// Encontrar el índice del primer greenCircle con z = 10
+const indexGreenCircleZ10 = greenCircles.findIndex(circle => circle.z === greenIndex);
+//comprobadorIndex = indexToRemove;	
+
+// Verificar si se encontró un greenCircle con z = 10
+if (indexGreenCircleZ10 !== -1) {
+    console.log(`El primer greenCircle con z = 10 se encuentra en el índice: ${indexGreenCircleZ10}`);
+} else {
+    console.log("No se encontró ningún greenCircle con z = 10");
 }
 	
 
