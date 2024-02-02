@@ -369,7 +369,7 @@ setInterval(() => {
 */
 	    
 socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove) => {
-	console.log(`COLISION- Lenght: ${greenCircles.length}, collisionIndex: ${collisionIndex}, indexToRemove: ${indexToRemove}`);
+	console.log(`COLISION- Lenght: ${greenCirclesS.length}, collisionIndex: ${collisionIndex}, indexToRemove: ${indexToRemove}`);
 	
     // Verificar si el índice es válido
     if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
