@@ -988,10 +988,10 @@ console.log(`indexToRemove !!!!!!`, indexToRemove);
 */	
 
     const indexToRemove = Array.from(circle).findIndex(circle => circle.getAttribute('id') === 'greenCircle_'+greenIndex);
+	console.log(`indexToRemove !!!!!!`, indexToRemove);
 
     if (indexToRemove !== -1) {
         greenCircles.splice(indexToRemove, 1);
-	console.log(`indexToRemove !!!!!!`, indexToRemove);
 	socket.emit('collisionWithGreenCircle2', circle.index, indexToRemove);
 	socket.emit('greenCircleEaten');		    
 
