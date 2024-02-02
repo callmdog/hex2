@@ -486,7 +486,7 @@ cameraGroup.appendChild(greenCircle);
 anime({ targets: greenCircle, r: 6,
 duration: 1000, easing: 'easeInOutSine',
 direction: 'alternate', loop: true });
-greenCircles2.push({ x, y, index: i });
+greenCircles2.push({ x, y, z, index: i });
 
 });
 //socket.emit('greenCirclesGenerated', greenCircles);
@@ -1045,7 +1045,7 @@ if (indexGreenCircleZ10 !== -1) {
 }
 
 
-greenCircles.forEach((circle, index) => {
+greenCircles2.forEach((circle, index) => {
     console.log(`Círculo ${index + 1}: x = ${circle.x}, y = ${circle.y}, z = ${circle.z}`);
 });
 	
