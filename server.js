@@ -92,6 +92,8 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
         }
     }
 }
+
+/*	
  const randomCoordinates = [];
 for (let i = 0; i < 10; i++) {
     const randomIndex = Math.floor(Math.random() * coordinates.length);
@@ -110,7 +112,27 @@ for (let i = 0; i < 10; i++) {
 }
 
 return randomCoordinates;
+*/
 
+const randomCoordinates = new Set(); // Usamos un conjunto para evitar duplicados
+
+while (randomCoordinates.size < 10) {
+    const randomIndex = Math.floor(Math.random() * coordinates.length);
+    const randomCoordinate = coordinates[randomIndex];
+    
+    // Verificar si randomCoordinate está definido
+    if (randomCoordinate) {
+        randomCoordinate.index = randomCoordinates.size + 1; // Usamos el tamaño del conjunto como índice
+        randomCoordinates.add(randomCoordinate); // Agregamos la coordenada al conjunto
+        // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
+        console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y}) - Índice: ${randomCoordinate.index}`);
+    } else {
+        console.log(`Error: No se pudo obtener la coordenada aleatoria ${randomCoordinates.size + 1}`);
+    }
+}
+
+return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
+	
 
 }
 
