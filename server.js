@@ -122,10 +122,9 @@ while (randomCoordinates.size < 10) {
     
     // Verificar si randomCoordinate está definido
     if (randomCoordinate) {
-        randomCoordinate.index = randomCoordinates.size + 1; // Usamos el tamaño del conjunto como índice
         randomCoordinates.add(randomCoordinate); // Agregamos la coordenada al conjunto
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
-        console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y}) - Índice: ${randomCoordinate.index}`);
+        console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
     } else {
         console.log(`Error: No se pudo obtener la coordenada aleatoria ${randomCoordinates.size + 1}`);
     }
@@ -407,7 +406,7 @@ socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove) => {
 
 
 	var indexToRemove = greenCirclesS.findIndex(function(circle) {
-    return circle.index === collisionIndex;
+    return circle.z === collisionIndex;
 });
 console.log(`indexToRemove2 !!!!!!`, indexToRemove);
 	
@@ -437,7 +436,7 @@ if (indexToRemove !== -1) {
 
 greenCirclesS.forEach(circle => {
     // Imprimir los valores de cada objeto en la consola
-    console.log(`x: ${circle.x}, y: ${circle.y}, z: ${circle.index}`);
+    console.log(`x: ${circle.x}, y: ${circle.y}, z: ${circle.z}`);
 });
 
 	
