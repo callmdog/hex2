@@ -368,13 +368,13 @@ setInterval(() => {
 });
 */
 	    
-socket.on('collisionWithGreenCircle2', (collisionIndex) => {
+socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove) => {
 	console.log(`COLISION: ${greenCircles.length}:`);
 	
     // Verificar si el índice es válido
     if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
         // Eliminar el círculo verde colisionado del array
-        greenCirclesS.splice(collisionIndex - 1, 1);
+        greenCirclesS.splice(indexToRemove - 1, 1);
 	io.emit('greenCircleCollision', collisionIndex);
  
     }
