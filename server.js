@@ -165,10 +165,11 @@ setInterval(() => {
 
 greenCirclesS = generateRandomLineCoordinates();
 
-greenCircles.forEach(circle => {
-    // Imprimir los valores de cada objeto en la consola
-    console.log(`x: ${circle.x}, y: ${circle.y}, z: ${circle.index}`);
-});
+for (let i = 0; i < greenCirclesS.length; i++) {
+    console.log(`Valor Z: ${i}:`);
+
+    greenCirclesS[i].z = i+1;
+}
 
 
 app.use(express.static('public'));
