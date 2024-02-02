@@ -976,8 +976,8 @@ const indexToRemove = greenCircles.indexOf(circle);
 // Elimina el círculo del array usando splice
 if (indexToRemove !== -1) {
 console.log(`indexToRemove !!!!!!`, indexToRemove);
-//greenCircles.splice(indexToRemove, 1);
-removeCircleById('greenCircle_'+greenIndex);
+greenCircles.splice(indexToRemove, 1);
+//removeCircleById('greenCircle_'+greenIndex);
 //socket.emit('collisionWithGreenCircle2', circle.index);
 socket.emit('greenCircleEaten');		    
 }
