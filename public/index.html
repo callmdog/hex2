@@ -990,7 +990,7 @@ console.log(`indexToRemove !!!!!!`, indexToRemove);
 }
 */	
 
-    const indexToRemove = Array.from(circle).findIndex(circle => circle.getAttribute('id') === 'greenCircle_'+greenIndex);
+   /* const indexToRemove = Array.from(circle).findIndex(circle => circle.getAttribute('id') === 'greenCircle_'+greenIndex);
 	console.log(`indexToRemove !!!!!!`, indexToRemove);
 
     if (indexToRemove !== -1) {
@@ -999,11 +999,26 @@ console.log(`indexToRemove !!!!!!`, indexToRemove);
 	socket.emit('greenCircleEaten');		    
 
     }	
-
+*/
 
 	
 //removeCircleById('greenCircle_'+greenIndex);
 
+var indexToRemove = greenCircles.findIndex(function(circle) {
+    return circle.index === greenIndex;
+});
+
+// Verifica si se encontró un elemento con z igual a zValue
+if (indexToRemove !== -1) {
+    // Si se encontró, haz el splice para eliminar el elemento en ese índice
+    greenCircles.splice(indexToRemove, 1);
+	socket.emit('collisionWithGreenCircle2', circle.index, indexToRemove);
+	socket.emit('greenCircleEaten');		    
+	
+} else {
+    console.log('No se encontró ningún elemento con z igual a ' + greenIndex);
+}
+	
 
 
 
