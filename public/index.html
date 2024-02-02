@@ -987,7 +987,7 @@ console.log(`indexToRemove !!!!!!`, indexToRemove);
 }
 */	
 
-const indexToRemove = circle.findIndex(circle => circle.getAttribute('id') === 'greenCircle_'+greenIndex);
+    const indexToRemove = Array.from(circle).findIndex(circle => circle.getAttribute('id') === 'greenCircle_'+greenIndex);
 
     if (indexToRemove !== -1) {
         greenCircles.splice(indexToRemove, 1);
