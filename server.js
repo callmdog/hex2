@@ -99,7 +99,7 @@ for (let i = 0; i < 10; i++) {
     
     // Verificar si randomCoordinate está definido
     if (randomCoordinate) {
-	        randomCoordinate.index = i;    
+	        randomCoordinate.index = i+1;    
         randomCoordinates.push(randomCoordinate);
     //    greenCirclesS.push(randomCoordinate);
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
