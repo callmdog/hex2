@@ -249,7 +249,7 @@ socket.on('assignColor', function (playerName) {
 //    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
 
     socket.on('updatePosition', function (position) {
-	            console.log(`Update POSITION`);
+	            console.log(`Update Position: ${players[playerId].nombre}`);
 
     // Actualiza la posición del jugador en el servidor
     players[socket.id].x = position.x;
@@ -263,7 +263,7 @@ socket.on('assignColor', function (playerName) {
         const playerName = assignedColors.get(socket.id).name;
         // Emitir datos a todos los clientes
         io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playerName });
-        console.log(`Annimation name: ${playerName}`);
+        //console.log(`Annimation name: ${playerName}`);
     });
 
     socket.on('playerNameAssigned', (assignedName) => {
@@ -295,7 +295,7 @@ socket.on('updatePlayersRequest', () => {
         // Actualizar la información de los jugadores para todos
                 io.emit('updatePlayers2', players);
 
-    console.log(`Puntos actualizados : ${players[playerId].puntos}`);
+    console.log(`+ Puntos: ${players[playerId].puntos}, ${players[playerId].nombre} `);
 
     });
 
@@ -369,7 +369,8 @@ setInterval(() => {
 */
 	    
 socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove) => {
-	console.log(`COLISION: ${greenCircles.length}:`);
+	console.log(`COLISION- Lenght: ${greenCircles.length}, collisionIndex: ${collisionIndex}
+ 	, indexToRemove: ${indexToRemove}`);
 	
     // Verificar si el índice es válido
     if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
