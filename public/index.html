@@ -1016,7 +1016,7 @@ comprobadorIndex = indexToRemove;
 if (indexToRemove !== -1) {
     // Si se encontró, haz el splice para eliminar el elemento en ese índice
     greenCircles.splice(indexToRemove, 1);
-	socket.emit('collisionWithGreenCircle2', circle.index, indexToRemove);
+	socket.emit('collisionWithGreenCircle2', circle.z, indexToRemove);
 	socket.emit('greenCircleEaten');		    
 	
 } else {
