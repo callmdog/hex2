@@ -93,7 +93,7 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
     }
 }
  const randomCoordinates = [];
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 10; i++) {
     const randomIndex = Math.floor(Math.random() * coordinates.length);
     const randomCoordinate = coordinates[randomIndex];
     
@@ -369,8 +369,7 @@ setInterval(() => {
 */
 	    
 socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove) => {
-	console.log(`COLISION- Lenght: ${greenCircles.length}, collisionIndex: ${collisionIndex}
- 	, indexToRemove: ${indexToRemove}`);
+	console.log(`COLISION- Lenght: ${greenCircles.length}, collisionIndex: ${collisionIndex}, indexToRemove: ${indexToRemove}`);
 	
     // Verificar si el índice es válido
     if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
