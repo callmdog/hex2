@@ -122,6 +122,7 @@ while (randomCoordinates.size < 10) {
     
     // Verificar si randomCoordinate está definido
     if (randomCoordinate) {
+	randomCoordinate.z = 0;    
         randomCoordinates.add(randomCoordinate); // Agregamos la coordenada al conjunto
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
         console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y})`);
