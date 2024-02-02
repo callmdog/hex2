@@ -168,10 +168,10 @@ greenCirclesS = generateRandomLineCoordinates();
 
 
 
-for (let i = 1; i < greenCirclesS.length+1; i++) {
+for (let i = 0; i < greenCirclesS.length; i++) {
    // console.log(`Valor Z: ${i}:`);
 
-    greenCirclesS[i].z = i;
+    greenCirclesS[i].z = i+1;
 }
 
 for (let i = 0; i < greenCirclesS.length; i++) {
