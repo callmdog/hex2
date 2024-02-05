@@ -419,7 +419,7 @@ if (indexToRemove !== -1) {
     greenCirclesS.splice(indexToRemove, 1);		    
 	
 } else {
-    console.log('No se encontró ningún elemento con z igual a ' + greenIndex);
+    console.log('No se encontró ningún elemento con z igual a ' + indexToRemove);
 }
 
 
