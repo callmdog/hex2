@@ -115,6 +115,7 @@ return randomCoordinates;
 */
 
 const randomCoordinates = new Set(); // Usamos un conjunto para evitar duplicados
+let index = 0; // Inicializamos el índice en 0
 
 while (randomCoordinates.size < 10) {
     const randomIndex = Math.floor(Math.random() * coordinates.length);
@@ -122,9 +123,12 @@ while (randomCoordinates.size < 10) {
     
     // Verificar si randomCoordinate está definido
     if (randomCoordinate) {
+	randomCoordinate.index = index; // Asignamos el índice a randomCoordinate
+    
         randomCoordinates.add(randomCoordinate); // Agregamos la coordenada al conjunto
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
         console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y}), ${randomCoordinate.z}, ${randomCoordinate.index}`);
+  index++; 
     } else {
         console.log(`Error: No se pudo obtener la coordenada aleatoria ${randomCoordinates.size + 1}`);
     }
