@@ -124,7 +124,7 @@ while (randomCoordinates.size < 10) {
     if (randomCoordinate) {
         randomCoordinates.add(randomCoordinate); // Agregamos la coordenada al conjunto
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
-        console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y}), ${randomCoordinate.z}`);
+        console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y}), ${randomCoordinate.z}, ${randomCoordinate.index}`);
     } else {
         console.log(`Error: No se pudo obtener la coordenada aleatoria ${randomCoordinates.size + 1}`);
     }
