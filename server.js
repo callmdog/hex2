@@ -414,13 +414,13 @@ console.log(`indexToRemove2 !!!!!!`, indexToRemove);
 	
 
 // Verifica si se encontró un elemento con z igual a zValue
-if (indexToRemove !== -1) {
+/*if (indexToRemove !== -1) {
     // Si se encontró, haz el splice para eliminar el elemento en ese índice
     greenCirclesS.splice(indexToRemove, 1);		    
 	
 } else {
     console.log('No se encontró ningún elemento con z igual a ' + indexToRemove);
-}
+}*/
 
 
 	
@@ -429,7 +429,7 @@ if (indexToRemove !== -1) {
     // Verificar si el índice es válido
     if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
         // Eliminar el círculo verde colisionado del array
-        greenCirclesS.splice(indexToRemove - 1, 1);
+        greenCirclesS.splice(indexToRemove, 1);
 	io.emit('greenCircleCollision', collisionIndex, indexToRemove);
  
     }
