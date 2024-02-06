@@ -405,10 +405,10 @@ setInterval(() => {
 socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove) => {
 
 
-	var indexToRemove = greenCirclesS.findIndex(function(circle) {
+	var indexToRemove2 = greenCirclesS.findIndex(function(circle) {
     return circle.z === collisionIndex;
 });
-console.log(`indexToRemove2 !!!!!!`, indexToRemove);
+console.log(`indexToRemove2 !!!!!!`, indexToRemove2);
 	
 //comprobadorIndex = indexToRemove;	
 	
@@ -429,7 +429,7 @@ console.log(`indexToRemove2 !!!!!!`, indexToRemove);
     // Verificar si el índice es válido
     if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
         // Eliminar el círculo verde colisionado del array
-        greenCirclesS.splice(indexToRemove, 1);
+        greenCirclesS.splice(indexToRemove2, 1);
 	//io.emit('greenCircleCollision', collisionIndex, indexToRemove);
  
     }
