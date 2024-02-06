@@ -434,7 +434,7 @@ console.log(`indexToRemove2 !!!!!!`, indexToRemove2);
  //   if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
         // Eliminar el círculo verde colisionado del array
         greenCirclesS.splice(indexToRemove2, 1);
-	//io.emit('greenCircleCollision', collisionIndex, indexToRemove);
+	io.emit('greenCircleCollision', collisionIndex, indexToRemove2);
  
  //   }
 
