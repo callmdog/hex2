@@ -1043,9 +1043,15 @@ console.log(`ERROR !!!`);
 // Elimina el círculo del array usando splice
 //if (indexToRemove !== -1) {
 //greenCircles.splice(indexToRemove -1 , 1);
-console.log(`ELIMINADO:`, greenCircles2[indexToRemove]);	
+//console.log(`ELIMINADO:`, greenCircles2[indexToRemove]);	
+
+const indexGreenCircleZ10 = greenCircles2.findIndex(circle => circle.z === collisionIndex);
+	console.log(`ELIMINADO:`, greenCircles2[indexGreenCircleZ10]);	
+
+greenCircles2.splice(indexGreenCircleZ10, 1);
+
 	
-greenCircles2.splice(indexToRemove , 1);	
+//greenCircles2.splice(indexToRemove , 1);	
 //}
 	
 
