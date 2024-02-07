@@ -986,6 +986,8 @@ comprobadorIndex = indexGreenCircleZ10;
 //if (indexGreenCircleZ10 !== -1) {
 console.log(`El primer greenCircle con z = 10 se encuentra en el índice: ${indexGreenCircleZ10}`);
 //greenCircles.splice(indexGreenCircleZ10, 1);
+console.log(`ELIMINADO:`, greenCircles2[indexGreenCircleZ10]);	
+	
 greenCircles2.splice(indexGreenCircleZ10, 1);
 
 socket.emit('collisionWithGreenCircle2', circle.z, indexGreenCircleZ10);
@@ -1032,13 +1034,19 @@ const circleToRemoveC = document.getElementById('greenCircle_'+ collisionIndex  
 console.log(`greenCircleCollision !!!!!!`, circleToRemoveC);
 if (circleToRemoveC) {
     circleToRemoveC.parentNode.removeChild(circleToRemoveC);
+}else
+{
+console.log(`ERROR !!!`);	
+	
 }
 	
 // Elimina el círculo del array usando splice
-if (indexToRemove !== -1) {
+//if (indexToRemove !== -1) {
 //greenCircles.splice(indexToRemove -1 , 1);
-greenCircles2.splice(indexToRemove -1 , 1);	
-}
+console.log(`ELIMINADO:`, greenCircles2[indexToRemove]);	
+	
+greenCircles2.splice(indexToRemove , 1);	
+//}
 	
 
 }	
