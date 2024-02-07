@@ -983,7 +983,7 @@ const indexGreenCircleZ10 = greenCircles2.findIndex(circle => circle.z === green
 comprobadorIndex = indexGreenCircleZ10;	
 
 // Verificar si se encontró un greenCircle con z = 10
-if (indexGreenCircleZ10 !== -1) {
+//if (indexGreenCircleZ10 !== -1) {
 console.log(`El primer greenCircle con z = 10 se encuentra en el índice: ${indexGreenCircleZ10}`);
 //greenCircles.splice(indexGreenCircleZ10, 1);
 greenCircles2.splice(indexGreenCircleZ10, 1);
@@ -991,9 +991,9 @@ greenCircles2.splice(indexGreenCircleZ10, 1);
 socket.emit('collisionWithGreenCircle2', circle.z, indexGreenCircleZ10);
 socket.emit('greenCircleEaten');
 	
-} else {
-    console.log("No se encontró ningún greenCircle con z = 10");
-}
+//} else {
+ //   console.log("No se encontró ningún greenCircle con z = 10");
+//}
 
 
 greenCircles2.forEach((circle, index) => {
