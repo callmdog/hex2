@@ -977,7 +977,6 @@ const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
 console.log(`Circle TO REMOVE !!!!!!`, circleToRemoveC);
 if (circleToRemoveC) {
     circleToRemoveC.parentNode.removeChild(circleToRemoveC);
-}
 
 // Encontrar el índice del primer greenCircle con z = 10
 const indexGreenCircleZ10 = greenCircles2.findIndex(circle => circle.z === greenIndex);
@@ -994,7 +993,10 @@ comprobado2 = greenCircles2.length;
 	
 
 socket.emit('collisionWithGreenCircle2', circle.z, indexGreenCircleZ10);
-socket.emit('greenCircleEaten');
+socket.emit('greenCircleEaten');	
+}
+
+
 
 	
 //} else {
@@ -1037,15 +1039,16 @@ const circleToRemoveC = document.getElementById('greenCircle_'+ collisionIndex  
 console.log(`greenCircleCollision !!!!!!`, circleToRemoveC);
 if (circleToRemoveC) {
     circleToRemoveC.parentNode.removeChild(circleToRemoveC);
+	const indexGreenCircleZ10 = greenCircles2.findIndex(circle => circle.z === collisionIndex);
+console.log(`ELIMINADO:`, greenCircles2[indexGreenCircleZ10]);	
+greenCircles2.splice(indexGreenCircleZ10, 1);	
 }else
 {
 console.log(`ERROR !!!`);	
 	
 }	
 
-const indexGreenCircleZ10 = greenCircles2.findIndex(circle => circle.z === collisionIndex);
-console.log(`ELIMINADO:`, greenCircles2[indexGreenCircleZ10]);	
-greenCircles2.splice(indexGreenCircleZ10, 1);
+
 	
 }	
 comprobadorIndex = -10;
