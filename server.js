@@ -115,7 +115,7 @@ return randomCoordinates;
 */
 
 const randomCoordinates = new Set(); // Usamos un conjunto para evitar duplicados
-let index = 0; // Inicializamos el índice en 0
+let index = 200; // Inicializamos el índice en 0
 
 while (randomCoordinates.size < 100) {
     const randomIndex = Math.floor(Math.random() * coordinates.length);
