@@ -195,6 +195,8 @@ let textLine2 = document.getElementById('textLine2');
 let textLine3 = document.getElementById('textLine3');
 let textLine4 = document.getElementById('textLine4');
 let textLine5 = document.getElementById('textLine5');
+let comprobadorIndex = -10;	
+let comprobado2 = 100;	
 
 function addPlayer(nombre, puntos, color) {
 	const nuevoJugador = {
@@ -948,8 +950,7 @@ function detectarColisionesGenerales(elemento1, elemento2) {
 
 //DETECTAR COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////
-let comprobadorIndex = -10;	
-let comprobado2 = 100;
+
 	
 function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
 for (const circle of greenCircles) {
