@@ -988,12 +988,14 @@ const indexGreenCircleZ10 = greenCircles2.findIndex(circle => circle.z === green
 console.log(`El primer greenCircle con z = 10 se encuentra en el índice: ${indexGreenCircleZ10}`);
 //greenCircles.splice(indexGreenCircleZ10, 1);
 console.log(`ELIMINADO:`, greenCircles2[indexGreenCircleZ10]);	
+
+
+comprobadorIndex = circle.z
 	
 greenCircles2.splice(indexGreenCircleZ10, 1);
 //comprobado2 = greenCircles2.length;
 	
-
-comprobadorIndex = circle.z;	
+;	
 socket.emit('collisionWithGreenCircle2', circle.z, indexGreenCircleZ10);
 socket.emit('greenCircleEaten');	
 }
