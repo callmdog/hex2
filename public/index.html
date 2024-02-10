@@ -959,8 +959,12 @@ const greenY = circle.y;
 //const greenRadius = circle.radius;
 const greenRadius = 8;
 const greenIndex = circle.z;
-	console.log(`CIRLCE Index: ${circle.index}:`);	
+//	console.log(`CIRLCE Index: ${circle.index}:`);	
 
+const circleToRemoveC3 = document.getElementById('greenCircle_'+circle.z);
+console.log(`Circle.Z  !!!!!!`, circleToRemoveC3);
+
+	
 // Calcular las coordenadas de los rectángulos delimitadores
 const blueBoundingBox = {
 x1: blueX - blueRadius, y1: blueY - blueRadius,
