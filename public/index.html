@@ -705,7 +705,7 @@ if (socket.id===playerId) {
 	const newXCam = svgWidth / 2 - newX;
 	const newYCam = svgHeight / 2 - newY;	
 	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
-	detectarColisionesRectangulares(newX, newY, circleElement.getAttribute('r') , greenCircles2 );
+	detectarColisionesRectangulares(newX, newY, circleElement.getAttribute('r') , greenCircles);
 
 }
 ////END CAMERA MOVEMENT
