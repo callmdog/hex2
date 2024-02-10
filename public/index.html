@@ -981,9 +981,9 @@ blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBo
 /////	
 console.log(`COLISION Z: ${greenIndex}:`);	
 //console.log(`Green IndexNuevo : ${greenCircles[greenIndex].index}:`);	
-const circleToRemoveC = document.getElementById('greenCircle_'+circle.z);
+const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
 //console.log(`Circle TO REMOVE !!!!!!`, circleToRemoveC);
-
+circleToRemoveC.parentNode.removeChild(circleToRemoveC);
 
 //console.log(`Circle Length!!!!!!`, circle.length, greenCircles.length);
 
