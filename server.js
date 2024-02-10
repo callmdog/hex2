@@ -87,6 +87,8 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
             if (!isNaN(midX) && !isNaN(midY)) {
                // coordinates.push({ x: midX, y: midY });
 		    coordinates.push({ x: randomX, y: randomY, z: 0 });
+		    console.log('randomX:', randomX, randomY);  
+
 
             }
         }
