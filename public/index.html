@@ -988,6 +988,19 @@ circleToRemoveC.parentNode.removeChild(circleToRemoveC);
 }
 //console.log(`Circle Length!!!!!!`, circle.length, greenCircles.length);
 
+	// Encuentra el índice del elemento donde z es igual a 10
+var indice = greenCircles.findIndex(function(elemento) {
+    return elemento.z === circle.z;
+});
+
+// Si el índice es diferente de -1, significa que se encontró un elemento con z igual a 10
+if (indice !== -1) {
+    // Elimina el elemento del array usando splice
+    greenCircles.splice(indice, 1);
+    console.log("Elemento eliminado correctamente");
+} else {
+    console.log("No se encontró ningún elemento con z igual a 10");
+}
 
 
 if (circleToRemoveC) {
