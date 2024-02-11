@@ -95,9 +95,9 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
     }
 }
 
-/*	
+	
  const randomCoordinates = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i++) {
     const randomIndex = Math.floor(Math.random() * coordinates.length);
     const randomCoordinate = coordinates[randomIndex];
     
@@ -114,8 +114,9 @@ for (let i = 0; i < 10; i++) {
 }
 
 return randomCoordinates;
-*/
 
+
+	/*
 const randomCoordinates = new Set(); // Usamos un conjunto para evitar duplicados
 let index = 200; // Inicializamos el índice en 0
 
@@ -137,7 +138,7 @@ while (randomCoordinates.size < 10) {
 }
 
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
-	
+*/	
 
 }
 
