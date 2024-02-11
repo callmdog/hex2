@@ -199,6 +199,35 @@ var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
         return true;
     } else {
 	   console.log('YA EXISTE', element.z);
+
+	    let bc=element.z;
+
+
+
+	    
+
+	    //////////////////////////////////////////
+
+	    var indice = greenCirclesS.findIndex(function(elemento) {
+    return elemento.z === bc;
+});
+
+// Si el índice es diferente de -1, significa que se encontró un elemento con z igual a 10
+if (indice !== -1) {
+    // Elimina el elemento del array usando splice
+  //  console.log("Elemento eliminado correctamente", greenCircles[indice]);
+	
+    greenCirclesS.splice(indice, 1);
+} else {
+  //  console.log("No se encontró ningún elemento con z igual a 10");
+}
+
+	    /////////////////////////////////////////
+
+
+
+
+	    
  
         // Si el valor de z ya existe, devuelve false para filtrar este elemento
         return false;
@@ -206,6 +235,7 @@ var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
 });
 
 	   console.log('TAMANO Z', uniqueZValues.length);
+	   console.log('TAMANO Zgc', greenCirclesS.length);
 
 
 //console.log(filteredGreenCirclesS);
