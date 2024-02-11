@@ -238,6 +238,12 @@ if (indice !== -1) {
 	   console.log('TAMANO Zgc', greenCirclesS.length);
 
 
+for (let i = 0; i < greenCirclesS.length; i++) {
+    const { x, y, z, index } = greenCirclesS[i];
+    console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}, index = ${index}`);
+}
+
+
 //console.log(filteredGreenCirclesS);
 
 
