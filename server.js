@@ -186,6 +186,26 @@ for (let i = 0; i < greenCirclesS.length; i++) {
 }
 
 
+
+// Array temporal para almacenar valores únicos de z
+var uniqueZValues = [];
+
+// Array filtrado que contendrá solo elementos con z único
+var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
+    // Verifica si el valor de z ya existe en uniqueZValues
+    if (!uniqueZValues.includes(element.z)) {
+        // Si no existe, agrégalo a uniqueZValues y devuelve true para mantener este elemento
+        uniqueZValues.push(element.z);
+        return true;
+    } else {
+        // Si el valor de z ya existe, devuelve false para filtrar este elemento
+        return false;
+    }
+});
+
+console.log(filteredGreenCirclesS);
+
+
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
