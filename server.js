@@ -174,11 +174,7 @@ greenCirclesS = generateRandomLineCoordinates();
 
 
 
-for (let i = 0; i < greenCirclesS.length; i++) {
-   // console.log(`Valor Z: ${i}:`);
 
-    greenCirclesS[i].z = i+1;
-}
 
 for (let i = 0; i < greenCirclesS.length; i++) {
     const { x, y, z, index } = greenCirclesS[i];
@@ -193,14 +189,14 @@ var uniqueZValues = [];
 // Array filtrado que contendrá solo elementos con z único
 var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
     // Verifica si el valor de z ya existe en uniqueZValues
-    if (!uniqueZValues.includes(element.z)) {
+    if (!uniqueZValues.includes(element.index)) {
         // Si no existe, agrégalo a uniqueZValues y devuelve true para mantener este elemento
-        uniqueZValues.push(element.z);
+        uniqueZValues.push(element.index);
         return true;
     } else {
-	   console.log('YA EXISTE', element.z);
+	   console.log('YA EXISTE', element.index);
 
-	    let bc=element.z;
+	    let bc=element.index;
 
 
 
@@ -209,7 +205,7 @@ var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
 	    //////////////////////////////////////////
 
 	    var indice = greenCirclesS.findIndex(function(elemento) {
-    return elemento.z === bc;
+    return elemento.index === bc;
 });
 
 // Si el índice es diferente de -1, significa que se encontró un elemento con z igual a 10
@@ -236,6 +232,16 @@ if (indice !== -1) {
 
 	   console.log('TAMANO Z', uniqueZValues.length);
 	   console.log('TAMANO Zgc', greenCirclesS.length);
+
+
+
+
+for (let i = 0; i < greenCirclesS.length; i++) {
+   // console.log(`Valor Z: ${i}:`);
+
+    greenCirclesS[i].z = i+1;
+}
+
 
 
 for (let i = 0; i < greenCirclesS.length; i++) {
