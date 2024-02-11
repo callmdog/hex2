@@ -249,7 +249,7 @@ io.on('connection', (socket) => {
 
 console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
 //io.emit('greenCirclesGenerated', greenCirclesS);
-io.emit('greenCirclesGenerated', uniqueZValues);
+io.emit('greenCirclesGenerated', greenCirclesS);
 
 	
 ////
