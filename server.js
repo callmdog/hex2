@@ -198,12 +198,17 @@ var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
         uniqueZValues.push(element.z);
         return true;
     } else {
+	   console.log('YA EXISTE', element.z);
+ 
         // Si el valor de z ya existe, devuelve false para filtrar este elemento
         return false;
     }
 });
 
-console.log(filteredGreenCirclesS);
+	   console.log('TAMANO Z', uniqueZValues.length);
+
+
+//console.log(filteredGreenCirclesS);
 
 
 app.use(express.static('public'));
