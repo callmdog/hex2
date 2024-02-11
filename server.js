@@ -43,7 +43,7 @@ function getHexagonPoints(x, y, size) {
     return points;
 }
 // Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
-// Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
+//// Función para generar coordenadas aleatorias sobre las líneas de los hexágonos
 function generateRandomLineCoordinates() {
     const hexagonMap = [
         [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
