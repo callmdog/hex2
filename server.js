@@ -12,7 +12,7 @@ const connectedUsers = new Set();
 const availableColors = ['blue', 'purple', 'orange', 'pink', 'yellow', 'cyan', 'teal', 'maroon', 'lime', 'brown', 'indigo', 'gray', 'gold', 'silver', 'olive', 'navy', 'magenta', 'peach', 'violet', 'turquoise', 'lavender', 'salmon', 'beige'];
 
 const assignedColors = new Map(); // Mapa para almacenar el color asignado a cada jugador
-let colorIndex = 0; // Índice para asignar colores a usuarios
+let colorIndex = 0; //// Índice para asignar colores a usuarios
 
 let players = {};
 
