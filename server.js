@@ -264,6 +264,10 @@ var uniqueIndexes = {};
 var filteredGreenCirclesS = [];
 
 for (var i = 0; i < greenCirclesS.length; i++) {
+
+
+
+console.log('TAMANO Zj', uniqueIndexes.length);
     var element = greenCirclesS[i];
     // Si el índice no está en el objeto uniqueIndexes, agrégalo y añade el elemento al array filtrado
     if (!uniqueIndexes[element.index]) {
