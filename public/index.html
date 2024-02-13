@@ -517,13 +517,19 @@ if (existingPlayerElement) {
 	existingPlayerElement.setAttribute('cy', player.y);
 	
 	const radius = existingPlayerElement.getAttribute('r');
-	const sizeCalc = player.puntos + radius;
-	existingPlayerElement.setAttribute('r', sizeCalc);
 
+	const pts = player.puntos;
 
+	console.log('pts:', pts);
+
+		console.log('El valor de "r" es:', radius);
+
+	const sizeCalc = pts + radius;
 
 console.log('SizeCalc ', sizeCalc);
-	console.log('El valor de "r" es:', radius);
+
+		existingPlayerElement.setAttribute('r', sizeCalc);
+
 	
 
   //existingPlayerElement.r = 9 + sizeCalc * 10;
