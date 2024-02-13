@@ -234,7 +234,7 @@ if (indice !== -1) {
 */
 
 
-
+/*
 
 // Crear un conjunto para almacenar índices únicos
 var uniqueIndexes = new Set();
@@ -252,7 +252,27 @@ var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
     }
 });
 
+*/
 
+
+
+
+// Objeto para rastrear índices únicos
+var uniqueIndexes = {};
+
+// Filtrar y reconstruir greenCirclesS sin elementos duplicados
+var filteredGreenCirclesS = [];
+
+for (var i = 0; i < greenCirclesS.length; i++) {
+    var element = greenCirclesS[i];
+    // Si el índice no está en el objeto uniqueIndexes, agrégalo y añade el elemento al array filtrado
+    if (!uniqueIndexes[element.index]) {
+        uniqueIndexes[element.index] = true;
+        filteredGreenCirclesS.push(element);
+    }
+}
+
+// Ahora filteredGreenCirclesS contiene elementos únicos
 
 
 	   console.log('TAMANO Z', uniqueIndexes.length);
