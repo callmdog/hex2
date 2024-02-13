@@ -182,7 +182,7 @@ for (let i = 0; i < greenCirclesS.length; i++) {
 }
 
 
-
+/*
 // Array temporal para almacenar valores únicos de z
 var uniqueZValues = [];
 
@@ -230,7 +230,28 @@ if (indice !== -1) {
     }
 });
 
-	   console.log('TAMANO Z', uniqueZValues.length);
+
+*/
+
+
+
+// Objeto para rastrear índices únicos
+var uniqueIndexes = {};
+
+// Filtrar y reconstruir greenCirclesS sin elementos duplicados
+var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
+    // Si el índice no está en el objeto uniqueIndexes, agrégalo y devuelve true
+    if (!uniqueIndexes[element.index]) {
+        uniqueIndexes[element.index] = true;
+        return true;
+    }
+    // Si el índice ya existe, devuelve false para filtrar este elemento
+    return false;
+});
+
+
+
+	   console.log('TAMANO Z', uniqueIndexes.length);
 	   console.log('TAMANO Zgc', greenCirclesS.length);
 
 
