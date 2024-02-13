@@ -519,13 +519,13 @@ if (existingPlayerElement) {
 	//const radius = existingPlayerElement.getAttribute('r');
 	const radius = parseFloat(existingPlayerElement.getAttribute('r')); // Convertir a número
 
-	const pts = player.puntos;
+	const pts = player.puntos * 0.1;
 
 	console.log('pts:', pts);
 
 		console.log('El valor de "r" es:', radius);
 
-	const sizeCalc = pts + 8;
+	const sizeCalc = pts + 9;
 
 console.log('SizeCalc ', sizeCalc);
 
