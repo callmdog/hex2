@@ -517,6 +517,12 @@ if (existingPlayerElement) {
 	existingPlayerElement.setAttribute('cy', player.y);
 	const sizeCalc = player.puntos * 0.1;
 	//existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
+
+
+
+  existingPlayerElement.r = 9 + sizeCalc * 10;
+
+
 } else {		
 	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 	const sizeCalc = player.puntos * 0.1;
