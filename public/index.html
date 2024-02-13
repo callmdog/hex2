@@ -516,7 +516,8 @@ if (existingPlayerElement) {
 	existingPlayerElement.setAttribute('cx', player.x);
 	existingPlayerElement.setAttribute('cy', player.y);
 	
-	const radius = existingPlayerElement.getAttribute('r');
+	//const radius = existingPlayerElement.getAttribute('r');
+	const radius = parseFloat(existingPlayerElement.getAttribute('r')); // Convertir a número
 
 	const pts = player.puntos;
 
