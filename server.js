@@ -244,9 +244,16 @@ var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
     if (!uniqueIndexes[element.index]) {
         uniqueIndexes[element.index] = true;
         return true;
+
+
+console.log('true', uniqueIndexes.length);
+
     }
     // Si el índice ya existe, devuelve false para filtrar este elemento
     return false;
+console.log('fals3', uniqueIndexes.length);
+
+
 });
 
 
