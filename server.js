@@ -235,26 +235,23 @@ if (indice !== -1) {
 
 
 
-// Objeto para rastrear índices únicos
-var uniqueIndexes = {};
 
-// Filtrar y reconstruir greenCirclesS sin elementos duplicados
+// Crear un conjunto para almacenar índices únicos
+var uniqueIndexes = new Set();
+
+// Filtrar greenCirclesS y mantener solo elementos con índices únicos
 var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
-    // Si el índice no está en el objeto uniqueIndexes, agrégalo y devuelve true
-    if (!uniqueIndexes[element.index]) {
-        uniqueIndexes[element.index] = true;
+    // Verificar si el índice ya está en el conjunto
+    if (!uniqueIndexes.has(element.index)) {
+        // Si no está en el conjunto, agregarlo y devolver true
+        uniqueIndexes.add(element.index);
         return true;
-
-
-console.log('true', uniqueIndexes.length);
-
+    } else {
+        // Si ya está en el conjunto, devolver false para filtrar este elemento
+        return false;
     }
-    // Si el índice ya existe, devuelve false para filtrar este elemento
-    return false;
-console.log('fals3', uniqueIndexes.length);
-
-
 });
+
 
 
 
