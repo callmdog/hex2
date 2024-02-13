@@ -515,17 +515,14 @@ const existingPlayerElement = document.getElementById(playerId);
 if (existingPlayerElement) {
 	existingPlayerElement.setAttribute('cx', player.x);
 	existingPlayerElement.setAttribute('cy', player.y);
-	const sizeCalc = player.puntos * 0.1;
-	existingPlayerElement.setAttribute('r', 9 + sizeCalc);
+	
+	const radius = existingPlayerElement.getAttribute('r');
+	const sizeCalc = player.puntos + radius;
+	existingPlayerElement.setAttribute('r', sizeCalc);
 
 
 
 console.log('SizeCalc ', sizeCalc);
-
-
-console.log('SizeCalc2 ', 9 + sizeCalc);
-
-const radius = existingPlayerElement.getAttribute('r');
 	console.log('El valor de "r" es:', radius);
 	
 
