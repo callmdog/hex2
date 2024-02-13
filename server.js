@@ -448,7 +448,7 @@ socket.on('assignColor', function (playerName) {
 
 socket.on('updatePlayersRequest', () => {
         // Realiza la acción que deseas ejecutar al recibir la solicitud de updatePlayers
-   //     io.emit('updatePlayers', players);
+       io.emit('updatePlayers', players);
 	        //io.emit('updatePlayers2', players);
 
     });
@@ -458,7 +458,7 @@ socket.on('updatePlayersRequest', () => {
     socket.on('greenCircleEaten', () => {
     const playerId = socket.id;
     players[playerId].puntos += 1; // Sumar 10 puntos por cada círculo verde comido
- io.emit('updatePlayers', players); 
+// io.emit('updatePlayers', players); 
         // Actualizar la información de los jugadores para todos
              //   io.emit('updatePlayers2', players);
 
