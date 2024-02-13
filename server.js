@@ -288,20 +288,23 @@ console.log('TAMANO vsbsbZ',  filteredGreenCirclesS.length);
 
 
 
-console.log('Filtered',  filteredGreenCirclesS);
 
-
-for (let i = 0; i < greenCirclesS.length; i++) {
+for (let i = 0; i < filteredGreenCirclesS.length; i++) {
    // console.log(`Valor Z: ${i}:`);
 
-    greenCirclesS[i].z = i+1;
+  filteredGreenCirclesS[i].z = i+1;
 }
+
+
+
+console.log('Filtered',  filteredGreenCirclesS);
+
 
 
 
 for (let i = 0; i < greenCirclesS.length; i++) {
     const { x, y, z, index } = greenCirclesS[i];
-    console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}, index = ${index}`);
+ //   console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}, index = ${index}`);
 }
 
 
@@ -316,7 +319,7 @@ io.on('connection', (socket) => {
 
 console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
 //io.emit('greenCirclesGenerated', greenCirclesS);
-io.emit('greenCirclesGenerated', greenCirclesS);
+io.emit('greenCirclesGenerated', filteredGreenCirclesS);
 
 	
 ////
