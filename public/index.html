@@ -515,6 +515,9 @@ const existingPlayerElement = document.getElementById(playerId);
 if (existingPlayerElement) {
 	existingPlayerElement.setAttribute('cx', player.x);
 	existingPlayerElement.setAttribute('cy', player.y);
+
+
+/*
 	
 	//const radius = existingPlayerElement.getAttribute('r');
 	const radius = parseFloat(existingPlayerElement.getAttribute('r')); // Convertir a número
@@ -545,7 +548,19 @@ console.log('SizeCalc ', sizeCalc);
 
 
 //existingPlayerElement.style.setProperty('r', '9 + sizeCalc * 10');
+*/
 
+
+
+
+// Obtener el radio actual del círculo
+const existingRadius = parseFloat(existingPlayerElement.getAttribute('r'));
+
+// Calcular el nuevo radio sumando 0.1 al radio actual
+const newRadius = existingRadius + 0.1;
+
+// Actualizar el radio del círculo
+existingPlayerElement.setAttribute('r', newRadius);
 
 
 } else {		
