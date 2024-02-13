@@ -457,10 +457,10 @@ socket.on('updatePlayersRequest', () => {
     ///SISTEMA PUNTOS////////////////////
     socket.on('greenCircleEaten', () => {
     const playerId = socket.id;
-    players[playerId].puntos += 0.5; // Sumar 10 puntos por cada círculo verde comido
-// io.emit('updatePlayers', players); 
+    players[playerId].puntos += 1; // Sumar 10 puntos por cada círculo verde comido
+io.emit('updatePlayers', players); 
         // Actualizar la información de los jugadores para todos
-             //   io.emit('updatePlayers2', players);
+               io.emit('updatePlayers2', players);
 
     console.log(`+ Puntos: ${players[playerId].puntos}, ${players[playerId].nombre} `);
 
