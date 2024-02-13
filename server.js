@@ -448,7 +448,7 @@ socket.on('assignColor', function (playerName) {
 
 socket.on('updatePlayersRequest', () => {
         // Realiza la acción que deseas ejecutar al recibir la solicitud de updatePlayers
-        io.emit('updatePlayers', players);
+   //     io.emit('updatePlayers', players);
 	        //io.emit('updatePlayers2', players);
 
     });
