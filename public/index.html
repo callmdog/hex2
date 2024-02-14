@@ -793,9 +793,9 @@ const radius = parseFloat(radiusAsString);
 
 
 
-detectarColisiones();
+//detectarColisiones();
 
-
+detectarColisiones(circleElement);
 
 	detectarColisionesRectangulares(newX, newY, radius, greenCircles);
 
@@ -917,15 +917,20 @@ const blueRadius = 9; // Radio del círculo azul (jugador)
 
 //COLISION DETECTAR JUGADORES!!!!!!!!!!!!!!!!!!
 	
-document.querySelectorAll('circle').forEach((otherCircle) => {
+
+const playerCircles = document.querySelectorAll('circle[data-player-id]');
+
+
+playerCircles.forEach((circle) => {
 console.log('COLISION DETECTADA.');
 	
-const playerIdN = otherCircle.getAttribute('id');
+const playerIdN = playerCircles.getAttribute('id');
 console.log(`COLISION ID: (${playerIdN})`); 
 	
-if (playerIdN !== socket.id && playerIdN !== null && playerIdN !== 'bluePoint') {
-const greenX = parseFloat(otherCircle.getAttribute('cx'));
-const greenY = parseFloat(otherCircle.getAttribute('cy'));
+if (playerIdN !== 4) {
+const greenX = parseFloat( 
+playerCircles.getAttribute('cx'));
+const greenY = parseFloat(playerCircles.getAttribute('cy'));
 	
 console.log(`Colision con: (${playerIdN})`); 
 console.log(`SOCKET ID: (${socket.id})`); 
@@ -934,9 +939,9 @@ console.log(`SOCKET ID: (${socket.id})`);
 
 console.log(`RADIO tuyo: (${ radioJugador+9  })`); 
 
-console.log(`RADIO enemigo: (${ otherCircle.getAttribute('r')   })`); 
+console.log(`RADIO enemigo: (${  playerCircles.getAttribute('r')   })`); 
 
-let radioEnemigo = otherCircle.getAttribute('r');
+let radioEnemigo =  playerCircles.getAttribute('r');
 
 if (radioJugador > radioEnemigo){ 
 console.log(`HAS COMIDO AL OTRO JUGADOR`); 
@@ -945,7 +950,7 @@ console.log(`GAME OVER`);
 }
 
 // Obtener los radios de los círculos
-const greenRadius = parseFloat(otherCircle.getAttribute('r'));
+const greenRadius = parseFloat(playerCircles.getAttribute('r'));
 // Calcular las coordenadas de los cuadros delimitadores
 const blueBoundingBox = {
 x1: blueX - blueRadius, y1: blueY - blueRadius,
@@ -959,7 +964,7 @@ blueBoundingBox.x2 > greenBoundingBox.x1 &&
 blueBoundingBox.y1 < greenBoundingBox.y2 &&
 blueBoundingBox.y2 > greenBoundingBox.y1 ) {
 // Eliminar el círculo verde del SVG
-//otherCircle.parentNode.removeChild(otherCircle);
+////otherCircle.parentNode.removeChild(otherCircle);
 console.log('Colisión detectada. Círculo verde eliminado.');
 //socket.emit('greenCircleEaten');
 }}});
@@ -1300,6 +1305,9 @@ function calcularDistancia(x1, y1, x2, y2) {
 }
 
 // Función para detectar colisiones entre círculos
+
+
+/*
 function detectarColisiones() {
     circles.forEach((circle1, index1) => {
         circles.forEach((circle2, index2) => {
@@ -1329,7 +1337,7 @@ function detectarColisiones() {
 // Llama a la función para detectar colisiones en cada actualización
 // Puedes utilizar un bucle de juego o un temporizador para llamar a esta función periódicamente
 
-
+*/
 
 
 /////////////////////////////////////////////////////////////
