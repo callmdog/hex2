@@ -762,6 +762,9 @@ const radius = parseFloat(radiusAsString);
 
 
 
+detectarColisiones();
+
+
 
 	detectarColisionesRectangulares(newX, newY, radius, greenCircles);
 
@@ -1250,6 +1253,53 @@ function detectarColisionesRectangulares2(blueX, blueY, blueRadius, greenCircles
 }
 
 */
+
+/////////_/_/////////////////_////////////////
+
+
+
+
+
+// Obtener los elementos SVG de los círculos de los jugadores
+const circles = document.querySelectorAll('circle');
+
+// Función para calcular la distancia entre dos puntos
+function calcularDistancia(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+}
+
+// Función para detectar colisiones entre círculos
+function detectarColisiones() {
+    circles.forEach((circle1, index1) => {
+        circles.forEach((circle2, index2) => {
+            if (index1 !== index2) { // Evitar comparar el mismo círculo consigo mismo
+                const x1 = parseFloat(circle1.getAttribute('cx'));
+                const y1 = parseFloat(circle1.getAttribute('cy'));
+                const r1 = parseFloat(circle1.getAttribute('r'));
+                const x2 = parseFloat(circle2.getAttribute('cx'));
+                const y2 = parseFloat(circle2.getAttribute('cy'));
+                const r2 = parseFloat(circle2.getAttribute('r'));
+
+                // Calcular la distancia entre los centros de los círculos
+                const distancia = calcularDistancia(x1, y1, x2, y2);
+
+                // Comparar la distancia con la suma de los radios para determinar la colisión
+                if (distancia <= r1 + r2) {
+                    // Colisión detectada
+                    console.log(`Colisión entre ${circle1.id} y ${circle2.id}`);
+                    // Aquí puedes realizar las acciones necesarias
+                    // Por ejemplo, obtener el playerID de los círculos
+                }
+            }
+        });
+    });
+}
+
+// Llama a la función para detectar colisiones en cada actualización
+// Puedes utilizar un bucle de juego o un temporizador para llamar a esta función periódicamente
+
+
+
 
 /////////////////////////////////////////////////////////////
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
