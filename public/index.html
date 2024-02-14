@@ -571,8 +571,21 @@ playerElement.setAttribute('r', 9);
 
 
 
-       // Agregar atributo de jugador al círculo
+if(!playerId===socket.id)
+{
+
+
+// Agregar atributo de jugador al círculo
         playerElement.setAttribute('data-player-id', 'jugador'); // Suponiendo que player.playerId es el ID del jugador
+
+
+}
+
+
+       
+
+
+
 
 	hexagonGroup.appendChild(playerElement);	
 	}
