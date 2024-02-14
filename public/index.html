@@ -568,6 +568,12 @@ playerElement.setAttribute('r', 9);
 	playerElement.setAttribute('fill', player.color);
 	playerElement.setAttribute('cx', player.x);
 	playerElement.setAttribute('cy', player.y);
+
+
+
+       // Agregar atributo de jugador al círculo
+        playerElement.setAttribute('data-player-id', 'jugador'); // Suponiendo que player.playerId es el ID del jugador
+
 	hexagonGroup.appendChild(playerElement);	
 	}
 
@@ -607,13 +613,14 @@ function moveBluePoint( clickX, clickY ) {
 
 
 
-const circles = document.querySelectorAll('circle');
+
+
+const circles = document.querySelectorAll('circle[data-player-id="jugador"]');
 
 circles.forEach((circle, index) => {
-    console.log(`Círculo ${index + 1}:`);
+    console.log(`!!!!!!!!!!!Círculo ${index + 1}:`);
     console.log(circle); // Esto imprimirá toda la información del círculo en la consola
 });
-
 
 
 //CAMARA/////////////////////
