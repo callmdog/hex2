@@ -748,7 +748,22 @@ if (socket.id===playerId) {
 	const newXCam = svgWidth / 2 - newX;
 	const newYCam = svgHeight / 2 - newY;	
 	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
-	detectarColisionesRectangulares(newX, newY, circleElement.getAttribute('r') , greenCircles);
+
+
+
+// Obtener el radio del círculo como una cadena de texto
+const radiusAsString = circleElement.getAttribute('r');
+
+// Convertir la cadena a un número flotante (float)
+const radius = parseFloat(radiusAsString);
+
+// Ahora puedes utilizar el radio como un número flotante en la funcióndetectarColisionesRectangulares
+//detectarColisionesRectangulares(newX, newY, radius, greenCircles);
+
+
+
+
+	detectarColisionesRectangulares(newX, newY, radius, greenCircles);
 
 }
 ////END CAMERA MOVEMENT
