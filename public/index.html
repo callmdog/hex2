@@ -605,6 +605,17 @@ if (existingTextElement) {
 	
 function moveBluePoint( clickX, clickY ) {
 
+
+
+const circles = document.querySelectorAll('circle');
+
+circles.forEach((circle, index) => {
+    console.log(`Círculo ${index + 1}:`);
+    console.log(circle); // Esto imprimirá toda la información del círculo en la consola
+});
+
+
+
 //CAMARA/////////////////////
 const transformAttribute = camera.getAttribute('transform');
 const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
