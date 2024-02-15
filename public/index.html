@@ -945,6 +945,11 @@ let radioEnemigo = otherCircle.getAttribute('r');
 
 if (radioJugador > radioEnemigo){ 
 console.log(`HAS COMIDO AL OTRO JUGADOR`); 
+
+
+
+otherCircle.remove();
+
 }else if (radioJugador < radioEnemigo){
 console.log(`GAME OVER`); 
 }
