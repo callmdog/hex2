@@ -948,7 +948,7 @@ console.log(`HAS COMIDO AL OTRO JUGADOR`);
 
 
 
-otherCircle.remove();
+
 
 }else if (radioJugador < radioEnemigo){
 console.log(`GAME OVER`); 
@@ -971,6 +971,9 @@ blueBoundingBox.y2 > greenBoundingBox.y1 ) {
 // Eliminar el círculo verde del SVG
 //otherCircle.parentNode.removeChild(otherCircle);
 console.log('Colisión detectada. Círculo verde eliminado.');
+
+
+otherCircle.remove();
 //socket.emit('greenCircleEaten');
 }}});
 console.log('La detección de colisiones ha terminado.');
