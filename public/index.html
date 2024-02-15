@@ -959,17 +959,11 @@ function detectarColisionesGenerales(elemento1, elemento2) {
 	
 function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
 for (const circle of greenCircles) {
-const greenX = circle.x;
+	
+const greenX = circle.x; 
 const greenY = circle.y;
-//const greenRadius = circle.radius;
-const greenRadius = 18;
+const greenRadius = 9;
 const greenIndex = circle.z;
-//	console.log(`CIRLCE Index: ${circle.index}:`);	
-
-const circleToRemoveC3 = document.getElementById('greenCircle_'+circle.z);
-//console.log(`Circle.Z  !!!!!!`, circleToRemoveC3);
-    //circleToRemoveC3.parentNode.removeChild(circleToRemoveC3);
-
 	
 // Calcular las coordenadas de los rectángulos delimitadores
 const blueBoundingBox = {
@@ -982,75 +976,27 @@ x2: greenX + greenRadius, y2: greenY + greenRadius };
 // Verificar la colisión entre los rectángulos delimitadores
 if (blueBoundingBox.x1 < greenBoundingBox.x2 && blueBoundingBox.x2 > greenBoundingBox.x1 &&
 blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBox.y1) {
-//console.log(`COLISION Detectada`);
-/////	
-console.log(`COLISION Z: ${greenIndex}:`);	
-//console.log(`Green IndexNuevo : ${greenCircles[greenIndex].index}:`);	
+
 const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
+console.log(`COLISION Z: ${greenIndex}:`);			
 console.log(`REMOVE !!!!!!`, circleToRemoveC);
+comprobadorIndex = circle.z;
+
 if (circleToRemoveC) {	
 circleToRemoveC.parentNode.removeChild(circleToRemoveC);
-}
-//console.log(`Circle Length!!!!!!`, circle.length, greenCircles.length);
-
-	// Encuentra el índice del elemento donde z es igual a 10
 var indice = greenCircles.findIndex(function(elemento) {
     return elemento.z === circle.z;
 });
-
-// Si el índice es diferente de -1, significa que se encontró un elemento con z igual a 10
 if (indice !== -1) {
-    // Elimina el elemento del array usando splice
-    console.log("Elemento eliminado correctamente", greenCircles[indice]);
-	
-    greenCircles.splice(indice, 1);
-
-
-socket.emit('greenCircleEaten');	
-
+console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+socket.emit('greenCircleEaten');
+socket.emit('collisionWithGreenCircle2', circle.z, indice);
 
 } else {
-    console.log("No se encontró ningún elemento con z igual a 10");
-}
-
-
-if (circleToRemoveC) {
-   // circleToRemoveC.parentNode.removeChild(circleToRemoveC);
-
-// Encontrar el índice del primer greenCircle con z = 10
-//const indexGreenCircleZ10 = greenCircles2.findIndex(circle => circle.z === greenIndex);
-//comprobadorIndex = indexGreenCircleZ10;	
-
-// Verificar si se encontró un greenCircle con z = 10
-//if (indexGreenCircleZ10 !== -1) {
-//console.log(`El primer greenCircle con z = 10 se encuentra en el índice: ${indexGreenCircleZ10}`);
-//greenCircles.splice(indexGreenCircleZ10, 1);
-//console.log(`ELIMINADO:`, greenCircles2[indexGreenCircleZ10]);	
-
-
-//comprobadorIndex = circle.z
-	
-//greenCircles2.splice(indexGreenCircleZ10, 1);
-//comprobado2 = greenCircles2.length;
-	
-//;	
-//socket.emit('collisionWithGreenCircle2', circle.z, indexGreenCircleZ10);
-//socket.emit('greenCircleEaten');	
-}
-
-
-
-	
-//} else {
- //   console.log("No se encontró ningún greenCircle con z = 10");
-//}
-
-
-greenCircles2.forEach((circle, index) => {
-    //console.log(`Círculo ${index + 1}: x = ${circle.x}, y = ${circle.y}, z = ${circle.z}`);
-});
-	
-	
+console.log("No se encontró ningún elemento con z igual a 10");
+}	
+}	
 
 // Colisión detectada
 return true;
@@ -1060,9 +1006,6 @@ return true;
 // No hay colisión
 return false;
 }
-
-
-	
 
 
 //MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
@@ -1095,7 +1038,7 @@ console.log(`ERROR !!!`);
 }	
 console.log(`comprobadorERROR:`, comprobadorIndex);	
 	
-//comprobadorIndex = -10;
+comprobadorIndex = -10;
 //comprobado2 = 100;	
 	
 });
