@@ -1012,9 +1012,16 @@ return false;
 ////////////////////////////////////////////////////////////	
 
 socket.on('greenCircleCollision', (collisionIndex, indexToRemove) => {
+
+if (comprobadorIndex !== collisionIndex) {
 console.log(`BORRADOR ACTIVADO!!!`);	
 	
+	
+}
 
+comprobadorIndex = -10;
+	
+	
 /*	
 console.log(`comprobadorIndex, indexToRemove `, comprobadorIndex, indexToRemove);
 	
