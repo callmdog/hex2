@@ -537,25 +537,17 @@ setInterval(() => {
 	    
 socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove) => {
 
+io.emit('greenCircleCollision', collisionIndex, indexToRemove);
 
+	
+/*
+	
 	var indexToRemove2 = greenCirclesS.findIndex(function(circle) {
     return circle.z === collisionIndex;
 });
 console.log(`indexToRemove2 !!!!!!`, indexToRemove2);
 	
 //comprobadorIndex = indexToRemove;	
-	
-
-// Verifica si se encontró un elemento con z igual a zValue
-/*if (indexToRemove !== -1) {
-    // Si se encontró, haz el splice para eliminar el elemento en ese índice
-    greenCirclesS.splice(indexToRemove, 1);		    
-	
-} else {
-    console.log('No se encontró ningún elemento con z igual a ' + indexToRemove);
-}*/
-
-
 	
 	console.log(`COLISION- Lenght: ${greenCirclesS.length}, collisionIndex: ${collisionIndex}, indexToRemove: ${indexToRemove}`);
 	
@@ -573,6 +565,8 @@ greenCirclesS.forEach(circle => {
 });
 
 	
+*/
+
 	
 });
 
