@@ -492,10 +492,10 @@ const radius = parseFloat(existingPlayerElement.getAttribute('r')); // Convertir
 const ptsf = parseFloat(player.puntos); 
 //const pts = player.puntos;
 //const pts2 = ptsf + 0.1;
-console.log('ptsf:', ptsf);
-console.log('El valor de "r" es:', radius);
+//console.log('ptsf:', ptsf);
+//console.log('El valor de "r" es:', radius);
 const sizeCalc = (0.2 * ptsf) + 9;
-console.log('SizeCalc ', sizeCalc);
+//console.log('SizeCalc ', sizeCalc);
 existingPlayerElement.setAttribute('r', sizeCalc);
 //existingPlayerElement.r = 9 + sizeCalc * 10;
 //existingPlayerElement.style.setProperty('r', '9 + sizeCalc * 10');
@@ -829,36 +829,21 @@ function detectarColisiones(playerElement) {
 		
 document.querySelectorAll('circle[data-player-id]').forEach((otherCircle) => {
 const playerIdN = otherCircle.getAttribute('id');
-console.log(`COLISION Player-ID: (${playerIdN})`); 
 
-const blueRadius = 9; 	
-console.log(`RADIO JUGADOR!!!!:`, parseFloat(playerElement.getAttribute('r'))); 
+const blueRadius = parseFloat(playerElement.getAttribute('r')); 
+const greenRadius = parseFloat(otherCircle.getAttribute('r'));
 	
 const blueX = parseFloat(playerElement.getAttribute('cx'));
 const blueY = parseFloat(playerElement.getAttribute('cy'));	
 const greenX = parseFloat(otherCircle.getAttribute('cx'));
 const greenY = parseFloat(otherCircle.getAttribute('cy'));
+	
+console.log(`ID Jugador: (${socket.id})`);
+console.log(`ID Enemigo: (${playerIdN})`); 
 
-console.log(`Colision con: (${playerIdN})`); 
-console.log(`SOCKET ID: (${socket.id})`); 
+console.log(`Radio Jugador:`, blueRadius); 
+console.log(`Radio Enemigo:`, greenRadius); 
 
-//console.log(`RADIO playerE: (${ playerElement })`);
-
-console.log(`RADIO tuyo: (${ radioJugador+9  })`); 
-
-console.log(`RADIO enemigo: (${ otherCircle.getAttribute('r')   })`); 
-
-let radioEnemigo = otherCircle.getAttribute('r');
-
-if (radioJugador > radioEnemigo){ 
-console.log(`HAS COMIDO AL OTRO JUGADOR`); 
-
-}else if (radioJugador < radioEnemigo){
-console.log(`GAME OVER`); 
-}
-
-// Obtener los radios de los círculos
-const greenRadius = parseFloat(otherCircle.getAttribute('r'));
 // Calcular las coordenadas de los cuadros delimitadores
 
 const blueBoundingBox = {
@@ -868,23 +853,27 @@ x2: blueX + blueRadius, y2: blueY + blueRadius };
 const greenBoundingBox = {
 x1: greenX - greenRadius, y1: greenY - greenRadius,
 x2: greenX + greenRadius, y2: greenY + greenRadius};
+	
 // Verificar la colisión entre los cuadros delimitadores
 if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
 blueBoundingBox.x2 > greenBoundingBox.x1 &&
 blueBoundingBox.y1 < greenBoundingBox.y2 &&
 blueBoundingBox.y2 > greenBoundingBox.y1 ) {
+
+if (blueRadius > greenRadius){ 
+console.log(`HAS COMIDO AL OTRO JUGADOR`); 
+}else if (blueRadius < greenRadius){
+console.log(`GAME OVER`); 
+}
+	
 // Eliminar el círculo verde del SVG
 //otherCircle.parentNode.removeChild(otherCircle);
 console.log('Colisión detectada. Círculo verde eliminado.');
-
-
-otherCircle.remove();
+//otherCircle.remove();
 //socket.emit('greenCircleEaten');
 }
 
-}
-
-);
+});
 	
 console.log('La detección de colisiones ha terminado.');
 }
