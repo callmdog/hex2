@@ -910,28 +910,28 @@ const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(g
 //8. DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
+
 function detectarColisiones(playerElement) {
 const blueX = parseFloat(playerElement.getAttribute('cx'));
 const blueY = parseFloat(playerElement.getAttribute('cy'));
 const blueRadius = 9; // Radio del círculo azul (jugador)
 
 //COLISION DETECTAR JUGADORES!!!!!!!!!!!!!!!!!!
-	
 
-const playerCircles = document.querySelectorAll('circle[data-player-id]');
+document.querySelectorAll('circle[data-player-id]').forEach((otherCircle) => {
+    // Tu lógica aquí
 
 
-playerCircles.forEach((circle) => {
+
 console.log('COLISION DETECTADA.');
-	
-const playerIdN = playerCircles.getAttribute('id');
+
+const playerIdN = otherCircle.getAttribute('id');
 console.log(`COLISION ID: (${playerIdN})`); 
-	
-if (playerIdN !== 4) {
-const greenX = parseFloat( 
-playerCircles.getAttribute('cx'));
-const greenY = parseFloat(playerCircles.getAttribute('cy'));
-	
+
+if (playerIdN !== 5) {
+const greenX = parseFloat(otherCircle.getAttribute('cx'));
+const greenY = parseFloat(otherCircle.getAttribute('cy'));
+
 console.log(`Colision con: (${playerIdN})`); 
 console.log(`SOCKET ID: (${socket.id})`); 
 
@@ -939,9 +939,9 @@ console.log(`SOCKET ID: (${socket.id})`);
 
 console.log(`RADIO tuyo: (${ radioJugador+9  })`); 
 
-console.log(`RADIO enemigo: (${  playerCircles.getAttribute('r')   })`); 
+console.log(`RADIO enemigo: (${ otherCircle.getAttribute('r')   })`); 
 
-let radioEnemigo =  playerCircles.getAttribute('r');
+let radioEnemigo = otherCircle.getAttribute('r');
 
 if (radioJugador > radioEnemigo){ 
 console.log(`HAS COMIDO AL OTRO JUGADOR`); 
@@ -950,7 +950,7 @@ console.log(`GAME OVER`);
 }
 
 // Obtener los radios de los círculos
-const greenRadius = parseFloat(playerCircles.getAttribute('r'));
+const greenRadius = parseFloat(otherCircle.getAttribute('r'));
 // Calcular las coordenadas de los cuadros delimitadores
 const blueBoundingBox = {
 x1: blueX - blueRadius, y1: blueY - blueRadius,
@@ -964,12 +964,13 @@ blueBoundingBox.x2 > greenBoundingBox.x1 &&
 blueBoundingBox.y1 < greenBoundingBox.y2 &&
 blueBoundingBox.y2 > greenBoundingBox.y1 ) {
 // Eliminar el círculo verde del SVG
-////otherCircle.parentNode.removeChild(otherCircle);
+//otherCircle.parentNode.removeChild(otherCircle);
 console.log('Colisión detectada. Círculo verde eliminado.');
 //socket.emit('greenCircleEaten');
 }}});
 console.log('La detección de colisiones ha terminado.');
 }
+
 
 
 //9. COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
