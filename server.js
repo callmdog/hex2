@@ -7,7 +7,7 @@ const io = socketIo(server);
 
 const connectedUsers = new Set();
 
-//COLORES PARA JUGADOR//
+//COLORES PARA JUGADOR////
 //const availableColors = ['blue', 'red', 'green', 'purple', 'orange']; // Puedes agregar más colores según sea necesario
 const availableColors = ['blue', 'purple', 'orange', 'pink', 'yellow', 'cyan', 'teal', 'maroon', 'lime', 'brown', 'indigo', 'gray', 'gold', 'silver', 'olive', 'navy', 'magenta', 'peach', 'violet', 'turquoise', 'lavender', 'salmon', 'beige'];
 
