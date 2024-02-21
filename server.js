@@ -535,9 +535,9 @@ setInterval(() => {
 });
 */
 	    
-socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove) => {
+socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove, comproid) => {
 
-io.emit('greenCircleCollision', collisionIndex, indexToRemove);
+io.emit('greenCircleCollision', collisionIndex, indexToRemove, comproid);
 
 	
 /*
