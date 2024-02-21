@@ -537,7 +537,31 @@ setInterval(() => {
 	    
 socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove, comproid) => {
 
+
+
+
+
+
+var indice = filteredGreenCirclesS.findIndex(function(elemento) {
+    return elemento.z === collisionIndex;
+});
+if (indice !== -1) {
+console.log("Elemento eliminado correctamente",           filteredGreenCirclesS[indice]);
+filteredGreenCirclesS.splice(indice, 1);
+//socket.emit('greenCircleEaten');
+//socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+
+} else {
+console.log("No se encontró ningún elemento con z igual a 10");
+}        
+
+
+
 io.emit('greenCircleCollision', collisionIndex, indexToRemove, comproid);
+
+
+
+
 
 	
 /*
