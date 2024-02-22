@@ -68,7 +68,9 @@ const randomFactor = Math.random(); // Factor aleatorio entre 0 y 1
 const randomX = point1.x + (point2.x - point1.x) * randomFactor;
 const randomY = point1.y + (point2.y - point1.y) * randomFactor;
             if (!isNaN(midX) && !isNaN(midY)) {
-		    coordinates.push({ x: randomX, y: randomY, z: 0 });
+		    //coordinates.push({ x: randomX, y: randomY, z: 0 });
+		    coordinates.push({ x: midX, y: midY, z: 0 });
+
 		    console.log('randomX:', randomX, randomY);  
             }
         }
