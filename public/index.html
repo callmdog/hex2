@@ -1088,7 +1088,15 @@ var circulo = document.getElementById(playerIdN);
 } else {
     console.log("El círculo con el ID especificado no fue encontrado.");
 }
+
+
+if (playerIdN===socket.id)	{
+
+gameCanvas.style.display = 'none';
+hexagonGroup.style.display = 'none';
+
 	
+}
 
 console.log("ELIMINAR JUGADOR", playerIdN );
 
