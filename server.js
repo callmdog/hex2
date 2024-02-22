@@ -132,7 +132,7 @@ function generateAllHexagonVertices() {
 const allHexagonVertices = generateAllHexagonVertices();
 console.log(allHexagonVertices); // Opcional: Imprime los vértices en la consola para visualizarlos
 
-console.log('LENGTH: !!!!!!!!!!!!!'allHexagonVertices.length);
+console.log("Número total de puntos de vértice en el mapa hexagonal:", allHexagonVertices.length);
 
 
 //////////////////////////////////////////////////////////////////////////////////////
