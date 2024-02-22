@@ -309,7 +309,15 @@ for (let i = 0; i < greenCirclesS.length; i++) {
 
 
 
-io.emit('greenCirclesGenerated', filteredGreenCirclesS);
+
+
+
+
+
+
+
+
+
 
 
 //console.log(filteredGreenCirclesS);
@@ -323,6 +331,21 @@ io.on('connection', (socket) => {
 
 console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
 //io.emit('greenCirclesGenerated', greenCirclesS);
+
+
+
+
+
+socket.on('dibujarVerdes', (numero) => {
+
+
+
+
+io.emit('greenCirclesGenerated', filteredGreenCirclesS);
+
+
+
+});
 
 
 	
