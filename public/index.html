@@ -873,6 +873,11 @@ console.log(`ID Enemigo: (${playerIdN}), (${greenRadius})`);
 //console.log(`Radio Enemigo:`, greenRadius); 
 	
 console.log(`HAS COMIDO AL OTRO JUGADOR`); 
+
+socket.emit('eliminarJugador', playerIdN);
+
+	
+	
 }else if (blueRadius < greenRadius){
 console.log(`ID Jugador: (${socket.id}), (${blueRadius})`);
 console.log(`ID Enemigo: (${playerIdN}), (${greenRadius})`); 
