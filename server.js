@@ -627,6 +627,15 @@ greenCirclesS.forEach(circle => {
 
 	    /////////////////////
 
+
+socket.on('eliminarJugador', (playerIdN) => {
+
+
+
+io.emit('eliminarJugadorEnCliente', playerIdN);
+
+	
+});
 	
 
 
