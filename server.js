@@ -341,7 +341,7 @@ socket.on('dibujarVerdes', (numero) => {
 
 
 
-io.emit('greenCirclesGenerated', filteredGreenCirclesS);
+socket.emit('greenCirclesGenerated', filteredGreenCirclesS);
 
 
 
