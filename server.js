@@ -61,8 +61,10 @@ for (let row = 0; row < numRows; row++) {
             const nextIndex = (i + 1) % points.length;
             const point1 = points[i];
             const point2 = points[nextIndex];
-            const midX = (point1.x + point2.x) / 2;
-            const midY = (point1.y + point2.y) / 2;
+            //const midX = (point1.x + point2.x) / 2;
+           // const midY = (point1.y + point2.y) / 2;
+	 const midX = (point1.x + point2.x) ;
+            const midY = (point1.y + point2.y);	
 
 const randomFactor = Math.random(); // Factor aleatorio entre 0 y 1
 const randomX = point1.x + (point2.x - point1.x) * randomFactor;
