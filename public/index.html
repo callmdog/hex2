@@ -1021,17 +1021,13 @@ socket.on('greenCircleCollision', (collisionIndex, indexToRemove, comproid) => {
 if (comproid !== socket.id) {
 console.log(`BORRADOR ACTIVADO!!!`);	
 	
-
-
-
-
 const circleToRemoveC = document.getElementById('greenCircle_'+collisionIndex);
 console.log(`COLISION Z2: ${collisionIndex}:`);			
 console.log(`REMOVE2 !!!!!!`, circleToRemoveC);
 
 if (circleToRemoveC) {	
 circleToRemoveC.parentNode.removeChild(circleToRemoveC);
-var indice = greenCircles.findIndex(function(elemento) {
+let indice = greenCircles.findIndex(function(elemento) {
     return elemento.z === collisionIndex;
 });
 if (indice !== -1) {
@@ -1044,49 +1040,10 @@ greenCircles.splice(indice, 1);
 console.log("No se encontró ningún elemento con z igual a 10");
 }	
 }	
-
-
-
-
-
-
-
-
-
-
 	
 }
 
-//comprobadorIndex = 1000;
-	
-	
-/*	
-console.log(`comprobadorIndex, indexToRemove `, comprobadorIndex, indexToRemove);
-	
-//if (comprobadorIndex !== indexToRemove) {
-if (comprobadorIndex !== collisionIndex) {
-	
-console.log(`BORRADOR ACTIVADO!!!`);	
-	
-console.log(`greenCircleCollision Index: ${ collisionIndex  }:`);	
-const circleToRemoveC = document.getElementById('greenCircle_'+ collisionIndex   );
-console.log(`greenCircleCollision !!!!!!`, circleToRemoveC);
-if (circleToRemoveC) {
-    circleToRemoveC.parentNode.removeChild(circleToRemoveC);
-	const indexGreenCircleZ10 = greenCircles2.findIndex(circle => circle.z === collisionIndex);
-console.log(`ELIMINADO:`, greenCircles2[indexGreenCircleZ10]);	
-greenCircles2.splice(indexGreenCircleZ10, 1);	
-}else
-{
-console.log(`ERROR !!!`);	
-	
-}	
-	
-}	
-console.log(`comprobadorERROR:`, comprobadorIndex);	
-comprobadorIndex = -10;
-//comprobado2 = 100;	
-*/
+
 	
 });
 
