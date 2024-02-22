@@ -93,7 +93,7 @@ while (randomCoordinates.size < 100) {
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
 }
 
-greenCirclesS = generateRandomLineCoordinates();
+//greenCirclesS = generateRandomLineCoordinates();
 
 
 
@@ -129,7 +129,8 @@ function generateAllHexagonVertices() {
 }
 
 
-const allHexagonVertices = generateAllHexagonVertices();
+//const allHexagonVertices = generateAllHexagonVertices();
+greenCirclesS = generateAllHexagonVertices();
 console.log(allHexagonVertices); // Opcional: Imprime los vértices en la consola para visualizarlos
 
 console.log("Número total de puntos de vértice en el mapa hexagonal:", allHexagonVertices.length);
