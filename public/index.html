@@ -843,11 +843,11 @@ const blueY = parseFloat(playerElement.getAttribute('cy'));
 const greenX = parseFloat(otherCircle.getAttribute('cx'));
 const greenY = parseFloat(otherCircle.getAttribute('cy'));
 	
-console.log(`ID Jugador: (${socket.id})`);
-console.log(`ID Enemigo: (${playerIdN})`); 
+//console.log(`ID Jugador: (${socket.id})`);
+//console.log(`ID Enemigo: (${playerIdN})`); 
 
-console.log(`Radio Jugador:`, blueRadius); 
-console.log(`Radio Enemigo:`, greenRadius); 
+//console.log(`Radio Jugador:`, blueRadius); 
+//console.log(`Radio Enemigo:`, greenRadius); 
 
 // Calcular las coordenadas de los cuadros delimitadores
 
@@ -866,8 +866,20 @@ blueBoundingBox.y1 < greenBoundingBox.y2 &&
 blueBoundingBox.y2 > greenBoundingBox.y1 ) {
 
 if (blueRadius > greenRadius){ 
+console.log(`ID Jugador: (${socket.id}), (${blueRadius})`);
+console.log(`ID Enemigo: (${playerIdN}), (${greenRadius})`); 
+
+//console.log(`Radio Jugador:`, blueRadius); 
+//console.log(`Radio Enemigo:`, greenRadius); 
+	
 console.log(`HAS COMIDO AL OTRO JUGADOR`); 
 }else if (blueRadius < greenRadius){
+console.log(`ID Jugador: (${socket.id}), (${blueRadius})`);
+console.log(`ID Enemigo: (${playerIdN}), (${greenRadius})`); 
+
+//console.log(`Radio Jugador:`, blueRadius); 
+//console.log(`Radio Enemigo:`, greenRadius); 
+	
 console.log(`GAME OVER`); 
 }
 	
