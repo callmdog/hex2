@@ -416,6 +416,13 @@ socket.on('eliminarJugador', (playerIdN) => {
 
 	desconectarJugador(playerIdN);
 
+	console.log('Usuario desconectado');
+        assignedColors.delete(playerIdN);
+        connectedUsers.delete(playerIdN);
+        delete players[playerIdN]; //
+        io.emit('updatePlayers', players); //
+        io.emit('userCount', connectedUsers.size);
+
 
 
 io.emit('eliminarJugadorEnCliente', playerIdN);
