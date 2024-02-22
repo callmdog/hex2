@@ -92,10 +92,7 @@ while (randomCoordinates.size < 100) {
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
 }
 
-
-
-
-
+greenCirclesS = generateRandomLineCoordinates();
 
 
 /*
@@ -115,185 +112,22 @@ setInterval(() => {
 */
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////
-
-
-greenCirclesS = generateRandomLineCoordinates();
-
-
-
-
-/*
-
-for (let i = 0; i < greenCirclesS.length; i++) {
-    const { x, y, z, index } = greenCirclesS[i];
-    console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}, index = ${index}`);
-}
-*/
-
-/*
-// Array temporal para almacenar valores únicos de z
-var uniqueZValues = [];
-
-// Array filtrado que contendrá solo elementos con z único
-var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
-    // Verifica si el valor de z ya existe en uniqueZValues
-    if (!uniqueZValues.includes(element.index)) {
-        // Si no existe, agrégalo a uniqueZValues y devuelve true para mantener este elemento
-        uniqueZValues.push(element.index);
-        return true;
-    } else {
-	   console.log('YA EXISTE', element.index);
-
-	    let bc=element.index;
-
-
-
-	    
-
-	    //////////////////////////////////////////
-
-	    var indice = greenCirclesS.findIndex(function(elemento) {
-    return elemento.index === bc;
-});
-
-// Si el índice es diferente de -1, significa que se encontró un elemento con z igual a 10
-if (indice !== -1) {
-    // Elimina el elemento del array usando splice
-  //  console.log("Elemento eliminado correctamente", greenCircles[indice]);
-	
-    greenCirclesS.splice(indice, 1);
-} else {
-  //  console.log("No se encontró ningún elemento con z igual a 10");
-}
-
-	    /////////////////////////////////////////////
-
-
-
-
-	    
- 
-        // Si el valor de z ya existe, devuelve false para filtrar este elemento
-        return false;
-    }
-});
-
-
-*/
-
-
-/*
-
-// Crear un conjunto para almacenar índices únicos
-var uniqueIndexes = new Set();
-
-// Filtrar greenCirclesS y mantener solo elementos con índices únicos
-var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
-    // Verificar si el índice ya está en el conjunto
-    if (!uniqueIndexes.has(element.index)) {
-        // Si no está en el conjunto, agregarlo y devolver true
-        uniqueIndexes.add(element.index);
-        return true;
-    } else {
-        // Si ya está en el conjunto, devolver false para filtrar este elemento
-        return false;
-    }
-});
-
-*/
-
-
-
-/*
-// Conjunto para almacenar índices únicos
-var uniqueIndexes = new Set();
-
-// Array filtrado que contendrá elementos con índices únicos
-var filteredGreenCirclesS = [];
-
-// Iterar sobre greenCirclesS y mantener solo elementos con índices únicos
-for (var i = 0; i < greenCirclesS.length; i++) {
-    var element = greenCirclesS[i];
-    // Verificar si el índice ya está en el conjunto uniqueIndexes
-    if (!uniqueIndexes.has(element.index)) {
-        // Si el índice no está en el conjunto, agregarlo y añadir el elemento al array filtrado
-        uniqueIndexes.add(element.index);
-        filteredGreenCirclesS.push(element);
-    }
-}
-
-// Ahora filteredGreenCirclesS contiene elementos únicos basados en el índice
-
-
-
-
-console.log('TAMANO vsbsbZ',  filteredGreenCirclesS.length);
-
-
-	   console.log('TAMANO Z', uniqueIndexes.length);
-	   console.log('TAMANO Zgc', greenCirclesS.length);
-
-
-
-
-
-for (let i = 0; i < filteredGreenCirclesS.length; i++) {
- console.log(`Valor Z MODIFICA: ${i}:`);
-
-  filteredGreenCirclesS[i].z = i+1;
-}
-
-
-
-console.log('Filtered',  filteredGreenCirclesS);
-
-
-
-
-for (let i = 0; i < greenCirclesS.length; i++) {
-    const { x, y, z, index } = greenCirclesS[i];
- //   console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}, index = ${index}`);
-}
-
-
-
-
-
-
-*/
-
-
-
-
-for (let i = 0; i < greenCirclesS.length; i++) {
- console.log(`Valor Z MODIFICA: ${i}:`);
-
-  greenCirclesS[i].z = i+1;
-}
-
-
-//console.log(filteredGreenCirclesS);
 
 
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
 
-	////
-
+for (let i = 0; i < greenCirclesS.length; i++) {
+ console.log(`Valor Z MODIFICA: ${i}:`);
+  greenCirclesS[i].z = i+1;
+}
+	
 console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
-//io.emit('greenCirclesGenerated', greenCirclesS);
-
-
-
 
 
 socket.on('dibujarVerdes', (numero) => {
-
-
-
 
 socket.emit('greenCirclesGenerated', greenCirclesS);
 
@@ -580,13 +414,12 @@ greenCirclesS.forEach(circle => {
 
 socket.on('eliminarJugador', (playerIdN) => {
 
+	desconectarJugador(playerIdN);
+
 
 
 io.emit('eliminarJugadorEnCliente', playerIdN);
 
-
-
-desconectarJugador(playerIdN);
 	
 });
 	
