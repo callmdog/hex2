@@ -1077,6 +1077,27 @@ console.log("No se encontró ningún elemento con z igual a 10");
 //////////////////	
 
 
+
+socket.on('eliminarJugadorEnCliente', (playerIdN) => {
+
+var circulo = document.getElementById(playerIdN);
+
+	if (circulo) {
+    // Paso 2: Elimina el círculo del DOM si existe
+    circulo.parentNode.removeChild(circulo);
+} else {
+    console.log("El círculo con el ID especificado no fue encontrado.");
+}
+	
+
+console.log("ELIMINAR JUGADOR", playerIdN );
+
+
+
+	
+});	
+
+
 /*
 	function detectarColisionesConCirculosVerdes(blueX, blueY, blueRadius, jugador) {
    
