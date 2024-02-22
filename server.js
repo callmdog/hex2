@@ -584,9 +584,26 @@ socket.on('eliminarJugador', (playerIdN) => {
 
 io.emit('eliminarJugadorEnCliente', playerIdN);
 
+
+
+desconectarJugador(playerIdN);
 	
 });
 	
+
+
+
+function desconectarJugador(socketId) {
+    const socket = io.sockets.sockets[socketId];
+    if (socket) {
+        socket.disconnect(true); // Forzar la desconexión del jugador
+        console.log('Jugador desconectado:', socketId);
+    } else {
+        console.log('Socket no encontrado para el jugador:', socketId);
+    }
+}
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////    
