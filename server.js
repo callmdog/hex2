@@ -61,10 +61,9 @@ for (let row = 0; row < numRows; row++) {
             const nextIndex = (i + 1) % points.length;
             const point1 = points[i];
             const point2 = points[nextIndex];
-            //const midX = (point1.x + point2.x) / 2;
-            //const midY = (point1.y + point2.y) / 2;
-	const midX = (point1.x + point2.x);
-        const midY = (point1.y + point2.y);
+            const midX = (point1.x + point2.x) / 2;
+            const midY = (point1.y + point2.y) / 2;
+
 const randomFactor = Math.random(); // Factor aleatorio entre 0 y 1
 const randomX = point1.x + (point2.x - point1.x) * randomFactor;
 const randomY = point1.y + (point2.y - point1.y) * randomFactor;
@@ -96,9 +95,10 @@ return Array.from(randomCoordinates); // Convertimos el conjunto a un array para
 
 greenCirclesS = generateRandomLineCoordinates();
 
-/*
 
-function generateRandomVertexCoordinates() {
+
+
+function generateAllHexagonVertices() {
     const hexagonMap = [
         [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
         [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
@@ -107,52 +107,32 @@ function generateRandomVertexCoordinates() {
         // Repite el patrón de filas según sea necesario para tener 20 filas en total
     ];
     const hexagonSize = 50;
+    const numRows = hexagonMap.length;
+    const numCols = hexagonMap[0].length;
     const hexWidth = hexagonSize * Math.sqrt(3);
     const hexHeight = hexagonSize * Math.sqrt(3);
     const vertices = [];
 
-    // Generar coordenadas de los vértices de cada hexágono
-    for (let row = 0; row < hexagonMap.length; row++) {
-        for (let col = 0; col < hexagonMap[row].length; col++) {
+    // Generar coordenadas medias entre los vértices adyacentes
+    for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
             const x = col * (hexWidth * 0.87);
             const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
             const points = getHexagonPoints(x, y, hexagonSize);
-            // Agregar los vértices a la lista de coordenadas
-            vertices.push(...points);
+            for (let i = 0; i < points.length; i++) {
+                vertices.push(points[i]);
+            }
         }
     }
 
-    // Convertir la lista de vértices a coordenadas aleatorias
-    const randomCoordinates = vertices.map(vertex => {
-        const [x, y] = vertex.split(',').map(parseFloat);
-        const randomX = x + (Math.random() - 0.5) * hexagonSize * 0.5;
-        const randomY = y + (Math.random() - 0.5) * hexagonSize * 0.5;
-        return { x: randomX, y: randomY, z: 0 };
-    });
-
-    return randomCoordinates;
+    return vertices;
 }
 
-// Llamada a la función para generar las coordenadas aleatorias de los vértices
-greenCirclesS = generateRandomVertexCoordinates();
-console.log(greenCirclesS);
-*/
 
-/*
-const intervalo = 10 * 1000; // Convertir segundos a milisegundos
-setInterval(() => {
-generateRandomLineCoordinates();
-    console.log(`LENGTH INTERVAL: ${greenCirclesS.length}:`);
-}, intervalo);	    
-//generateRandomLineCoordinates();
+const allHexagonVertices = generateAllHexagonVertices();
+console.log(allHexagonVertices); // Opcional: Imprime los vértices en la consola para visualizarlos
 
 
-/*const intervalo = 10 * 1000; // Convertir segundos a milisegundos
-setInterval(() => {
-    generateGreenCircles();
-    console.log(`LENGTH INTERVAL: ${greenCirclesS.length}:`);
-}, intervalo);	  
-*/
 
 
 //////////////////////////////////////////////////////////////////////////////////////
