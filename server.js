@@ -290,7 +290,7 @@ console.log('TAMANO vsbsbZ',  filteredGreenCirclesS.length);
 
 
 for (let i = 0; i < filteredGreenCirclesS.length; i++) {
-   // console.log(`Valor Z: ${i}:`);
+ console.log(`Valor Z MODIFICA: ${i}:`);
 
   filteredGreenCirclesS[i].z = i+1;
 }
