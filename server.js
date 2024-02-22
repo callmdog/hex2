@@ -95,7 +95,7 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
     }
 }
 
-	
+/*	
  const randomCoordinates = [];
 for (let i = 0; i < 120; i++) {
     const randomIndex = Math.floor(Math.random() * coordinates.length);
@@ -114,9 +114,9 @@ for (let i = 0; i < 120; i++) {
 }
 
 return randomCoordinates;
+*/
 
-
-	/*
+	
 const randomCoordinates = new Set(); // Usamos un conjunto para evitar duplicados
 let index = 200; // Inicializamos el índice en 0
 
@@ -138,7 +138,7 @@ while (randomCoordinates.size < 10) {
 }
 
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
-*/	
+
 
 }
 
@@ -174,13 +174,13 @@ greenCirclesS = generateRandomLineCoordinates();
 
 
 
-
+/*
 
 for (let i = 0; i < greenCirclesS.length; i++) {
     const { x, y, z, index } = greenCirclesS[i];
     console.log(`MOSTRAR x = ${x}, y = ${y}, z = ${z}, index = ${index}`);
 }
-
+*/
 
 /*
 // Array temporal para almacenar valores únicos de z
@@ -256,7 +256,7 @@ var filteredGreenCirclesS = greenCirclesS.filter(function(element) {
 
 
 
-
+/*
 // Conjunto para almacenar índices únicos
 var uniqueIndexes = new Set();
 
@@ -312,12 +312,16 @@ for (let i = 0; i < greenCirclesS.length; i++) {
 
 
 
+*/
 
 
 
 
+for (let i = 0; i < greenCirclesS.length; i++) {
+ console.log(`Valor Z MODIFICA: ${i}:`);
 
-
+  greenCirclesS[i].z = i+1;
+}
 
 
 //console.log(filteredGreenCirclesS);
@@ -341,7 +345,7 @@ socket.on('dibujarVerdes', (numero) => {
 
 
 
-socket.emit('greenCirclesGenerated', filteredGreenCirclesS);
+socket.emit('greenCirclesGenerated', greenCirclesS);
 
 
 
@@ -569,12 +573,12 @@ socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove, comproid)
 
 
 
-var indice = filteredGreenCirclesS.findIndex(function(elemento) {
+var indice = greenCirclesS.findIndex(function(elemento) {
     return elemento.z === collisionIndex;
 });
 if (indice !== -1) {
-console.log("Elemento eliminado correctamente",           filteredGreenCirclesS[indice]);
-filteredGreenCirclesS.splice(indice, 1);
+console.log("Elemento eliminado correctamente",           greenCirclesS[indice]);
+greenCirclesS.splice(indice, 1);
 //socket.emit('greenCircleEaten');
 //socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
 
