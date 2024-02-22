@@ -115,6 +115,43 @@ setInterval(() => {
 //////////////////////////////////////////////////////////////////////////////////////
 
 
+function mostrarCoordenadasHexagonos(hexagonMap) {
+    const hexagonSize = 50;
+    const hexWidth = hexagonSize * Math.sqrt(3);
+    const hexHeight = hexagonSize * Math.sqrt(3);
+    
+    for (let row = 0; row < hexagonMap.length; row++) {
+        for (let col = 0; col < hexagonMap[row].length; col++) {
+            const x = col * (hexWidth * 0.87);
+            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+            const coordinates = getHexagonPoints(x, y, hexagonSize);
+            
+            console.log(`Coordenadas del hexágono (${row}, ${col}):`);
+            coordinates.forEach((coordinate, index) => {
+                console.log(`Vértice ${index + 1}: (${coordinate})`);
+            });
+        }
+    }
+}
+
+// Función para calcular las coordenadas de los vértices de un hexágono
+function getHexagonPoints(x, y, size) {
+    const points = [];
+    for (let i = 0; i < 6; i++) {
+        const angle = (2 * Math.PI / 6) * i;
+        const pointX = x + size * Math.cos(angle);
+        const pointY = y + size * Math.sin(angle);
+        const coordinate = `${pointX},${pointY}`;
+        points.push(coordinate);
+    }
+    return points;
+}
+
+// Llama a la función con tu mapa de hexágonos
+mostrarCoordenadasHexagonos(hexagonMap);
+
+
+
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
