@@ -287,6 +287,11 @@ callback(); }
 }
 createHexagons(function() {
 console.log("createHexagons end");
+
+
+
+socket.emit('dibujarVerdes', 'numero');
+
 //DRAW GREEN RANDOM CIRCLES WHEN FINISHED	
 //drawGreenCirclesOnRandomPoints();	
 });
