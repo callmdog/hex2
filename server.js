@@ -92,7 +92,48 @@ while (randomCoordinates.size < 100) {
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
 }
 
-greenCirclesS = generateRandomLineCoordinates();
+//greenCirclesS = generateRandomLineCoordinates();
+
+
+
+function generateRandomVertexCoordinates() {
+    const hexagonMap = [
+        [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+        [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+        [ { direction: 'NW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+        [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+        // Repite el patrón de filas según sea necesario para tener 20 filas en total
+    ];
+    const hexagonSize = 50;
+    const hexWidth = hexagonSize * Math.sqrt(3);
+    const hexHeight = hexagonSize * Math.sqrt(3);
+    const vertices = [];
+
+    // Generar coordenadas de los vértices de cada hexágono
+    for (let row = 0; row < hexagonMap.length; row++) {
+        for (let col = 0; col < hexagonMap[row].length; col++) {
+            const x = col * (hexWidth * 0.87);
+            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+            const points = getHexagonPoints(x, y, hexagonSize);
+            // Agregar los vértices a la lista de coordenadas
+            vertices.push(...points);
+        }
+    }
+
+    // Convertir la lista de vértices a coordenadas aleatorias
+    const randomCoordinates = vertices.map(vertex => {
+        const [x, y] = vertex.split(',').map(parseFloat);
+        const randomX = x + (Math.random() - 0.5) * hexagonSize * 0.5;
+        const randomY = y + (Math.random() - 0.5) * hexagonSize * 0.5;
+        return { x: randomX, y: randomY, z: 0 };
+    });
+
+    return randomCoordinates;
+}
+
+// Llamada a la función para generar las coordenadas aleatorias de los vértices
+greenCirclesS = generateRandomVertexCoordinates();
+console.log(greenCirclesS);
 
 
 /*
@@ -114,41 +155,6 @@ setInterval(() => {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-
-function mostrarCoordenadasHexagonos(hexagonMap) {
-    const hexagonSize = 50;
-    const hexWidth = hexagonSize * Math.sqrt(3);
-    const hexHeight = hexagonSize * Math.sqrt(3);
-    
-    for (let row = 0; row < hexagonMap.length; row++) {
-        for (let col = 0; col < hexagonMap[row].length; col++) {
-            const x = col * (hexWidth * 0.87);
-            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-            const coordinates = getHexagonPoints(x, y, hexagonSize);
-            
-            console.log(`Coordenadas del hexágono (${row}, ${col}):`);
-            coordinates.forEach((coordinate, index) => {
-                console.log(`Vértice ${index + 1}: (${coordinate})`);
-            });
-        }
-    }
-}
-
-// Función para calcular las coordenadas de los vértices de un hexágono
-function getHexagonPoints(x, y, size) {
-    const points = [];
-    for (let i = 0; i < 6; i++) {
-        const angle = (2 * Math.PI / 6) * i;
-        const pointX = x + size * Math.cos(angle);
-        const pointY = y + size * Math.sin(angle);
-        const coordinate = `${pointX},${pointY}`;
-        points.push(coordinate);
-    }
-    return points;
-}
-
-// Llama a la función con tu mapa de hexágonos
-mostrarCoordenadasHexagonos(hexagonMap);
 
 
 
