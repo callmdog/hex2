@@ -227,6 +227,10 @@ let textLine3 = document.getElementById('textLine3');
 let textLine4 = document.getElementById('textLine4');
 let textLine5 = document.getElementById('textLine5');
 
+
+let textLine6 = document.getElementById('textLine6');
+
+
 function addPlayer(nombre, puntos, color) {
 	const nuevoJugador = {
 	nombre: nombre,
@@ -407,6 +411,11 @@ console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${
 addPlayer(player.nombre, player.puntos, player.color);
 
 if(NameSecure === player.nombre){
+
+
+textLine6.textContent = `Points: ${player.puntos};
+textLine6.style.fill = player.color;
+
 initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y  ;
 //console.log('Coord circ:', initialCameraX, initialCameraY);  
@@ -434,6 +443,12 @@ textLine4.textContent = topPlayers.length >= 4 ? `#4 ${topPlayers[3].nombre}: ${
 if (topPlayers[3] && topPlayers[3].color) {textLine4.style.fill = topPlayers[3].color; } else {}
 textLine5.textContent = topPlayers.length >= 5 ? `#5 ${topPlayers[4].nombre}: ${topPlayers[4].puntos}` : '';
 if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].color; } else {}
+
+
+
+
+
+
 });	
 
 //7. GET TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
