@@ -15,6 +15,9 @@ let colorIndex = 0; //// Índice para asignar colores a usuarios
 let players = {};
 const greenCircles = [];
 let greenCirclesS = [];
+
+let todosVertices = [];
+
 const randomCoords = [];
 let ranX = 0;
 let ranY = 0;
@@ -97,7 +100,7 @@ while (randomCoordinates.size < 100) {
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
 }
 
-//greenCirclesS = generateRandomLineCoordinates();
+greenCirclesS = generateRandomLineCoordinates();
 
 
 
@@ -126,7 +129,7 @@ function generateAllHexagonVertices() {
             for (let i = 0; i < points.length; i++) {
                 vertices.push(points[i]);
 
-greenCirclesS.push(points[i]);
+todosVertices.push(points[i]);
 
             }
         }
