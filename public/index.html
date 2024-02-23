@@ -80,8 +80,6 @@ display: none; }
 
 <div id="svg-container" ondblclick="preventZoom(event)"> </div>
 
-<div id="fixedText"> </div>
-
 <svg id="firstP" xmlns="http://www.w3.org/2000/svg">  
 <g id="camera">
 <g id="hexagonGroup">
@@ -132,7 +130,7 @@ display: none; }
 
 
 
-<text id="textLine6" x="80%" y="40" fill="red">Points: 1018</text>
+<text id="textLine6" x="75%" y="40" fill="red">Points: 1018</text>
 
 </svg>	
 	
@@ -418,7 +416,8 @@ addPlayer(player.nombre, player.puntos, player.color);
 if(NameSecure === player.nombre){
 
 
-textLine6.textContent = 'Points: ', player.puntos;
+textLine6.textContent = `Points: ${player.puntos}`;
+
 textLine6.style.fill = player.color;
 
 initialCameraX = svgWidth / 2 - player.x;
