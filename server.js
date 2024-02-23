@@ -28,7 +28,7 @@ function getRandomPosition() {
 }
 
 //CREACION MAPA LOGICO PARA VERDES!!!!!!!!!!!!!!!!!!!
-/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
 function getHexagonPoints(x, y, size) {
     const points = [];
