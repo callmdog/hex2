@@ -91,7 +91,10 @@ display: none; }
 </g> </g>
 
 
-/*
+
+
+<!-- Este es un comentario en HTML
+
 <rect x="10" y="30" width="100" height="20" fill="rgba(128, 128, 128, 0.3)"/>
   <text id="textLine1" x="20" y="40" fill="red">Texto 1</text>
   
@@ -110,7 +113,9 @@ display: none; }
   <!-- Cuadrado semi-transparente detrás del texto 5 -->
   <rect x="10" y="110" width="100" height="20" fill="rgba(128, 128, 128, 0.3)"/>
   <text id="textLine5" x="20" y="120" fill="purple">Texto 5</text>
-*/
+
+
+ -->
 
 
 
@@ -127,7 +132,7 @@ display: none; }
 
 
 
-<text id="textLine6" x="90%" y="40" fill="red">Points: 1018</text>
+<text id="textLine6" x="80%" y="40" fill="red">Points: 1018</text>
 
 </svg>	
 	
@@ -413,8 +418,8 @@ addPlayer(player.nombre, player.puntos, player.color);
 if(NameSecure === player.nombre){
 
 
-//textLine6.textContent = `Points: ${player.puntos};
-//textLine6.style.fill = player.color;
+textLine6.textContent = `Points: ${player.puntos};
+textLine6.style.fill = player.color;
 
 initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y  ;
