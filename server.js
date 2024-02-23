@@ -97,7 +97,7 @@ while (randomCoordinates.size < 100) {
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
 }
 
-greenCirclesS = generateRandomLineCoordinates();
+//greenCirclesS = generateRandomLineCoordinates();
 
 
 
@@ -125,6 +125,9 @@ function generateAllHexagonVertices() {
             const points = getHexagonPoints(x, y, hexagonSize);
             for (let i = 0; i < points.length; i++) {
                 vertices.push(points[i]);
+
+greenCirclesS.push(points[i]);
+
             }
         }
     }
