@@ -100,7 +100,7 @@ while (randomCoordinates.size < 100) {
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
 }
 
-//greenCirclesS = generateRandomLineCoordinates();
+greenCirclesS = generateRandomLineCoordinates();
 
 
 
@@ -177,7 +177,7 @@ let randomY = todosVertices[randomV].y;
 
 console.log("RandomHex:", randomX, randomY);
 
-greenCirclesS.push(todosVertices[randomV]);
+//greenCirclesS.push(todosVertices[randomV]);
 
 
 
@@ -285,8 +285,8 @@ socket.on('assignColor', function (playerName) {
     players[socket.id] = {
     //x: Math.random() * 500,
     //y: Math.random() * 500,
-    x: ranX,
-    y: ranY,
+    x: randomX,
+    y: randomY,
     color: assignedColors.get(socket.id).color,
     nombre: assignedColors.get(socket.id).name,
     puntos: 0,
