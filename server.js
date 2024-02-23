@@ -74,7 +74,7 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
             if (!isNaN(midX) && !isNaN(midY)) {
 		    coordinates.push({ x: randomX, y: randomY, z: 0 });
 		    
-		    console.log('randomX:', randomX, randomY);  
+		    //console.log('randomX:', randomX, randomY);  
             }
         }
     }
@@ -89,7 +89,7 @@ while (randomCoordinates.size < 100) {
 	randomCoordinate.index = index; // Asignamos el índice a randomCoordinate
         randomCoordinates.add(randomCoordinate); // Agregamos la coordenada al conjunto
         // Agregar un console.log para imprimir las coordenadas aleatorias seleccionadas
-        console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y}), ${randomCoordinate.z}, ${randomCoordinate.index}`);
+       // console.log(`Coordenada aleatoria ${randomCoordinate.index}: (${randomCoordinate.x}, ${randomCoordinate.y}), ${randomCoordinate.z}, ${randomCoordinate.index}`);
   index++; 
     } else {
         console.log(`Error: No se pudo obtener la coordenada aleatoria ${randomCoordinates.size + 1}`);
