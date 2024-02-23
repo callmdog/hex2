@@ -100,7 +100,7 @@ while (randomCoordinates.size < 100) {
 return Array.from(randomCoordinates); // Convertimos el conjunto a un array para mantener el formato de salida
 }
 
-greenCirclesS = generateRandomLineCoordinates();
+//greenCirclesS = generateRandomLineCoordinates();
 
 
 
@@ -154,13 +154,6 @@ function printRandomValue(min, max) {
 }        
 
 
-let randomV = printRandomValue(1,  todosVertices.length  );
-
-let randomX = todosVertices[randomV].x;
-let randomY = todosVertices[randomV].y;
-
-console.log("RandomHex:", randomX, randomY);
-
 
 
 
@@ -173,6 +166,22 @@ console.log("RandomHex:", randomX, randomY);
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
+
+
+
+
+let randomV = printRandomValue(1,  todosVertices.length  );
+
+let randomX = todosVertices[randomV].x;
+let randomY = todosVertices[randomV].y;
+
+console.log("RandomHex:", randomX, randomY);
+
+greenCirclesS.push(todosVertices[randomV]);
+
+
+
+
 
 for (let i = 0; i < greenCirclesS.length; i++) {
  console.log(`Valor Z MODIFICA: ${i}:`);
