@@ -146,6 +146,25 @@ console.log(allHexagonVertices); // Opcional: Imprime los vértices en la consol
 console.log("Número total de puntos de vértice en el mapa hexagonal:", allHexagonVertices.length);
 
 
+
+
+function printRandomValue(min, max) {
+        const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+        return randomValue;
+}        
+
+
+let randomV = printRandomValue(1,  todosVertices.length  );
+
+let randomX = todosVertices[randomV].x;
+let randomY = todosVertices[randomV].y;
+
+console.log("RandomHex:", randomX, randomY);
+
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 
