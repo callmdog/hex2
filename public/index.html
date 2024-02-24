@@ -242,7 +242,7 @@ svgCanvas.addEventListener('mousedown', function(event) {
     event.preventDefault();
 });
 
-*/
+
 
 document.getElementById('svgCanvas').addEventListener('touchmove', function(event) {
         event.preventDefault();
@@ -259,7 +259,16 @@ document.addEventListener('touchmove', function(event) {
         }
     });
 
+*/
 
+
+
+document.addEventListener('touchmove', function(event) {
+        // Verifica si el evento se origina dentro del formulario de nombre o el lienzo SVG
+        if (!event.target.closest('#nameForm') && !event.target.closest('#svgCanvas')) {
+            event.preventDefault(); // Evita el desplazamiento
+        }
+    });
 
  // Variables para dibujar
         let isDrawing = false;
