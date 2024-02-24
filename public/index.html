@@ -250,6 +250,10 @@ document.getElementById('svgCanvas').addEventListener('touchmove', function(even
 
 
 
+document.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    });
+
  // Variables para dibujar
         let isDrawing = false;
         let lines = [];
