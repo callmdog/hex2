@@ -223,10 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // PAINT LIENZO FUNCIONES !!!!!!!!!!!!!
 
 
-// Evento para prevenir el comportamiento por defecto de actualizar la página al arrastrar de arriba hacia abajo
-document.addEventListener('touchmove', function(event) {
-    event.preventDefault();
-});
+
 
 
 
@@ -241,6 +238,12 @@ svgCanvas.addEventListener('touchmove', function(event) {
 svgCanvas.addEventListener('mousedown', function(event) {
     event.preventDefault();
 });
+
+
+
+document.getElementById('svgCanvas').addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    });
 
 
 
