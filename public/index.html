@@ -218,6 +218,233 @@ END LIENZO PAINT !!!!!!!!!!!!!!!!!
 // CLIENT /////////////////////////////////////////////////////////
 	  
 document.addEventListener('DOMContentLoaded', function () {
+
+
+// PAINT LIENZO FUNCIONES !!!!!!!!!!!!!
+
+
+
+ // Variables para dibujar
+        let isDrawing = false;
+        let lines = [];
+        let currentLine = null;
+        let redoLines = [];
+
+        let currentShape = 'brocha'; // Forma por defecto
+
+
+        // Obtener el lienzo SVG
+        const svgCanvas = document.getElementById('svgCanvas');
+        const undoButton = document.getElementById('undoButton');
+        const redoButton = document.getElementById('redoButton');
+        const fillButton = document.getElementById('fillButton');
+        const clearButton = document.getElementById('clearButton');
+        const colorPicker = document.getElementById('colorPicker');
+        const brushSize = document.getElementById('brushSize');
+
+        const shapeButtons = document.querySelectorAll('.shapeButton');
+
+
+        // Función para empezar a dibujar
+       // Función para empezar a dibujar
+// Función para empezar a dibujar una línea o un círculo según la herramienta seleccionada
+
+
+
+// Función para empezar a dibujar
+function startDrawing(e) {
+    isDrawing = true;
+    const { clientX, clientY } = e.touches ? e.touches[0] : e;
+    if (currentShape === 'line') {
+        currentLine = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+                currentLine.setAttribute('x1', clientX);
+                currentLine.setAttribute('y1', clientY);
+                currentLine.setAttribute('x2', clientX);
+                currentLine.setAttribute('y2', clientY);
+                currentLine.setAttribute('stroke', colorPicker.value);
+                currentLine.setAttribute('stroke-width', brushSize.value);
+                svgCanvas.appendChild(currentLine);
+
+    } else if (currentShape === 'circle') {
+        startX = clientX;
+        startY = clientY;
+        currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+        currentShapeElement.setAttribute('cx', startX);
+        currentShapeElement.setAttribute('cy', startY);
+        currentShapeElement.setAttribute('r', '0');
+        currentShapeElement.setAttribute('stroke', colorPicker.value);
+        currentShapeElement.setAttribute('stroke-width', brushSize.value);
+        currentShapeElement.setAttribute('fill', 'none');
+        svgCanvas.appendChild(currentShapeElement);
+    } else if (currentShape === 'rectangle') {
+        startX = clientX;
+        startY = clientY;
+        currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+        currentShapeElement.setAttribute('x', startX);
+        currentShapeElement.setAttribute('y', startY);
+        currentShapeElement.setAttribute('width', '0');
+        currentShapeElement.setAttribute('height', '0');
+        currentShapeElement.setAttribute('stroke', colorPicker.value);
+        currentShapeElement.setAttribute('stroke-width', brushSize.value);
+        currentShapeElement.setAttribute('fill', 'none');
+        svgCanvas.appendChild(currentShapeElement);
+    } else if (currentShape === 'brocha') {
+
+currentLine = document.createElementNS("http://www.w3.org/2000/svg", 'polyline');
+        currentLine.setAttribute('points', `${clientX},${clientY}`);
+        currentLine.setAttribute('stroke', colorPicker.value);
+        currentLine.setAttribute('stroke-width', brushSize.value);
+        currentLine.setAttribute('fill', 'none');
+        svgCanvas.appendChild(currentLine);
+
+	}
+     else if (currentShape === 'triangle') {
+ startX = clientX;
+        startY = clientY;
+        currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'polygon');
+        currentShapeElement.setAttribute('stroke', colorPicker.value);
+        currentShapeElement.setAttribute('stroke-width', brushSize.value);
+        currentShapeElement.setAttribute('fill', 'none');
+        svgCanvas.appendChild(currentShapeElement);
+        currentShapeElement.setAttribute('points', `${startX},${startY}`);
+        
+
+}
+}
+
+// Función para dibujar
+function draw(e) {
+    if (isDrawing) {
+        const { clientX, clientY } = e.touches ? e.touches[0] : e;
+        if (currentShape === 'line') {
+            currentLine.setAttribute('x2', clientX);
+                currentLine.setAttribute('y2', clientY);
+
+        } else if (currentShape === 'circle') {
+            const radius = Math.sqrt(Math.pow(clientX - startX, 2) + Math.pow(clientY - startY, 2));
+            currentShapeElement.setAttribute('r', radius);
+        } else if (currentShape === 'rectangle') {
+            const width = clientX - startX;
+            const height = clientY - startY;
+            currentShapeElement.setAttribute('x', Math.min(startX, startX + width));
+            currentShapeElement.setAttribute('y', Math.min(startY, startY + height));
+            currentShapeElement.setAttribute('width', Math.abs(width));
+            currentShapeElement.setAttribute('height', Math.abs(height));
+        }else if (currentShape === 'brocha') {
+
+const points = currentLine.getAttribute('points');
+            currentLine.setAttribute('points', `${points} ${clientX},${clientY}`);
+
+	}else if (currentShape === 'triangle') {
+
+	     const points = `${startX},${startY} ${clientX},${clientY} ${2 * startX - clientX},${clientY}`;
+            currentShapeElement.setAttribute('points', points);
+}
+
+
+    }
+}
+
+// Función para terminar de dibujar
+function endDrawing() {
+    isDrawing = false;
+    if (currentLine !== null) {
+        lines.push(currentLine);
+        currentLine = null;
+    }
+    if (currentShapeElement !== null) {
+	        lines.push(currentShapeElement);
+
+        currentShapeElement = null;
+    }
+}
+
+
+
+        // Función para deshacer el último movimiento pintado
+        function undoLastDraw() {
+            if (lines.length > 0) {
+                const lastLine = lines.pop();
+                redoLines.push(lastLine);
+                svgCanvas.removeChild(lastLine);
+            }
+        }
+
+        // Función para rehacer el último movimiento deshecho
+        function redoLastDraw() {
+            if (redoLines.length > 0) {
+                const lastRedoLine = redoLines.pop();
+                lines.push(lastRedoLine);
+                svgCanvas.appendChild(lastRedoLine);
+            }
+        }
+
+        // Función para rellenar el círculo entero con el color seleccionado
+        
+        
+        function fillCircle() {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    const canvasWidth = svgCanvas.clientWidth;
+    const canvasHeight = svgCanvas.clientHeight;
+    const centerX = canvasWidth / 2;
+    const centerY = canvasHeight / 2;
+    const radius = Math.min(canvasWidth, canvasHeight) / 2;
+    circle.setAttribute('cx', centerX);
+    circle.setAttribute('cy', centerY);
+    circle.setAttribute('r', radius);
+    circle.setAttribute('fill', colorPicker.value);
+    svgCanvas.appendChild(circle);
+}
+
+        
+        
+
+        // Función para limpiar todo lo que se ha dibujado
+        function clearCanvas() {
+            while (svgCanvas.firstChild) {
+                svgCanvas.removeChild(svgCanvas.firstChild);
+            }
+            lines = [];
+            redoLines = [];
+        }
+
+        // Event Listeners para el dibujo
+        svgCanvas.addEventListener('mousedown', startDrawing);
+        svgCanvas.addEventListener('touchstart', startDrawing);
+        svgCanvas.addEventListener('mousemove', draw);
+        svgCanvas.addEventListener('touchmove', draw);
+        svgCanvas.addEventListener('mouseup', endDrawing);
+        svgCanvas.addEventListener('mouseleave', endDrawing);
+        svgCanvas.addEventListener('touchend', endDrawing);
+
+        // Event Listener para el botón de deshacer
+        undoButton.addEventListener('click', undoLastDraw);
+
+        // Event Listener para el botón de rehacer
+        redoButton.addEventListener('click', redoLastDraw);
+
+        // Event Listener para el botón de rellenar
+        fillButton.addEventListener('click', fillCircle);
+
+        // Event Listener para el botón de limpiar
+        clearButton.addEventListener('click', clearCanvas);
+
+	shapeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                currentShape = this.getAttribute('data-shape');
+            });
+        });
+
+
+
+// END PAINT LIENZO FUNCIONES !!!!!!!!!!!!!
+
+
+
+
+
+
+
 	
 const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
