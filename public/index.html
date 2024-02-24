@@ -250,11 +250,11 @@ document.getElementById('svgCanvas').addEventListener('touchmove', function(even
 
 
 
+
 document.addEventListener('touchmove', function(event) {
-        event.preventDefault();
+            event.preventDefault();
+        }, { passive: false });
     });
-
-
 
 document.addEventListener('touchmove', function(event) {
         if (!event.target.closest('#nameForm') && !event.target.closest('#svgCanvas')) {
