@@ -270,6 +270,17 @@ document.addEventListener('touchmove', function(event) {
         }
     });
 
+
+document.addEventListener('touchmove', function(event) {
+        console.log('Touch move event fired.'); // Agrega un log para verificar que el evento se está disparando
+        
+        // Verifica si el evento se origina dentro del formulario de nombre o el lienzo SVG
+        if (!event.target.closest('#nameForm') && !event.target.closest('#svgCanvas')) {
+            console.log('Prevented default behavior.'); // Agrega un log para verificar si se está previniendo el comportamiento predeterminado
+            event.preventDefault(); // Evita el desplazamiento
+        }
+    });
+
  // Variables para dibujar
         let isDrawing = false;
         let lines = [];
