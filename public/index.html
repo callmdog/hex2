@@ -60,6 +60,51 @@ z-index: 1;
 display: none; }
 	
 #bluePoint { display: none; }
+
+
+
+
+
+
+/*
+
+LIENZO PAINT !!!!!!!!!!!!!!!!!
+
+*/
+
+   #canvasContainer {
+            position: relative;
+            width: 300px; /* Ancho basado en la altura de la ventana */
+            height: 300px; /* Altura basada en la altura de la ventana */
+            margin: auto;
+            border: 1px solid black;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        #svgCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #undoButton, #redoButton, #fillButton, #clearButton {
+            margin: 10px;
+            padding: 5px 10px;
+            background-color: #ddd;
+            border: 1px solid #999;
+            cursor: pointer;
+        }
+
+
+/*
+
+END LIENZO PAINT !!!!!!!!!!!!!!!!!
+
+*/
+
   
 </style>
 </head>
