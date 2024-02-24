@@ -257,10 +257,12 @@ document.addEventListener('touchmove', function(event) {
 
 
 document.addEventListener('touchmove', function(event) {
-        if (!event.target.closest('#nameForm')) {
+        if (!event.target.closest('#nameForm') && !event.target.closest('#svgCanvas')) {
             event.preventDefault();
         }
     });
+
+
 
  // Variables para dibujar
         let isDrawing = false;
