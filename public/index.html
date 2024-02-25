@@ -1071,11 +1071,27 @@ const newY = start.y + progress * (end.y - start.y);
 circleElement.setAttribute('cx', newX);
 circleElement.setAttribute('cy', newY);
 
-////CAMERA MOVEMENT
+
+
+
+
+
+
 if (socket.id===playerId) {
+
+
+
+
+////CAMERA MOVEMENT
+
 	const newXCam = svgWidth / 2 - newX;
 	const newYCam = svgHeight / 2 - newY;	
-	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+//	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+
+////END CAMERA MOVEMENT
+
+
+
 
 // Obtener el radio del círculo como una cadena de texto
 const radiusAsString = circleElement.getAttribute('r');
@@ -1084,7 +1100,11 @@ const radius = parseFloat(radiusAsString);
 detectarColisiones(circleElement);
 detectarColisionesRectangulares(newX, newY, radius, greenCircles);
 }	
-////END CAMERA MOVEMENT
+
+
+
+
+
 		
 if (progress < 1) { requestAnimationFrame(update); } 
 else {
