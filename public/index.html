@@ -758,6 +758,8 @@ newRandomForServer();
 //6. UPDATE TOP PLAYERS 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
 
+let camProb = false;
+
 socket.on('updatePlayers2', function (updatedPlayers2) {
 console.log('SOCKET UPDATE PLAYERS 2');
 topplayers = [];
@@ -787,7 +789,13 @@ bY = player.y;
 
 //CAMERA MOVEMENT
 
-//camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+if (camProb === false) {
+
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
+}
+
+camProb = true;
 
 // END CAMERA MOVEMENT
 
