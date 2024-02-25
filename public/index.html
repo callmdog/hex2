@@ -1056,6 +1056,11 @@ inicialX = newX; inicialY = newY;
 
 let CalculoCam = 0;
 	
+
+let currentCameraX4p = 0;
+
+let currentCameraY4p = 0;
+
 socket.on('animateBluePoint', function (animationData) {
 //console.log('SOCKET ANIMATE BLUE POINT');
 const playerId = animationData.playerId;
@@ -1079,9 +1084,7 @@ animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
 if(Camara===2) {
 
 
-let currentCameraX4p = 0;
 
-let currentCameraY4p = 0;
 
 //CAMARA/////////////////////
 		const transformAttribute = camera.getAttribute('transform');
@@ -1150,6 +1153,8 @@ currentX + bluePointWidth;
 
 
 ////ATRAS///////////
+// ANIMATE CAM 2 CAMARA MOVIMIENTO !!!!!!!!!!!!
+////////////////////
 
 function animateCam2(destinationX, destinationY, callback) {
 
@@ -1164,15 +1169,15 @@ let Cy = 0;
 		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
 		if (match) {
     		 Cx = parseFloat(match[1]);
-    		 currentCameraY4 = parseFloat(match[2]);
-    		console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4);  
+    		 currentCameraY4p = parseFloat(match[2]);
+    		console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
 		} else {
 		}
 //CAMARA END/////////////////////
 
 
-    const startX = parseFloat(bluePoint.getAttribute('cx'));
-    const startY = parseFloat(bluePoint.getAttribute('cy'));
+    const startX = bX;
+    const startY = bY;
 
     const startTime = performance.now();
     const duration = 500;    
@@ -1185,7 +1190,7 @@ let Cy = 0;
     
     Cx = - Cx
        
-    const blueX = parseFloat(bluePoint.getAttribute('cx'));
+    const blueX = bX;
     
     destinationX =    svgWidth / 2 + blueX ;
        
@@ -1207,7 +1212,7 @@ let Cy = 0;
         
        // const newY = startY + progress * (destinationY - startY);
 
-	MoveCam=false;
+//	MoveCam=false;
 		
         camera.setAttribute('transform', `translate(${ -newX}, ${CamY})`);      
  
