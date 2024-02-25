@@ -127,7 +127,7 @@ END LIENZO PAINT !!!!!!!!!!!!!!!!!
     <input type="text" id="playerName" name="playerName" required>
     <button type="button" id="submitButton">Aceptar</button>
 	<div id="cameraOptions">
-	<label> <input type="radio" name="camera" value="1"> Opción 1 </label>
+	<label> <input type="radio" name="camera" value="1"  checked   > Opción 1 </label>
 	<label> <input type="radio" name="camera" value="2"> Opción 2 </label>
 	</div>	
 
@@ -1105,7 +1105,14 @@ if (socket.id===playerId) {
 
 	const newXCam = svgWidth / 2 - newX;
 	const newYCam = svgHeight / 2 - newY;	
-//camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+
+if(Camara===1)
+{
+
+camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+
+
+}
 
 ////END CAMERA MOVEMENT
 
