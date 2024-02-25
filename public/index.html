@@ -1109,6 +1109,25 @@ const currentX = bX;
     const bluePointWidth = bluePointRect.width;
     const bluePointHeight = bluePointRect.height;
 
+
+//DERECHA!!!!!
+
+
+if (bluePointRightX > limitRightX) {      
+        if(MoveCam){
+         ////Conectando mitad
+    CalculoCam = CalculoCam + svgWidth / 3;
+ console.log('CalculoCam !!!!!!:',   CalculoCam  );
+              animateCam (10,  10  , function() {
+             MoveCam = true;
+			});   
+		}
+	}
+
+
+///IZQUIERDA!!!!!!!
+
+
     // Calcula las coordenadas del lado derecho del círculo azul
 
     const bluePointRightX2 = 
