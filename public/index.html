@@ -1067,6 +1067,60 @@ animateNameLocally(textElement2, data.start, data.end);
 
 //FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
+
+
+
+
+//MENOS 30%////////////////
+
+if(Camara===2) {
+
+
+const currentX = parseFloat(bluePoint.getAttribute('cx')) - currentCameraX3; 
+    const currentY = parseFloat(bluePoint.getAttribute('cy')) - currentCameraY3; 
+
+
+    // Obtén las dimensiones reales del círculo azul considerando la posición de la cámara
+
+    const bluePointRect = playerElement.getBoundingClientRect();
+    const bluePointWidth = bluePointRect.width;
+    const bluePointHeight = bluePointRect.height;
+
+    // Calcula las coordenadas del lado derecho del círculo azul
+
+    const bluePointRightX2 = 
+currentX + bluePointWidth;
+    
+    const limitRightX2 = 
+- currentCameraX4 + (window.innerWidth * 0.3);
+
+
+    
+       console.log('limitRightX2 !!!!!!:',   limitRightX2  );
+   console.log('currentCameraX42 !!!!!!:',   currentCameraX4  );
+
+
+  if (bluePointRightX2 < limitRightX2) {
+   console.log('DETECTADO 30% !!!!!!:',   CalculoCam  );
+
+        if(MoveCam){
+         ////Conectando mitad
+    CalculoCam = CalculoCam - svgWidth / 3;
+ console.log('CalculoCam !!!!!!:',   CalculoCam  );
+              animateCam2 (10,  10  , function() {
+               MoveCam = true;
+				});   
+		}
+	}
+
+
+}
+// END 30% MENOS CAMARA IZQUIERDA!!!!!!!
+
+
+
+
+
 	console.log('La animación ha terminado');
 	findAndMarkClosestVertices();
 	isMoving = false;
