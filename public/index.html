@@ -782,7 +782,16 @@ initialCameraY = svgHeight / 2 - player.y  ;
 //bluePointElement.setAttribute('cy', player.y);
 bX = player.x;
 bY = player.y;
-camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
+
+
+//CAMERA MOVEMENT
+
+//camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
+// END CAMERA MOVEMENT
+
+
 console.log('R. Numbers:', randomX, randomY);  
 inicialX = player.x;
 inicialY = player.y;
@@ -1086,7 +1095,7 @@ if (socket.id===playerId) {
 
 	const newXCam = svgWidth / 2 - newX;
 	const newYCam = svgHeight / 2 - newY;	
-//	camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
 
 ////END CAMERA MOVEMENT
 
