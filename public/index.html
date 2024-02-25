@@ -1113,15 +1113,22 @@ const currentX = bX;
 //DERECHA!!!!!
 
 
+
+const bluePointRightX = currentX + bluePointWidth;
+
+
+const limitRightX = - currentCameraX4p + (window.innerWidth * 0.7);
+
+
 if (bluePointRightX > limitRightX) {      
-        if(MoveCam){
+       // if(MoveCam){
          ////Conectando mitad
     CalculoCam = CalculoCam + svgWidth / 3;
  console.log('CalculoCam !!!!!!:',   CalculoCam  );
               animateCam (10,  10  , function() {
-             MoveCam = true;
+            // MoveCam = true;
 			});   
-		}
+		//}
 	}
 
 
@@ -1174,6 +1181,84 @@ currentX + bluePointWidth;
 ////ATRAS///////////
 // ANIMATE CAM 2 CAMARA MOVIMIENTO !!!!!!!!!!!!
 ////////////////////
+
+
+function animateCam(destinationX, destinationY, callback) {
+
+  console.log('Animate Cam');
+
+let Cx = 0;
+let Cy = 0;
+
+
+//CAMARA/////////////////////
+		const transformAttribute = camera.getAttribute('transform');
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		if (match) {
+    		 Cx = parseFloat(match[1]);
+    		 currentCameraY4p = parseFloat(match[2]);
+    		console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
+		} else {
+		}
+//CAMARA END/////////////////////
+
+
+    const startX = bX;
+    const startY = bY;
+
+    const startTime = performance.now();
+    const duration = 500;    
+    
+    let CamX = 0;
+    let CamY = 0;    
+
+    CamX = parseFloat(match[1]);
+    CamY = parseFloat(match[2]);
+       
+
+
+const blueX = bX;    
+    
+    destinationX =    svgWidth / 2 + blueX ;
+       
+    console.log('DestinationX Cam !!!!!!:',   destinationX  );      
+    function update() {
+        const currentTime = performance.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        
+//MitadWidth
+
+ console.log('Cx !!!!!!:',   Cx  );      
+
+        const newX = Cx + progress * (   - CalculoCam   - Cx);
+        
+        
+    //     console.log('svgWidth !!!!!!:',   svgWidth / 2  ); 
+        
+       // const newY = startY + progress * (destinationY - startY);
+
+	//MoveCam=false;
+		
+        camera.setAttribute('transform', `translate(${ newX}, ${CamY})`);      
+ 
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            if (callback) {
+                callback();
+            }
+        }
+    	}
+
+    	requestAnimationFrame(update);
+	}
+    
+    
+
+////////////////
 
 function animateCam2(destinationX, destinationY, callback) {
 
