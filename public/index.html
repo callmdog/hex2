@@ -1076,8 +1076,25 @@ animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
 if(Camara===2) {
 
 
-const currentX = bX - currentCameraX3; 
-    const currentY = bY - currentCameraY3; 
+let currentCameraX4p = 0;
+
+let currentCameraY4p = 0;
+
+//CAMARA/////////////////////
+		const transformAttribute = camera.getAttribute('transform');
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		if (match) {
+    		 currentCameraX4p = parseFloat(match[1]);
+    		 currentCameraY4p = parseFloat(match[2]);
+    		console.log('Cámara:', currentCameraX4, 					currentCameraY4);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+//CAMARA END/////////////////////        
+
+
+const currentX = bX; 
+    const currentY = bY; 
 
 
     // Obtén las dimensiones reales del círculo azul considerando la posición de la cámara
@@ -1092,7 +1109,7 @@ const currentX = bX - currentCameraX3;
 currentX + bluePointWidth;
     
     const limitRightX2 = 
-- currentCameraX4 + (window.innerWidth * 0.3);
+- currentCameraX4p + (window.innerWidth * 0.3);
 
 
     
