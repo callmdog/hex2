@@ -1076,8 +1076,8 @@ animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
 if(Camara===2) {
 
 
-const currentX = parseFloat(bluePoint.getAttribute('cx')) - currentCameraX3; 
-    const currentY = parseFloat(bluePoint.getAttribute('cy')) - currentCameraY3; 
+const currentX = bX - currentCameraX3; 
+    const currentY = bY - currentCameraY3; 
 
 
     // Obtén las dimensiones reales del círculo azul considerando la posición de la cámara
