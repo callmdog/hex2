@@ -1115,10 +1115,14 @@ if(Camara===2) {
 		if (match) {
     		 currentCameraX4p = parseFloat(match[1]);
     		 currentCameraY4p = parseFloat(match[2]);
-    		console.log('Cámara:', currentCameraX4, 					currentCameraY4);  
+    //		console.log('Cámara:', currentCameraX4, 					currentCameraY4);  
 		} else {
     		console.error('No se pudieron obtener las coordenadas de la cámara.');
 		}
+
+
+console.log('CamY !!!!!!:', currentCameraY4p  );
+
 //CAMARA END/////////////////////        
 
 
@@ -1193,8 +1197,13 @@ currentX + bluePointWidth;
 const bluePointRightXA = currentY + bluePointHeight;
 
 
+
+console.log('BPRXA !!!!!!:',  bluePointRightXA  );
+
 const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
 
+
+console.log('limitRightY !!!!!!:', limitRightY   );
 
 if (bluePointRightXA > limitRightY) {      
        // if(MoveCam){
