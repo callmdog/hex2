@@ -1172,7 +1172,7 @@ currentX + bluePointWidth;
 
 
     
-       console.log('limitRightX2 !!!!!!:',   limitRightX2  );
+      // console.log('limitRightX2 !!!!!!:',   limitRightX2  );
    
 
 
@@ -1210,9 +1210,10 @@ if (bluePointRightXA > limitRightY) {
          ////Conectando mitad
     CalculoCam = CalculoCam + svgHeight / 3;
  console.log('CalculoCam !!!!!!:',   CalculoCam  );
-            //  animateCam3 (10,  10  , function() {
+             animateCam3 (10,  10  , function() {
             // MoveCam = true;
-//			});   
+
+	});   
 		//}
 	}
 
@@ -1433,6 +1434,9 @@ let Cy = 0;
     //Cy = - Cy;
        
     const blueY = bY;
+
+
+console.log('blueY !!!!!!:',   blueY  ); 
     
     destinationX =    svgHeight / 2 + blueY ;
        
