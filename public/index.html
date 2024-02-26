@@ -1114,6 +1114,18 @@ let currentCameraX4p = 0;
 
 let currentCameraY4p = 0;
 
+
+
+const transformAttribute = camera.getAttribute('transform');
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		if (match) {
+    		 //currentCameraX4p = parseFloat(match[1]);
+    		 CalculoCam = parseFloat(match[2]);
+    //		console.log('Cámara:', currentCameraX4, 					currentCameraY4);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+
 socket.on('animateBluePoint', function (animationData) {
 //console.log('SOCKET ANIMATE BLUE POINT');
 const playerId = animationData.playerId;
