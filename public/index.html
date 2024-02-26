@@ -541,6 +541,8 @@ function preventZoom(event) {
 	event.preventDefault();
 }
 
+/*
+
 const hexagonMap = [
     [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
     [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
@@ -548,6 +550,37 @@ const hexagonMap = [
     [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
     // Repite el patrón de filas según sea necesario para tener 20 filas en total
 ];
+
+*/
+
+
+
+const hexagonMap = [
+    [ 
+        { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, 
+        { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } 
+    ],
+    [ 
+        { direction: 'NW' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, 
+        { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, 
+        { direction: 'E' } 
+    ],
+    [ 
+        { direction: 'NW' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, 
+        { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, 
+        { direction: 'E' } 
+    ],
+    [ 
+        { direction: 'SW' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, 
+        { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, 
+        { direction: 'E' } 
+    ],
+    // Repite el patrón de filas según sea necesario para tener 20 filas en total
+    // Patrón de 4 filas repetido 5 veces para formar un mapa de 20x20
+    ...Array.from({ length: 4 }, () => hexagonMap.slice(0, 4)).flat()
+];
+
+
 
 //CREATE HEXAGON PANAL
 createHexagons();
