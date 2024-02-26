@@ -1438,7 +1438,7 @@ let Cy = 0;
 
  console.log('Cy !!!!!!:',   Cy );      
 
-        const newY = Cy + progress * (    CalculoCam   - Cy);
+        const newY = Cy + progress * (    CalculoCam   + Cy);
         
         
     //     console.log('svgHeight !!!!!!:',   svgHeight / 2  ); 
@@ -1447,7 +1447,7 @@ let Cy = 0;
 
 //	MoveCam=false;
 		
-        camera.setAttribute('transform', `translate(${CamX}, ${-newY})`);      
+        camera.setAttribute('transform', `translate(${CamX}, ${newY})`);      
  
 
         if (progress < 1) {
