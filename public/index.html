@@ -777,26 +777,6 @@ vertices.forEach((vertex, index) => {
 //console.log(`Vértice ${index + 1}: (${vertex.x}, ${vertex.y})`);
 });});
 }
-calculateHexagonVertices();	
-console.log("Longitud de hexagonVertices:", hexagonVertices.length);
-function printRandomValue(min, max) {
-	const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
-	return randomValue;
-}	
-let randomC = printRandomValue(1,  hexagonVertices.length  );
-let randomC6 = printRandomValue(0, 5 );
-randomX = hexagonVertices[randomC][randomC6].x;
-randomY = hexagonVertices[randomC][randomC6].y;
-console.log("RandomHex:", randomC);
-console.log("Elemento de hexagonVertices:", hexagonVertices[randomC][randomC6]);
-
-//RANDOM X e Y for SERVER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function newRandomForServer() {
-	const coordinatesR = [];
-	coordinatesR.push({ x: randomX, y: randomY });
-	console.log(`CoordsR: ${randomX},${randomY}`);
-	socket.emit('sendCoordinatesR', coordinatesR);	
-}	
 
 //5. ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
@@ -805,7 +785,6 @@ socket.on('assignColor', function (playerName) {
 console.log('SOCKET ASSIGN COLOR');
 socket.emit('updatePlayersRequest');
 //X e Y random for Player al principio	
-newRandomForServer();
 });	
 
 //6. UPDATE TOP PLAYERS 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -820,7 +799,7 @@ topplayers = [];
 for (const playerId in updatedPlayers2) {
 const player = updatedPlayers2[playerId];
 //LOGS		
-console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
+//console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
 addPlayer(player.nombre, player.puntos, player.color);
 
 if(NameSecure === player.nombre){
@@ -854,8 +833,6 @@ camProb = true;
 }
 // END CAMERA MOVEMENT
 
-
-console.log('R. Numbers:', randomX, randomY);  
 inicialX = player.x;
 inicialY = player.y;
 findAndMarkClosestVertices();
@@ -938,7 +915,7 @@ direction: 'alternate', loop: true });
 });
 
 greenCircles.forEach((circle, index) => {
-    console.log(`Círculo ${index + 1}: x = ${circle.x}, y = ${circle.y}, z = ${circle.z}`);
+    //console.log(`Círculo ${index + 1}: x = ${circle.x}, y = ${circle.y}, z = ${circle.z}`);
 });
 	
 }
@@ -1016,12 +993,12 @@ if (existingTextElement) {
 	
 function moveBluePoint( clickX, clickY ) {
 
-const circles = document.querySelectorAll('circle[data-player-id="jugador"]');
+//const circles = document.querySelectorAll('circle[data-player-id="jugador"]');
 
-circles.forEach((circle, index) => {
-    console.log(`!!!!!!!!!!!Círculo ${index + 1}:`);
-    console.log(circle); // Esto imprimirá toda la información del círculo en la consola
-});
+//circles.forEach((circle, index) => {
+ //   console.log(`!!!!!!!!!!!Círculo ${index + 1}:`);
+ //   console.log(circle); // Esto imprimirá toda la información del círculo en la consola
+//});
 
 //CAMARA/////////////////////
 const transformAttribute = camera.getAttribute('transform');
@@ -1071,7 +1048,7 @@ return Math.sqrt(dx * dx + dy * dy);
 /////////////////////////////////////////////////////////////////////////////	
 
 function animateBluePoint(destinationX, destinationY) {
-console.log('1. Animate Blue Point');
+//console.log('1. Animate Blue Point');
 //const startX = parseFloat(bluePointElement.getAttribute('cx'));
 //const startY = parseFloat(bluePointElement.getAttribute('cy'));
 const startX = bX;
@@ -1725,8 +1702,8 @@ if (blueBoundingBox.x1 < greenBoundingBox.x2 && blueBoundingBox.x2 > greenBoundi
 blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBox.y1) {
 
 const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
-console.log(`COLISION Z: ${greenIndex}:`);			
-console.log(`REMOVE !!!!!!`, circleToRemoveC);
+//console.log(`COLISION Z: ${greenIndex}:`);			
+//console.log(`REMOVE !!!!!!`, circleToRemoveC);
 
 if (circleToRemoveC) {	
 circleToRemoveC.parentNode.removeChild(circleToRemoveC);
@@ -1734,13 +1711,13 @@ var indice = greenCircles.findIndex(function(elemento) {
     return elemento.z === circle.z;
 });
 if (indice !== -1) {
-console.log("Elemento eliminado correctamente", greenCircles[indice]);
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
 greenCircles.splice(indice, 1);
 socket.emit('greenCircleEaten');
 socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
 
 } else {
-console.log("No se encontró ningún elemento con z igual a 10");
+//console.log("No se encontró ningún elemento con z igual a 10");
 }	
 }	
 
@@ -1760,11 +1737,11 @@ return false;
 socket.on('greenCircleCollision', (collisionIndex, indexToRemove, comproid) => {
 
 if (comproid !== socket.id) {
-console.log(`BORRADOR ACTIVADO!!!`);	
+//console.log(`BORRADOR ACTIVADO!!!`);	
 	
 const circleToRemoveC = document.getElementById('greenCircle_'+collisionIndex);
-console.log(`COLISION Z2: ${collisionIndex}:`);			
-console.log(`REMOVE2 !!!!!!`, circleToRemoveC);
+//console.log(`COLISION Z2: ${collisionIndex}:`);			
+//console.log(`REMOVE2 !!!!!!`, circleToRemoveC);
 
 if (circleToRemoveC) {	
 circleToRemoveC.parentNode.removeChild(circleToRemoveC);
@@ -1772,11 +1749,11 @@ let indice = greenCircles.findIndex(function(elemento) {
     return elemento.z === collisionIndex;
 });
 if (indice !== -1) {
-console.log("Elemento eliminado correctamente", greenCircles[indice]);
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
 greenCircles.splice(indice, 1);
 
 } else {
-console.log("No se encontró ningún elemento con z igual a 10");
+//console.log("No se encontró ningún elemento con z igual a 10");
 }	
 }	
 	
@@ -1844,7 +1821,7 @@ console.log(`GAME OVER`);
 
 });
 	
-console.log('La detección de colisiones ha terminado.');
+//console.log('La detección de colisiones ha terminado.');
 }	
 
 //ELIMINAR JUGADOR DE TODOS CLIENTES CUANDO COLISION !!!!!!!!!!!!!!!!!!
