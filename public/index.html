@@ -1083,14 +1083,9 @@ inicialX = newX; inicialY = newY;
 //4. SOCKET ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 
-
 let CalculoCam = 0;
-	
-
 let currentCameraX4p = 0;
-
 let currentCameraY4p = 0;
-
 
 socket.on('animateBluePoint', function (animationData) {
 //console.log('SOCKET ANIMATE BLUE POINT');
@@ -1107,15 +1102,14 @@ animateNameLocally(textElement2, data.start, data.end);
 //FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
 
-
-
-
-//MENOS 30%////////////////
+//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
+//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
+//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
+//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
+//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
+//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
 
 if(Camara===2) {
-
-
-
 
 //CAMARA/////////////////////
 		const transformAttribute = camera.getAttribute('transform');
@@ -1123,147 +1117,82 @@ if(Camara===2) {
 		if (match) {
     		 currentCameraX4p = parseFloat(match[1]);
     		 currentCameraY4p = parseFloat(match[2]);
-    //		console.log('Cámara:', currentCameraX4, 					currentCameraY4);  
 		} else {
     		console.error('No se pudieron obtener las coordenadas de la cámara.');
 		}
-
-
 console.log('CamY !!!!!!:', currentCameraY4p  );
-
 //CAMARA END/////////////////////        
 
-
 const currentX = bX; 
-    const currentY = bY; 
-
-
-    // Obtén las dimensiones reales del círculo azul considerando la posición de la cámara
-
-    const bluePointRect = playerElement.getBoundingClientRect();
-    const bluePointWidth = bluePointRect.width;
-    const bluePointHeight = bluePointRect.height;
-
+const currentY = bY; 
+const bluePointRect = playerElement.getBoundingClientRect();
+const bluePointWidth = bluePointRect.width;
+const bluePointHeight = bluePointRect.height;
 
 //DERECHA!!!!!
-
-
-
 const bluePointRightX = currentX + bluePointWidth;
-
-
 const limitRightX = - currentCameraX4p + (window.innerWidth * 0.7);
-
-
 if (bluePointRightX > limitRightX) {      
-       // if(MoveCam){
-         ////Conectando mitad
-    CalculoCam = CalculoCam + svgWidth / 3;
- console.log('CalculoCam !!!!!!:',   CalculoCam  );
-              animateCam (10,  10  , function() {
-            // MoveCam = true;
-			});   
-		//}
-	}
-
+//if(MoveCam){
+CalculoCam = CalculoCam + svgWidth / 3;
+console.log('CalculoCam !!!!!!:',   CalculoCam  );
+animateCam (10,  10  , function() {
+//MoveCam = true;
+});   
+//}
+}
 
 ///IZQUIERDA!!!!!!!
-
-
-    // Calcula las coordenadas del lado derecho del círculo azul
-
-    const bluePointRightX2 = 
-currentX + bluePointWidth;
-    
-    const limitRightX2 = 
-- currentCameraX4p + (window.innerWidth * 0.3);
-
-
-    
-      // console.log('limitRightX2 !!!!!!:',   limitRightX2  );
-   
-
-
-  if (bluePointRightX2 < limitRightX2) {
-   
-
-       // if(MoveCam){
-         ////Conectando mitad
-    CalculoCam = CalculoCam - svgWidth / 3;
- console.log('CalculoCam !!!!!!:',   CalculoCam  );
-              animateCam2 (10,  10  , function() {
-              // MoveCam = true;
-				});   
-	//	}
-	}
-
+const bluePointRightX2 = currentX + bluePointWidth;
+const limitRightX2 = - currentCameraX4p + (window.innerWidth * 0.3);
+if (bluePointRightX2 < limitRightX2) {
+//if(MoveCam){
+CalculoCam = CalculoCam - svgWidth / 3;
+console.log('CalculoCam !!!!!!:',   CalculoCam  );
+animateCam2 (10,  10  , function() {
+//MoveCam = true;
+});   
+//}
+}
 
 //ARRIBA!!!!!!! por modificar
-
-
-
-
 console.log('bYnsnsnsnsns !!!!!!:',   bY ); 
-
-
-
 const bluePointRightXA = currentY + bluePointHeight;
-
-
-
 console.log('BPRXA !!!!!!:',  bluePointRightXA  );
-
 const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
-
-
 console.log('limitRightY !!!!!!:', limitRightY   );
-
 if (bluePointRightXA > limitRightY) {      
-       // if(MoveCam){
-         ////Conectando mitad
-    CalculoCam = CalculoCam + svgHeight / 3;
- console.log('CalculoCam !!!!!!:',   CalculoCam  );
-             animateCam3 (10,  10  , function() {
-            // MoveCam = true;
-
-	});   
-		//}
-	}
-
-
+//if(MoveCam){
+CalculoCam = CalculoCam + svgHeight / 3;
+console.log('CalculoCam !!!!!!:',   CalculoCam  );
+animateCam3 (10,  10  , function() {
+//MoveCam = true;
+});   
+//}
+}
 
 //ABAJO!!!!!!!!
 
-
-
-
 }
+	
 // END 30% MENOS CAMARA IZQUIERDA!!!!!!!
 
-
-
-
-
-	//console.log('La animación ha terminado');
-	findAndMarkClosestVertices();
-	isMoving = false;
-	});
+//console.log('La animación ha terminado');
+findAndMarkClosestVertices();
+isMoving = false;
+});
 });	
-
-
 
 ////ATRAS///////////
 // ANIMATE CAM 2 CAMARA MOVIMIENTO !!!!!!!!!!!!
 ////////////////////
 
-
 function animateCam(destinationX, destinationY, callback) {
 
-  console.log('Animate Cam');
+console.log('Animate Cam');
 
 let Cx = 0;
 let Cy = 0;
-
 
 //CAMARA/////////////////////
 		const transformAttribute = camera.getAttribute('transform');
@@ -1275,7 +1204,6 @@ let Cy = 0;
 		} else {
 		}
 //CAMARA END/////////////////////
-
 
     const startX = bX;
     const startY = bY;
