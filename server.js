@@ -139,7 +139,7 @@ todosVertices.push(points[i]);
 
 const allHexagonVertices = generateAllHexagonVertices();
 //greenCirclesS = generateAllHexagonVertices();
-console.log(allHexagonVertices); // Opcional: Imprime los vértices en la consola para visualizarlos
+//console.log(allHexagonVertices); // Opcional: Imprime los vértices en la consola para visualizarlos
 
 console.log("Número total de puntos de vértice en el mapa hexagonal:", allHexagonVertices.length);
 
@@ -182,7 +182,7 @@ console.log("RandomHex:", randomX, randomY);
 
 
 for (let i = 0; i < greenCirclesS.length; i++) {
- console.log(`Valor Z MODIFICA: ${i}:`);
+ //console.log(`Valor Z MODIFICA: ${i}:`);
   greenCirclesS[i].z = i+1;
 }
 	
