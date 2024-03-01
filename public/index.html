@@ -641,6 +641,8 @@ let textLine5 = document.getElementById('textLine5');
 
 let textLine6 = document.getElementById('textLine6');
 
+let CalculoCam = 0;
+	
 
 function addPlayer(nombre, puntos, color) {
 	const nuevoJugador = {
@@ -816,6 +818,8 @@ initialCameraY = svgHeight / 2 - player.y  ;
 //bluePointElement.setAttribute('cy', player.y);
 bX = player.x;
 bY = player.y;
+
+CalculoCam = initialCameraY;	
 
 
 
@@ -1084,7 +1088,7 @@ inicialX = newX; inicialY = newY;
 //4. SOCKET ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 
-let CalculoCam = 0;
+//let CalculoCam = 0;
 let currentCameraX4p = 0;
 let currentCameraY4p = 0;
 
