@@ -1120,7 +1120,7 @@ if(Camara===2) {
 		} else {
     		console.error('No se pudieron obtener las coordenadas de la cámara.');
 		}
-console.log('CamY !!!!!!:', currentCameraY4p  );
+console.log('1. CAM Y: ', currentCameraY4p  );
 //CAMARA END/////////////////////        
 
 const currentX = bX; 
@@ -1156,15 +1156,15 @@ animateCam2 (10,  10  , function() {
 }
 
 //ARRIBA!!!!!!! por modificar
-console.log('bYnsnsnsnsns !!!!!!:',   bY ); 
+console.log('2. bY: ',   bY ); 
 const bluePointRightXA = currentY + bluePointHeight;
-console.log('BPRXA !!!!!!:',  bluePointRightXA  );
+console.log('3. bluePointRightXA: ',  bluePointRightXA  );
 const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
-console.log('limitRightY !!!!!!:', limitRightY   );
+console.log('4. limitRightY: ', limitRightY   );
 if (bluePointRightXA > limitRightY) {      
 //if(MoveCam){
 CalculoCam = CalculoCam + svgHeight / 3;
-console.log('CalculoCam !!!!!!:',   CalculoCam  );
+console.log('5. CalculoCam: ',   CalculoCam  );
 animateCam3 (10,  10  , function() {
 //MoveCam = true;
 });   
@@ -1342,7 +1342,7 @@ let Cy = 0;
 
 function animateCam3(destinationX, destinationY, callback) {
 
-  console.log('Animate Cam');
+ // console.log('Animate Cam');
 
 let Cx = 0;
 let Cy = 0;
@@ -1350,7 +1350,6 @@ let Cy = 0;
 
 
 
-console.log('bYnsnsnsnsns !!!!!!:',   bY ); 
 
 
 
@@ -1370,6 +1369,10 @@ console.log('bYnsnsnsnsns !!!!!!:',   bY );
     const startX = bX;
     const startY = bY;
 
+console.log('a. currentCameraY4p: ',   Cy  ); 
+
+console.log('b. bY: ',   bY ); 	
+
     const startTime = performance.now();
     const duration = 500;    
     
@@ -1384,11 +1387,11 @@ console.log('bYnsnsnsnsns !!!!!!:',   bY );
     const blueY = bY;
 
 
-console.log('blueY !!!!!!:',   blueY  ); 
+//console.log('blueY !!!!!!:',   blueY  ); 
     
     destinationX =    svgHeight / 2 + blueY ;
        
-    console.log('DestinationX Cam !!!!!!:',   destinationX  );      
+    console.log('c. destinationX: ',   destinationX  );      
     function update() {
         const currentTime = performance.now();
         const elapsed = currentTime - startTime;
@@ -1397,14 +1400,14 @@ console.log('blueY !!!!!!:',   blueY  );
         
 //MitadWidth
 
- console.log('Cy !!!!!!:',   Cy );      
+ //console.log('Cy !!!!!!:',   Cy );      
 
 
         
 const newY = Cy + progress * (   - CalculoCam   - Cy);
 
         
-    //     console.log('svgHeight !!!!!!:',   svgHeight / 2  ); 
+console.log('d. newY: ',   newY  ); 
         
        // const newY = startY + progress * (destinationY - startY);
 
