@@ -1166,12 +1166,25 @@ const bluePointRightXA = currentY + bluePointHeight;
 console.log('3. bluePointRightXA: ',  bluePointRightXA  );
 const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
 
+
+const elCincuenta = - currentCameraY4p + (window.innerHeight * 0.5);
+
+
 let RetornoMov  = svgHeight / 2 - bY  ;
 
+
+let Resto = limitRightY - elCincuenta;
+
+
+let Resto2 = limitRightY + elCincuenta;
 	
 console.log('4. limitRightY: ', limitRightY   );
 console.log('5. RetornoMov: ',   RetornoMov  );
-	
+console.log('6. elCincuenta: ',   elCincuenta  );
+console.log('7. Resto: ',   Resto  );
+console.log('8. Resto2: ',   Resto2  );	
+
+
 if (bluePointRightXA > limitRightY) {      
 //if(MoveCam){
 CalculoCam = CalculoCam + svgHeight / 3;
