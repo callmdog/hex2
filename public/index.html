@@ -1409,8 +1409,9 @@ console.log('b. bY: ',   bY );
 
 
         
-const newY = Cy + progress * (   - CalculoCam   - Cy);
+//const newY = Cy + progress * (   - CalculoCam   - Cy);
 //const newY = Cy + progress * (   - 20   - Cy);
+//const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
 
         
 console.log('d. newY: ',   newY  ); 
@@ -1419,7 +1420,8 @@ console.log('d. newY: ',   newY  );
 
 //	MoveCam=false;
 		
-        camera.setAttribute('transform', `translate(${CamX}, ${newY})`);      
+       // camera.setAttribute('transform', `translate(${CamX}, ${newY})`);      
+        camera.setAttribute('transform', `translate(${CamX}, ${CamY+100})`);      
 
 	
         if (progress < 1) {
