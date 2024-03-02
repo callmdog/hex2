@@ -1165,11 +1165,17 @@ console.log('2. bY: ',   bY );
 const bluePointRightXA = currentY + bluePointHeight;
 console.log('3. bluePointRightXA: ',  bluePointRightXA  );
 const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
+
+let RetornoMov  = svgHeight / 2 - bY  ;
+
+	
 console.log('4. limitRightY: ', limitRightY   );
+console.log('5. RetornoMov: ',   RetornoMov  );
+	
 if (bluePointRightXA > limitRightY) {      
 //if(MoveCam){
 CalculoCam = CalculoCam + svgHeight / 3;
-console.log('5. CalculoCam: ',   CalculoCam  );
+//console.log('5. CalculoCam: ',   CalculoCam  );
 animateCam3 (10,  10  , function() {
 //MoveCam = true;
 });   
@@ -1426,7 +1432,7 @@ console.log('b. bY: ',   bY );
 	    ////////
 
 //let abc initialCameraX = svgWidth / 2 - bX;
-let abc = initialCameraY = svgHeight / 2 - bY  ;
+let abc  = svgHeight / 2 - bY  ;
 //console.log('Coord circ:', initialCameraX, initialCameraY);  
 //bluePointElement.setAttribute('cx', player.x);
 //bluePointElement.setAttribute('cy', player.y);
