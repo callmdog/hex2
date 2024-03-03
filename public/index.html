@@ -1094,6 +1094,7 @@ let currentCameraY4p = 0;
 
 
 let Resto;
+let Resto2;
 
 
 socket.on('animateBluePoint', function (animationData) {
@@ -1179,7 +1180,7 @@ let RetornoMov  = svgHeight / 2 - bY  ;
 Resto = limitRightY - elCincuenta;
 
 
-let Resto2 = limitRightY + elCincuenta;
+Resto2 = limitRightY + elCincuenta;
 	
 console.log('4. limitRightY: ', limitRightY   );
 console.log('5. RetornoMov: ',   RetornoMov  );
@@ -1454,7 +1455,7 @@ let abc  = svgHeight / 2 - bY  ;
 //bluePointElement.setAttribute('cy', player.y);
 
 
-camera.setAttribute('transform', `translate(${CamX}, ${Resto})`);
+camera.setAttribute('transform', `translate(${CamX}, ${Resto2})`);
 
 
 
