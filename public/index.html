@@ -1300,7 +1300,7 @@ const blueX = bX;
 
  console.log('Cx !!!!!!:',   Cx  );      
 
-        const newX = Cx + progress * (   - CalculoCam   - Cx);
+        const newX = Cx + progress * (   destinationX  - Cx);
         
         
     //     console.log('svgWidth !!!!!!:',   svgWidth / 2  ); 
@@ -1309,7 +1309,7 @@ const blueX = bX;
 
 	//MoveCam=false;
 		
-        camera.setAttribute('transform', `translate(${ newX}, ${CamY})`);      
+        camera.setAttribute('transform', `translate(${-newX}, ${CamY})`);      
  
 
         if (progress < 1) {
