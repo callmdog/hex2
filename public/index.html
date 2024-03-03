@@ -1459,7 +1459,7 @@ const newY = Cy + progress * (   - CalculoCam   - Cy);
 //const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
 
         
-//console.log('d. newY: ',   newY  ); 
+console.log('d. newY: ',   newY  ); 
         
        // const newY = startY + progress * (destinationY - startY);
 
@@ -1481,18 +1481,6 @@ let abc  = svgHeight / 2 - bY  ;
 
 
 
-//CAMARA/////////////////////
-		const transformAttribute2 = camera.getAttribute('transform');
-		const match2 = transformAttribute2.match(/translate\(([^,]+),([^,]+)\)/);
-		if (match) {
-    		 //Cx = parseFloat(match[1]);
-    	let	 Cy2 = parseFloat(match[2]);
-    		//console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
-		} else {
-		}
-//CAMARA END/////////////////////
-
-console.log('a. currentCameraY4p: ',   Cy2  ); 
 
 	    
 	    /////////
