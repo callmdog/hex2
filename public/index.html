@@ -1110,11 +1110,27 @@ const txt = animationData.playerName;
 const playerElement = document.getElementById(playerId);
 const textElement2 = document.getElementById(playerId + '-name');
 
+
+
+const xCoordinate = playerElement.getAttribute('cx');
+console.log('CordX1: ', xCoordinate  );
+
+
+
+
+
 animateCircleLocally(playerElement, data.start, data.end, playerId);
 animateNameLocally(textElement2, data.start, data.end);
 
 //FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
+
+
+
+
+const xCoordinate = playerElement.getAttribute('cx');
+console.log('CordX2: ', xCoordinate  );
+
 
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
