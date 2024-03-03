@@ -1095,6 +1095,10 @@ let currentCameraY4p = 0;
 
 let Resto;
 let Resto2;
+let Resto3;
+let Resto4;
+let Resto5;
+
 
 
 socket.on('animateBluePoint', function (animationData) {
@@ -1181,12 +1185,26 @@ Resto = limitRightY - elCincuenta;
 
 
 Resto2 = limitRightY + elCincuenta;
+
+
+Resto3 = svgHeight / 3;
+Resto4 = svgHeight / 2;
+
+Resto5 = Resto3 - Resto4;
+
+
 	
 console.log('4. limitRightY: ', limitRightY   );
 console.log('5. RetornoMov: ',   RetornoMov  );
 console.log('6. elCincuenta: ',   elCincuenta  );
 console.log('7. Resto: ',   Resto  );
 console.log('8. Resto2: ',   Resto2  );	
+
+console.log('9. Resto5: ',   Resto5  );	
+
+
+
+
 
 
 if (bluePointRightXA > limitRightY) {      
