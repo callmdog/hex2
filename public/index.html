@@ -1401,9 +1401,6 @@ let Cy = 0;
 
 
 
-
-
-
 //CAMARA/////////////////////
 		const transformAttribute = camera.getAttribute('transform');
 		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
@@ -1414,6 +1411,9 @@ let Cy = 0;
 		} else {
 		}
 //CAMARA END/////////////////////
+
+
+
 
 
     const startX = bX;
@@ -1480,7 +1480,19 @@ let abc  = svgHeight / 2 - bY  ;
 //camera.setAttribute('transform', `translate(${CamX}, ${Resto5})`);
 
 
-console.log('a. currentCameraY4p: ',   Cy  ); 
+
+//CAMARA/////////////////////
+		const transformAttribute2 = camera.getAttribute('transform');
+		const match2 = transformAttribute2.match(/translate\(([^,]+),([^,]+)\)/);
+		if (match) {
+    		 //Cx = parseFloat(match[1]);
+    	let	 Cy2 = parseFloat(match[2]);
+    		//console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
+		} else {
+		}
+//CAMARA END/////////////////////
+
+console.log('a. currentCameraY4p: ',   Cy2  ); 
 
 	    
 	    /////////
