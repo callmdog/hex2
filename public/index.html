@@ -980,31 +980,32 @@ playerElement.setAttribute('cy', player.y);
 /////
 
 
-const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+const maskRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+maskRect.setAttribute('x', player.x - sizeCalc); // Ajustar la posición x según el radio del círculo
+maskRect.setAttribute('y', player.y - sizeCalc); // Ajustar la posición y según el radio del círculo
+maskRect.setAttribute('width', sizeCalc * 2); // Ancho igual al diámetro del círculo
+maskRect.setAttribute('height', sizeCalc * 2); // Alto igual al diámetro del círculo
+maskRect.setAttribute('fill', '#ffffff'); // Rellenar el rectángulo con blanco para la máscara
 
-// Agregar el grupo al lienzo SVG
-svgCanvas.appendChild(group);
+// Crear el elemento máscara
+const maskElement = document.createElementNS('http://www.w3.org/2000/svg', 'mask');
+maskElement.setAttribute('id', 'mask_' + playerId);
 
-// Agregar el círculo al grupo
-group.appendChild(playerElement);
+// Agregar el rectángulo a la máscara
+maskElement.appendChild(maskRect);
 
-// Crear un elemento foreignObject para contener el contenido HTML
-const foreignObject = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-foreignObject.setAttribute('x', player.x - sizeCalc); // Ajustar la posición x según el radio del círculo
-foreignObject.setAttribute('y', player.y - sizeCalc); // Ajustar la posición y según el radio del círculo
-foreignObject.setAttribute('width', sizeCalc * 2); // Ancho igual al diámetro del círculo
-foreignObject.setAttribute('height', sizeCalc * 2); // Alto igual al diámetro del círculo
+// Agregar la máscara al lienzo SVG
+svgCanvas.appendChild(maskElement);
 
-// Crear un elemento HTML para el contenido que deseas dibujar dentro del círculo
-const contentHTML = document.createElement('div');
-contentHTML.innerHTML = 'Contenido HTML aquí'; // Aquí puedes agregar cualquier contenido HTML que desees
+// Asignar la máscara al círculo
+playerElement.setAttribute('mask', 'url(#mask_' + playerId + ')');
 
-// Agregar el contenido HTML al foreignObject
-foreignObject.appendChild(contentHTML);
+// Asignar el contenido dibujado al atributo 'd' del elemento path
+// Asegúrate de que dibujoGuardado contenga el trazado que deseas dibujar dentro del círculo
+maskRect.setAttribute('d', dibujoGuardado);
 
-// Agregar el foreignObject al grupo
-group.appendChild(foreignObject);
-
+// Agregar el círculo al lienzo SVG
+svgCanvas.appendChild(playerElement);
 
 //////
 
