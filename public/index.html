@@ -968,7 +968,7 @@ existingPlayerElement.setAttribute('r', sizeCalc);
 
 } else {		
 
-const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 const ptsf = parseFloat(player.puntos); 
 const sizeCalc = (0.2 * ptsf) + 9;	
 playerElement.setAttribute('id', playerId);
@@ -977,14 +977,44 @@ playerElement.setAttribute('r', sizeCalc);
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 
+/////
 
 
 
-// Asignar el contenido dibujado al elemento circle
-playerElement.setAttribute('d', dibujoGuardado);
+// Crear un clipPath para contener el dibujo
+const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+const clipPathId = playerId + '-clipPath'; // Identificador único para el clipPath
+clipPath.setAttribute('id', clipPathId);
+
+// Crear un elemento rect dentro del clipPath para contener el dibujo
+const clipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+clipRect.setAttribute('width', '100%');
+clipRect.setAttribute('height', '100%');
+clipPath.appendChild(clipRect);
+
+// Agregar el clipPath al lienzo SVG
+svgCanvas.appendChild(clipPath);
+
+// Aplicar el clipPath al círculo
+playerElement.setAttribute('clip-path', `url(#${clipPathId})`);
+
+// Agregar el círculo al lienzo SVG
+svgCanvas.appendChild(playerElement);
+
+// Asignar el contenido dibujado al rectángulo dentro del clipPath
+clipRect.setAttribute('d', dibujoGuardado);
+Con este enfoque, el contenido dibujado se aplicará dentro del círculo utilizando un clipPath. El dibujo se limitará al área del círculo definido por el radio y la posición del centro del círculo. Esto debería lograr el efecto deseado de aplicar el dibujo al elemento circle.
 
 
 
+
+
+Message ChatGPT…
+
+ChatGPT can make mistakes. Consider checking important information.
+
+
+//////
 
 if(playerId !== socket.id) {
 // Agregar atributo de jugador al círculo
