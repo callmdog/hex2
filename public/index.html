@@ -223,6 +223,19 @@ document.addEventListener('DOMContentLoaded', function () {
 // PAINT LIENZO FUNCIONES !!!!!!!!!!!!!
 
 
+let dibujoGuardado = "";
+
+
+
+function guardarDibujo() {
+    dibujoGuardado = svgCanvas.innerHTML;
+
+
+console.log('Dibujo guardado:',  dibujoGuardado  );
+
+
+}
+
 
 
 /*
@@ -535,6 +548,14 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	firstP.style.display = 'block';
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
+
+
+// GUARDAR DIBUJO
+
+
+
+guardarDibujo();
+
 });
 
 function preventZoom(event) {
