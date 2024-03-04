@@ -980,31 +980,16 @@ playerElement.setAttribute('cy', player.y);
 /////
 
 
+const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
-// Crear un clipPath para contener el dibujo
-const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
-const clipPathId = playerId + '-clipPath'; // Identificador único para el clipPath
-clipPath.setAttribute('id', clipPathId);
+// Agregar el grupo al lienzo SVG
+svgCanvas.appendChild(group);
 
-// Crear un elemento rect dentro del clipPath para contener el dibujo
-const clipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-clipRect.setAttribute('width', '100%');
-clipRect.setAttribute('height', '100%');
-clipPath.appendChild(clipRect);
+// Agregar el círculo al grupo
+group.appendChild(playerElement);
 
-// Agregar el clipPath al lienzo SVG
-svgCanvas.appendChild(clipPath);
-
-// Aplicar el clipPath al círculo
-playerElement.setAttribute('clip-path', `url(#${clipPathId})`);
-
-// Agregar el círculo al lienzo SVG
-svgCanvas.appendChild(playerElement);
-
-// Asignar el contenido dibujado al rectángulo dentro del clipPath
-clipRect.setAttribute('d', dibujoGuardado);
-
-
+// Asignar el contenido dibujado al grupo
+group.innerHTML = dibujoGuardado;
 
 //////
 
