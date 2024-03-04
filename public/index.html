@@ -989,30 +989,11 @@ playerElement.setAttribute('cy', player.y);
 
 /////
 
+const useElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#dibujoGuardado'); // Asignar el dibujo guardado al <use>
 
-const maskRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-maskRect.setAttribute('x', player.x - sizeCalc); // Ajustar la posición x según el radio del círculo
-maskRect.setAttribute('y', player.y - sizeCalc); // Ajustar la posición y según el radio del círculo
-maskRect.setAttribute('width', sizeCalc * 2); // Ancho igual al diámetro del círculo
-maskRect.setAttribute('height', sizeCalc * 2); // Alto igual al diámetro del círculo
-maskRect.setAttribute('fill', '#ffffff'); // Rellenar el rectángulo con blanco para la máscara
-
-// Crear el elemento máscara
-const maskElement = document.createElementNS('http://www.w3.org/2000/svg', 'mask');
-maskElement.setAttribute('id', 'mask_' + playerId);
-
-// Agregar el rectángulo a la máscara
-maskElement.appendChild(maskRect);
-
-// Agregar la máscara al lienzo SVG
-svgCanvas.appendChild(maskElement);
-
-// Asignar la máscara al círculo
-playerElement.setAttribute('mask', 'url(#mask_' + playerId + ')');
-
-// Asignar el contenido dibujado al atributo 'd' del elemento path
-// Asegúrate de que dibujoGuardado contenga el trazado que deseas dibujar dentro del círculo
-maskRect.setAttribute('d', dibujoGuardado);
+// Agregar el <use> al círculo
+playerElement.appendChild(useElement);
 
 // Agregar el círculo al lienzo SVG
 svgCanvas.appendChild(playerElement);
