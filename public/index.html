@@ -977,6 +977,15 @@ playerElement.setAttribute('fill', player.color);
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 
+
+
+
+// Asignar el contenido dibujado al elemento circle
+playerElement.setAttribute('d', dibujoGuardado);
+
+
+
+
 if(playerId !== socket.id) {
 // Agregar atributo de jugador al círculo
 playerElement.setAttribute('data-player-id', 'jugador'); 
