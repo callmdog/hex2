@@ -227,14 +227,24 @@ let dibujoGuardado = "";
 
 
 
+
+
 function guardarDibujo() {
-    dibujoGuardado = svgCanvas.innerHTML;
+    // Crear un nuevo elemento SVG
+    const dibujoSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    
+    // Clonar el contenido del lienzo SVG al nuevo elemento SVG
+    const svgClonado = svgCanvas.cloneNode(true);
+    
+    // Agregar el contenido clonado al nuevo elemento SVG
+    dibujoSVG.appendChild(svgClonado);
+    
+    // Convertir el objeto SVG en un string
+    dibujoGuardado = new XMLSerializer().serializeToString(dibujoSVG);
 
-
-console.log('Dibujo guardado:',  dibujoGuardado  );
-
-
+    console.log('Dibujo guardado:', dibujoGuardado);
 }
+
 
 
 
