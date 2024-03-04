@@ -988,8 +988,23 @@ svgCanvas.appendChild(group);
 // Agregar el círculo al grupo
 group.appendChild(playerElement);
 
-// Asignar el contenido dibujado al grupo
-group.innerHTML = dibujoGuardado;
+// Crear un elemento foreignObject para contener el contenido HTML
+const foreignObject = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+foreignObject.setAttribute('x', player.x - sizeCalc); // Ajustar la posición x según el radio del círculo
+foreignObject.setAttribute('y', player.y - sizeCalc); // Ajustar la posición y según el radio del círculo
+foreignObject.setAttribute('width', sizeCalc * 2); // Ancho igual al diámetro del círculo
+foreignObject.setAttribute('height', sizeCalc * 2); // Alto igual al diámetro del círculo
+
+// Crear un elemento HTML para el contenido que deseas dibujar dentro del círculo
+const contentHTML = document.createElement('div');
+contentHTML.innerHTML = 'Contenido HTML aquí'; // Aquí puedes agregar cualquier contenido HTML que desees
+
+// Agregar el contenido HTML al foreignObject
+foreignObject.appendChild(contentHTML);
+
+// Agregar el foreignObject al grupo
+group.appendChild(foreignObject);
+
 
 //////
 
