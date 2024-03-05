@@ -248,7 +248,10 @@ function crearCirculoSVG() {
     circle.setAttribute('cx', centerX);
     circle.setAttribute('cy', centerY);
     circle.setAttribute('r', radius);
-    circle.setAttribute('fill', colorPicker.value);
+    circle.setAttribute('stroke', 'black'); // Color del contorno del círculo
+    circle.setAttribute('stroke-width', '2'); // Grosor del contorno del círculo
+    circle.setAttribute('fill', 'none'); // Sin relleno
+    
     
     // Agregar el círculo al lienzo SVG
     svgCanvas.appendChild(circle);
