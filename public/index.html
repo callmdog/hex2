@@ -248,21 +248,23 @@ function crearCirculoSVG() {
 
 let pathData = `M ${centerX + radius},${centerY}`;
 
+    // Verificar si el elemento es un elemento SVG válido antes de procesarlo
     elementsDibujados.forEach(elemento => {
-        const tipoElemento = elemento.tagName.toLowerCase();
-        if (tipoElemento === 'line') {
-            const x1 = parseFloat(elemento.getAttribute('x1'));
-            const y1 = parseFloat(elemento.getAttribute('y1'));
-            const x2 = parseFloat(elemento.getAttribute('x2'));
-            const y2 = parseFloat(elemento.getAttribute('y2'));
-            pathData += ` L ${x1},${y1} L ${x2},${y2}`;
-        } else if (tipoElemento === 'polyline' || tipoElemento === 'polygon') {
-            const points = elemento.getAttribute('points');
-            pathData += ` ${points}`;
+        if (elemento instanceof SVGElement) {
+            const tipoElemento = elemento.tagName.toLowerCase();
+            if (tipoElemento === 'line') {
+                const x1 = parseFloat(elemento.getAttribute('x1'));
+                const y1 = parseFloat(elemento.getAttribute('y1'));
+                const x2 = parseFloat(elemento.getAttribute('x2'));
+                const y2 = parseFloat(elemento.getAttribute('y2'));
+                pathData += ` L ${x1},${y1} L ${x2},${y2}`;
+            } else if (tipoElemento === 'polyline' || tipoElemento === 'polygon') {
+                const points = elemento.getAttribute('points');
+                pathData += ` ${points}`;
+            }
         }
     });
 
-    // Cerrar el path
     pathData += ' Z';
 
     // Establecer los atributos del círculo
