@@ -245,12 +245,38 @@ function crearCirculoSVG() {
     const centerY = 200;
     const radius = 30;
     
+
+let pathData = `M ${centerX + radius},${centerY}`;
+
+    elementsDibujados.forEach(elemento => {
+        const tipoElemento = elemento.tagName.toLowerCase();
+        if (tipoElemento === 'line') {
+            const x1 = parseFloat(elemento.getAttribute('x1'));
+            const y1 = parseFloat(elemento.getAttribute('y1'));
+            const x2 = parseFloat(elemento.getAttribute('x2'));
+            const y2 = parseFloat(elemento.getAttribute('y2'));
+            pathData += ` L ${x1},${y1} L ${x2},${y2}`;
+        } else if (tipoElemento === 'polyline' || tipoElemento === 'polygon') {
+            const points = elemento.getAttribute('points');
+            pathData += ` ${points}`;
+        }
+    });
+
+    // Cerrar el path
+    pathData += ' Z';
+
+    // Establecer los atributos del círculo
     circle.setAttribute('cx', centerX);
     circle.setAttribute('cy', centerY);
     circle.setAttribute('r', radius);
+    circle.setAttribute('fill', 'none');
     circle.setAttribute('stroke', 'black'); // Color del contorno del círculo
     circle.setAttribute('stroke-width', '2'); // Grosor del contorno del círculo
-    circle.setAttribute('fill', 'none'); // Sin relleno
+    circle.setAttribute('d', pathData); // Establecer el path del círculo
+
+
+
+    
     
     
     // Agregar el círculo al lienzo SVG
