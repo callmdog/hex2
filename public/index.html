@@ -223,6 +223,51 @@ document.addEventListener('DOMContentLoaded', function () {
 // PAINT LIENZO FUNCIONES !!!!!!!!!!!!!
 
 
+
+// Variable para almacenar los elementos dibujados
+let elementsDibujados = [];
+
+// Función para guardar los elementos dibujados
+function guardarElementosDibujados() {
+    elementsDibujados = Array.from(svgCanvas.childNodes);
+
+
+console.log('Dibujo guardado2:', elementsDibujados);
+
+}
+
+// Función para crear un círculo SVG basado en los elementos dibujados
+function crearCirculoSVG() {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    const canvasWidth = svgCanvas.clientWidth;
+    const canvasHeight = svgCanvas.clientHeight;
+    const centerX = 200;
+    const centerY = 200;
+    const radius = 30;
+    
+    circle.setAttribute('cx', centerX);
+    circle.setAttribute('cy', centerY);
+    circle.setAttribute('r', radius);
+    circle.setAttribute('fill', colorPicker.value);
+    
+    // Agregar el círculo al lienzo SVG
+    svgCanvas.appendChild(circle);
+
+hexagonGroup.appendChild(circle);
+
+}
+
+// Llamar a la función para guardar los elementos dibujados cuando sea necesario
+// Por ejemplo, al presionar un botón de guardar
+// guardarElementosDibujados();
+
+// Llamar a la función para crear el círculo SVG basado en los elementos dibujados
+// Por ejemplo, al presionar un botón de crear círculo
+// crearCirculoSVG();
+
+
+
+
 let dibujoGuardado = "";
 
 
@@ -562,6 +607,8 @@ document.getElementById('submitButton').addEventListener('click', function () {
 
 // GUARDAR DIBUJO
 
+
+guardarElementosDibujados();
 
 
 guardarDibujo();
@@ -1041,6 +1088,11 @@ if (existingTextElement) {
 //////////////////////////////////////////////////////////////////////////
 	
 function moveBluePoint( clickX, clickY ) {
+
+
+crearCirculoSVG();
+
+
 
 //const circles = document.querySelectorAll('circle[data-player-id="jugador"]');
 
