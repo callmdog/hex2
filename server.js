@@ -6,7 +6,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 //VARIABLES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
 const connectedUsers = new Set();
 const availableColors = ['blue', 'purple', 'orange', 'pink', 'yellow', 'cyan', 'teal', 'maroon', 'lime', 'brown', 'indigo', 'gray', 'gold', 'silver', 'olive', 'navy', 'magenta', 'peach', 'violet', 'turquoise', 'lavender', 'salmon', 'beige'];
