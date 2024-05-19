@@ -102,7 +102,10 @@ return Array.from(randomCoordinates); // Convertimos el conjunto a un array para
 
 greenCirclesS = generateRandomLineCoordinates();
 
-
+for (let i = 0; i < greenCirclesS.length; i++) {
+ //console.log(`Valor Z MODIFICA: ${i}:`);
+  greenCirclesS[i].z = i+1;
+}
 
 
 function generateAllHexagonVertices() {
@@ -190,10 +193,7 @@ console.log("RandomHex:", randomX, randomY);
 
 
 
-for (let i = 0; i < greenCirclesS.length; i++) {
- //console.log(`Valor Z MODIFICA: ${i}:`);
-  greenCirclesS[i].z = i+1;
-}
+
 	
 console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
 
