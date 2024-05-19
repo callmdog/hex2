@@ -1,5 +1,8 @@
 //8. GENERA CIRCULOS VERDES DEL SERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
+    const socket = io();
+
+
 
 let greenCircles = [];
 let greenCircles2 = [];
