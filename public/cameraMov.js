@@ -158,7 +158,7 @@ const newX = Cx + progress * (   b - Cx);
 
 
 
-function animateCam3(destinationX, destinationY, callback) {
+function animateCam3(destinationX, destinationY,bX, bY, svgWidth, callback) {
 
 let Cx = 0;
 let Cy = 0;
@@ -268,7 +268,7 @@ let abc  = svgHeight / 2 - bY  ;
 
 
 
-function animateCam4(destinationX, destinationY, callback) {
+function animateCam4(destinationX, destinationY, bX, bY, svgWidth,callback) {
 
 let Cx = 0;
 let Cy = 0;
