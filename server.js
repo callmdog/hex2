@@ -83,7 +83,7 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
 }	
 const randomCoordinates = new Set(); // Usamos un conjunto para evitar duplicados
 let index = 200; // Inicializamos el índice en 0
-while (randomCoordinates.size < 100) {
+while (randomCoordinates.size < 20) {
     const randomIndex = Math.floor(Math.random() * coordinates.length);
     const randomCoordinate = coordinates[randomIndex];
     // Verificar si randomCoordinate está definido
