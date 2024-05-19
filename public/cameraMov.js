@@ -170,7 +170,7 @@ let Cy = 0;
 		if (match) {
     		 Cx = parseFloat(match[1]);
     		 Cy = parseFloat(match[2]);
-    		console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
+    		//console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
 		} else {
 		}
 //CAMARA END/////////////////////	
