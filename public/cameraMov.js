@@ -10,8 +10,8 @@ let Cy = 0;
 		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
 		if (match) {
     		 Cx = parseFloat(match[1]);
-    		 currentCameraY4p = parseFloat(match[2]);
-    		console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
+    		// currentCameraY4p = parseFloat(match[2]);
+    		//console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
 		} else {
 		}
 //CAMARA END/////////////////////
