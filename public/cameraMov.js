@@ -1,4 +1,4 @@
-function animateCam(destinationX, destinationY, bX, bY, callback) {
+function animateCam(destinationX, destinationY, bX, bY, svgWidth, callback) {
 
 console.log('Animate Cam');
 
@@ -73,7 +73,7 @@ const blueX = bX;
 
 ////////////////
 
-function animateCam2(destinationX, destinationY, bX, bY,  callback) {
+function animateCam2(destinationX, destinationY, bX, bY, svgWidth, callback) {
 
   console.log('Animate Cam');
 
