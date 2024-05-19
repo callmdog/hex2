@@ -1013,20 +1013,20 @@ const ptsf = parseFloat(player.puntos);
 const sizeCalc = (0.2 * ptsf) + 9;	
 playerElement.setAttribute('id', playerId);
 playerElement.setAttribute('r', sizeCalc);
-//playerElement.setAttribute('fill', player.color);
+playerElement.setAttribute('fill', player.color);
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 
 /////
 
-const useElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#dibujoGuardado'); // Asignar el dibujo guardado al <use>
+//const useElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+//useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#dibujoGuardado'); // Asignar el dibujo guardado al <use>
 
 // Agregar el <use> al círculo
-playerElement.appendChild(useElement);
+//playerElement.appendChild(useElement);
 
 // Agregar el círculo al lienzo SVG
-svgCanvas.appendChild(playerElement);
+//svgCanvas.appendChild(playerElement);
 
 //////
 
