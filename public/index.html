@@ -718,7 +718,10 @@ const newY = start.y + progress * (end.y - start.y);
 //circleElement.setAttribute('cx', newX);
 //circleElement.setAttribute('cy', newY);
 
-circleElement.style.transition = 'transform 0.5s ease-in-out'; // Establece la transición CSS
+	circleElement.setAttribute('cx', start.x);
+circleElement.setAttribute('cy', start.y);
+
+/*circleElement.style.transition = 'transform 0.5s ease-in-out'; // Establece la transición CSS
 
     // Calcula el desplazamiento necesario para la animación
     const translateX = end.x - start.x;
@@ -733,7 +736,7 @@ circleElement.style.transition = 'transform 0.5s ease-in-out'; // Establece la t
             callback();
         }
     }, 500);
-	
+*/	
 	
 if (socket.id===playerId) {
 	
