@@ -110,6 +110,9 @@ document.addEventListener('DOMContentLoaded', function () {
 const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
+	
+const modal = document.getElementById('gameOverModal');
+
 const context = canvas.getContext('2d');
 let NameSecure = '';
 	
@@ -134,6 +137,7 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	//Ocultar el formulario y mostrar el canvas
 	nameForm.style.display = 'none';
 	gameCanvas.style.display = 'block';
+
 	hexagonGroup.style.display = 'block';
 	firstP.style.display = 'block';
 	// ACTIVAR EL SERVIDOR
