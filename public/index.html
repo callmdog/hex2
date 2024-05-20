@@ -8,6 +8,41 @@
 
   <!-- ESTILOS CSS ARCHIVO !!!!!!!!! -->	
   <link rel="stylesheet" href="styles.css">
+
+<style>
+
+.modal {
+  display: none; /* Por defecto, el modal estará oculto */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(255, 0, 0, 0.8); /* Color de fondo rojo con opacidad */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 20% auto;
+  padding: 20px;
+  border: 1px solid #000;
+  width: 60%;
+  text-align: center;
+}
+
+#retryButton {
+  background-color: blue;
+  padding: 10px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+	
+</style>	
 	
 </head>
 
@@ -45,6 +80,15 @@
 </svg>	
 	
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
+
+
+<div id="gameOverModal" class="modal">
+  <div class="modal-content">
+    <h2>Game Over</h2>
+    <p id="score">Puntos: </p>
+    <button id="retryButton">Retry</button>
+  </div>
+</div>	
 
 <script src="/socket.io/socket.io.js"></script>
 
@@ -813,12 +857,27 @@ nombre.parentNode.removeChild(nombre);
 	
 if (playerIdN===socket.id){
 
-	clearAllGreenCircles();
+	//clearAllGreenCircles();
 
 	
 gameCanvas.style.display = 'none';
 hexagonGroup.style.display = 'none';
 	camera.style.display = 'none';
+
+
+ // Muestra el modal de Game Over
+  var modal = document.getElementById("gameOverModal");
+  var scoreElement = document.getElementById("score");
+  scoreElement.textContent = "Puntos: " + puntos;
+  modal.style.display = "block";
+
+  // Lógica para retryButton (volver a empezar)
+  var retryButton = document.getElementById("retryButton");
+  retryButton.onclick = function() {
+    // Aquí debes implementar la lógica para reiniciar el juego
+    // Por ejemplo, volver a cargar la página
+    location.reload();
+  };	
 
 	
 }
