@@ -14,6 +14,7 @@
 
 
  #retryBox {
+	 display: none;
   position: absolute; /* Posición absoluta */
   top: 50%; /* Alineación vertical al 50% del viewport */
   left: 50%; /* Alineación horizontal al 50% del viewport */
@@ -715,11 +716,11 @@ const progress = Math.min((currentTime - startTime) / duration, 1);
 const newX = start.x + progress * (end.x - start.x);
 const newY = start.y + progress * (end.y - start.y);
 		
-//circleElement.setAttribute('cx', newX);
-//circleElement.setAttribute('cy', newY);
+circleElement.setAttribute('cx', newX);
+circleElement.setAttribute('cy', newY);
 
-	circleElement.setAttribute('cx', start.x);
-circleElement.setAttribute('cy', start.y);
+	//circleElement.setAttribute('cx', start.x);
+//circleElement.setAttribute('cy', start.y);
 
 /*circleElement.style.transition = 'transform 0.5s ease-in-out'; // Establece la transición CSS
 
