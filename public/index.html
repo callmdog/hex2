@@ -144,6 +144,60 @@ greenCircles.splice(indice, 1);
 }
 	
 });	
+
+
+//DETECTAR COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////
+
+function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
+for (const circle of greenCircles) {
+	
+const greenX = circle.x; 
+const greenY = circle.y;
+const greenRadius = 9;
+const greenIndex = circle.z;
+	
+// Calcular las coordenadas de los rectángulos delimitadores
+const blueBoundingBox = {
+x1: blueX - blueRadius, y1: blueY - blueRadius,
+x2: blueX + blueRadius, y2: blueY + blueRadius };
+const greenBoundingBox = {
+x1: greenX - greenRadius, y1: greenY - greenRadius,
+x2: greenX + greenRadius, y2: greenY + greenRadius };
+
+// Verificar la colisión entre los rectángulos delimitadores
+if (blueBoundingBox.x1 < greenBoundingBox.x2 && blueBoundingBox.x2 > greenBoundingBox.x1 &&
+blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBox.y1) {
+
+const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
+//console.log(`COLISION Z: ${greenIndex}:`);			
+//console.log(`REMOVE !!!!!!`, circleToRemoveC);
+
+if (circleToRemoveC) {	
+circleToRemoveC.parentNode.removeChild(circleToRemoveC);
+var indice = greenCircles.findIndex(function(elemento) {
+    return elemento.z === circle.z;
+});
+if (indice !== -1) {
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+socket.emit('greenCircleEaten');
+socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+
+} else {
+//console.log("No se encontró ningún elemento con z igual a 10");
+}	
+}	
+
+// Colisión detectada
+return true;
+}
+}
+//console.log(`NO COLISION`);
+// No hay colisión
+return false;
+}
+	
 	
 
 createHexagons(socket, function() {
