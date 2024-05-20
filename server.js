@@ -199,6 +199,7 @@ console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
 
 
 socket.on('dibujarVerdes', (numero) => {
+console.log(`DIBUJAR VERDES`);
 
 socket.emit('greenCirclesGenerated', greenCirclesS);
 
