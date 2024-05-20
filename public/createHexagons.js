@@ -43,12 +43,7 @@ console.log('Altura total del mapa hexagonal:', mapHeight);
 if (callback) {
 callback(); }
 }
-createHexagons(function() {
-console.log("createHexagons end");
 
-socket.emit('dibujarVerdes', 'numero');
-	
-});
 	
 //2. GET HEXAGON POINTS///////////////////////////!!!!!!
 ///////////////////////////////////////////////!!!!!!!!!
