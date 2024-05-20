@@ -29,6 +29,8 @@ const currentY = inicialY - currentCameraY3;
 // Encuentra los vértices en un radio de 60 pixeles
 const closestVertices = findVerticesInRadius(currentX, currentY, 60);
 // Agrega un círculo verde en cada vértice encontrado
+console.log(`VERTX: (${inicialX}, ${inicialY}) `);
+	
 closestVertices.forEach((vertex) => {
 markVertexWithGreenCircle(vertex.x + currentCameraX3, vertex.y + currentCameraY3);
 });
