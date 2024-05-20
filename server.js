@@ -529,7 +529,7 @@ function desconectarJugador(socketId) {
         connectedUsers.delete(socket.id);
         delete players[socket.id]; //
        // io.emit('updatePlayers', players); //
-	        socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
+	        io.emit('updatePlayers', { [socket.id]: players[socket.id] });
 
         io.emit('userCount', connectedUsers.size);
     });
