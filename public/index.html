@@ -34,60 +34,33 @@
 
 <svg id="firstP" xmlns="http://www.w3.org/2000/svg">  
 <g id="camera">
-<g id="hexagonGroup">
-</g> </g>
-<text id="textLine1" x="20" y="40" fill="red">
-  </text>
-  <text id="textLine2" x="20" y="60" fill="blue">
-  </text>
-  <text id="textLine3" x="20" y="80" fill="green">
-  </text>
-  <text id="textLine4" x="20" y="100" fill="orange">
-  </text>
-  <text id="textLine5" x="20" y="120" fill="purple">
-  </text>
-
-
-
-<text id="textLine6" x="95%" y="40" fill="red"        text-anchor="end" >Points: 1018</text>
-
+<g id="hexagonGroup"></g> 
+</g>
+<text id="textLine1" x="20" y="40" fill="red"></text>
+<text id="textLine2" x="20" y="60" fill="blue"></text>
+<text id="textLine3" x="20" y="80" fill="green"></text>
+<text id="textLine4" x="20" y="100" fill="orange"></text>
+<text id="textLine5" x="20" y="120" fill="purple"></text>
+<text id="textLine6" x="95%" y="40" fill="red" text-anchor="end" >Points: 1018</text>
 </svg>	
 	
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
-
-
-
 <script src="/socket.io/socket.io.js"></script>
-
 	
 <script>  
 
 console.log('SCRIPT INI 1');
 	
-	
 // COMIENZA EL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // CLIENT /////////////////////////////////////////////////////////
 	  
 document.addEventListener('DOMContentLoaded', function () {
-
-
-// PAINT LIENZO FUNCIONES !!!!!!!!!!!!!
-
-//const script1 = document.createElement('script');
-//script1.src = 'lienzoFunciones.js';
-//document.head.appendChild(script1);
-
-// END PAINT LIENZO FUNCIONES !!!!!!!!!!!!!
-
-
 	
 const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
-//const socket = io();
-
 let NameSecure = '';
 	
 ///CAM OPTIONS
@@ -115,19 +88,11 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	firstP.style.display = 'block';
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
-
-
-
-// GUARDAR DIBUJO
-
-
 });
 
 function preventZoom(event) {
 	event.preventDefault();
 }
-
-
 
 //CREATE HEXAGON PANAL
 //createHexagons(socket);
@@ -177,21 +142,11 @@ greenCircles.splice(indice, 1);
 });	
 	
 
-	 createHexagons(socket, function() {
+createHexagons(socket, function() {
         console.log("createHexagons end2222");
 
         socket.emit('dibujarVerdes', 'numero');
-    });
-
-/*socket.on('greenCirclesGenerated', (circles) => {
-console.log('GREEN CIRCLES GENERATED.');
-greenCircles = [];
-greenCircles2 = [];
-//console.log('CIRLES PUSH:', circles);
-greenCircles.push(...circles);
-//console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
-generateGreenCircles();
-});*/		
+    });	
 
 console.log('Camara:', Camara);	
 	
@@ -225,13 +180,10 @@ let textLine2 = document.getElementById('textLine2');
 let textLine3 = document.getElementById('textLine3');
 let textLine4 = document.getElementById('textLine4');
 let textLine5 = document.getElementById('textLine5');
-
-
 let textLine6 = document.getElementById('textLine6');
 
 let CalculoCam = 0;
 	
-
 function addPlayer(nombre, puntos, color) {
 	const nuevoJugador = {
 	nombre: nombre,
@@ -316,7 +268,6 @@ addPlayer(player.nombre, player.puntos, player.color);
 
 if(NameSecure === player.nombre){
 
-
 textLine6.textContent = `Points: ${player.puntos}`;
 
 textLine6.style.fill = player.color;
@@ -330,9 +281,6 @@ bX = player.x;
 bY = player.y;
 
 //CalculoCam = initialCameraY;	
-
-
-
 //CAMERA MOVEMENT
 
 if (camProb === false) {
@@ -366,10 +314,6 @@ textLine4.textContent = topPlayers.length >= 4 ? `#4 ${topPlayers[3].nombre}: ${
 if (topPlayers[3] && topPlayers[3].color) {textLine4.style.fill = topPlayers[3].color; } else {}
 textLine5.textContent = topPlayers.length >= 5 ? `#5 ${topPlayers[4].nombre}: ${topPlayers[4].puntos}` : '';
 if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].color; } else {}
-
-
-
-
 
 
 });	
@@ -475,8 +419,6 @@ if (existingTextElement) {
 	
 function moveBluePoint( clickX, clickY ) {
 
-
-
 //const circles = document.querySelectorAll('circle[data-player-id="jugador"]');
 
 //circles.forEach((circle, index) => {
@@ -510,23 +452,6 @@ animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 //2. FIND CLOSES VERTEX TO CLICK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 
-function findClosestGreenVertexToClick(x, y) {
-const greenVertices = document.querySelectorAll('circle[fill="red"]');
-let closestVertex = null; let minDistance = Infinity;
-greenVertices.forEach((greenVertex) => {
-const x1 = parseFloat(greenVertex.getAttribute('cx')) - currentCameraX3; 
-const y1 = parseFloat(greenVertex.getAttribute('cy')) - currentCameraY3; 
-const distance = pointToPointDistance2(x, y, x1, y1);
-if (distance < minDistance) {
-minDistance = distance; closestVertex = { x: x1, y: y1 }; }
-});
-return closestVertex;
-}	
-function pointToPointDistance2(x1, y1, x2, y2) {
-const dx = x1 - x2;
-const dy = y1 - y2;
-return Math.sqrt(dx * dx + dy * dy);
-}
 
 //3. ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /////////////////////////////////////////////////////////////////////////////	
@@ -821,52 +746,7 @@ requestAnimationFrame(update);
 //7. MARK RED VERTEX NEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
-function findAndMarkClosestVertices() {
-clearAllGreenCircles();
-const currentX = inicialX - currentCameraX3;
-const currentY = inicialY - currentCameraY3;
-// Encuentra los vértices en un radio de 60 pixeles
-const closestVertices = findVerticesInRadius(currentX, currentY, 60);
-// Agrega un círculo verde en cada vértice encontrado
-closestVertices.forEach((vertex) => {
-markVertexWithGreenCircle(vertex.x + currentCameraX3, vertex.y + currentCameraY3);
-});
-}
-	
-function clearAllGreenCircles() {
-const svg = document.querySelector('svg');
-const greenCircles = document.querySelectorAll('circle[fill="red"]');
-greenCircles.forEach((greenCircle) => { 
-const cameraGroup = document.getElementById('camera');
-cameraGroup.removeChild(greenCircle); }); 
-}	
-	
-function findVerticesInRadius(x, y, radius) {
-const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-const result = [];
-hexagons.forEach((hexagon) => {
-const points = hexagon.getAttribute('points').split(' ');
-// Iteramos sobre los vértices del hexágono
-for (let i = 0; i < points.length; i++) {
-const [x1, y1] = points[i].split(',').map(Number);
-// Calculamos la distancia entre el punto azul y el vértice
-const distance = pointToPointDistance2(x, y, x1, y1);
-// Agregamos el vértice si está dentro del radio especificado
-if (distance < radius) {
-result.push({ x: x1, y: y1 }); } } });
-return result;
-}
 
-function markVertexWithGreenCircle(x, y) { 
-const svg = document.querySelector('svg'); 
-const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); 
-greenCircle.setAttribute('cx', x); 
-greenCircle.setAttribute('cy', y); 
-greenCircle.setAttribute('r', '3'); 
-greenCircle.setAttribute('fill', 'red');
-//console.log(`Verde agreg: (${x}, ${y}) marcado con círculo rojo.`);
-const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(greenCircle);
-}
 
 
 ////////////////////////////////////////////////////////////	
@@ -1019,8 +899,13 @@ console.log("ELIMINAR JUGADOR", playerIdN );
 
 </script>	
 
-<script src="cameraMov.js">
+<script src="vertexFunciones.js">
 	console.log('SCRIPT INI 4');
+
+</script>	
+
+<script src="cameraMov.js">
+	console.log('SCRIPT INI 5');
 
 </script>
 	
