@@ -483,13 +483,13 @@ greenCirclesS.forEach(circle => {
 
 	    /////////////////////
 
-/*
+
 socket.on('eliminarJugador', (playerIdN) => {
 	console.log('Usuario desconectado222');
 
-	desconectarJugador(playerIdN);
+	//desconectarJugador(playerIdN);
 
-	console.log('Usuario desconectado', playerIdN);
+	//console.log('Usuario desconectado', playerIdN);
 	
         assignedColors.delete(playerIdN);
         connectedUsers.delete(playerIdN);
@@ -499,7 +499,7 @@ socket.on('eliminarJugador', (playerIdN) => {
 
 io.emit('eliminarJugadorEnCliente', playerIdN);
 });
-*/	
+
 
 /*
 
