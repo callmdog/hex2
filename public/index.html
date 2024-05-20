@@ -32,6 +32,14 @@
       color: white;
       border: none;
       cursor: pointer;
+
+	   #topImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1; /* Para que esté detrás de otros elementos */
+    }   
 	
 </style>	
 	
@@ -39,7 +47,7 @@
 
 <body>
 
-  <img id="topImage" src="hexicon" alt="Hex3">
+  <img id="topImage" src="hexicon.png" alt="Hex3">
 
 	
 <div id="retryBox">
