@@ -157,6 +157,16 @@ function preventZoom(event) {
         socket.emit('dibujarVerdes', 'numero');
     });
 
+socket.on('greenCirclesGenerated', (circles) => {
+console.log('GREEN CIRCLES GENERATED.');
+greenCircles = [];
+greenCircles2 = [];
+//console.log('CIRLES PUSH:', circles);
+greenCircles.push(...circles);
+//console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
+generateGreenCircles();
+});		
+
 console.log('Camara:', Camara);	
 	
 //VARIABLES/////////////////////////////////////////////
