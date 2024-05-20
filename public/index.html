@@ -171,6 +171,36 @@ greenCircles.push(...circles);
 generateGreenCircles();
 });	
 
+
+//MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////	
+
+socket.on('greenCircleCollision', (collisionIndex, indexToRemove, comproid) => {
+
+if (comproid !== socket.id) {
+//console.log(`BORRADOR ACTIVADO!!!`);	
+	
+const circleToRemoveC = document.getElementById('greenCircle_'+collisionIndex);
+//console.log(`COLISION Z2: ${collisionIndex}:`);			
+//console.log(`REMOVE2 !!!!!!`, circleToRemoveC);
+
+if (circleToRemoveC) {	
+circleToRemoveC.parentNode.removeChild(circleToRemoveC);
+let indice = greenCircles.findIndex(function(elemento) {
+    return elemento.z === collisionIndex;
+});
+if (indice !== -1) {
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+
+} else {
+//console.log("No se encontró ningún elemento con z igual a 10");
+}	
+}	
+	
+}
+	
+});	
 	
 
 	 createHexagons(socket, function() {
