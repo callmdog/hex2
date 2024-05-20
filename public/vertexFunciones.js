@@ -1,7 +1,7 @@
 //2. FIND CLOSES VERTEX TO CLICK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 
-function findClosestGreenVertexToClick(x, y) {
+function findClosestGreenVertexToClick(x, y,currentCameraX3,currentCameraY3) {
 const greenVertices = document.querySelectorAll('circle[fill="red"]');
 let closestVertex = null; let minDistance = Infinity;
 greenVertices.forEach((greenVertex) => {
