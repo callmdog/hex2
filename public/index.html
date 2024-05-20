@@ -154,10 +154,12 @@ function preventZoom(event) {
 
 	 createHexagons(socket, function() {
         console.log("createHexagons end2222");
+	initializeGreenCircles(socket);
+
         socket.emit('dibujarVerdes', 'numero');
     });
 
-socket.on('greenCirclesGenerated', (circles) => {
+/*socket.on('greenCirclesGenerated', (circles) => {
 console.log('GREEN CIRCLES GENERATED.');
 greenCircles = [];
 greenCircles2 = [];
@@ -165,7 +167,7 @@ greenCircles2 = [];
 greenCircles.push(...circles);
 //console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
 generateGreenCircles();
-});		
+});*/		
 
 console.log('Camara:', Camara);	
 	
