@@ -528,8 +528,9 @@ function desconectarJugador(socketId) {
         assignedColors.delete(socket.id);
         connectedUsers.delete(socket.id);
         delete players[socket.id]; //
-       // io.emit('updatePlayers', players); //
-	        io.emit('updatePlayers', { [socket.id]: players[socket.id] });
+        io.emit('updatePlayers', players); //
+	      //  io.emit('updatePlayers', { [socket.id]: players[socket.id] });
+		                            io.emit('updatePlayers2', players);
 
         io.emit('userCount', connectedUsers.size);
     });
