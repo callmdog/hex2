@@ -89,7 +89,8 @@
 <script>  
 
 console.log('SCRIPT INI 1');
-	
+	const socket = io();
+	initializeGreenCircles(socket);
 	
 // COMIENZA EL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // CLIENT /////////////////////////////////////////////////////////
@@ -111,8 +112,7 @@ const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
-const socket = io();
-			initializeGreenCircles(socket);
+//const socket = io();
 
 let NameSecure = '';
 	
