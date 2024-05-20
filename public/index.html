@@ -150,7 +150,12 @@ function preventZoom(event) {
 
 
 //CREATE HEXAGON PANAL
-createHexagons(socket);
+//createHexagons(socket);
+
+	 createHexagons(socket, function() {
+        console.log("createHexagons end2222");
+        socket.emit('dibujarVerdes', 'numero');
+    });
 
 console.log('Camara:', Camara);	
 	
