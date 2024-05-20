@@ -485,6 +485,7 @@ greenCirclesS.forEach(circle => {
 
 
 socket.on('eliminarJugador', (playerIdN) => {
+	console.log('Usuario desconectado222');
 
 	desconectarJugador(playerIdN);
 
@@ -525,7 +526,7 @@ function desconectarJugador(socketId) {
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
-        console.log('Usuario desconectado');
+        console.log('Usuario desconectado', socket.id, players[socket.id]);
         assignedColors.delete(socket.id);
         connectedUsers.delete(socket.id);
         delete players[socket.id]; //
