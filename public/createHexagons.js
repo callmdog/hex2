@@ -9,7 +9,7 @@ const hexagonMap = [
 ];
 
 
-function createHexagons(callback) {
+function createHexagons(socket, callback) {
 const hexagonGroup = document.getElementById('hexagonGroup');
 const hexagonSize = 50;
 const numRows = hexagonMap.length;
