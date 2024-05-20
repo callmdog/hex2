@@ -715,10 +715,25 @@ const progress = Math.min((currentTime - startTime) / duration, 1);
 const newX = start.x + progress * (end.x - start.x);
 const newY = start.y + progress * (end.y - start.y);
 		
-circleElement.setAttribute('cx', newX);
-circleElement.setAttribute('cy', newY);
+//circleElement.setAttribute('cx', newX);
+//circleElement.setAttribute('cy', newY);
 
+circleElement.style.transition = 'transform 0.5s ease-in-out'; // Establece la transición CSS
 
+    // Calcula el desplazamiento necesario para la animación
+    const translateX = end.x - start.x;
+    const translateY = end.y - start.y;
+
+    // Aplica la transformación CSS para mover el círculo
+    circleElement.style.transform = `translate(${translateX}px, ${translateY}px)`;
+
+    // Ejecuta el callback después de la duración de la animación
+    setTimeout(() => {
+        if (typeof callback === 'function') {
+            callback();
+        }
+    }, 500);
+	
 	
 if (socket.id===playerId) {
 	
