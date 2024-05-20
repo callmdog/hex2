@@ -812,13 +812,13 @@ nombre.parentNode.removeChild(nombre);
 
 	
 if (playerIdN===socket.id){
+
+	clearAllGreenCircles();
+
+	
 gameCanvas.style.display = 'none';
 hexagonGroup.style.display = 'none';
 	
-const greenCircles = document.querySelectorAll('circle[fill="red"]');
-greenCircles.forEach((greenCircle) => { 
-const cameraGroup = document.getElementById('camera');
-cameraGroup.removeChild(greenCircle); }); 
 	
 }
 	
