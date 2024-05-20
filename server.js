@@ -522,11 +522,14 @@ function desconectarJugador(socketId) {
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
+	io.emit('eliminarJugadorEnCliente', socket.id);
+    
         console.log('Usuario desconectado', socket.id);
         assignedColors.delete(socket.id);
         connectedUsers.delete(socket.id);
         delete players[socket.id]; //
         io.emit('updatePlayers', players); //
+	    
         io.emit('userCount', connectedUsers.size);
     });
 
