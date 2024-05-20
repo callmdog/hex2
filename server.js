@@ -483,7 +483,7 @@ greenCirclesS.forEach(circle => {
 
 	    /////////////////////
 
-
+/*
 socket.on('eliminarJugador', (playerIdN) => {
 	console.log('Usuario desconectado222');
 
@@ -497,15 +497,11 @@ socket.on('eliminarJugador', (playerIdN) => {
         io.emit('updatePlayers', players); //
         io.emit('userCount', connectedUsers.size);
 
-
-
 io.emit('eliminarJugadorEnCliente', playerIdN);
-
-	
 });
-	
+*/	
 
-
+/*
 
 function desconectarJugador(socketId) {
     const socket = io.sockets.sockets[socketId];
@@ -517,7 +513,7 @@ function desconectarJugador(socketId) {
     }
 }
 
-
+*/
 
 
 ////////////////////////////////////////////////////////////////////////////    
@@ -526,7 +522,7 @@ function desconectarJugador(socketId) {
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
-        console.log('Usuario desconectado', socket.id, players[socket.id]);
+        console.log('Usuario desconectado', socket.id);
         assignedColors.delete(socket.id);
         connectedUsers.delete(socket.id);
         delete players[socket.id]; //
