@@ -48,6 +48,21 @@
 
 <body>
 
+<div id="gameOverModal" class="modal">
+  <div class="modal-content">
+    <h2>Game Over</h2>
+    <p id="score">Puntos: </p>
+    <button id="retryButton">Retry</button>
+  </div>
+</div>	
+	
+
+
+	<div id="retryBox" style="position: absolute; top: 20px; left: 20px; z-index: 9999;">
+  <p>¡Intenta de nuevo!</p>
+  <button id="retryButton">Retry</button>
+</div>
+
 <form id="nameForm">
     
     <label for="playerName">Introduce tu nombre:</label>
@@ -82,13 +97,6 @@
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
 
-<div id="gameOverModal" class="modal">
-  <div class="modal-content">
-    <h2>Game Over</h2>
-    <p id="score">Puntos: </p>
-    <button id="retryButton">Retry</button>
-  </div>
-</div>	
 
 <script src="/socket.io/socket.io.js"></script>
 
