@@ -862,17 +862,16 @@ hexagonGroup.style.display = 'none';
 	firstP.style.display = 'none';
 
 
- // Muestra el modal de Game Over
-  var modal = document.getElementById("gameOverModal");
-  var scoreElement = document.getElementById("score");
-  scoreElement.textContent = "Puntos: ";
-  modal.style.display = "block";
+document.getElementById('retryBox').style.display = 'block'; // Para mostrar el retryBox
+
 
   // Lógica para retryButton (volver a empezar)
   var retryButton = document.getElementById("retryButton");
   retryButton.onclick = function() {
     // Aquí debes implementar la lógica para reiniciar el juego
     // Por ejemplo, volver a cargar la página
+	      console.log("Retry Game.");
+
     location.reload();
   };	
 
