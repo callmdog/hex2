@@ -17,7 +17,7 @@ function initializeGreenCircles(socketFromIndex) {
 let greenCircles = [];
 let greenCircles2 = [];
 // Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
-socket.on('greenCirclesGenerated', (circles) => {
+/*socket.on('greenCirclesGenerated', (circles) => {
 console.log('GREEN CIRCLES GENERATED.');
 greenCircles = [];
 greenCircles2 = [];
@@ -25,7 +25,7 @@ greenCircles2 = [];
 greenCircles.push(...circles);
 //console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
 generateGreenCircles();
-});	
+});	*/
 	
 function generateGreenCircles() {
 console.log('GENERATE GREEN CIRCLES 2.');
