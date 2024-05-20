@@ -22,7 +22,7 @@ return Math.sqrt(dx * dx + dy * dy);
 //7. MARK RED VERTEX NEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
-function findAndMarkClosestVertices() {
+function findAndMarkClosestVertices(inicialX, inicialY) {
 clearAllGreenCircles();
 const currentX = inicialX - currentCameraX3;
 const currentY = inicialY - currentCameraY3;
