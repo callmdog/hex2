@@ -803,6 +803,14 @@ circulo.parentNode.removeChild(circulo);
     console.log("El círculo con el ID especificado no fue encontrado.");
 }
 
+var nombre = document.getElementById(playerIdN + '-name');
+if (nombre) {
+nombre.parentNode.removeChild(nombre);
+} else {
+    console.log("El nombre con el ID especificado no fue encontrado.");
+}
+
+	
 if (playerIdN===socket.id){
 gameCanvas.style.display = 'none';
 hexagonGroup.style.display = 'none';
