@@ -100,11 +100,9 @@ function preventZoom(event) {
 	event.preventDefault();
 }
 
-//CREATE HEXAGON PANAL
-//createHexagons(socket);
 
 const socket = io();
-	initializeGreenCircles(socket);	
+//initializeGreenCircles(socket);	
 
 socket.on('greenCirclesGenerated', (circles) => {
 console.log('GREEN CIRCLES GENERATED.');
@@ -149,10 +147,10 @@ greenCircles.splice(indice, 1);
 	
 
 createHexagons(socket, function() {
-        console.log("createHexagons end2222");
+        console.log("createHexagons end");
 
         socket.emit('dibujarVerdes', 'numero');
-    });	
+});	
 
 console.log('Camara:', Camara);	
 	
@@ -370,18 +368,6 @@ playerElement.setAttribute('fill', player.color);
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 
-/////
-
-//const useElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-//useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#dibujoGuardado'); // Asignar el dibujo guardado al <use>
-
-// Agregar el <use> al círculo
-//playerElement.appendChild(useElement);
-
-// Agregar el círculo al lienzo SVG
-//svgCanvas.appendChild(playerElement);
-
-//////
 
 if(playerId !== socket.id) {
 // Agregar atributo de jugador al círculo
@@ -411,10 +397,6 @@ if (existingTextElement) {
 }
 });
 
-//WHEN MOVE FUNCTIONS```````````````````````````````````````````````````-------------------------------------------------
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-------------------------------------------------
-//WHEN MOVE FUNCTIONS```````````````````````````````````````````````````-------------------------------------------------
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-------------------------------------------------
 //WHEN MOVE FUNCTIONS```````````````````````````````````````````````````-------------------------------------------------
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-------------------------------------------------
 //WHEN MOVE FUNCTIONS```````````````````````````````````````````````````-------------------------------------------------
@@ -454,9 +436,6 @@ animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 }
 	
 }	
-
-//2. FIND CLOSES VERTEX TO CLICK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
 
 
 //3. ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -527,30 +506,19 @@ console.log('CordY1: ', xCoordinate  );
 
 
 
-
-
 animateCircleLocally(playerElement, data.start, data.end, playerId);
 animateNameLocally(textElement2, data.start, data.end);
 
 //FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
 
-
-
-
 const xCoordinate = playerElement.getAttribute('cy');
 console.log('CordY2: ', xCoordinate  );
 
-
-//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
-//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
-//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
-//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
 
 if(Camara===2) {
-
 //CAMARA/////////////////////
 		const transformAttribute = camera.getAttribute('transform');
 		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
@@ -600,7 +568,6 @@ console.log('2. bY: ',   bY );
 const bluePointRightXA = currentY + bluePointHeight;
 console.log('3. bluePointRightXA: ',  bluePointRightXA  );
 const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
-
 if (bluePointRightXA > limitRightY) {      
 //if(MoveCam){
 CalculoCam = CalculoCam + svgHeight / 3;
@@ -610,24 +577,13 @@ animateCam3 (10,  10  , bX, bY, svgHeight,function() {
 });   
 //}
 }
-
-
-
-
 console.log('Limite tot. ', svgWidth   ); 
-
 console.log('Limite der. ',  limitRightX  ); 
-
-
 console.log('Limite izq. ',  limitRightX2  );
 
-
- 
-
-
+	
 //ABAJO!!!!!!!!
 const limitRightY2 = - currentCameraY4p + (window.innerHeight * 0.3);
-
 if (bluePointRightXA < limitRightY2) {      
 //if(MoveCam){
 //CalculoCam = CalculoCam + svgHeight / 3;
@@ -637,9 +593,6 @@ animateCam4 (10,  10  ,bX, bY, svgHeight, function() {
 });   
 //}
 }
-
-
-
 
 }
 	
@@ -654,7 +607,6 @@ isMoving = false;
 ////ATRAS///////////
 // ANIMATE CAM 2 CAMARA MOVIMIENTO !!!!!!!!!!!!
 ////////////////////
-
 
 //5. ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
@@ -672,37 +624,18 @@ const newY = start.y + progress * (end.y - start.y);
 circleElement.setAttribute('cx', newX);
 circleElement.setAttribute('cy', newY);
 
-
-
-
-
-
-
 if (socket.id===playerId) {
-
-
-
-
+	
 ////CAMERA MOVEMENT
-
 	const newXCam = svgWidth / 2 - newX;
 	const newYCam = svgHeight / 2 - newY;	
-
 if(Camara===1)
 {
-
 camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
-
 console.log(`CamY: ${newYCam}`);
 console.log(`bY: ${bY}`);    
-	
-
 }
-
 ////END CAMERA MOVEMENT
-
-
-
 
 // Obtener el radio del círculo como una cadena de texto
 const radiusAsString = circleElement.getAttribute('r');
@@ -712,11 +645,6 @@ detectarColisiones(circleElement);
 detectarColisionesRectangulares(newX, newY, radius, greenCircles);
 }	
 
-
-
-
-
-		
 if (progress < 1) { requestAnimationFrame(update); } 
 else {
 // La animación ha terminado
@@ -726,7 +654,6 @@ if (typeof callback === 'function') { callback(); }
 	
 }
 
-	
 //6. ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
@@ -749,59 +676,6 @@ requestAnimationFrame(update);
 	
 }	
 
-//7. MARK RED VERTEX NEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-
-
-
-////////////////////////////////////////////////////////////	
-//YELLOW POINTS CERCA DE LINEAS !!!!!!!!!!!!!!!!!!
-////////////////////////////////////////////////////////////
-	
-// Función para calcular las líneas que forman los hexágonos
-function calculateHexagonLines() {
-const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-const hexagonLines = [];
-hexagons.forEach(hexagon => {
-const points = hexagon.getAttribute('points').split(' ');
-// Iterar sobre los vértices del hexágono
-for (let i = 0; i < points.length; i++) {
-const [x1, y1] = points[i].split(',').map(Number);
-const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
-hexagonLines.push({ x1, y1, x2, y2 }); } });
-return hexagonLines;
-}	
-// Función para dibujar 100 puntos amarillos aleatorios en las líneas de los hexágonos
-function drawRandomYellowPointsOnHexLines() {
-const svg = document.querySelector('svg');
-const hexagonLines = calculateHexagonLines();
-for (let i = 0; i < 100; i++) {
-// Elegir aleatoriamente una línea de los hexágonos
-const randomLine = hexagonLines[Math.floor(Math.random() * hexagonLines.length)];
-// Calcular una posición aleatoria a lo largo de la línea
-const randomX = Math.random() * (randomLine.x2 - randomLine.x1) + randomLine.x1;
-const randomY = Math.random() * (randomLine.y2 - randomLine.y1) + randomLine.y1;
-// Crear un círculo amarillo en la posición aleatoria
-const yellowDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-yellowDot.setAttribute('cx', randomX); yellowDot.setAttribute('cy', randomY);
-yellowDot.setAttribute('r', '2'); yellowDot.setAttribute('fill', 'yellow');
-const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(yellowDot); }
-}
-//drawRandomYellowPointsOnHexLines();	
-
-
-//DETECTAR COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!
-////////////////////////////////////////////////////////////
-
-
-//MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
-////////////////////////////////////////////////////////////	
-
-
-
-//////////////////
-//////////////////	
 
 //8. DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
@@ -896,22 +770,14 @@ console.log("ELIMINAR JUGADOR", playerIdN );
 
 <script src="createHexagons.js">
 	console.log('SCRIPT INI 2');
-
 </script>
-
 
 <script src="greenCircles.js">
 	console.log('SCRIPT INI 3');
-
 </script>	
-
-
-
-	
 
 <script src="cameraMov.js">
 	console.log('SCRIPT INI 5');
-
 </script>
 	
   
