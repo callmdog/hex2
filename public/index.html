@@ -715,10 +715,9 @@ const progress = Math.min((currentTime - startTime) / duration, 1);
 const newX = start.x + progress * (end.x - start.x);
 const newY = start.y + progress * (end.y - start.y);
 		
-//circleElement.setAttribute('cx', newX);
-//circleElement.setAttribute('cy', newY);
+circleElement.setAttribute('cx', newX);
+circleElement.setAttribute('cy', newY);
 
-        circleElement.setAttribute('transform', `translate(${newX}, ${newY})`);
 
 	
 if (socket.id===playerId) {
