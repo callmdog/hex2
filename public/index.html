@@ -11,46 +11,21 @@
 
 <style>
 
-.modal {
-  display: none; /* Por defecto, el modal estará oculto */
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(255, 0, 0, 0.8); /* Color de fondo rojo con opacidad */
-}
 
-.modal-content {
-  background-color: #fff;
-  margin: 20% auto;
-  padding: 20px;
-  border: 1px solid #000;
-  width: 60%;
-  text-align: center;
-}
 
-#retryButton {
-  background-color: blue;
-  padding: 10px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-	    #retryBox {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 9999;
+    #retryBox {
       background-color: red; /* Fondo rojo */
       padding: 20px; /* Espaciado interno */
       color: white; /* Texto blanco */
+      font-family: Arial, sans-serif; /* Fuente del texto */
+      text-align: center; /* Alinear texto al centro */
     }
-
+    #retryButton {
+      background-color: blue;
+      padding: 10px 20px;
+      color: white;
+      border: none;
+      cursor: pointer;
 	
 </style>	
 	
@@ -58,18 +33,10 @@
 
 <body>
 
-<div id="gameOverModal" class="modal">
-  <div class="modal-content">
-    <h2>Game Over</h2>
-    <p id="score">Puntos: </p>
-    <button id="retryButton">Retry</button>
-  </div>
-</div>	
 	
-
-
-	<div id="retryBox" style="position: absolute; top: 20px; left: 20px; z-index: 9999;">
-  <p>¡Intenta de nuevo!</p>
+<div id="retryBox">
+  <h2>¡Intenta de nuevo!</h2>
+  <p>Points: 1018</p>
   <button id="retryButton">Retry</button>
 </div>
 
