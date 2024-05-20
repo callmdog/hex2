@@ -6,6 +6,8 @@
 let socket; // Declarar una variable global para el socket
 
 function initializeGreenCircles(socketFromIndex) {
+	console.log('Socket Iniciado.');
+
     socket = socketFromIndex; // Asignar el valor del socket pasado como argumento
     // A partir de este punto, puedes usar el socket en greenCircles.js
    
