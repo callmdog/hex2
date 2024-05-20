@@ -109,6 +109,8 @@ const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
 const socket = io();
+			initializeGreenCircles(socket);
+
 let NameSecure = '';
 	
 ///CAM OPTIONS
@@ -137,7 +139,6 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
 
-		initializeGreenCircles(socket);
 
 
 // GUARDAR DIBUJO
