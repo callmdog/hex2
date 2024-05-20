@@ -814,6 +814,12 @@ nombre.parentNode.removeChild(nombre);
 if (playerIdN===socket.id){
 gameCanvas.style.display = 'none';
 hexagonGroup.style.display = 'none';
+	
+const greenCircles = document.querySelectorAll('circle[fill="red"]');
+greenCircles.forEach((greenCircle) => { 
+const cameraGroup = document.getElementById('camera');
+cameraGroup.removeChild(greenCircle); }); 
+	
 }
 	
 console.log("ELIMINAR JUGADOR", playerIdN );
