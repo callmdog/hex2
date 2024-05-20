@@ -137,6 +137,8 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
 
+		initializeGreenCircles(socket);
+
 
 // GUARDAR DIBUJO
 
@@ -152,9 +154,10 @@ function preventZoom(event) {
 //CREATE HEXAGON PANAL
 //createHexagons(socket);
 
+	
+
 	 createHexagons(socket, function() {
         console.log("createHexagons end2222");
-	initializeGreenCircles(socket);
 
         socket.emit('dibujarVerdes', 'numero');
     });
