@@ -118,7 +118,7 @@ return false;
 
 //MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////	
-
+/*
 socket.on('greenCircleCollision', (collisionIndex, indexToRemove, comproid) => {
 
 if (comproid !== socket.id) {
@@ -145,3 +145,4 @@ greenCircles.splice(indice, 1);
 }
 	
 });
+*/
