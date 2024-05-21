@@ -46,6 +46,21 @@
       z-index: -1; /* Para que esté detrás de otros elementos */
     }   
 
+
+	    #playerName {
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Estilo para el placeholder */
+#playerName::placeholder {
+  color: #aaa;
+}
+
+/* Estilo para el placeholder cuando se enfoca el campo de entrada */
+#playerName:focus::placeholder {
+  color: #333;
+}
 	    
 	
 </style>	
@@ -71,7 +86,7 @@
 	</div>	
     
     <label for="playerName">Introduce tu nombre:</label>
-    <input type="text" id="playerName" name="playerName" required>
+    <input type="text" id="playerName" name="playerName" required placeholder="Player name">
     <button type="button" id="submitButton">Aceptar</button>
 	
 	<div id="cameraOptions">
