@@ -25,6 +25,8 @@
 }
 
  #paintBox {
+		 display: none;
+ 
   position: absolute; /* Posición absoluta */
   top: 50%; /* Alineación vertical al 50% del viewport */
   left: 50%; /* Alineación horizontal al 50% del viewport */
@@ -209,6 +211,12 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	firstP.style.display = 'block';
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
+});
+
+	//CUSTOM PLAYER BUTTON
+	document.getElementById('customPlayer').addEventListener('click', function () {
+	document.getElementById('paintBox').style.display = 'block'; // Para mostrar el retryBox
+
 });
 
 function preventZoom(event) {
