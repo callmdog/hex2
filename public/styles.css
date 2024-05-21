@@ -163,7 +163,6 @@ display: none; }
   border: 2px solid #ccc;
   background-color: yellow; /* Cambiar el color de fondo a amarillo */
   position: relative;
-	z-index: 999;
 }
 
 /* Estilo para el botón de radio seleccionado */
