@@ -50,3 +50,13 @@ z-index: 1;
 display: none; }
 	
 #bluePoint { display: none; }
+
+#cameraOptions {
+  color: white;
+  font-weight: bold;
+}
+
+#cameraOptions span {
+  color: white;
+  font-weight: bold;
+}
