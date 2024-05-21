@@ -50,13 +50,35 @@
       z-index: -1; /* Para que esté detrás de otros elementos */
     }   
 
-
-    iframe {
-  width: 100%; /* Ocupa todo el ancho del marco */
-  height: 100%; /* Ocupa toda la altura del marco */
-  border: none; /* Quita el borde del iframe */
-  z-index: 2; /* Asegura que el iframe esté encima del pseudo-elemento */
+.frame {
+  position: absolute; /* Establece posición absoluta */
+  top: 50%; /* Alinea desde la mitad superior */
+  left: 50%; /* Alinea desde la mitad izquierda */
+  transform: translate(-50%, -50%); /* Centra completamente */
+  width: 80%; /* Ancho del marco */
+  max-width: 500px; /* Ancho máximo */
+  height: 80%; /* Altura del marco */
+  max-height: 500px; /* Altura máxima */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+  overflow: hidden; /* Oculta el desbordamiento del iframe */
+  z-index: 1; /* Asegura que el iframe esté encima de los otros elementos */
 }
+
+.frame::before {
+  content: ""; /* Crea un pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #00ff00, #0000ff); /* Degradado */
+  opacity: 0.8; /* Opacidad */
+  z-index: -1; /* Coloca detrás del iframe */
+}	    
+
+
+
 	
 </style>	
 	
@@ -66,7 +88,13 @@
 
 
 <div class="container">
-	
+
+
+<!-- LIENZO PAINT HTML !!!!!!!!! -->
+<div class="frame">	
+<iframe src="lienzoSVG.html" frameborder="0" width="100%" height="400px"></iframe>
+<!-- END LIENZO PAINT HTML !!!!!!!!! -->
+</div>		
 	
 <div id="retryBox">
   <h2>¡Intenta de nuevo!</h2>
@@ -104,11 +132,6 @@
   </div>
 
 
-<!-- LIENZO PAINT HTML !!!!!!!!! -->
-<div class="frame">	
-<iframe src="lienzoSVG.html" frameborder="0" width="100%" height="400px"></iframe>
-<!-- END LIENZO PAINT HTML !!!!!!!!! -->
-</div>	
 
 <!-- CONTAINER END !!!!!!!!! -->
 </div>
