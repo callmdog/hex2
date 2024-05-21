@@ -25,6 +25,10 @@ width: 100vw;
 height: 100vh;
 overflow: auto;
 touch-action: pinch-zoom; }
+
+.container {
+  position: relative; /* Establece posición relativa */
+}	
 	
 #gameCanvas {
 top: 0;
