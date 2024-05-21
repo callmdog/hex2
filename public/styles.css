@@ -60,3 +60,21 @@ display: none; }
   color: white;
   font-weight: bold;
 }
+
+#submitButton {
+  padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+  font-size: 16px;
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Quita el borde */
+  border-radius: 5px; /* Añade bordes redondeados */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
+}
+
+/* Estilo para el botón cuando se pasa el cursor sobre él */
+#submitButton:hover {
+  background-color: #45a049; /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
+}	    
