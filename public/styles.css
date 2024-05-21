@@ -139,11 +139,12 @@ display: none; }
 #cameraOptions {
   display: flex;
   justify-content: center;
-z-index: 999;
+
 }
 
 /* Estilo base para los botones de radio */
 .radio-button {
+z-index: 999;	
   display: flex; /* Añadir display flex */
   align-items: center; /* Centrar verticalmente */
   position: relative;
