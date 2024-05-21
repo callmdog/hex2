@@ -117,9 +117,20 @@
     <input type="text" id="playerName" name="playerName" required placeholder="Player name">
 	
 	<div id="cameraOptions">
-	<label> <input type="radio" name="camera" value="1"  checked   > Cam 1 </label>
-	<label> <input type="radio" name="camera" value="2"> Cam 2 </label>
-	</div>	
+  <label class="radio-button">
+    <input type="radio" name="camera" value="1" checked>
+    <span class="radio-custom"></span>
+    <span class="radio-label">Cam 1</span>
+  </label>
+  <label class="radio-button">
+    <input type="radio" name="camera" value="2">
+    <span class="radio-custom"></span>
+    <span class="radio-label">Cam 2</span>
+  </label>
+</div>
+
+
+	
     <button type="button" id="submitButton">PLAY</button>
 <div id="customizePlayerDiv">
 	    <button type="button" id="customPlayer">CUSTOMIZE SKIN</button>
