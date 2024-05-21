@@ -129,3 +129,60 @@ display: none; }
 #playerName:focus::placeholder {
   color: #333;
 }
+
+
+/* Estilo para el contenedor de los botones de radio */
+#cameraOptions {
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilo base para los botones de radio */
+.radio-button {
+  display: flex; /* Añadir display flex */
+  align-items: center; /* Centrar verticalmente */
+  position: relative;
+  margin: 0 10px; /* Espaciado entre los botones */
+}
+
+/* Estilo para ocultar los botones de radio nativos */
+.radio-button input {
+  display: none;
+}
+
+/* Estilo para el diseño personalizado de los botones de radio */
+.radio-custom {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: yellow; /* Cambiar el color de fondo a amarillo */
+  position: relative;
+}
+
+/* Estilo para el botón de radio seleccionado */
+.radio-custom::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #666;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+/* Estilo para la etiqueta del botón de radio */
+.radio-label {
+  margin-left: 5px; /* Espacio entre el botón y la etiqueta */
+  font-size: 20px; /* Tamaño del texto */
+  color: #333;
+}
+
+/* Estilo para cambiar el aspecto del botón cuando está seleccionado */
+.radio-button input:checked + .radio-custom::after {
+  opacity: 1;
+}
