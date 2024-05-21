@@ -11,7 +11,14 @@
 
 <style>
 
-
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+}
 
  #retryBox {
 	 display: none;
@@ -55,6 +62,8 @@
   <button id="retryButton">Retry</button>
 </div>
 
+ <div class="center-box">	
+
 <form id="nameForm">
     
     <label for="playerName">Introduce tu nombre:</label>
@@ -74,6 +83,9 @@
 <!-- END LIENZO PAINT HTML !!!!!!!!! -->
 
 </form>
+
+  </div>
+	 
 
 <canvas id="gameCanvas" height="0" style="background-color: #ff0000;"> </canvas>
 
