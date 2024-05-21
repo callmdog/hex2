@@ -139,7 +139,7 @@ display: none; }
 #cameraOptions {
   display: flex;
   justify-content: center;
-
+z-index: 999;
 }
 
 /* Estilo base para los botones de radio */
