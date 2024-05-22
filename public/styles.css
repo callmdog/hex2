@@ -98,6 +98,8 @@ max-width: 90%; }
   display: flex;
   justify-content: center;
   z-index: 999;
+  font-weight: bold;
+  color: white;
 }
 .radio-button {
   display: flex;
