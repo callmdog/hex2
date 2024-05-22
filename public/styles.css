@@ -260,7 +260,7 @@ padding: 10px;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #00ff00, #0000ff); /* Degradado */
+background: linear-gradient(45deg, #000000, #ffd700); /* Degradado de negro a amarillo */
   opacity: 0.8; /* Opacidad */
   z-index: -1;	
   /*  z-index: -1; Coloca detrás del iframe */
@@ -284,14 +284,34 @@ padding: 10px;
             height: 100%;
         }
 
-       /* #undoButton, #redoButton, #fillButton, #clearButton {
-            margin: 10px;
-            padding: 5px 10px;
-            background-color: #ddd;
-            border: 1px solid #999;
-            cursor: pointer;
+        #undoButton, #redoButton, #fillButton, #clearButton {
+           padding: 5px 10px; /* Ajusta el relleno según sea necesario */
+  font-size: 12px;
+  background-color: #cb9800; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Quita el borde */
+  border-radius: 5px; /* Añade bordes redondeados */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
         }
-*/
+.shapeButton {
+    padding: 5px 10px; /* Ajusta el relleno según sea necesario */
+    font-size: 12px;
+    background-color: #cb9800; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Quita el borde */
+    border-radius: 5px; /* Añade bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
+}
+/*#customPlayer:hover {
+  background-color: #ac9f41; 
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+}*/
+
+
 	
 
 /* ///////////// BLUE POINT  ////////////////// */
