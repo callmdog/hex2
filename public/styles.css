@@ -87,14 +87,14 @@ max-width: 90%; }
 #cameraOptions {
   display: flex;
   justify-content: center;
-  z-index: -999;
+  z-index: -1;
   font-weight: bold;
   color: white;
 }
 #cameraOptions span {
   color: white;
   font-weight: bold;
-  z-index: -999;
+  z-index: -1;
 	
 }
 .radio-button {
