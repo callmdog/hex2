@@ -94,7 +94,6 @@ max-width: 90%; }
 #cameraOptions span {
   color: white;
   font-weight: bold;
-  z-index: -1;
 	
 }
 .radio-button {
