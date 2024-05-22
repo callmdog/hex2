@@ -181,52 +181,6 @@ max-width: 90%; }
 
 
 
- /* ///////////// CANVAS PAINT BOX ////////////////// */
- /* ///////////// CANVAS PAINT BOX ////////////////// */	
- /* ///////////// CANVAS PAINT BOX ////////////////// */	
-
-
- #paintBox {
-  /* display: none;*/
-  display: none;
-  position: absolute; /* Posición absoluta */
-  background-color: red; /* Fondo rojo */
-  border-radius: 20px; /* Bordes redondeados */
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
-  overflow: hidden; /* Oculta el desbordamiento del iframe */
-   z-index: 999;
-padding: 10px;
- }	
-
-
- #paintBox2 {
-  /* display: none;*/
- 
-  position: absolute; /* Posición absoluta */
- 
-	 
-   width: 100%;
-  height: 100%;	 
-  background-color: red; /* Fondo rojo */
-  border-radius: 20px; /* Bordes redondeados */
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
-  overflow: hidden; /* Oculta el desbordamiento del iframe */
-   z-index: 999;		 
- }	
-#paintBox::before {
-  content: ""; /* Crea un pseudo-elemento */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #00ff00, #0000ff); /* Degradado */
-  opacity: 0.8; /* Opacidad */
-  z-index: -1;	
-  /*  z-index: -1; Coloca detrás del iframe */
-}
-
-
 
  /* ///////////// GAME OVER BOX ////////////////// */
  /* ///////////// GAME OVER BOX ////////////////// */	
@@ -284,6 +238,34 @@ touch-action: pinch-zoom; }
  /* ///////////// PAINT SVG ////////////////// */	
  /* ///////////// PAINT SVG ////////////////// */	
  /* ///////////// PAINT SVG ////////////////// */
+ /* ///////////// CANVAS PAINT BOX ////////////////// */
+ /* ///////////// CANVAS PAINT BOX ////////////////// */	
+ /* ///////////// CANVAS PAINT BOX ////////////////// */	
+ #paintBox {
+  /* display: none;*/
+  display: none;
+  position: absolute; /* Posición absoluta */
+  background-color: red; /* Fondo rojo */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+  overflow: hidden; /* Oculta el desbordamiento del iframe */
+   z-index: 999;
+padding: 10px;
+ }	
+	
+#paintBox::before {
+  content: ""; /* Crea un pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #00ff00, #0000ff); /* Degradado */
+  opacity: 0.8; /* Opacidad */
+  z-index: -1;	
+  /*  z-index: -1; Coloca detrás del iframe */
+}
+
     #canvasContainer {
             position: relative;
             width: 300px; /* Ancho basado en la altura de la ventana */
@@ -302,14 +284,14 @@ touch-action: pinch-zoom; }
             height: 100%;
         }
 
-        #undoButton, #redoButton, #fillButton, #clearButton {
+       /* #undoButton, #redoButton, #fillButton, #clearButton {
             margin: 10px;
             padding: 5px 10px;
             background-color: #ddd;
             border: 1px solid #999;
             cursor: pointer;
         }
-
+*/
 	
 
 /* ///////////// BLUE POINT  ////////////////// */
