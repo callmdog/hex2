@@ -188,13 +188,14 @@ max-width: 90%; }
 
  #paintBox {
   /* display: none;*/
- 
+  display: none;
   position: absolute; /* Posición absoluta */
   background-color: red; /* Fondo rojo */
   border-radius: 20px; /* Bordes redondeados */
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
   overflow: hidden; /* Oculta el desbordamiento del iframe */
-   z-index: 999;		 
+   z-index: 999;
+padding: 10px;
  }	
 
 
@@ -212,7 +213,7 @@ max-width: 90%; }
   overflow: hidden; /* Oculta el desbordamiento del iframe */
    z-index: 999;		 
  }	
-#paintBox2::before {
+#paintBox::before {
   content: ""; /* Crea un pseudo-elemento */
   position: absolute;
   top: 0;
