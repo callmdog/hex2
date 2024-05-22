@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lienzo</title>
     <style>
-
+/* 
   #todoPaint {
-   width: 100%; /* Ancho basado en la altura de la ventana */
-            height: 100%; /* Altura basada en la altura de la ventana */    
+   width: 100%; 
+            height: 100%; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,8 +16,8 @@
         
    #canvasContainer {
             position: relative;
-            width: 300px; /* Ancho basado en la altura de la ventana */
-            height: 300px; /* Altura basada en la altura de la ventana */
+            width: 300px; 
+            height: 300px; 
             margin: auto;
             border: 1px solid white;
             border-radius: 50%;
@@ -26,7 +26,7 @@
 
        
 
-       /* 
+       
         #svgCanvas {
             position: absolute;
             top: 0;
@@ -35,26 +35,30 @@
 
             width: 100%;
             height: 100%;
-        }*/
+        }
 
-        #undoButton, #redoButton, #fillButton, #clearButton {
+    
+
+
+
+#canvasContainer {
+  margin-top: 20px; 
+}
+
+#canvasContainer > * {
+  display: block;
+  margin-bottom: 10px; 
+}
+*/
+        
+
+    #undoButton, #redoButton, #fillButton, #clearButton {
             margin: 10px;
             padding: 5px 10px;
             background-color: #ddd;
             border: 1px solid #999;
             cursor: pointer;
-        }
-
-
-
-#canvasContainer {
-  margin-top: 20px; /* Ajusta el margen superior según sea necesario */
-}
-
-#canvasContainer > * {
-  display: block;
-  margin-bottom: 10px; /* Espaciado entre los elementos dentro del contenedor */
-}
+        }     
 
 
     </style>
@@ -63,7 +67,7 @@
 
     
         <svg id="svgCanvas" width="100%" height="100%">
-            <rect width="100%" height="100%" fill="transparent"/>
+            <rect width="100%" height="100%" fill="white"/>
         </svg>
 
 
