@@ -84,6 +84,7 @@ max-width: 90%; }
  /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */
  /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
  /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
+/*
 #cameraOptions {
   color: white;
   font-weight: bold;
@@ -92,7 +93,7 @@ max-width: 90%; }
 #cameraOptions span {
   color: white;
   font-weight: bold;
-}
+}*/
 #cameraOptions {
   display: flex;
   justify-content: center;
