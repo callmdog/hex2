@@ -1,3 +1,39 @@
+body {
+	margin: 0;
+	display: flex;
+	justify-content: center; /* Centra horizontalmente */
+  	align-items: center; /* Centra verticalmente */
+  	height: 100vh;	
+	background-color: #000000; 
+}
+
+	
+/* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
+/* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
+/* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
+#gameCanvas {
+top: 0;
+left: 0;
+width: 0;
+position: absolute;
+display: none; }
+#firstP {
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background-color: #CCFF00;
+position: absolute;
+z-index: 1;
+display: none; }
+#hexagonGroup {
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;	
+position: absolute;
+z-index: 1;
+display: none; }
 #fixedText {
 position: fixed;
 top: 5vh;
@@ -9,163 +45,76 @@ padding: 10px;
 border-radius: 5px;
 font-size: 2vw;
 max-width: 90%; }
-	
-body {
-margin: 0;
-display: flex;
-justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100vh;	
-background-color: #000000; }
-	
-form {
-text-align: center; }
-#svg-container {
-width: 100vw;
-height: 100vh;
-overflow: auto;
-touch-action: pinch-zoom; }
 
-.container {
-  position: relative; /* Establece posición relativa */
-}	
-	
-#gameCanvas {
-top: 0;
-left: 0;
-width: 0;
-position: absolute;
-display: none; }
-	
-#hexagonGroup {
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;	
-position: absolute;
-z-index: 1;
-display: none; }
-	
-#firstP {
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background-color: #CCFF00;
-position: absolute;
-z-index: 1;
-display: none; }
-	
-#bluePoint { display: none; }
 
+ /* ///////////// LOGOTIPO ////////////////// */
+ /* ///////////// LOGOTIPO ////////////////// */	
+ /* ///////////// LOGOTIPO ////////////////// */	
+#topImage {
+	width: 100%;
+	z-index: -1; /* Para que esté detrás de otros elementos */
+    }   
+
+
+
+/* ///////////// TEXT FIELD NICKNAME  ////////////////// */
+/* ///////////// TEXT FIELD NICKNAME  ////////////////// */
+/* ///////////// TEXT FIELD NICKNAME  ////////////////// */
+#playerName {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 18px;
+  height: 40px;
+  text-align: center; 
+  border-radius: 5px; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+#playerName::placeholder {
+	text-align: center; 
+	color: #aaa;
+}
+#playerName:focus::placeholder {
+ 	 color: #333;
+}
+
+
+
+
+ /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */
+ /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
+ /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
 #cameraOptions {
   color: white;
   font-weight: bold;
+  z-index: 999;	
 }
-
 #cameraOptions span {
   color: white;
   font-weight: bold;
 }
-
-#submitButton {
-  padding: 10px 20px; /* Ajusta el relleno según sea necesario */
-  font-size: 16px;
-  background-color: #04135a; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none; /* Quita el borde */
-  border-radius: 5px; /* Añade bordes redondeados */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
-
-}
-
-/* Estilo para el botón cuando se pasa el cursor sobre él */
-#submitButton:hover {
-  background-color: #2f2c79; /* Cambia el color de fondo al pasar el cursor */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
-}	
-
-#customPlayer {
-  padding: 10px 20px; /* Ajusta el relleno según sea necesario */
-  font-size: 16px;
-  background-color: #cb9800; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none; /* Quita el borde */
-  border-radius: 5px; /* Añade bordes redondeados */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
-
-}
-
-/* Estilo para el botón cuando se pasa el cursor sobre él */
-#customPlayer:hover {
-  background-color: #ac9f41; /* Cambia el color de fondo al pasar el cursor */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
-}
-
-
-	    #playerName {
-
-		      box-sizing: border-box; /* incluye el padding en el cálculo del tamaño total */
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 18px;
-		    height: 40px;
-		      text-align: center; /* centra el texto */
-
-		    border-radius: 5px; /* Añade bordes redondeados */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
- 
-
-}
-
-/* Estilo para el placeholder */
-#playerName::placeholder {
-	  text-align: center; /* centra el texto del placeholder */
-
-  color: #aaa;
-}
-
-/* Estilo para el placeholder cuando se enfoca el campo de entrada */
-#playerName:focus::placeholder {
-  color: #333;
-}
-
-
-/* Estilo para el contenedor de los botones de radio */
 #cameraOptions {
   display: flex;
   justify-content: center;
-z-index: 999;
+  z-index: 999;
 }
-
-/* Estilo base para los botones de radio */
 .radio-button {
-  display: flex; /* Añadir display flex */
-  align-items: center; /* Centrar verticalmente */
+  display: flex;
+  align-items: center; 
   position: relative;
-  margin: 0 10px; /* Espaciado entre los botones */
+  margin: 0 10px;
 }
-
-/* Estilo para ocultar los botones de radio nativos */
 .radio-button input {
   display: none;
 }
-
-/* Estilo para el diseño personalizado de los botones de radio */
 .radio-custom {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   border: 2px solid #ccc;
-  background-color: yellow; /* Cambiar el color de fondo a amarillo */
+  background-color: yellow; 
   position: relative;
 }
-
-/* Estilo para el botón de radio seleccionado */
 .radio-custom::after {
   content: "";
   display: block;
@@ -179,47 +128,77 @@ z-index: 999;
   transform: translate(-50%, -50%);
   opacity: 0;
 }
-
-/* Estilo para la etiqueta del botón de radio */
 .radio-label {
   margin-left: 5px; /* Espacio entre el botón y la etiqueta */
   font-size: 20px; /* Tamaño del texto */
   color: #333;
 }
-
-/* Estilo para cambiar el aspecto del botón cuando está seleccionado */
 .radio-button input:checked + .radio-custom::after {
   opacity: 1;
 }
 
 
-.center-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: black;
+
+
+
+
+/* ///////////// PLAY BUTTON  ////////////////// */
+/* ///////////// PLAY BUTTON  ////////////////// */
+/* ///////////// PLAY BUTTON  ////////////////// */
+#submitButton {
+  padding: 10px 20px; 
+  font-size: 16px;
+  background-color: #04135a; 
+  color: white;
+  border: none; 
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
-.center-box > form > * {
-  margin: 10px 0;
+#submitButton:hover {
+  background-color: #2f2c79;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+}	
+
+/* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
+/* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
+/* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
+#customPlayer {
+  padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+  font-size: 16px;
+  background-color: #cb9800; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Quita el borde */
+  border-radius: 5px; /* Añade bordes redondeados */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
+}
+#customPlayer:hover {
+  background-color: #ac9f41; /* Cambia el color de fondo al pasar el cursor */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
 }
 
+
+
+
+ /* ///////////// CANVAS PAINT BOX ////////////////// */
+ /* ///////////// CANVAS PAINT BOX ////////////////// */	
+ /* ///////////// CANVAS PAINT BOX ////////////////// */	
  #paintBox {
-		 display: none;
- 
+  display: none;
   position: absolute; /* Posición absoluta */
   top: 50%; /* Alineación vertical al 50% del viewport */
   left: 50%; /* Alineación horizontal al 50% del viewport */
   transform: translate(-50%, -50%); /* Corrige el centro */
   background-color: red; /* Fondo rojo */
-	 width: 100%;
+  width: 100%;
   height: 100%;
   border-radius: 20px; /* Bordes redondeados */
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
   overflow: hidden; /* Oculta el desbordamiento del iframe */
  }	
-
 #paintBox::before {
   content: ""; /* Crea un pseudo-elemento */
   position: absolute;
@@ -230,10 +209,15 @@ z-index: 999;
   background: linear-gradient(45deg, #00ff00, #0000ff); /* Degradado */
   opacity: 0.8; /* Opacidad */
   z-index: -1; /* Coloca detrás del iframe */
-}	
+}
 
+
+
+ /* ///////////// GAME OVER BOX ////////////////// */
+ /* ///////////// GAME OVER BOX ////////////////// */	
+ /* ///////////// GAME OVER BOX ////////////////// */	
  #retryBox {
-	 display: none;
+  display: none;
   position: absolute; /* Posición absoluta */
   top: 50%; /* Alineación vertical al 50% del viewport */
   left: 50%; /* Alineación horizontal al 50% del viewport */
@@ -245,15 +229,44 @@ z-index: 999;
   text-align: center; /* Alinear texto al centro */
   z-index: 999; /* Para asegurarse de que esté encima de otros elementos */
 }
-    #retryButton {
+#retryButton {
       background-color: blue;
       padding: 10px 20px;
       color: white;
       border: none;
       cursor: pointer;
+}
+	
 
-	   #topImage {
-     
-      width: 100%;
-      z-index: -1; /* Para que esté detrás de otros elementos */
-    }   
+
+ /* ///////////// CENTER ALL ELEMENTS ////////////////// */	
+ /* ///////////// CENTER ALL ELEMENTS ////////////////// */	
+ /* ///////////// CENTER ALL ELEMENTS ////////////////// */		
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+.center-box > form > * {
+  margin: 10px 0;
+}	
+.container {
+  position: relative; /* Establece posición relativa */
+}
+form {
+text-align: center; }
+#svg-container {
+width: 100vw;
+height: 100vh;
+overflow: auto;
+touch-action: pinch-zoom; }
+
+	
+
+/* ///////////// BLUE POINT  ////////////////// */
+/* ///////////// BLUE POINT  ////////////////// */
+/* ///////////// BLUE POINT  ////////////////// */	
+#bluePoint { display: none; }	
