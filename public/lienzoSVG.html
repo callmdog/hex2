@@ -24,16 +24,9 @@
             overflow: hidden;
         }
 
-      #canvasButtons {
-            position: relative;
-            width: 300px; /* Ancho basado en la altura de la ventana */
-            height: 300px; /* Altura basada en la altura de la ventana */
-            margin: auto;
-            border: 1px solid white;
-            border-radius: 50%;
-            overflow: hidden;
-        }     
+       
 
+       /* 
         #svgCanvas {
             position: absolute;
             top: 0;
@@ -42,7 +35,7 @@
 
             width: 100%;
             height: 100%;
-        }
+        }*/
 
         #undoButton, #redoButton, #fillButton, #clearButton {
             margin: 10px;
@@ -68,16 +61,12 @@
 </head>
 <body>
 
-      <div id="todoPaint">
     
-    <div id="canvasContainer">
         <svg id="svgCanvas" width="100%" height="100%">
             <rect width="100%" height="100%" fill="transparent"/>
         </svg>
-    </div>
 
 
-      <div id="canvasButtons">
 
     <input type="color" id="colorPicker" value="#000000">
     <input type="range" id="brushSize" min="1" max="20" value="2">
@@ -92,9 +81,7 @@
     <button type="button" class="shapeButton" data-shape="rectangle">Rectángulo</button>
     <button type="button" class="shapeButton" data-shape="triangle">Triángulo</button>
           
-    </div>
 
-  </div>
         
     <script src="lienzoFunciones.js"></script>
 </body>
