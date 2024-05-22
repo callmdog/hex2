@@ -187,22 +187,7 @@ max-width: 90%; }
 
 
 
-
-#paintBox {
-  /*display: none;*/
-  position: absolute; /* Posición absoluta */
-  top: 50%; /* Alineación vertical al 50% del viewport */
-  left: 50%; /* Alineación horizontal al 50% del viewport */
-  transform: translate(-50%, -50%); /* Corrige el centro */
-  background-color: red; /* Fondo rojo */
-  padding: 20px; /* Espaciado interno */
-  color: white; /* Texto blanco */
-  font-family: Arial, sans-serif; /* Fuente del texto */
-  text-align: center; /* Alinear texto al centro */
-  z-index: 999; /* Para asegurarse de que esté encima de otros elementos */
-}
-
- #paintBox2 {
+ #paintBox {
   display: none;
   position: absolute; /* Posición absoluta */
  
@@ -215,7 +200,7 @@ max-width: 90%; }
   overflow: hidden; /* Oculta el desbordamiento del iframe */
    z-index: 999;		 
  }	
-#paintBox2::before {
+#paintBox::before {
   content: ""; /* Crea un pseudo-elemento */
   position: absolute;
   top: 0;
