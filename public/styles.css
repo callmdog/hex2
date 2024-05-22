@@ -187,9 +187,8 @@ max-width: 90%; }
  #paintBox {
   display: none;
   position: absolute; /* Posición absoluta */
-  top: 50%; /* Alineación vertical al 50% del viewport */
-  left: 50%; /* Alineación horizontal al 50% del viewport */
-  transform: translate(-50%, -50%); /* Corrige el centro */
+ 
+	 
    width: 100%;
   height: 100%;	 
   background-color: red; /* Fondo rojo */
