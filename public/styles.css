@@ -206,7 +206,7 @@ max-width: 90%; }
   height: 100%;
   background: linear-gradient(45deg, #00ff00, #0000ff); /* Degradado */
   opacity: 0.8; /* Opacidad */
-  z-index: -1; /* Coloca detrás del iframe */
+  /*  z-index: -1; Coloca detrás del iframe */
 }
 
 
