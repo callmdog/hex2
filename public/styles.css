@@ -1,10 +1,12 @@
 body {
 	margin: 0;
-	/*display: flex;*/
+	display: flex;
 	justify-content: center; /* Centra horizontalmente */
   	align-items: center; /* Centra verticalmente */
   	height: 100vh;	
 	background-color: #000000; 
+	  position: relative; /* Establece el contexto de posición para los elementos secundarios */
+
 }
 
 	
