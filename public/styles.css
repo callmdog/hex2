@@ -189,6 +189,8 @@ max-width: 90%; }
  /* ///////////// GAME OVER BOX ////////////////// */	
  /* ///////////// GAME OVER BOX ////////////////// */
 #contentR {
+		display: none;
+
   text-align: center;
   color: white;
   font-family: Arial, sans-serif;
