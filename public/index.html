@@ -305,6 +305,10 @@ if (indice !== -1) {
 greenCircles.splice(indice, 1);
 socket.emit('greenCircleEaten');
 socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+
+ pointText(circleToRemoveC.getAttribute('cx'), circleToRemoveC.getAttribute('cy') - 20);
+	
+	
 /*
 const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     speedText.setAttribute('x', bX);
