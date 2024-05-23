@@ -194,8 +194,8 @@ left: 50%; /* Centra horizontalmente */
 	 justify-content: center; /* Centra horizontalmente */
 
  /* transform: translate(-50%, -50%);  Corrige el centro */
-width: 100px;
-height: 100px;
+width: auto; /* Ajuste automático al tamaño del contenido */
+  height: auto;
   align-items: center; /* Centra verticalmente */
 	 
 	 background-color: red; /* Fondo rojo */
