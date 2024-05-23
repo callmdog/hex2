@@ -890,6 +890,10 @@ console.log(`ID Enemigo: (${playerIdN}), (${greenRadius})`);
 
 //console.log(`Radio Jugador:`, blueRadius); 
 //console.log(`Radio Enemigo:`, greenRadius); 
+
+socket.emit('eliminarJugador', socket.id);
+
+	
 	
 console.log(`GAME OVER2!!`); 
 }
