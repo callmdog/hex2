@@ -201,6 +201,8 @@ max-width: 90%; }
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
+z-index: 999;
+	
 }
  #retryBox2 {
  /* display: none;*/
