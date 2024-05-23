@@ -192,6 +192,9 @@ max-width: 90%; }
   left: 50%; /* Alineación horizontal al 50% del viewport */
 width: 100vw;
 height: 100vh;
+	   transform: translate(-50%, -50%); /* Corrige el centro */
+justify-content: center;
+  align-items: center;
 background-color: black; /* Fondo rojo */
   padding: 20px; /* Espaciado interno */
   color: white; /* Texto blanco */
