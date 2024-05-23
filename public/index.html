@@ -608,34 +608,33 @@ existingPlayerElement.setAttribute('r', sizeCalc);
 	
 
 	///EFECTO A JUGADOR QUE TENGA VELOCIDAD
-    // Crear un elemento SVG para representar la sombra
-    const shadow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      const shadow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     shadow.setAttribute('fill', 'blue'); // Color de la sombra
-    shadow.setAttribute('opacity', '0.3'); // Opacidad de la sombra
+    shadow.setAttribute('opacity', '0.5'); // Opacidad de la sombra
     hexagonGroup.appendChild(shadow);
 
-    // Actualizar la posición y el tamaño de la sombra para que siga al jugador
+    // Actualizar la posición y el tamaño del fondo azul
     const updateShadow = () => {
         shadow.setAttribute('cx', player.x);
         shadow.setAttribute('cy', player.y);
         const radius = parseFloat(existingPlayerElement.getAttribute('r'));
-        const shadowRadius = radius * 1.5; // Ajustar el tamaño de la sombra según sea necesario
+        const shadowRadius = radius * 2; // Ajustar el tamaño del fondo azul según sea necesario
         shadow.setAttribute('r', shadowRadius);
     };
 
-    // Llamar a la función para actualizar la sombra
+    // Llamar a la función para actualizar el fondo azul
     updateShadow();
 
-    // Ajustar la apariencia de la sombra para que sea más prominente cuando el jugador tenga velocidad extra
+    // Ajustar la apariencia del fondo azul para que sea más prominente cuando el jugador tenga velocidad extra
     const updateShadowAppearance = () => {
         if (speedPlayer === 50) { // Si el jugador tiene velocidad extra
-            shadow.setAttribute('opacity', '0.6'); // Opacidad mayor para la sombra
+            shadow.setAttribute('opacity', '0.7'); // Opacidad mayor para el fondo azul
         } else {
-            shadow.setAttribute('opacity', '0.3'); // Opacidad normal para la sombra
+            shadow.setAttribute('opacity', '0.5'); // Opacidad normal para el fondo azul
         }
     };
 
-    // Llamar a la función para ajustar la apariencia de la sombra
+    // Llamar a la función para ajustar la apariencia del fondo azul
     updateShadowAppearance();
 	///END EFECTO	
 
