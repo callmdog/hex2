@@ -604,30 +604,37 @@ const sizeCalc = (0.2 * ptsf) + 9;
 existingPlayerElement.setAttribute('r', sizeCalc);
 
 	///EFECTO A JUGADOR QUE TENGA VELOCIDAD
- // Cambiar el color del borde del círculo a azul para indicar velocidad extra
-    existingPlayerElement.setAttribute('stroke', 'blue');
-    existingPlayerElement.setAttribute('stroke-width', '2'); // Ajustar el ancho del borde según sea necesario
+     // Crear un elemento SVG para representar la estela
+    const trail = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    trail.setAttribute('fill', 'none');
+    trail.setAttribute('stroke', 'blue'); // Color de la estela
+    trail.setAttribute('stroke-width', '2'); // Ancho de la estela
+    hexagonGroup.appendChild(trail);
 
-    // Aplicar una animación intermitente al borde del círculo para simular el efecto de brillo o destello
-    const animationDuration = 1000; // Duración de la animación en milisegundos
-    const animationInterval = 500; // Intervalo de tiempo entre cambios de color en milisegundos
+    // Actualizar la posición y el tamaño de la estela para que siga al jugador
+    const updateTrail = () => {
+        trail.setAttribute('cx', player.x);
+        trail.setAttribute('cy', player.y);
+        const radius = parseFloat(existingPlayerElement.getAttribute('r'));
+        const trailRadius = radius + 5; // Ajustar el tamaño de la estela según sea necesario
+        trail.setAttribute('r', trailRadius);
+    };
 
-    let animationToggle = false;
-    const blinkAnimation = setInterval(() => {
-        if (animationToggle) {
-            existingPlayerElement.setAttribute('stroke', 'blue'); // Establecer el color del borde como azul
+    // Llamar a la función para actualizar la estela
+    updateTrail();
+
+    // Ajustar la apariencia de la estela para que sea más prominente cuando el jugador tenga velocidad extra
+    const updateTrailAppearance = () => {
+        if (speedPlayer === 50) { // Si el jugador tiene velocidad extra
+            trail.setAttribute('stroke', 'blue'); // Color más prominente para la estela
+            trail.setAttribute('stroke-width', '4'); // Ancho mayor para la estela
         } else {
-            existingPlayerElement.removeAttribute('stroke'); // Quitar el color del borde para que sea transparente
+            trail.setAttribute('stroke', 'none'); // Ocultar la estela si el jugador no tiene velocidad extra
         }
-        animationToggle = !animationToggle;
-    }, animationInterval);
+    };
 
-    // Después de la duración de la velocidad extra, detener la animación y restaurar el color del borde
-    setTimeout(() => {
-        clearInterval(blinkAnimation);
-        existingPlayerElement.setAttribute('stroke', 'black'); // Restaurar el color del borde
-        existingPlayerElement.setAttribute('stroke-width', '1'); // Restaurar el ancho del borde
-    }, animationDuration);
+    // Llamar a la función para ajustar la apariencia de la estela
+    updateTrailAppearance();
 	///END EFECTO	
 
 } else {		
