@@ -418,7 +418,6 @@ addPlayer(player.nombre, player.puntos, player.color);
 if(NameSecure === player.nombre){
 
 textLine6.textContent = `Points: ${player.puntos}`;
-
 textLine6.style.fill = player.color;
 
 initialCameraX = svgWidth / 2 - player.x;
@@ -892,7 +891,7 @@ console.log(`ID Enemigo: (${playerIdN}), (${greenRadius})`);
 //console.log(`Radio Jugador:`, blueRadius); 
 //console.log(`Radio Enemigo:`, greenRadius); 
 	
-console.log(`GAME OVER`); 
+console.log(`GAME OVER2!!`); 
 }
 
 }
@@ -923,39 +922,18 @@ nombre.parentNode.removeChild(nombre);
 
 	
 if (playerIdN===socket.id){
-
-	//clearAllGreenCircles();
-
 var newPoints = textLine6.textContent;
-
-// Selecciona el párrafo por su ID
 var pointsParagraph = document.getElementById("points");
-
-// Actualiza el contenido del párrafo
-pointsParagraph.textContent =  newPoints;
-	
-
-	
+pointsParagraph.textContent =  newPoints;	
 gameCanvas.style.display = 'none';
 hexagonGroup.style.display = 'none';
-	camera.style.display = 'none';
-
-
-//document.getElementById('retryBox').style.display = 'block'; // Para mostrar el retryBox
+camera.style.display = 'none';
 document.getElementById("retryBox").style.visibility = "visible";
-
-
-  // Lógica para retryButton (volver a empezar)
   var retryButton = document.getElementById("retryButton");
   retryButton.onclick = function() {
-    // Aquí debes implementar la lógica para reiniciar el juego
-    // Por ejemplo, volver a cargar la página
-	      console.log("Retry Game.");
-
-    location.reload();
+  console.log("Retry Game.");
+	location.reload();
   };	
-
-	
 }
 	
 console.log("ELIMINAR JUGADOR", playerIdN );
