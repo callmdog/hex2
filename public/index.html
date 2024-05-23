@@ -24,6 +24,15 @@ p {
   color: #ffffff; /* Color blanco */
   text-shadow: 1px 1px 4px rgba(0, 0, 255, 0.7); /* Sombra de texto azul */
 }
+
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}	
 	
 </style>	
 	
@@ -536,6 +545,8 @@ if (existingTextElement) {
 	textElement2.setAttribute('fill', 'green');
 	textElement2.setAttribute('font-size', '16px');
 	textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
+	textElement2.classList.add('no-select');
+
 	hexagonGroup.appendChild(textElement2);
 	}
 }
