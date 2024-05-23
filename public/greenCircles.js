@@ -73,7 +73,7 @@ blueCircle.setAttribute('fill', 'blue');
 blueCircle.setAttribute('id', 'blueCircle_' + z); // Asignar un ID único
 //svg.appendChild(greenCircle);
 const cameraGroup = document.getElementById('camera'); 
-cameraGroup.appendChild(greenCircle);
+cameraGroup.appendChild(blueCircle);
 //ANIMACION CIRCULO VERDE
 anime({ targets: blueCircle, r: 4,
 duration: 1000, easing: 'easeInOutSine',
