@@ -45,7 +45,8 @@ greenCircles.forEach(({ x, y, z }) => {
 	i+=1;
 console.log(`${i}: ${x}, ${y}, ${z}`);
 
-if(i<10){	
+//GREEN CIRCLE POINTS	
+if(i<11){	
 const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
@@ -62,8 +63,21 @@ direction: 'alternate', loop: true });
 }
 	
 
-if(i>10){
-
+//BLUE CIRCLE VELOCIDAD
+if(i>11){
+const blueCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+blueCircle.setAttribute('cx', x);
+blueCircle.setAttribute('cy', y);
+blueCircle.setAttribute('r', '6');
+blueCircle.setAttribute('fill', 'blue');
+blueCircle.setAttribute('id', 'blueCircle_' + z); // Asignar un ID único
+//svg.appendChild(greenCircle);
+const cameraGroup = document.getElementById('camera'); 
+cameraGroup.appendChild(greenCircle);
+//ANIMACION CIRCULO VERDE
+anime({ targets: blueCircle, r: 4,
+duration: 1000, easing: 'easeInOutSine',
+direction: 'alternate', loop: true });
 	
 }	
 
