@@ -192,6 +192,7 @@ max-width: 90%; }
    top: 0;
 left: 50%; /* Centra horizontalmente */
 	 justify-content: center; /* Centra horizontalmente */
+  transform: translateX(-50%);
 
  /* transform: translate(-50%, -50%);  Corrige el centro */
 width: auto; /* Ajuste automático al tamaño del contenido */
