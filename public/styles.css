@@ -194,6 +194,8 @@ max-width: 90%; }
   transform: translate(-50%, -50%); /* Corrige el centro */
 width: 100vw;
 height: 100vh;
+  align-items: center; /* Centra verticalmente */
+	 
 	 background-color: black; /* Fondo rojo */
   padding: 20px; /* Espaciado interno */
   color: white; /* Texto blanco */
