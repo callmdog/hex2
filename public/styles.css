@@ -194,10 +194,11 @@ max-width: 90%; }
   font-family: Arial, sans-serif;
 }
 #retryBox {
+	display: none;
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: red;
+  background-color: black;
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
