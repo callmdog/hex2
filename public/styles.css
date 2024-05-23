@@ -186,13 +186,13 @@ max-width: 90%; }
  /* ///////////// GAME OVER BOX ////////////////// */	
  /* ///////////// GAME OVER BOX ////////////////// */	
  #retryBox {
-  display: none;
- justify-content: center;
-  align-items: center;
-  position: fixed;
+ /* display: none;*/
+  position: absolute; /* Posición absoluta */
+  top: 50%; /* Alineación vertical al 50% del viewport */
+  left: 50%; /* Alineación horizontal al 50% del viewport */
 width: 100vw;
 height: 100vh;
-	 background-color: black; /* Fondo rojo */
+background-color: black; /* Fondo rojo */
   padding: 20px; /* Espaciado interno */
   color: white; /* Texto blanco */
   font-family: Arial, sans-serif; /* Fuente del texto */
