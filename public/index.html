@@ -290,6 +290,26 @@ socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
 //BLUE CIRCLE VELOCIDAD COLISION
 if (circleToRemoveCB) {	
 speedPlayer = 50;
+
+
+
+ // Mostrar el texto "+1 speed" encima del jugador
+    const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    speedText.setAttribute('x', player.x);
+    speedText.setAttribute('y', player.y - 20); // Ajusta la posición del texto según sea necesario
+    speedText.setAttribute('text-anchor', 'middle');
+    speedText.setAttribute('fill', 'blue');
+    speedText.setAttribute('font-size', '16px');
+    speedText.textContent = "+1 speed";
+    hexagonGroup.appendChild(speedText);
+
+    // Después de 1 segundo, eliminar el texto
+    setTimeout(() => {
+        hexagonGroup.removeChild(speedText);
+    }, 1000);
+
+
+	
 circleToRemoveCB.parentNode.removeChild(circleToRemoveCB);
 var indice = greenCircles.findIndex(function(elemento) {
     return elemento.z === circle.z;
