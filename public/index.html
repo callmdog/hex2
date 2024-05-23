@@ -318,7 +318,7 @@ if (indice !== -1) {
 //console.log("Elemento eliminado correctamente", greenCircles[indice]);
 greenCircles.splice(indice, 1);
 //socket.emit('greenCircleEaten');
-//socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
 
 } else {
 //console.log("No se encontró ningún elemento con z igual a 10");
