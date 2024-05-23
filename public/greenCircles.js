@@ -16,6 +16,10 @@ function initializeGreenCircles(socketFromIndex) {
 
 let greenCircles = [];
 let greenCircles2 = [];
+
+let blueCircles = [];
+let blueCircles2 = [];
+
 // Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
 /*socket.on('greenCirclesGenerated', (circles) => {
 console.log('GREEN CIRCLES GENERATED.');
@@ -40,6 +44,8 @@ let i = 0;
 greenCircles.forEach(({ x, y, z }) => {
 	i+=1;
 console.log(`${i}: ${x}, ${y}, ${z}`);
+
+if(i<10){	
 const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
@@ -53,6 +59,13 @@ cameraGroup.appendChild(greenCircle);
 anime({ targets: greenCircle, r: 6,
 duration: 1000, easing: 'easeInOutSine',
 direction: 'alternate', loop: true });
+}
+	
+
+if(i>10){
+
+	
+}	
 
 });
 
