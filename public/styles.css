@@ -191,8 +191,9 @@ max-width: 90%; }
   top: 50%; /* Alineación vertical al 50% del viewport */
   left: 50%; /* Alineación horizontal al 50% del viewport */
   transform: translate(-50%, -50%); /* Corrige el centro */
-	 width: 300px;
-  background-color: red; /* Fondo rojo */
+width: 100vw;
+height: 100vh;
+	 background-color: black; /* Fondo rojo */
   padding: 20px; /* Espaciado interno */
   color: white; /* Texto blanco */
   font-family: Arial, sans-serif; /* Fuente del texto */
