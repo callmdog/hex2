@@ -191,7 +191,9 @@ max-width: 90%; }
   position: absolute; /* Posición absoluta */
    top: 0;
   left: 0;
-  transform: translate(-50%, -50%); /* Corrige el centro */
+	   justify-content: center; /* Centra horizontalmente */
+
+ /* transform: translate(-50%, -50%);  Corrige el centro */
 width: 100vw;
 height: 100vh;
   align-items: center; /* Centra verticalmente */
