@@ -268,6 +268,8 @@ blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBo
 const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
 //console.log(`COLISION Z: ${greenIndex}:`);			
 //console.log(`REMOVE !!!!!!`, circleToRemoveC);
+const circleToRemoveCB = document.getElementById('blueCircle_'+greenIndex);
+	
 
 if (circleToRemoveC) {	
 circleToRemoveC.parentNode.removeChild(circleToRemoveC);
@@ -283,7 +285,26 @@ socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
 } else {
 //console.log("No se encontró ningún elemento con z igual a 10");
 }	
+}
+
+//BLUE CIRCLE VELODIAD COLISION
+if (circleToRemoveCB) {	
+circleToRemoveCB.parentNode.removeChild(circleToRemoveCB);
+var indice = greenCircles.findIndex(function(elemento) {
+    return elemento.z === circle.z;
+});
+if (indice !== -1) {
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+//socket.emit('greenCircleEaten');
+//socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+
+} else {
+//console.log("No se encontró ningún elemento con z igual a 10");
 }	
+}
+//END BLUE CIRCLE VELODIAD COLISION
+	
 
 // Colisión detectada
 return true;
