@@ -38,7 +38,7 @@ p {
   <img id="topImage" src="hexicon.png" alt="Hex3">
 </div>	
 	<h2>Game Over</h2>
-  <p>Points: 1018</p>
+  <p id="points">Points: 1018</p>
   <button id="retryButton">Retry</button>
 	 </div> 
 </div>	
@@ -326,6 +326,10 @@ let textLine3 = document.getElementById('textLine3');
 let textLine4 = document.getElementById('textLine4');
 let textLine5 = document.getElementById('textLine5');
 let textLine6 = document.getElementById('textLine6');
+
+
+
+	
 
 let CalculoCam = 0;
 	
@@ -921,6 +925,15 @@ nombre.parentNode.removeChild(nombre);
 if (playerIdN===socket.id){
 
 	//clearAllGreenCircles();
+
+var newPoints = textLine6.textContent;
+
+// Selecciona el párrafo por su ID
+var pointsParagraph = document.getElementById("points");
+
+// Actualiza el contenido del párrafo
+pointsParagraph.textContent = "Points: " + newPoints;
+	
 
 	
 gameCanvas.style.display = 'none';
