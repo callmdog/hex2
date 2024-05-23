@@ -282,6 +282,20 @@ greenCircles.splice(indice, 1);
 socket.emit('greenCircleEaten');
 socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
 
+const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    speedText.setAttribute('x', bX);
+    speedText.setAttribute('y', bY - 20); // Ajusta la posición del texto según sea necesario
+    speedText.setAttribute('text-anchor', 'middle');
+    speedText.setAttribute('fill', 'green');
+    speedText.setAttribute('font-size', '14px');
+    speedText.textContent = "+1 point";
+    hexagonGroup.appendChild(speedText);
+
+    // Después de 1 segundo, eliminar el texto
+    setTimeout(() => {
+        hexagonGroup.removeChild(speedText);
+    }, 500);	
+
 } else {
 //console.log("No se encontró ningún elemento con z igual a 10");
 }	
