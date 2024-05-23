@@ -295,8 +295,8 @@ speedPlayer = 50;
 
  // Mostrar el texto "+1 speed" encima del jugador
     const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    speedText.setAttribute('x', player.x);
-    speedText.setAttribute('y', player.y - 20); // Ajusta la posición del texto según sea necesario
+    speedText.setAttribute('x', bX);
+    speedText.setAttribute('y', bY - 20); // Ajusta la posición del texto según sea necesario
     speedText.setAttribute('text-anchor', 'middle');
     speedText.setAttribute('fill', 'blue');
     speedText.setAttribute('font-size', '16px');
