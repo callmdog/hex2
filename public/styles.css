@@ -189,8 +189,8 @@ max-width: 90%; }
  #retryBox {
  /* display: none;*/
   position: absolute; /* Posición absoluta */
-  top: 50%; /* Alineación vertical al 50% del viewport */
-  left: 50%; /* Alineación horizontal al 50% del viewport */
+   top: 0;
+  left: 0;
   transform: translate(-50%, -50%); /* Corrige el centro */
 width: 100vw;
 height: 100vh;
