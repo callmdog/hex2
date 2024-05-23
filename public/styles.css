@@ -185,8 +185,22 @@ max-width: 90%; }
 
  /* ///////////// GAME OVER BOX ////////////////// */
  /* ///////////// GAME OVER BOX ////////////////// */	
- /* ///////////// GAME OVER BOX ////////////////// */	
- #retryBox {
+ /* ///////////// GAME OVER BOX ////////////////// */
+#contentR {
+  text-align: center;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+#retryBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+ #retryBox2 {
  /* display: none;*/
   position: absolute; /* Posición absoluta */
    top: 0;
