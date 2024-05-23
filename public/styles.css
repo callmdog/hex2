@@ -194,8 +194,8 @@ max-width: 90%; }
 	   justify-content: center; /* Centra horizontalmente */
 
  /* transform: translate(-50%, -50%);  Corrige el centro */
-width: 400px;
-height: 400px;
+width: 100px;
+height: 100px;
   align-items: center; /* Centra verticalmente */
 	 
 	 background-color: black; /* Fondo rojo */
