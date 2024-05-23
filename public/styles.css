@@ -190,15 +190,15 @@ max-width: 90%; }
  /* display: none;*/
   position: absolute; /* Posición absoluta */
    top: 0;
-  left: 0;
-	   justify-content: center; /* Centra horizontalmente */
+left: 50%; /* Centra horizontalmente */
+	 justify-content: center; /* Centra horizontalmente */
 
  /* transform: translate(-50%, -50%);  Corrige el centro */
 width: 100px;
 height: 100px;
   align-items: center; /* Centra verticalmente */
 	 
-	 background-color: black; /* Fondo rojo */
+	 background-color: red; /* Fondo rojo */
   padding: 20px; /* Espaciado interno */
   color: white; /* Texto blanco */
   font-family: Arial, sans-serif; /* Fuente del texto */
