@@ -793,10 +793,12 @@ isMoving = false;
 
 //5. ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
+
+let speedPlayer = 500;	
 			  
 function animateCircleLocally(circleElement, start, end, playerId, callback) {
 //console.log('ANIMATE CIRCLE LOCALLY');
-const duration = 100;
+const duration = speedPlayer;
 const startTime = performance.now();
 function update() {
 const currentTime = performance.now();
