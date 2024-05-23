@@ -664,6 +664,9 @@ const sizeCalc = (0.2 * ptsf) + 9;
 playerElement.setAttribute('id', playerId);
 playerElement.setAttribute('r', sizeCalc);
 playerElement.setAttribute('fill', player.color);
+
+	playerElement.style.fill = 'url(#stripes)';
+	
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 
