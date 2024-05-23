@@ -287,8 +287,9 @@ socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
 }	
 }
 
-//BLUE CIRCLE VELODIAD COLISION
+//BLUE CIRCLE VELOCIDAD COLISION
 if (circleToRemoveCB) {	
+speedPlayer = 50;
 circleToRemoveCB.parentNode.removeChild(circleToRemoveCB);
 var indice = greenCircles.findIndex(function(elemento) {
     return elemento.z === circle.z;
@@ -303,7 +304,7 @@ greenCircles.splice(indice, 1);
 //console.log("No se encontró ningún elemento con z igual a 10");
 }	
 }
-//END BLUE CIRCLE VELODIAD COLISION
+//END BLUE CIRCLE VELOCIDAD COLISION
 	
 
 // Colisión detectada
