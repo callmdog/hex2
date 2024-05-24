@@ -255,7 +255,7 @@ generateGreenCircles();
                 pointText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
                 pointText.setAttribute('text-anchor', 'middle');
                 pointText.setAttribute('fill', 'green');
-                pointText.setAttribute('font-size', '16px');
+                pointText.setAttribute('font-size', '14px');
                 pointText.textContent = "+1 point";
                 hexagonGroup.appendChild(pointText);
 
@@ -265,6 +265,24 @@ generateGreenCircles();
                 }, 500);
 	}
 
+
+////FUNCION TEXT DE PUNTO
+	function speedText(x, y) {
+ const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                speedText.setAttribute('x', x);
+                speedText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
+                speedText.setAttribute('text-anchor', 'middle');
+                speedText.setAttribute('fill', 'blue');
+                speedText.setAttribute('font-size', '14px');
+                speedText.textContent = "+ speed";
+                hexagonGroup.appendChild(speedText);
+
+                // Después de 1 segundo, eliminar el texto
+                setTimeout(() => {
+                    hexagonGroup.removeChild(speedText);
+                }, 500);
+	}	
+
 //MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////	
 
@@ -272,11 +290,9 @@ socket.on('greenCircleCollision', (collisionIndex, indexToRemove, comproid) => {
 
 if (comproid !== socket.id) {
 //console.log(`BORRADOR ACTIVADO!!!`);	
-	
 const circleToRemoveC = document.getElementById('greenCircle_'+collisionIndex);
-//console.log(`COLISION Z2: ${collisionIndex}:`);			
-//console.log(`REMOVE2 !!!!!!`, circleToRemoveC);
-
+const circleToRemoveCB = document.getElementById('blueCircle_'+collisionIndex);
+	
 if (circleToRemoveC) {	
 circleToRemoveC.parentNode.removeChild(circleToRemoveC);
 let indice = greenCircles.findIndex(function(elemento) {
@@ -285,17 +301,31 @@ let indice = greenCircles.findIndex(function(elemento) {
 if (indice !== -1) {
 //console.log("Elemento eliminado correctamente", greenCircles[indice]);
 greenCircles.splice(indice, 1);
-
-
     // Mostrar el texto "+1 point" encima del círculo verde eliminado
-               pointText(circleToRemoveC.getAttribute('cx'), circleToRemoveC.getAttribute('cy') - 20);
-
-	
+pointText(circleToRemoveC.getAttribute('cx'), circleToRemoveC.getAttribute('cy') - 20);
 
 } else {
 //console.log("No se encontró ningún elemento con z igual a 10");
 }	
 }	
+
+
+///BLUE VELOCIDAD CIRCLE:
+if (circleToRemoveCB) {	
+circleToRemoveCB.parentNode.removeChild(circleToRemoveCB);
+let indice = greenCircles.findIndex(function(elemento) {
+    return elemento.z === collisionIndex;
+});
+if (indice !== -1) {
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+    // Mostrar el texto "+1 point" encima del círculo verde eliminado
+speedText(circleToRemoveCB.getAttribute('cx'), circleToRemoveCB.getAttribute('cy') - 20);
+
+} else {
+//console.log("No se encontró ningún elemento con z igual a 10");
+}	
+}		
 	
 }
 	
@@ -346,21 +376,7 @@ socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
  pointText(circleToRemoveC.getAttribute('cx'), circleToRemoveC.getAttribute('cy') - 20);
 	
 	
-/*
-const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    speedText.setAttribute('x', bX);
-    speedText.setAttribute('y', bY - 20); // Ajusta la posición del texto según sea necesario
-    speedText.setAttribute('text-anchor', 'middle');
-    speedText.setAttribute('fill', 'green');
-    speedText.setAttribute('font-size', '14px');
-    speedText.textContent = "+1 point";
-    hexagonGroup.appendChild(speedText);
 
-    // Después de 1 segundo, eliminar el texto
-    setTimeout(() => {
-        hexagonGroup.removeChild(speedText);
-    }, 500);	
-*/
 } else {
 //console.log("No se encontró ningún elemento con z igual a 10");
 }	
@@ -369,26 +385,6 @@ const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
 //BLUE CIRCLE VELOCIDAD COLISION
 if (circleToRemoveCB) {	
 speedPlayer = 50;
-
-
-
-
-
- // Mostrar el texto "+1 speed" encima del jugador
-    const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    speedText.setAttribute('x', bX);
-    speedText.setAttribute('y', bY - 20); // Ajusta la posición del texto según sea necesario
-    speedText.setAttribute('text-anchor', 'middle');
-    speedText.setAttribute('fill', 'blue');
-    speedText.setAttribute('font-size', '16px');
-    speedText.textContent = "+1 speed";
-    hexagonGroup.appendChild(speedText);
-
-    // Después de 1 segundo, eliminar el texto
-    setTimeout(() => {
-        hexagonGroup.removeChild(speedText);
-    }, 1000);
-
 
 	
 circleToRemoveCB.parentNode.removeChild(circleToRemoveCB);
@@ -399,7 +395,12 @@ if (indice !== -1) {
 //console.log("Elemento eliminado correctamente", greenCircles[indice]);
 greenCircles.splice(indice, 1);
 //socket.emit('greenCircleEaten');
+
+	
 socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+
+ speedText(circleToRemoveCB.getAttribute('cx'), circleToRemoveCB.getAttribute('cy') - 20);
+	
 
 } else {
 //console.log("No se encontró ningún elemento con z igual a 10");
