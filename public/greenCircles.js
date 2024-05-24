@@ -1,18 +1,5 @@
 //8. GENERA CIRCULOS VERDES DEL SERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
-   // const socket = io();
-
-//const socket = window.io();
-let socket; // Declarar una variable global para el socket
-
-function initializeGreenCircles(socketFromIndex) {
-	console.log('Socket Iniciado.');
-
-    socket = socketFromIndex; // Asignar el valor del socket pasado como argumento
-    // A partir de este punto, puedes usar el socket en greenCircles.js
-   
-}
-
 
 let greenCircles = [];
 let greenCircles2 = [];
@@ -20,17 +7,6 @@ let greenCircles2 = [];
 let blueCircles = [];
 let blueCircles2 = [];
 
-// Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
-/*socket.on('greenCirclesGenerated', (circles) => {
-console.log('GREEN CIRCLES GENERATED.');
-greenCircles = [];
-greenCircles2 = [];
-//console.log('CIRLES PUSH:', circles);
-greenCircles.push(...circles);
-//console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
-generateGreenCircles();
-});	*/
-	
 function generateGreenCircles() {
 console.log('GENERATE GREEN CIRCLES 2.');
 const svg = document.querySelector('svg');
@@ -42,7 +18,7 @@ circle.parentNode.removeChild(circle);
 let i = 0;
 // Dibuja los círculos verdes en las coordenadas recibidas del servidor
 greenCircles.forEach(({ x, y, z }) => {
-	i+=1;
+i+=1;
 console.log(`${i}: ${x}, ${y}, ${z}`);
 
 //GREEN CIRCLE POINTS	
@@ -62,7 +38,6 @@ duration: 1000, easing: 'easeInOutSine',
 direction: 'alternate', loop: true });
 }
 	
-
 //BLUE CIRCLE VELOCIDAD
 if(i>11){
 const blueCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -78,7 +53,6 @@ cameraGroup.appendChild(blueCircle);
 anime({ targets: blueCircle, r: 4,
 duration: 1000, easing: 'easeInOutSine',
 direction: 'alternate', loop: true });
-	
 }	
 
 });
@@ -88,41 +62,6 @@ greenCircles.forEach((circle, index) => {
 });
 	
 }
-
-
-
-
-//MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
-////////////////////////////////////////////////////////////	
-/*
-socket.on('greenCircleCollision', (collisionIndex, indexToRemove, comproid) => {
-
-if (comproid !== socket.id) {
-//console.log(`BORRADOR ACTIVADO!!!`);	
-	
-const circleToRemoveC = document.getElementById('greenCircle_'+collisionIndex);
-//console.log(`COLISION Z2: ${collisionIndex}:`);			
-//console.log(`REMOVE2 !!!!!!`, circleToRemoveC);
-
-if (circleToRemoveC) {	
-circleToRemoveC.parentNode.removeChild(circleToRemoveC);
-let indice = greenCircles.findIndex(function(elemento) {
-    return elemento.z === collisionIndex;
-});
-if (indice !== -1) {
-//console.log("Elemento eliminado correctamente", greenCircles[indice]);
-greenCircles.splice(indice, 1);
-
-} else {
-//console.log("No se encontró ningún elemento con z igual a 10");
-}	
-}	
-	
-}
-	
-});
-*/
-
 
 
 ////////////////////////////////////////////////////////////	
