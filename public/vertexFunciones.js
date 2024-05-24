@@ -1,6 +1,5 @@
 //2. FIND CLOSES VERTEX TO CLICK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
-
 function findClosestGreenVertexToClick(x, y,currentCameraX3,currentCameraY3) {
 const greenVertices = document.querySelectorAll('circle[fill="red"]');
 let closestVertex = null; let minDistance = Infinity;
@@ -20,8 +19,7 @@ return Math.sqrt(dx * dx + dy * dy);
 }
 
 //7. MARK RED VERTEX NEAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
+//////////////////////////////////////////////////////////////////////	
 function findAndMarkClosestVertices(inicialX, inicialY,currentCameraX3,currentCameraY3) {
 clearAllGreenCircles();
 const currentX = inicialX - currentCameraX3;
@@ -29,8 +27,7 @@ const currentY = inicialY - currentCameraY3;
 // Encuentra los vértices en un radio de 60 pixeles
 const closestVertices = findVerticesInRadius(currentX, currentY, 60);
 // Agrega un círculo verde en cada vértice encontrado
-//console.log(`VERTX: (${inicialX}, ${inicialY}) `);
-	
+//console.log(`VERTX: (${inicialX}, ${inicialY}) `);	
 closestVertices.forEach((vertex) => {
 markVertexWithGreenCircle(vertex.x + currentCameraX3, vertex.y + currentCameraY3);
 });
@@ -70,4 +67,3 @@ greenCircle.setAttribute('fill', 'red');
 //console.log(`Verde agreg: (${x}, ${y}) marcado con círculo rojo.`);
 const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(greenCircle);
 }
-
