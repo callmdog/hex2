@@ -1,25 +1,18 @@
 function animateCam(destinationX, destinationY, bX, bY, svgWidth, callback) {
-
 console.log('Animate Cam');
-
 let Cx = 0;
 let Cy = 0;
-
 //CAMARA/////////////////////
-		const transformAttribute = camera.getAttribute('transform');
-		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
-		if (match) {
-    		 Cx = parseFloat(match[1]);
-    		// currentCameraY4p = parseFloat(match[2]);
-    		//console.log('Coordenadas finales de la cámara:', Cx, currentCameraY4p);  
-		} else {
-		}
+const transformAttribute = camera.getAttribute('transform');
+const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+if (match) {
+Cx = parseFloat(match[1]);
+} else {
+}
 //CAMARA END/////////////////////
-
-    const startX = bX;
-    const startY = bY;
-
-    const startTime = performance.now();
+const startX = bX;
+const startY = bY;
+const startTime = performance.now();
     const duration = 500;    
     
     let CamX = 0;
