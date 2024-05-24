@@ -1,14 +1,12 @@
 body {
-	margin: 0;
-	display: flex;
-	justify-content: center; /* Centra horizontalmente */
-  	align-items: center; /* Centra verticalmente */
-  	height: 100vh;	
-	background-color: #000000; 
-	  position: relative; /* Establece el contexto de posición para los elementos secundarios */
-
+margin: 0;
+display: flex;
+justify-content: center; /* Centra horizontalmente */
+align-items: center; /* Centra verticalmente */
+height: 100vh;	
+background-color: #000000; 
+position: relative; /* Establece el contexto de posición para los elementos secundarios */
 }
-
 	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
@@ -48,219 +46,197 @@ border-radius: 5px;
 font-size: 2vw;
 max-width: 90%; }
 
-
- /* ///////////// LOGOTIPO ////////////////// */
- /* ///////////// LOGOTIPO ////////////////// */	
- /* ///////////// LOGOTIPO ////////////////// */	
+/* ///////////// LOGOTIPO ////////////////// */
+/* ///////////// LOGOTIPO ////////////////// */	
+/* ///////////// LOGOTIPO ////////////////// */	
 #topImage {
-	width: auto;
-	max-height: 100%;
-	z-index: -1; /* Para que esté detrás de otros elementos */
-    }   
-
-
+width: auto;
+max-height: 100%;
+z-index: -1; /* Para que esté detrás de otros elementos */
+}   
 
 /* ///////////// TEXT FIELD NICKNAME  ////////////////// */
 /* ///////////// TEXT FIELD NICKNAME  ////////////////// */
 /* ///////////// TEXT FIELD NICKNAME  ////////////////// */
 #playerName {
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 18px;
-  height: 40px;
-  text-align: center; 
-  border-radius: 5px; 
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+box-sizing: border-box;
+border: 1px solid #ccc;
+padding: 10px;
+font-size: 18px;
+height: 40px;
+text-align: center; 
+border-radius: 5px; 
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 #playerName::placeholder {
-	text-align: center; 
-	color: #aaa;
+text-align: center; 
+color: #aaa;
 }
 #playerName:focus::placeholder {
- 	 color: #333;
+color: #333;
 }
 
-
-
-
- /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */
- /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
- /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
+/* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */
+/* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
+/* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
 #cameraOptions {
-  display: flex;
-  justify-content: center;
-  z-index: -1;
-  font-weight: bold;
-  color: white;
+display: flex;
+justify-content: center;
+z-index: -1;
+font-weight: bold;
+color: white;
 }
 #cameraOptions span {
-  color: white;
-  font-weight: bold;
-	
+color: white;
+font-weight: bold;	
 }
 .radio-button {
-  display: flex;
-  align-items: center; 
-  position: relative;
-  margin: 0 10px;
+display: flex;
+align-items: center; 
+position: relative;
+margin: 0 10px;
 }
 .radio-button input {
-  display: none;
+display: none;
 }
 .radio-custom {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  background-color: yellow; 
-  position: relative;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+border: 2px solid #ccc;
+background-color: yellow; 
+position: relative;
 }
 .radio-custom::after {
-  content: "";
-  display: block;
-  width: 10px;
-  height: 10px;
-  background-color: #666;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
+content: "";
+display: block;
+width: 10px;
+height: 10px;
+background-color: #666;
+border-radius: 50%;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+opacity: 0;
 }
 .radio-label {
-  margin-left: 5px; /* Espacio entre el botón y la etiqueta */
-  font-size: 20px; /* Tamaño del texto */
-  color: #333;
+margin-left: 5px; /* Espacio entre el botón y la etiqueta */
+font-size: 20px; /* Tamaño del texto */
+color: #333;
 }
 .radio-button input:checked + .radio-custom::after {
-  opacity: 1;
+opacity: 1;
 }
-
-
-
-
-
 
 /* ///////////// PLAY BUTTON  ////////////////// */
 /* ///////////// PLAY BUTTON  ////////////////// */
 /* ///////////// PLAY BUTTON  ////////////////// */
 #submitButton {
-  padding: 10px 20px; 
-  font-size: 16px;
-  background-color: #04135a; 
-  color: white;
-  border: none; 
-  border-radius: 5px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
+padding: 10px 20px; 
+font-size: 16px;
+background-color: #04135a; 
+color: white;
+border: none; 
+border-radius: 5px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+transition: background-color 0.3s, box-shadow 0.3s;
 }
 #submitButton:hover {
-  background-color: #2f2c79;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+background-color: #2f2c79;
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }	
 
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 #customPlayer {
-  padding: 10px 20px; /* Ajusta el relleno según sea necesario */
-  font-size: 16px;
-  background-color: #cb9800; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none; /* Quita el borde */
-  border-radius: 5px; /* Añade bordes redondeados */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
+padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+font-size: 16px;
+background-color: #cb9800; /* Color de fondo */
+color: white; /* Color del texto */
+border: none; /* Quita el borde */
+border-radius: 5px; /* Añade bordes redondeados */
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
 }
 #customPlayer:hover {
-  background-color: #ac9f41; /* Cambia el color de fondo al pasar el cursor */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
+background-color: #ac9f41; /* Cambia el color de fondo al pasar el cursor */
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
 }
 
-
-
-
-
- /* ///////////// GAME OVER BOX ////////////////// */
- /* ///////////// GAME OVER BOX ////////////////// */	
- /* ///////////// GAME OVER BOX ////////////////// */
+/* ///////////// GAME OVER BOX ////////////////// */
+/* ///////////// GAME OVER BOX ////////////////// */	
+/* ///////////// GAME OVER BOX ////////////////// */
 #contentR {
-
-  text-align: center;
-  color: white;
-  font-family: Arial, sans-serif;
+text-align: center;
+color: white;
+font-family: Arial, sans-serif;
 }
 #retryBox {
-	display: flex;
-	visibility: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  /*display: flex;*/
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-z-index: 999;
-	
+display: flex;
+visibility: hidden;
+position: absolute;
+width: 100%;
+height: 100%;
+background-color: black;
+/*display: flex;*/
+justify-content: center; /* Centra horizontalmente */
+align-items: center; /* Centra verticalmente */
+z-index: 999;	
 }
- #retryBox2 {
- /* display: none;*/
-  position: absolute; /* Posición absoluta */
-   top: 0;
+#retryBox2 {
+/* display: none;*/
+position: absolute; /* Posición absoluta */
+top: 0;
 left: 50%; /* Centra horizontalmente */
-	 justify-content: center; /* Centra horizontalmente */
-  transform: translateX(-50%);
-
- /* transform: translate(-50%, -50%);  Corrige el centro */
+justify-content: center; /* Centra horizontalmente */
+transform: translateX(-50%);
+/* transform: translate(-50%, -50%);  Corrige el centro */
 width: auto; /* Ajuste automático al tamaño del contenido */
-  height: auto;
-  align-items: center; /* Centra verticalmente */
-	 
-	 background-color: red; /* Fondo rojo */
-  padding: 20px; /* Espaciado interno */
-  color: white; /* Texto blanco */
-  font-family: Arial, sans-serif; /* Fuente del texto */
-  text-align: center; /* Alinear texto al centro */
-  z-index: 999; /* Para asegurarse de que esté encima de otros elementos */
+height: auto;
+align-items: center; /* Centra verticalmente */
+background-color: red; /* Fondo rojo */
+padding: 20px; /* Espaciado interno */
+color: white; /* Texto blanco */
+font-family: Arial, sans-serif; /* Fuente del texto */
+text-align: center; /* Alinear texto al centro */
+z-index: 999; /* Para asegurarse de que esté encima de otros elementos */
 }
 #retryButton {
-  padding: 10px 20px; 
-  font-size: 16px;
-  background-color: #04135a; 
-  color: white;
-  border: none; 
-  border-radius: 5px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
+padding: 10px 20px; 
+font-size: 16px;
+background-color: #04135a; 
+color: white;
+border: none; 
+border-radius: 5px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+transition: background-color 0.3s, box-shadow 0.3s;
 }
 #retryButton:hover {
-  background-color: #2f2c79;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+background-color: #2f2c79;
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }	
-	
 
-
- /* ///////////// CENTER ALL ELEMENTS ////////////////// */	
- /* ///////////// CENTER ALL ELEMENTS ////////////////// */	
- /* ///////////// CENTER ALL ELEMENTS ////////////////// */		
+/* ///////////// CENTER ALL ELEMENTS ////////////////// */	
+/* ///////////// CENTER ALL ELEMENTS ////////////////// */	
+/* ///////////// CENTER ALL ELEMENTS ////////////////// */		
 .center-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 100%;
+background-color: black;
 }
 .center-box > form > * {
-  margin: 10px 0;
+margin: 10px 0;
 }	
 .container {
-  position: relative; /* Establece posición relativa */
+position: relative; /* Establece posición relativa */
 }
 form {
 text-align: center; }
@@ -270,86 +246,72 @@ height: 100vh;
 overflow: auto;
 touch-action: pinch-zoom; }
 
-
-
- /* ///////////// PAINT SVG ////////////////// */	
- /* ///////////// PAINT SVG ////////////////// */	
- /* ///////////// PAINT SVG ////////////////// */
- /* ///////////// CANVAS PAINT BOX ////////////////// */
- /* ///////////// CANVAS PAINT BOX ////////////////// */	
- /* ///////////// CANVAS PAINT BOX ////////////////// */	
- #paintBox {
-  /* display: none;*/
-  display: none;
-  position: absolute; /* Posición absoluta */
-  background-color: red; /* Fondo rojo */
-  border-radius: 20px; /* Bordes redondeados */
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
-  overflow: hidden; /* Oculta el desbordamiento del iframe */
-   z-index: 999;
+/* ///////////// CANVAS PAINT BOX ////////////////// */
+/* ///////////// CANVAS PAINT BOX ////////////////// */	
+/* ///////////// CANVAS PAINT BOX ////////////////// */	
+#paintBox {
+/* display: none;*/
+display: none;
+position: absolute; /* Posición absoluta */
+background-color: red; /* Fondo rojo */
+border-radius: 20px; /* Bordes redondeados */
+box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+overflow: hidden; /* Oculta el desbordamiento del iframe */
+z-index: 999;
 padding: 10px;
- }	
-	
+}		
 #paintBox::before {
-  content: ""; /* Crea un pseudo-elemento */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+content: ""; /* Crea un pseudo-elemento */
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
 background: linear-gradient(45deg, #000000, #ffd700); /* Degradado de negro a amarillo */
-  opacity: 0.8; /* Opacidad */
-  z-index: -1;	
-  /*  z-index: -1; Coloca detrás del iframe */
+opacity: 0.8; /* Opacidad */
+z-index: -1;	
 }
-
-    #canvasContainer {
-            position: relative;
-            width: 300px; /* Ancho basado en la altura de la ventana */
-            height: 300px; /* Altura basada en la altura de la ventana */
-            margin: auto;
-            border: 1px solid black;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-
-        #svgCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        #undoButton, #redoButton, #fillButton, #clearButton {
-           padding: 5px 10px; /* Ajusta el relleno según sea necesario */
-  font-size: 12px;
-  background-color: #cb9800; /* Color de fondo */
-  color: white; /* Color del texto */
-  border: none; /* Quita el borde */
-  border-radius: 5px; /* Añade bordes redondeados */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
-        }
+#canvasContainer {
+position: relative;
+width: 300px; /* Ancho basado en la altura de la ventana */
+height: 300px; /* Altura basada en la altura de la ventana */
+margin: auto;
+border: 1px solid black;
+border-radius: 50%;
+overflow: hidden;
+}
+#svgCanvas {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+#undoButton, #redoButton, #fillButton, #clearButton {
+padding: 5px 10px; /* Ajusta el relleno según sea necesario */
+font-size: 12px;
+background-color: #cb9800; /* Color de fondo */
+color: white; /* Color del texto */
+border: none; /* Quita el borde */
+border-radius: 5px; /* Añade bordes redondeados */
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */        }
 .shapeButton {
-    padding: 5px 10px; /* Ajusta el relleno según sea necesario */
-    font-size: 12px;
-    background-color: #cb9800; /* Color de fondo */
-    color: white; /* Color del texto */
-    border: none; /* Quita el borde */
-    border-radius: 5px; /* Añade bordes redondeados */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
+padding: 5px 10px; /* Ajusta el relleno según sea necesario */
+font-size: 12px;
+background-color: #cb9800; /* Color de fondo */
+color: white; /* Color del texto */
+border: none; /* Quita el borde */
+border-radius: 5px; /* Añade bordes redondeados */
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
 }
 /*#customPlayer:hover {
-  background-color: #ac9f41; 
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+background-color: #ac9f41; 
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }*/
-
-
-	
 
 /* ///////////// BLUE POINT  ////////////////// */
 /* ///////////// BLUE POINT  ////////////////// */
