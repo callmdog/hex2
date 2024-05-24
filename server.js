@@ -7,7 +7,6 @@ const io = socketIo(server);
 
 //VARIABLES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ///////////////////////////////////////////////////////
-
 const connectedUsers = new Set();
 const availableColors = ['blue', 'purple', 'orange', 'pink', 'yellow', 'cyan', 'teal', 'maroon', 'lime', 'brown', 'indigo', 'gray', 'gold', 'silver', 'olive', 'navy', 'magenta', 'peach', 'violet', 'turquoise', 'lavender', 'salmon', 'beige'];
 const assignedColors = new Map(); // Mapa para almacenar el color asignado a cada jugador
@@ -15,71 +14,66 @@ let colorIndex = 0; //// Índice para asignar colores a usuarios
 let players = {};
 const greenCircles = [];
 let greenCirclesS = [];
-
 let todosVertices = [];
-
 const randomCoords = [];
 let ranX = 0;
 let ranY = 0;
 function getRandomPosition() {
-    const x = Math.floor(Math.random() * 800); // Ajusta según el tamaño de tu área de juego
-    const y = Math.floor(Math.random() * 800);
-    return { x, y };
+const x = Math.floor(Math.random() * 800); // Ajusta según el tamaño de tu área de juego
+const y = Math.floor(Math.random() * 800);
+return { x, y };
 }
 
 //CREACION MAPA LOGICO PARA VERDES!!!!!!!!!!!!!!!!!!!
 ///////////////////////////////////////////////////////
-
 function getHexagonPoints(x, y, size) {
-    const points = [];
-    for (let i = 0; i < 6; i++) {
-        const angle = (2 * Math.PI / 6) * i;
-        const pointX = x + size * Math.cos(angle);
-        const pointY = y + size * Math.sin(angle);
-        points.push({ x: pointX, y: pointY });
-    }
-    return points;
+const points = [];
+for (let i = 0; i < 6; i++) {
+const angle = (2 * Math.PI / 6) * i;
+const pointX = x + size * Math.cos(angle);
+const pointY = y + size * Math.sin(angle);
+points.push({ x: pointX, y: pointY });
 }
+return points;
+}
+
 function generateRandomLineCoordinates() {
-    const hexagonMap = [
-    [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
-    [ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'NW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+const hexagonMap = [
+[ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+[ { direction: 'NW' },  { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+[ { direction: 'NW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+[ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
 [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
 [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
     // Repite el patrón de filas según sea necesario para tener 20 filas en total
 ];
-    const hexagonSize = 50;
-    const numRows = hexagonMap.length;
-    const numCols = hexagonMap[0].length;
-    const hexWidth = hexagonSize * Math.sqrt(3);
-    const hexHeight = hexagonSize * Math.sqrt(3);
-    const coordinates = [];
-    // Generar coordenadas medias entre los vértices adyacentes
+const hexagonSize = 50;
+const numRows = hexagonMap.length;
+const numCols = hexagonMap[0].length;
+const hexWidth = hexagonSize * Math.sqrt(3);
+const hexHeight = hexagonSize * Math.sqrt(3);
+const coordinates = [];
+// Generar coordenadas medias entre los vértices adyacentes
 for (let row = 0; row < numRows; row++) {
-    for (let col = 0; col < numCols; col++) {
-        const x = col * (hexWidth * 0.87);
-        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-        const points = getHexagonPoints(x, y, hexagonSize);
-        for (let i = 0; i < points.length; i++) {
-            const nextIndex = (i + 1) % points.length;
-            const point1 = points[i];
-            const point2 = points[nextIndex];
-            const midX = (point1.x + point2.x) / 2;
-           const midY = (point1.y + point2.y) / 2;
-	 
-
+for (let col = 0; col < numCols; col++) {
+const x = col * (hexWidth * 0.87);
+const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+const points = getHexagonPoints(x, y, hexagonSize);
+for (let i = 0; i < points.length; i++) {
+const nextIndex = (i + 1) % points.length;
+const point1 = points[i];
+const point2 = points[nextIndex];
+const midX = (point1.x + point2.x) / 2;
+const midY = (point1.y + point2.y) / 2;
 const randomFactor = Math.random(); // Factor aleatorio entre 0 y 1
 const randomX = point1.x + (point2.x - point1.x) * randomFactor;
 const randomY = point1.y + (point2.y - point1.y) * randomFactor;
-            if (!isNaN(midX) && !isNaN(midY)) {
-		    coordinates.push({ x: randomX, y: randomY, z: 0 });
-		    
-		    //console.log('randomX:', randomX, randomY);  
-            }
-        }
-    }
+if (!isNaN(midX) && !isNaN(midY)) {
+coordinates.push({ x: randomX, y: randomY, z: 0 });
+//console.log('randomX:', randomX, randomY);  
+}
+}
+}
 }	
 const randomCoordinates = new Set(); // Usamos un conjunto para evitar duplicados
 let index = 200; // Inicializamos el índice en 0
