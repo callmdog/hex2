@@ -252,7 +252,7 @@ newGreenCircles[i].z = greenCirclesS.length + i + 1;
 greenCirclesS.push(...newGreenCircles);
 console.log(`GreenCircleS RENOVADO: ${greenCirclesS.length}:`);	
 
-socket.emit('greenCirclesGenerated', greenCirclesS);
+io.emit('greenCirclesGenerated', greenCirclesS);
 	
 	
 }	
