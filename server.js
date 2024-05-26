@@ -251,6 +251,9 @@ newGreenCircles[i].z = greenCirclesS.length + i + 1;
 // Agregar los nuevos círculos verdes a la lista existente
 greenCirclesS.push(...newGreenCircles);
 console.log(`GreenCircleS RENOVADO: ${greenCirclesS.length}:`);	
+
+socket.emit('greenCirclesGenerated', greenCirclesS);
+	
 	
 }	
 
