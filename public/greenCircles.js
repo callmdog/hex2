@@ -28,6 +28,8 @@ greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
 greenCircle.setAttribute('r', '8');
 greenCircle.setAttribute('fill', 'green');
+//OPACIDAD CIRCULO		
+greenCircle.setAttribute('fill-opacity', '0.5'); // Opacidad del relleno	
 greenCircle.setAttribute('id', 'greenCircle_' + z); // Asignar un ID único
 //svg.appendChild(greenCircle);
 const cameraGroup = document.getElementById('camera'); 
@@ -45,6 +47,8 @@ blueCircle.setAttribute('cx', x);
 blueCircle.setAttribute('cy', y);
 blueCircle.setAttribute('r', '6');
 blueCircle.setAttribute('fill', 'blue');
+//OPACIDAD CIRCULO	
+blueCircle.setAttribute('fill-opacity', '0.5'); // Opacidad del relleno	
 blueCircle.setAttribute('id', 'blueCircle_' + z); // Asignar un ID único
 //svg.appendChild(greenCircle);
 const cameraGroup = document.getElementById('camera'); 
