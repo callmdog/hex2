@@ -239,6 +239,22 @@ console.log("No se encontró ningún elemento con z igual a 10");
 io.emit('greenCircleCollision', collisionIndex, indexToRemove, comproid);
 
 console.log(`GreenCircleS QUEDAN: ${greenCirclesS.length}:`);	
+	
+
+// Comprobar si quedan menos de 5 círculos verdes
+if (greenCirclesS.length < 5) {
+// Generar 15 círculos verdes nuevos
+const newGreenCircles = generateRandomLineCoordinates();
+for (let i = 0; i < newGreenCircles.length; i++) {
+newGreenCircles[i].z = greenCirclesS.length + i + 1;
+}
+// Agregar los nuevos círculos verdes a la lista existente
+greenCirclesS.push(...newGreenCircles);
+console.log(`GreenCircleS RENOVADO: ${greenCirclesS.length}:`);	
+	
+}	
+
+	
 
 	
 });	
