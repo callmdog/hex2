@@ -261,7 +261,23 @@ hexagonGroup.appendChild(speedText);
 setTimeout(() => {
 hexagonGroup.removeChild(speedText);
 }, 500);
-}	
+}
+
+////FUNCION JUGADOR TEXTO ELIMINATED
+function playerText(x, y, name) {
+const playerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+playerText.setAttribute('x', x);
+playerText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
+playerText.setAttribute('text-anchor', 'middle');
+playerText.setAttribute('fill', 'red');
+playerText.setAttribute('font-size', '16px');
+playerText.textContent =  name + " eliminated!";
+hexagonGroup.appendChild(playerText);
+// Después de 1 segundo, eliminar el texto
+setTimeout(() => {
+hexagonGroup.removeChild(playerText);
+}, 500);
+}		
 
 //MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////	
@@ -938,15 +954,27 @@ console.log(`GAME OVER2!!`);
 socket.on('eliminarJugadorEnCliente', (playerIdN) => {
 
 var circulo = document.getElementById(playerIdN);
+var x = circulo.getAttribute('cx');
+var y = circulo.getAttribute('cy');	
 if (circulo) {
 circulo.parentNode.removeChild(circulo);
+
+	
 } else {
 console.log("El círculo con el ID especificado no fue encontrado.");
 }
 
 var nombre = document.getElementById(playerIdN + '-name');
+var texto = nombre.textContent;
+
+	
 if (nombre) {
 nombre.parentNode.removeChild(nombre);
+console.log("ELIMINADO: ." + texto);
+
+playerText(x, y, texto);
+	
+	
 } else {
 console.log("El nombre con el ID especificado no fue encontrado.");
 }
