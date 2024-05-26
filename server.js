@@ -24,7 +24,7 @@ const y = Math.floor(Math.random() * 800);
 return { x, y };
 }
 
-//CREACION MAPA LOGICO PARA VERDES!!!!!!!!!!!!!!!!!!!
+//1. CREACION MAPA LOGICO PARA VERDES!!!!!!!!!!!!!!!!!!!!!
 ///////////////////////////////////////////////////////
 function getHexagonPoints(x, y, size) {
 const points = [];
@@ -33,10 +33,7 @@ const angle = (2 * Math.PI / 6) * i;
 const pointX = x + size * Math.cos(angle);
 const pointY = y + size * Math.sin(angle);
 points.push({ x: pointX, y: pointY });
-}
-return points;
-}
-
+}return points;}
 function generateRandomLineCoordinates() {
 const hexagonMap = [
 [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
@@ -71,10 +68,7 @@ const randomY = point1.y + (point2.y - point1.y) * randomFactor;
 if (!isNaN(midX) && !isNaN(midY)) {
 coordinates.push({ x: randomX, y: randomY, z: 0 });
 //console.log('randomX:', randomX, randomY);  
-}
-}
-}
-}	
+}}}}	
 const randomCoordinates = new Set(); // Usamos un conjunto para evitar duplicados
 let index = 200; // Inicializamos el índice en 0
 while (randomCoordinates.size < 20) {
@@ -98,7 +92,11 @@ for (let i = 0; i < greenCirclesS.length; i++) {
 //console.log(`Valor Z MODIFICA: ${i}:`);
 greenCirclesS[i].z = i+1;
 }
+//END CREACION MAPA LOGICO PARA VERDES!!!!!!!!!!!!!!!!!
+///////////////////////////////////////////////////////
 
+//2. GENERAR POSICION INICIAL X e Y de JUGADOR!!!!!!!!!!!!
+///////////////////////////////////////////////////////
 function generateAllHexagonVertices() {
 const hexagonMap = [
 [ { direction: 'NE' },  { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
@@ -109,14 +107,12 @@ const hexagonMap = [
 [ { direction: 'SW' },   { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
 // Repite el patrón de filas según sea necesario para tener 20 filas en total
 ];
-
 const hexagonSize = 50;
 const numRows = hexagonMap.length;
 const numCols = hexagonMap[0].length;
 const hexWidth = hexagonSize * Math.sqrt(3);
 const hexHeight = hexagonSize * Math.sqrt(3);
 const vertices = [];
-
 // Generar coordenadas medias entre los vértices adyacentes
 for (let row = 0; row < numRows; row++) {
 for (let col = 0; col < numCols; col++) {
@@ -126,20 +122,19 @@ const points = getHexagonPoints(x, y, hexagonSize);
 for (let i = 0; i < points.length; i++) {
 vertices.push(points[i]);
 todosVertices.push(points[i]);
-}
-}
-}
+}}}
 return vertices;
 }
 const allHexagonVertices = generateAllHexagonVertices();
 //greenCirclesS = generateAllHexagonVertices();
 //console.log(allHexagonVertices); // Opcional: Imprime los vértices en la consola para visualizarlos
 console.log("Número total de puntos de vértice en el mapa hexagonal:", allHexagonVertices.length);
-
 function printRandomValue(min, max) {
 const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
 return randomValue;
-}        
+}  
+//END GENERAR POSICION INICIAL X e Y de JUGADOR!!!!!!!!!!!!
+///////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,42 +155,22 @@ socket.emit('greenCirclesGenerated', greenCirclesS);
 	
 ////
 
-socket.on('sendCoordinates', (coordinates) => {
-// 'coordinates' ahora contiene las coordenadas enviadas desde el cliente
-//  console.log('Coordenadas recibidas:', coordinates);
-// Puedes hacer lo que necesites con estas coordenadas, por ejemplo:
-coordinates.forEach(({ x, y }) => {
-//   console.log(`Coordenada X: ${x}, Coordenada Y: ${y}`);
-greenCircles.push({ x, y });	
-// ... (tu código para procesar las coordenadas en el servidor)
-});
-});	
-////////////////////////////
-socket.on('sendCoordinatesR', (coordinates) => {
-// 'coordinates' ahora contiene las coordenadas enviadas desde el cliente
-//  console.log('Coordenadas recibidas:', coordinates);
-// Puedes hacer lo que necesites con estas coordenadas, por ejemplo:
-coordinates.forEach(({ x, y }) => {
-console.log(`Coordenada RANDOM X: ${x}, Coordenada RANDOM Y: ${y}`);
-ranX = x;
-ranY = y;
-randomCoords.push({ x, y });	
-// ... (tu código para procesar las coordenadas en el servidor)
-});
-});	
 //CONFIRMATION NOMBRE PARA INICIAR SERVER
 socket.on('playerNameEntered', (playerName) => {
 console.log(`Nombre jugador Server: ${playerName}`);
 //START SOCKET CONNECTION ///////    ///////    ///////  ///////    ///////    ///////    ///////    ///////    ///////    
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
+
 //USUARIOS CONECTADOS
 console.log(`Total de usuarios: ${connectedUsers.size}`);
 console.log('Nuevo usuario conectado');
 connectedUsers.add(socket.id);
 io.emit('userCount', connectedUsers.size);
-
 socket.emit('allPlayersInfo', players);
-//io.emit('updatePlayers', players);
+
+
+	
+
 //OBTENER COLOR PARA JUGADOR    
 const colorsArray = Array.from(availableColors);
 const userColor = colorsArray[colorIndex % colorsArray.length];
@@ -203,7 +178,6 @@ colorIndex++;
 assignedColors.set(socket.id, { color: userColor, name: playerName });
 
 /////////ASSIGNED COLOR///////////////
-
 socket.on('assignColor', function (playerName) {
 const userColor = colorsArray[colorIndex % colorsArray.length];
 colorIndex++;
@@ -213,19 +187,19 @@ console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}: ${as
 socket.emit('assignColor', { color: userColor, name: playerName });
 io.emit('updatePlayers', players);
 });
+	
 ///////////!!!!!!!!!!!!!//////////////////
 console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
-//socket.emit('assignColor', assignedColors.get(socket.id));
 players[socket.id] = {
-//x: Math.random() * 500,
-//y: Math.random() * 500,
 x: randomX,
 y: randomY,
 color: assignedColors.get(socket.id).color,
 nombre: assignedColors.get(socket.id).name,
 puntos: 0,
 };
-//io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
+
+
+//ACTUALIZAR POSICION JUGADOR	
 socket.on('updatePosition', function (position) {
 console.log(`Update Position: ${players[socket.id].nombre}`);
 // Actualiza la posición del jugador en el servidor
@@ -236,6 +210,7 @@ players[socket.id].y = position.y;
 socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
 });
 
+//MOVER JUGADOR EN CLIENTE	
 socket.on('animationData', function (data) {
 const playerName = assignedColors.get(socket.id).name;
 // Emitir datos a todos los clientes
