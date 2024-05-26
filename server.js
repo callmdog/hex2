@@ -237,6 +237,10 @@ greenCirclesS.splice(indice, 1);
 console.log("No se encontró ningún elemento con z igual a 10");
 }        
 io.emit('greenCircleCollision', collisionIndex, indexToRemove, comproid);
+
+console.log(`GreenCircleS QUEDAN: ${greenCirclesS.length}:`);	
+
+	
 });	
 
 
