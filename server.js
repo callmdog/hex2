@@ -178,7 +178,7 @@ colorIndex++;
 assignedColors.set(socket.id, { color: userColor, name: playerName });
 
 /////////ASSIGNED COLOR///////////////
-socket.on('assignColor', function (playerName) {
+/*socket.on('assignColor', function (playerName) {
 const userColor = colorsArray[colorIndex % colorsArray.length];
 colorIndex++;
 assignedColors.set(socket.id, { color: userColor, name: playerName });
@@ -186,7 +186,7 @@ console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}: ${as
 //Envía una respuesta al cliente con el nombre asignado y el color
 socket.emit('assignColor', { color: userColor, name: playerName });
 io.emit('updatePlayers', players);
-});
+});*/
 	
 ///////////!!!!!!!!!!!!!//////////////////
 console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
