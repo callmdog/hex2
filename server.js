@@ -146,7 +146,7 @@ let randomX = todosVertices[randomV].x;
 let randomY = todosVertices[randomV].y;
 console.log("RandomHex:", randomX, randomY);
 //greenCirclesS.push(todosVertices[randomV]);	
-console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);
+console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);	
 
 socket.on('dibujarVerdes', (numero) => {
 console.log(`DIBUJAR VERDES`);
@@ -213,7 +213,7 @@ io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playe
 	
 
 
-///SISTEMA PUNTOS////////////////////
+///SISTEMA PUNTOS CUNADO CIRCULO VERDE HA SIDO COMIDO////////////////////
 socket.on('greenCircleEaten', () => {
 const playerId = socket.id;
 players[playerId].puntos += 1; // Sumar 10 puntos por cada círculo verde comido
@@ -221,30 +221,39 @@ io.emit('updatePlayers', players);
 // Actualizar la información de los jugadores para todos
 io.emit('updatePlayers2', players);
 console.log(`+ Puntos: ${players[playerId].puntos}, ${players[playerId].nombre} `);
-});	    
+});	  
 
-/////////////////////////////////////////////////////////////////////// 
-//io.emit('generateGreenCircles', greenCirclesS);	    
-//generateGreenCircles();
-// Función para generar círculos verdes
-/*function generateGreenCircles() 
-{
-	if (greenCirclesS.length<50)	{
-//		for (let i = 0; i < 30; i++) 
-//		{
-//			const position = getRandomPosition();
-//			greenCircles.push(position);
-//		}
-	}
-	console.log(`LENGTH0: ${greenCirclesS.length}:`);
-	//socket.emit('greenCirclesGenerated', greenCircles);
-	io.emit('greenCirclesGenerated', greenCirclesS);
-}*/
+//COLISION GREEN CIRCLE BORRAR EN TODOS CLIENTES	
+socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove, comproid) => {
+var indice = greenCirclesS.findIndex(function(elemento) {
+return elemento.z === collisionIndex;
+});
+if (indice !== -1) {
+console.log("Elemento eliminado correctamente", greenCirclesS[indice]);
+greenCirclesS.splice(indice, 1);
+//socket.emit('greenCircleEaten');
+//socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+} else {
+console.log("No se encontró ningún elemento con z igual a 10");
+}        
+io.emit('greenCircleCollision', collisionIndex, indexToRemove, comproid);
+});	
 
-// Llamar a la función al iniciar el servidor para generar círculos iniciales
-//generateGreenCircles();
 
-console.log(`LENGTH1: ${greenCirclesS.length}:`);
+//ELIMINAR JUGADOR DE TODOS CLIENTES
+socket.on('eliminarJugador', (playerIdN) => {
+console.log('Usuario desconectado222');
+//desconectarJugador(playerIdN);
+//console.log('Usuario desconectado', playerIdN);
+assignedColors.delete(playerIdN);
+connectedUsers.delete(playerIdN);
+delete players[playerIdN]; //
+io.emit('updatePlayers', players); //
+io.emit('userCount', connectedUsers.size);
+io.emit('eliminarJugadorEnCliente', playerIdN);
+});	
+
+
 
 // Manejar la generación de nuevos círculos verdes
 /*socket.on('generateGreenCircles', () => 
@@ -276,58 +285,9 @@ setInterval(() => {
 });
 */
 	    
-socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove, comproid) => {
-var indice = greenCirclesS.findIndex(function(elemento) {
-return elemento.z === collisionIndex;
-});
-if (indice !== -1) {
-console.log("Elemento eliminado correctamente", greenCirclesS[indice]);
-greenCirclesS.splice(indice, 1);
-//socket.emit('greenCircleEaten');
-//socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
-} else {
-console.log("No se encontró ningún elemento con z igual a 10");
-}        
-io.emit('greenCircleCollision', collisionIndex, indexToRemove, comproid);
-	
-/*
-var indexToRemove2 = greenCirclesS.findIndex(function(circle) {
-return circle.z === collisionIndex;
-});
-console.log(`indexToRemove2 !!!!!!`, indexToRemove2);
-//comprobadorIndex = indexToRemove;	
-console.log(`COLISION- Lenght: ${greenCirclesS.length}, collisionIndex: ${collisionIndex}, indexToRemove: ${indexToRemove}`);
-	
-    // Verificar si el índice es válido
- //   if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) {
-        // Eliminar el círculo verde colisionado del array
-        greenCirclesS.splice(indexToRemove2, 1);
-	io.emit('greenCircleCollision', collisionIndex, indexToRemove);
- 
- //   }
 
-greenCirclesS.forEach(circle => {
-    // Imprimir los valores de cada objeto en la consola
-    console.log(`x: ${circle.x}, y: ${circle.y}, z: ${circle.z}`);
-});
-
-	
-*/
-});
 
 /////////////////////
-
-socket.on('eliminarJugador', (playerIdN) => {
-console.log('Usuario desconectado222');
-//desconectarJugador(playerIdN);
-//console.log('Usuario desconectado', playerIdN);
-assignedColors.delete(playerIdN);
-connectedUsers.delete(playerIdN);
-delete players[playerIdN]; //
-io.emit('updatePlayers', players); //
-io.emit('userCount', connectedUsers.size);
-io.emit('eliminarJugadorEnCliente', playerIdN);
-});
 
 /*
 function desconectarJugador(socketId) {
