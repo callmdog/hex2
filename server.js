@@ -169,34 +169,20 @@ io.emit('userCount', connectedUsers.size);
 socket.emit('allPlayersInfo', players);
 
 
-	
-
 //OBTENER COLOR PARA JUGADOR    
 const colorsArray = Array.from(availableColors);
 const userColor = colorsArray[colorIndex % colorsArray.length];
 colorIndex++;
 assignedColors.set(socket.id, { color: userColor, name: playerName });
-
-/////////ASSIGNED COLOR///////////////
-/*socket.on('assignColor', function (playerName) {
-const userColor = colorsArray[colorIndex % colorsArray.length];
-colorIndex++;
-assignedColors.set(socket.id, { color: userColor, name: playerName });
-console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}: ${assignedColors.get(socket.id)}`); 
-//Envía una respuesta al cliente con el nombre asignado y el color
-socket.emit('assignColor', { color: userColor, name: playerName });
-io.emit('updatePlayers', players);
-});*/
-	
 ///////////!!!!!!!!!!!!!//////////////////
 console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
+
 players[socket.id] = {
-x: randomX,
-y: randomY,
+x: randomX, y: randomY,
 color: assignedColors.get(socket.id).color,
 nombre: assignedColors.get(socket.id).name,
 puntos: 0,
-};
+};	
 
 
 //ACTUALIZAR POSICION JUGADOR	
@@ -209,7 +195,6 @@ players[socket.id].y = position.y;
 //io.emit('updatePlayers', players);
 socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
 });
-
 //MOVER JUGADOR EN CLIENTE	
 socket.on('animationData', function (data) {
 const playerName = assignedColors.get(socket.id).name;
@@ -218,12 +203,14 @@ io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playe
 //console.log(`Annimation name: ${playerName}`);
 });
 
+/*	
 socket.on('playerNameAssigned', (assignedName) => {
 console.log(`Nombre del jugador asignado: ${assignedName}`);
 // Ahora puedes emitir 'updatePlayers' ya que el nombre se ha asignado
 // io.emit('updatePlayers', players);
 });
-
+*/
+	
 socket.emit('assignColor', { color: userColor, name: playerName });
 io.emit('updatePlayers2', players);
 //io.emit('updatePlayers', players);
