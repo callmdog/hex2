@@ -1,6 +1,7 @@
 body {
 margin: 0;
 display: flex;
+    overflow: hidden;	
 justify-content: center; /* Centra horizontalmente */
 align-items: center; /* Centra verticalmente */
 height: 100vh;	
