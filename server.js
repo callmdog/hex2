@@ -175,7 +175,6 @@ const userColor = colorsArray[colorIndex % colorsArray.length];
 colorIndex++;
 assignedColors.set(socket.id, { color: userColor, name: playerName });
 ///////////!!!!!!!!!!!!!//////////////////
-console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
 
 players[socket.id] = {
 x: randomX, y: randomY,
@@ -184,6 +183,15 @@ nombre: assignedColors.get(socket.id).name,
 puntos: 0,
 };	
 
+socket.emit('assignColor', { color: userColor, name: playerName });
+io.emit('updatePlayers2', players);	
+console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
+
+socket.on('updatePlayersRequest', () => {
+console.log(`updatePlayersRequest Function`);
+io.emit('updatePlayers', players);
+//io.emit('updatePlayers2', players);
+});	
 
 //ACTUALIZAR POSICION JUGADOR	
 socket.on('updatePosition', function (position) {
@@ -202,24 +210,8 @@ const playerName = assignedColors.get(socket.id).name;
 io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playerName });
 //console.log(`Annimation name: ${playerName}`);
 });
-
-/*	
-socket.on('playerNameAssigned', (assignedName) => {
-console.log(`Nombre del jugador asignado: ${assignedName}`);
-// Ahora puedes emitir 'updatePlayers' ya que el nombre se ha asignado
-// io.emit('updatePlayers', players);
-});
-*/
 	
-socket.emit('assignColor', { color: userColor, name: playerName });
-io.emit('updatePlayers2', players);
-//io.emit('updatePlayers', players);
 
-socket.on('updatePlayersRequest', () => {
-// Realiza la acción que deseas ejecutar al recibir la solicitud de updatePlayers
-io.emit('updatePlayers', players);
-//io.emit('updatePlayers2', players);
-});
 
 ///SISTEMA PUNTOS////////////////////
 socket.on('greenCircleEaten', () => {
