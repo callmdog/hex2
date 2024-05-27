@@ -70,11 +70,11 @@ greenCircles.forEach((circle, index) => {
 
 function borrar(){
 
-blueCircles = [];
-blueCircles2 = [];
+//blueCircles = [];
+//blueCircles2 = [];
 	
-greenCircles = [];
-greenCircles2 = [];	
+//greenCircles = [];
+//greenCircles2 = [];	
 
 const greenCircles = document.querySelectorAll('circle[fill="green"]');
 
