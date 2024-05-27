@@ -243,6 +243,8 @@ console.log(`GreenCircleS QUEDAN: ${greenCirclesS.length}:`);
 
 // Comprobar si quedan menos de 5 círculos verdes
 if (greenCirclesS.length < 5) {
+io.emit('borrarGreen');
+	
 greenCirclesS = [];	
 // Generar 15 círculos verdes nuevos
 const newGreenCircles = generateRandomLineCoordinates();
