@@ -181,7 +181,7 @@ x: randomX, y: randomY,
 color: assignedColors.get(socket.id).color,
 nombre: assignedColors.get(socket.id).name,
 puntos: 0,
-	velocidad: 50
+	velocidad: false
 };	
 
 socket.emit('assignColor', { color: userColor, name: playerName });
