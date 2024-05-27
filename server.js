@@ -219,7 +219,8 @@ socket.emit('updateVelocidadCliente', { [socket.id]: { velocidad: players[socket
 socket.on('animationData', function (data) {
 const playerName = assignedColors.get(socket.id).name;
     const playerSpeed = players[socket.id].velocidad; // Acceso a la velocidad del jugador
-	
+	console.log(`Annimation Speed: ${playerSpeed}`);
+
 // Emitir datos a todos los clientes
 io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playerName, playerSpeed: playerSpeed });
 //console.log(`Annimation name: ${playerName}`);
