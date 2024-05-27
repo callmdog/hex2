@@ -68,7 +68,7 @@ greenCircles.forEach((circle, index) => {
 }
 
 
-borrar(){
+function borrar(){
 
 blueCircles = [];
 blueCircles2 = [];
