@@ -206,6 +206,15 @@ players[socket.id].velocidad = position.velocidad;
 //io.emit('updatePlayers', players);
 socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
 });
+
+//ACTUALIZAR VELOCIDAD JUGADOR	
+socket.on('updateVelocidadServer', function (position) {
+players[socket.id].velocidad = position.velocidad;
+// Emite la actualización a todos los clientes
+socket.emit('updateVelocidadCliente', { [socket.id]: { velocidad: players[socket.id].velocidad } });
+});	
+	
+	
 //MOVER JUGADOR EN CLIENTE	
 socket.on('animationData', function (data) {
 const playerName = assignedColors.get(socket.id).name;
