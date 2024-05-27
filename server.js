@@ -200,7 +200,7 @@ console.log(`Update Position: ${players[socket.id].nombre}`);
 // Actualiza la posición del jugador en el servidor
 players[socket.id].x = position.x;
 players[socket.id].y = position.y;
-players[socket.id].y = position.velocidad;
+players[socket.id].velocidad = position.velocidad;
 	
 // Emite la actualización a todos los clientes
 //io.emit('updatePlayers', players);
