@@ -880,9 +880,14 @@ const currentTime = performance.now();
 const progress = Math.min((currentTime - startTime) / duration, 1);
 const newX = start.x + progress * (end.x - start.x);
 const newY = start.y + progress * (end.y - start.y);
-		
+
+	
 circleElement.setAttribute('cx', newX);
 circleElement.setAttribute('cy', newY);
+
+const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
+console.log(`VELOCIDAD!!!: ${velocidad}`);
+
 
 //circleElement.setAttribute('cx', start.x);
 //circleElement.setAttribute('cy', start.y);	
