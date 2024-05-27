@@ -878,12 +878,14 @@ isMoving = false;
 let speedPlayer = 500;			  
 function animateCircleLocally(circleElement, start, end, playerId, playerSpeed, callback) {
 //console.log('ANIMATE CIRCLE LOCALLY');
+		const duration = 500;
+
 if(playerSpeed === false){
-	const duration = 500;
+	 duration = 500;
 
 }
 if(playerSpeed === true){
-	const duration = 50;
+	 duration = 50;
 
 }	
 const startTime = performance.now();
