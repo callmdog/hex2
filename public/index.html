@@ -761,17 +761,19 @@ socket.on('animateBluePoint', function (animationData) {
 const playerId = animationData.playerId;
 const data = animationData.data;
 const txt = animationData.playerName;
+	const playerVel = animationData.playerVel;
+
 // Encuentra el círculo correspondiente al jugador
 const playerElement = document.getElementById(playerId);
 const textElement2 = document.getElementById(playerId + '-name');
 const xCoordinate = playerElement.getAttribute('cy');
 console.log('CordY1: ', xCoordinate  );
 
-animateCircleLocally(playerElement, data.start, data.end, playerId);
+animateCircleLocally(playerElement, data.start, data.end, playerId, playerVel);
 animateNameLocally(textElement2, data.start, data.end);
 
 //FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
-animateCircleLocally(playerElement, data.start, data.end, playerId, function() {
+animateCircleLocally(playerElement, data.start, data.end, playerId,playerVel, function() {
 
 const xCoordinate = playerElement.getAttribute('cy');
 console.log('CordY2: ', xCoordinate  );
@@ -871,7 +873,7 @@ isMoving = false;
 //5. ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 let speedPlayer = 500;			  
-function animateCircleLocally(circleElement, start, end, playerId, callback) {
+function animateCircleLocally(circleElement, start, end, playerId, playerVel, callback) {
 //console.log('ANIMATE CIRCLE LOCALLY');
 const duration = speedPlayer;
 const startTime = performance.now();
@@ -885,8 +887,8 @@ const newY = start.y + progress * (end.y - start.y);
 circleElement.setAttribute('cx', newX);
 circleElement.setAttribute('cy', newY);
 
-const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
-console.log(`VELOCIDAD!!!: ${velocidad}`);
+//const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
+console.log(`VELOCIDAD!!!: ${playerVel}`);
 
 
 //circleElement.setAttribute('cx', start.x);
