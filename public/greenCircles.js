@@ -68,6 +68,31 @@ greenCircles.forEach((circle, index) => {
 }
 
 
+borrar(){
+
+blueCircles = [];
+blueCircles2 = [];
+	
+greenCircles = [];
+greenCircles2 = [];	
+
+const greenCircles = document.querySelectorAll('circle[fill="green"]');
+
+// Iterar sobre cada círculo verde y eliminarlo
+greenCircles.forEach(circle => {
+    circle.remove();
+});
+
+const blueCircles = document.querySelectorAll('circle[fill="blue"]');
+
+// Iterar sobre cada círculo verde y eliminarlo
+blueCircles.forEach(circle => {
+    circle.remove();
+});
+	
+}
+
+
 ////////////////////////////////////////////////////////////	
 //YELLOW POINTS CERCA DE LINEAS !!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////
