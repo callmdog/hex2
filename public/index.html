@@ -387,7 +387,24 @@ pointText(circleToRemoveC.getAttribute('cx'), circleToRemoveC.getAttribute('cy')
 
 //BLUE CIRCLE VELOCIDAD COLISION
 if (circleToRemoveCB) {	
-speedPlayer = 50;
+//speedPlayer = 50;
+
+
+    function activarVelocidad() {
+        Velocidad = true;
+	const newPosition = { velocidad: Velocidad };
+	socket.emit('updatePosition', newPosition);    
+        console.log('Velocidad activada');
+        setTimeout(function() {
+            Velocidad = false;
+            console.log('Velocidad desactivada');
+		const newPosition = { velocidad: Velocidad };
+		socket.emit('updatePosition', newPosition);    	
+        }, 5000); // 5000 milisegundos = 5 segundos
+    }
+
+    // Llamar a la función para activar la velocidad
+    activarVelocidad();	
 	
 circleToRemoveCB.parentNode.removeChild(circleToRemoveCB);
 var indice = greenCircles.findIndex(function(elemento) {
@@ -457,6 +474,7 @@ textLine4.classList.add('no-select');
 textLine5.classList.add('no-select');
 textLine6.classList.add('no-select');
 let CalculoCam = 0;
+	
 	
 function addPlayer(nombre, puntos, color) {
 const nuevoJugador = {
@@ -692,6 +710,9 @@ animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 	
 }	
 
+    let Velocidad = false;
+	
+
 //3. ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /////////////////////////////////////////////////////////////////////////////	
 function animateBluePoint(destinationX, destinationY) {
@@ -717,7 +738,7 @@ if (progress < 1) { requestAnimationFrame(update);
 // Animación completada, emitir datos al servidor
 socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
 // Supongamos que newPosition es un objeto con las nuevas coordenadas
-const newPosition = { x:  newX , y: newY };
+const newPosition = { x:  newX , y: newY, velocidad: Velocidad };
 socket.emit('updatePosition', newPosition);
 inicialX = newX; inicialY = newY;	
 }
