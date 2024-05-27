@@ -157,6 +157,8 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 <text id="textLine4" x="20" y="100" fill="orange"></text>
 <text id="textLine5" x="20" y="120" fill="purple"></text>
 <text id="textLine6" x="95%" y="40" fill="red" text-anchor="end" >Points: 1018</text>
+<text id="textLine7" x="95%" y="60" fill="blue" text-anchor="end" >X2 SPEED</text>
+	
 </svg>	
 	
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
@@ -395,11 +397,15 @@ if (circleToRemoveCB) {
 	const newVel = { velocidad: Velocidad };
 	socket.emit('updateVelocidadServer', newVel);    
         console.log('Velocidad activada');
+	textLine6.textContent = `X2 SPEED`;
+    
         setTimeout(function() {
             Velocidad = false;
             console.log('Velocidad desactivada');
 		const newVel = { velocidad: Velocidad };
-		socket.emit('updateVelocidadServer', newVel);    	
+		socket.emit('updateVelocidadServer', newVel);   
+			textLine6.textContent = ` `;
+
         }, 5000); // 5000 milisegundos = 5 segundos
     }
 
@@ -467,12 +473,16 @@ let textLine3 = document.getElementById('textLine3');
 let textLine4 = document.getElementById('textLine4');
 let textLine5 = document.getElementById('textLine5');
 let textLine6 = document.getElementById('textLine6');
+let textLine7 = document.getElementById('textLine7');
+	
 textLine1.classList.add('no-select');
 textLine2.classList.add('no-select');
 textLine3.classList.add('no-select');
 textLine4.classList.add('no-select');
 textLine5.classList.add('no-select');
 textLine6.classList.add('no-select');
+textLine7.classList.add('no-select');
+	
 let CalculoCam = 0;
 	
 	
@@ -878,7 +888,7 @@ isMoving = false;
 let speedPlayer = 500;			  
 function animateCircleLocally(circleElement, start, end, playerId, playerSpeed, callback) {
 //console.log('ANIMATE CIRCLE LOCALLY');
-		const duration = 500;
+		let duration = 500;
 
 if(playerSpeed === false){
 	 duration = 500;
