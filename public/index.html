@@ -233,23 +233,10 @@ generateGreenCircles();
 
 socket.on('borrarGreen', () => {
 console.log('BORRAR GREEN CIRCLES.');
-//greenCircles = [];
-//greenCircles2 = [];
 
-const greenCircles = document.querySelectorAll('circle[fill="green"]');
+borrar();
 
-// Iterar sobre cada círculo verde y eliminarlo
-greenCircles.forEach(circle => {
-    circle.remove();
-});
 
-const blueCircles = document.querySelectorAll('circle[fill="blue"]');
-
-// Iterar sobre cada círculo verde y eliminarlo
-blueCircles.forEach(circle => {
-    circle.remove();
-});
-	
 	
 	
 });		
