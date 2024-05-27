@@ -181,6 +181,7 @@ x: randomX, y: randomY,
 color: assignedColors.get(socket.id).color,
 nombre: assignedColors.get(socket.id).name,
 puntos: 0,
+	velocidad: 50
 };	
 
 socket.emit('assignColor', { color: userColor, name: playerName });
@@ -199,6 +200,8 @@ console.log(`Update Position: ${players[socket.id].nombre}`);
 // Actualiza la posición del jugador en el servidor
 players[socket.id].x = position.x;
 players[socket.id].y = position.y;
+players[socket.id].y = position.velocidad;
+	
 // Emite la actualización a todos los clientes
 //io.emit('updatePlayers', players);
 socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
