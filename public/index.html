@@ -392,14 +392,14 @@ if (circleToRemoveCB) {
 
     function activarVelocidad() {
         Velocidad = true;
-	const newPosition = { velocidad: Velocidad };
-	socket.emit('updatePosition', newPosition);    
+	const newVel = { velocidad: Velocidad };
+	socket.emit('updateVelocidadServer', newVel);    
         console.log('Velocidad activada');
         setTimeout(function() {
             Velocidad = false;
             console.log('Velocidad desactivada');
-		const newPosition = { velocidad: Velocidad };
-		socket.emit('updatePosition', newPosition);    	
+		const newVel = { velocidad: Velocidad };
+		socket.emit('updateVelocidadServer', newVel);    	
         }, 5000); // 5000 milisegundos = 5 segundos
     }
 
