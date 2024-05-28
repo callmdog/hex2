@@ -134,6 +134,8 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 </div>
 
 <button type="button" id="submitButton">PLAY</button>
+<div id="errorMessage" style="display: none; color: red;">The player's name must be between 1 and 20 characters.</div>
+	
 	
 <div id="customizePlayerDiv">
 <button type="button" id="customPlayer">CUSTOMIZE SKIN</button>
@@ -198,6 +200,11 @@ console.log('Camara:', Camara);
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//////////
 	
 document.getElementById('submitButton').addEventListener('click', function () {
+var playerNameInput = document.getElementById("playerName");
+    var errorMessage = document.getElementById("errorMessage");
+
+if (playerNameInput.checkValidity()) {
+        // El formulario es válido, iniciar el juego
 socket.on('connect_error', (error) => {
 console.error('Error de conexión:', error); });
 const playerName = document.getElementById('playerName').value;
@@ -210,6 +217,16 @@ hexagonGroup.style.display = 'block';
 firstP.style.display = 'block';
 // ACTIVAR EL SERVIDOR
 socket.emit('playerNameEntered', playerName);
+
+} else {
+        // Mostrar mensaje de error
+        errorMessage.style.display = "block";
+    }	
+	
+
+
+
+	
 });
 
 //CUSTOM PLAYER BUTTON
