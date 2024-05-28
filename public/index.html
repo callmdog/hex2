@@ -740,8 +740,8 @@ nuevoCirculo.setAttribute('r', '100');
 const foreignObject = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
 foreignObject.setAttribute('x', '0');
 foreignObject.setAttribute('y', '0');
-foreignObject.setAttribute('width', '200');
-foreignObject.setAttribute('height', '200');
+foreignObject.setAttribute('width', '50');
+foreignObject.setAttribute('height', '50');
 
 // Crea un elemento div para contener el contenido HTML
 const div = document.createElement('div');
@@ -755,7 +755,7 @@ playerElement.appendChild(nuevoCirculo);
 
 // Agrega el foreignObject como hijo del círculo
 nuevoCirculo.appendChild(foreignObject);	
-hexagonGroup.appendChild(foreignObject);
+hexagonGroup.appendChild(nuevoCirculo);
 
 
 	///////////////
