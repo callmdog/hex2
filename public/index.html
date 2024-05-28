@@ -723,12 +723,12 @@ playerElement.setAttribute('cy', player.y);*/
 	/////////////
 
 const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-playerElement.setAttribute('x', player.x);
-playerElement.setAttribute('y', player.y);
 playerElement.setAttribute('width', '25');
 playerElement.setAttribute('height', '25');
 playerElement.setAttribute('id', playerId);
-	
+
+playerElement.setAttribute('x', player.x - (25/2));
+playerElement.setAttribute('y', player.y - (25/2));	
 
 // Crea un elemento div para contener el contenido HTML
 const div = document.createElement('div');
