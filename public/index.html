@@ -706,7 +706,7 @@ existingPlayerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del bor
 
 
 	
-const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+/*const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 const ptsf = parseFloat(player.puntos); 
 const sizeCalc = (0.2 * ptsf) + 9;	
 playerElement.setAttribute('id', playerId);
@@ -719,28 +719,28 @@ playerElement.setAttribute('stroke-width', '1'); // Ancho del borde
 playerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
 	
 playerElement.setAttribute('cx', player.x);
-playerElement.setAttribute('cy', player.y);
+playerElement.setAttribute('cy', player.y);*/
 	/////////////
 
-const foreignObject = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-foreignObject.setAttribute('x', player.x);
-foreignObject.setAttribute('y', player.y);
-foreignObject.setAttribute('width', '25');
-foreignObject.setAttribute('height', '25');
+const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+playerElement.setAttribute('x', player.x);
+playerElement.setAttribute('y', player.y);
+playerElement.setAttribute('width', '25');
+playerElement.setAttribute('height', '25');
 
 // Crea un elemento div para contener el contenido HTML
 const div = document.createElement('div');
 div.innerHTML = svgString; // Inserta el código SVG dentro del div
 
 // Agrega el div como hijo del foreignObject
-foreignObject.appendChild(div);	
+playerElement.appendChild(div);	
 
 if(playerId !== socket.id) {
 // Agregar atributo de jugador al círculo
-foreignObject.setAttribute('data-player-id', 'jugador'); 
+playerElement.setAttribute('data-player-id', 'jugador'); 
 }
 
-hexagonGroup.appendChild(foreignObject);
+hexagonGroup.appendChild(playerElement);
 
 const xCoordinate2 = playerElement.getAttribute('y');
   console.log(`!!!!!!!!!!!xCoordinate2 ${xCoordinate2}:`);
