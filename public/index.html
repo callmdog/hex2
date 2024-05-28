@@ -415,29 +415,9 @@ pointText(circleToRemoveC.getAttribute('cx'), circleToRemoveC.getAttribute('cy')
 if (circleToRemoveCB) {	
 //speedPlayer = 50;
 
-
-   /* function activarVelocidad() {
-        Velocidad = true;
-	const newVel = { velocidad: Velocidad };
-	socket.emit('updateVelocidadServer', newVel);    
-        console.log('Velocidad activada');
-	textLine7.textContent = `X2 SPEED`;
-    
-        setTimeout(function() {
-            Velocidad = false;
-            console.log('Velocidad desactivada');
-		const newVel = { velocidad: Velocidad };
-		socket.emit('updateVelocidadServer', newVel);   
-			textLine7.textContent = ` `;
-
-        }, 5000); // 5000 milisegundos = 5 segundos
-    }
-
-    // Llamar a la función para activar la velocidad
-    activarVelocidad();	
-*/
-
 function activarVelocidad() {
+	            clearInterval(intervalo);
+
     Velocidad = true;
     const newVel = { velocidad: Velocidad };
     socket.emit('updateVelocidadServer', newVel);
