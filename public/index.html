@@ -832,14 +832,14 @@ const data = animationData.data;
 const txt = animationData.playerName;
 	const playerSpeed = animationData.playerSpeed;
 	
-console.log('playerSpeed: ', playerSpeed  );
+//console.log('playerSpeed: ', playerSpeed  );
 
 	
 // Encuentra el círculo correspondiente al jugador
 const playerElement = document.getElementById(playerId);
 const textElement2 = document.getElementById(playerId + '-name');
 const xCoordinate = playerElement.getAttribute('cy');
-console.log('CordY1: ', xCoordinate  );
+//console.log('CordY1: ', xCoordinate  );
 
 animateCircleLocally(playerElement, data.start, data.end, playerId, playerSpeed);
 animateNameLocally(textElement2, data.start, data.end);
@@ -848,7 +848,7 @@ animateNameLocally(textElement2, data.start, data.end);
 animateCircleLocally(playerElement, data.start, data.end, playerId,playerSpeed, function() {
 
 const xCoordinate = playerElement.getAttribute('cy');
-console.log('CordY2: ', xCoordinate  );
+//console.log('CordY2: ', xCoordinate  );
 
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
@@ -972,7 +972,7 @@ circleElement.setAttribute('cx', newX);
 circleElement.setAttribute('cy', newY);
 
 //const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
-console.log(`VELOCIDAD!!!: ${playerSpeed}`);
+//console.log(`VELOCIDAD!!!: ${playerSpeed}`);
 
 
 //circleElement.setAttribute('cx', start.x);
