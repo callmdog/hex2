@@ -118,7 +118,7 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 </div>	
 
 <!--<label for="playerName">Introduce tu nombre:</label> -->
-<input type="text" id="playerName" name="playerName" required placeholder="Player name">
+<input type="text" id="playerName" name="playerName" required placeholder="Player name" minlength="1" maxlength="20" pattern=".{1,20}">
 	
 <div id="cameraOptions">
 <label class="radio-button">
