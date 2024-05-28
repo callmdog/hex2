@@ -630,15 +630,19 @@ const topPlayers = getTopPlayers();
 textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
 if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}
 
-// Crear un span para contener el texto
-let textSpan = document.createElement('span');
-textSpan.textContent = textLine1.textContent;
-textSpan.style.backgroundColor = 'rgba(128, 128, 128, 0.5)'; // Fondo gris con opacidad
-textSpan.style.padding = '2px'; // Espacio entre el texto y el fondo
+// Crear un rectángulo para el fondo
+let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+rect.setAttribute("x", "20");
+rect.setAttribute("y", "40");
+rect.setAttribute("width", textLine1.getBBox().width); // Ancho basado en el texto
+rect.setAttribute("height", textLine1.getBBox().height); // Altura basada en el texto
+rect.setAttribute("fill", "rgba(128, 128, 128, 0.5)"); // Fondo gris con opacidad
 
-// Reemplazar el texto original con el span que contiene el texto y el fondo
-textLine1.textContent = '';
-textLine1.appendChild(textSpan);	
+// Insertar el rectángulo antes del texto
+textLine1.parentNode.insertBefore(rect, textLine1);
+
+// Mover el texto a la parte delantera
+textLine1.parentNode.appendChild(textLine1);	
 	
 textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
 if (topPlayers[1] && topPlayers[1].color) {textLine2.style.fill = topPlayers[1].color; } else {}
