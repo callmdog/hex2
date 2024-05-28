@@ -519,7 +519,6 @@ textLine5.classList.add('no-select');
 textLine6.classList.add('no-select');
 textLine7.classList.add('no-select');
 
-textLine1.style.backgroundColor = 'rgba(128, 128, 128, 0.5)';
 	
 	
 let CalculoCam = 0;
@@ -630,6 +629,17 @@ findAndMarkClosestVertices(inicialX, inicialY,currentCameraX3,currentCameraY3);
 const topPlayers = getTopPlayers();
 textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
 if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}
+
+// Crear un span para contener el texto
+let textSpan = document.createElement('span');
+textSpan.textContent = textLine1.textContent;
+textSpan.style.backgroundColor = 'rgba(128, 128, 128, 0.5)'; // Fondo gris con opacidad
+textSpan.style.padding = '2px'; // Espacio entre el texto y el fondo
+
+// Reemplazar el texto original con el span que contiene el texto y el fondo
+textLine1.textContent = '';
+textLine1.appendChild(textSpan);	
+	
 textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
 if (topPlayers[1] && topPlayers[1].color) {textLine2.style.fill = topPlayers[1].color; } else {}
 textLine3.textContent = topPlayers.length >= 3 ? `#3 ${topPlayers[2].nombre}: ${topPlayers[2].puntos}` : '';
