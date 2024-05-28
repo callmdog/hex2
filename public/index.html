@@ -903,7 +903,7 @@ animateCam2 (10,  10  ,bX, bY,svgWidth,  function() {
 
 //ARRIBA!!!!!!! por modificar
 console.log('2. bY: ',   bY ); 
-const bluePointRightXA = currentY + bluePointHeight;
+const bluePointRightXA = currentY - bluePointHeight;
 console.log('3. bluePointRightXA: ',  bluePointRightXA  );
 const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
 if (bluePointRightXA > limitRightY) {      
@@ -920,8 +920,10 @@ console.log('Limite der. ',  limitRightX  );
 console.log('Limite izq. ',  limitRightX2  );
 	
 //ABAJO!!!!!!!!
+const bluePointRightXA2 = currentY + bluePointHeight;
+	
 const limitRightY2 = - currentCameraY4p + (window.innerHeight * 0.3);
-if (bluePointRightXA < limitRightY2) {      
+if (bluePointRightXA2 < limitRightY2) {      
 //if(MoveCam){
 //CalculoCam = CalculoCam + svgHeight / 3;
 //console.log('5. CalculoCam: ',   CalculoCam  );
