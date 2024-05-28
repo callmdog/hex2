@@ -313,13 +313,7 @@ transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suave
 background-color: #ac9f41; 
 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }*/
-
-#textLine1 {
-    background-color: rgba(128, 128, 128, 0.5); /* Gris con opacidad del 50% */
-    padding: 2px; /* Espacio entre el texto y el fondo */
-    width: 15ch; /* Ancho de 15 caracteres */
-    display: inline-block; /* Para que el width funcione correctamente */
-}	
+	
 	
 
 
