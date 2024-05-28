@@ -723,7 +723,7 @@ if(playerId !== socket.id) {
 playerElement.setAttribute('data-player-id', 'jugador'); 
 }
 
-hexagonGroup.appendChild(playerElement);
+//hexagonGroup.appendChild(playerElement);
 
 
 /////////////////////
@@ -750,13 +750,9 @@ div.innerHTML = svgString; // Inserta el código SVG dentro del div
 // Agrega el div como hijo del foreignObject
 foreignObject.appendChild(div);
 
-// Agrega el nuevo círculo al playerElement
-playerElement.appendChild(nuevoCirculo);
+playerElement.appendChild(foreignObject);
 
-// Agrega el foreignObject como hijo del círculo
-nuevoCirculo.appendChild(foreignObject);	
-
-	hexagonGroup.appendChild(foreignObject);
+	hexagonGroup.appendChild(playerElement);
 
 
 	///////////////
