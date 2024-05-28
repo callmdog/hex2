@@ -727,8 +727,8 @@ playerElement.setAttribute('cy', player.y);*/
 	/////////////
 
 const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-playerElement.setAttribute('width', 'playerWidth');
-playerElement.setAttribute('height', 'playerHeight');
+playerElement.setAttribute('width', playerWidth);
+playerElement.setAttribute('height', playerHeight);
 playerElement.setAttribute('id', playerId);
 
 playerElement.setAttribute('x', player.x - (playerWidth/2));
