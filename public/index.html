@@ -810,8 +810,8 @@ animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 /////////////////////////////////////////////////////////////////////////////	
 function animateBluePoint(destinationX, destinationY) {
 //console.log('1. Animate Blue Point');
-//const startX = parseFloat(bluePointElement.getAttribute('cx'));
-//const startY = parseFloat(bluePointElement.getAttribute('cy'));
+//const startX = parseFloat(bluePointElement.getAttribute('x'));
+//const startY = parseFloat(bluePointElement.getAttribute('y'));
 const startX = bX;
 const startY = bY;
 const startTime = performance.now();
@@ -862,7 +862,7 @@ const txt = animationData.playerName;
 // Encuentra el círculo correspondiente al jugador
 const playerElement = document.getElementById(playerId);
 const textElement2 = document.getElementById(playerId + '-name');
-const xCoordinate = playerElement.getAttribute('cy');
+const xCoordinate = playerElement.getAttribute('y');
 //console.log('CordY1: ', xCoordinate  );
 
 animateCircleLocally(playerElement, data.start, data.end, playerId, playerSpeed);
@@ -871,7 +871,7 @@ animateNameLocally(textElement2, data.start, data.end);
 //FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 animateCircleLocally(playerElement, data.start, data.end, playerId,playerSpeed, function() {
 
-const xCoordinate = playerElement.getAttribute('cy');
+const xCoordinate = playerElement.getAttribute('y');
 //console.log('CordY2: ', xCoordinate  );
 
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
