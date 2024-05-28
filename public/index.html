@@ -350,6 +350,13 @@ speedText(circleToRemoveCB.getAttribute('cx'), circleToRemoveCB.getAttribute('cy
 
 //DETECTAR COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////
+
+
+let segundosRestantes = 5;
+
+
+let intervalo;
+
 function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
 for (const circle of greenCircles) {	
 const greenX = circle.x; 
@@ -420,8 +427,8 @@ function activarVelocidad() {
     console.log('Velocidad activada');
     textLine7.textContent = `X2 SPEED`;
 
-    let segundosRestantes = 5;
-    const intervalo = setInterval(function() {
+    segundosRestantes = 5;
+    intervalo = setInterval(function() {
         segundosRestantes--;
         if (segundosRestantes > 0) {
             textLine7.textContent = `X2 SPEED - ${segundosRestantes} s`;
