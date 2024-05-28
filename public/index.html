@@ -731,8 +731,11 @@ playerElement.setAttribute('width', playerWidth);
 playerElement.setAttribute('height', playerHeight);
 playerElement.setAttribute('id', playerId);
 
-playerElement.setAttribute('x', player.x - (playerWidth/2));
-playerElement.setAttribute('y', player.y - (playerHeight/2));	
+//playerElement.setAttribute('x', player.x - (playerWidth/2));
+//playerElement.setAttribute('y', player.y - (playerHeight/2));	
+
+playerElement.setAttribute('x', player.x);
+playerElement.setAttribute('y', player.y );		
 
 // Crea un elemento div para contener el contenido HTML
 const div = document.createElement('div');
@@ -1007,8 +1010,11 @@ const newX = start.x + progress * (end.x - start.x);
 const newY = start.y + progress * (end.y - start.y);	
 
 	
-circleElement.setAttribute('x', newX - (playerWidth/2));
-circleElement.setAttribute('y', newY- (playerHeight/2));
+//circleElement.setAttribute('x', newX - (playerWidth/2));
+//circleElement.setAttribute('y', newY- (playerHeight/2));
+
+	circleElement.setAttribute('x', newX );
+circleElement.setAttribute('y', newY);
 
 //const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
 //console.log(`VELOCIDAD!!!: ${playerSpeed}`);
