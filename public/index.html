@@ -632,20 +632,16 @@ if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0]
 
 // Obtener las coordenadas y dimensiones del texto
 let textBoundingBox = textLine1.getBBox();
-let textX = textBoundingBox.x;
-let textY = textBoundingBox.y;
-let textWidth = textBoundingBox.width;
-let textHeight = textBoundingBox.height;
 
-// Calcular la posición vertical central para el rectángulo
-let rectY = textY - (textHeight / 2); // Centrar verticalmente el rectángulo respecto al texto
+// Calcular la posición vertical centrada para el rectángulo
+let rectY = textBoundingBox.y - (textBoundingBox.height / 2); // Centrar verticalmente el rectángulo respecto al texto
 
 // Crear un rectángulo para el fondo
 let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-rect.setAttribute("x", textX);
+rect.setAttribute("x", textBoundingBox.x);
 rect.setAttribute("y", rectY);
-rect.setAttribute("width", textWidth);
-rect.setAttribute("height", textHeight);
+rect.setAttribute("width", textBoundingBox.width);
+rect.setAttribute("height", textBoundingBox.height);
 rect.setAttribute("fill", "rgba(128, 128, 128, 0.5)"); // Fondo gris con opacidad
 
 // Insertar el rectángulo detrás del texto
