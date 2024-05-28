@@ -878,7 +878,7 @@ const limitRightX = - currentCameraX4p + (window.innerWidth * 0.7);
 if (bluePointRightX > limitRightX) {      
 //if(MoveCam){
 CalculoCam = CalculoCam + svgWidth / 3;
-console.log('CalculoCam !!!!!!:',   CalculoCam  );
+console.log('CalculoCam!!!!!!:',   limitRightX );
 animateCam (10,  10  ,bX, bY, svgWidth,  function() {
 //MoveCam = true;
 });   
@@ -891,7 +891,7 @@ const limitRightX2 = - currentCameraX4p + (window.innerWidth * 0.3);
 if (bluePointRightX2 < limitRightX2) {
 //if(MoveCam){
 CalculoCam = CalculoCam - svgWidth / 3;
-console.log('CalculoCam !!!!!!:',   CalculoCam  );
+console.log('CalculoCam !!!!!!:',   limitRightX2 );
 animateCam2 (10,  10  ,bX, bY,svgWidth,  function() {
 //MoveCam = true;
 });   
