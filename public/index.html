@@ -630,12 +630,22 @@ const topPlayers = getTopPlayers();
 textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
 if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}
 
+// Obtener las coordenadas y dimensiones del texto
+let textBoundingBox = textLine1.getBBox();
+let textX = textBoundingBox.x;
+let textY = textBoundingBox.y;
+let textWidth = textBoundingBox.width;
+let textHeight = textBoundingBox.height;
+
+// Calcular la posición vertical central para el rectángulo
+let rectY = textY - (textHeight / 2); // Centrar verticalmente el rectángulo respecto al texto
+
 // Crear un rectángulo para el fondo
 let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-rect.setAttribute("x", "20");
-rect.setAttribute("y", "20"); // Ajusta la coordenada Y para que aparezca detrás del texto
-rect.setAttribute("width", textLine1.getBBox().width); // Ancho basado en el texto
-rect.setAttribute("height", textLine1.getBBox().height); // Altura basada en el texto
+rect.setAttribute("x", textX);
+rect.setAttribute("y", rectY);
+rect.setAttribute("width", textWidth);
+rect.setAttribute("height", textHeight);
 rect.setAttribute("fill", "rgba(128, 128, 128, 0.5)"); // Fondo gris con opacidad
 
 // Insertar el rectángulo detrás del texto
