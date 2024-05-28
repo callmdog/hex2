@@ -872,6 +872,9 @@ const bluePointRect = playerElement.getBoundingClientRect();
 const bluePointWidth = bluePointRect.width;
 const bluePointHeight = bluePointRect.height;
 
+console.log('bluePointWidth!!!!!!:',   bluePointWidth );
+	
+
 //DERECHA!!!!!
 const bluePointRightX = currentX + bluePointWidth;
 const limitRightX = - currentCameraX4p + (window.innerWidth * 0.7);
@@ -886,7 +889,7 @@ animateCam (10,  10  ,bX, bY, svgWidth,  function() {
 }
 
 ///IZQUIERDA!!!!!!!
-const bluePointRightX2 = currentX + bluePointWidth;
+const bluePointRightX2 = currentX - bluePointWidth;
 const limitRightX2 = - currentCameraX4p + (window.innerWidth * 0.3);
 if (bluePointRightX2 < limitRightX2) {
 //if(MoveCam){
