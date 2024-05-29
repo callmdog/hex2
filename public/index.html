@@ -674,8 +674,8 @@ if (existingPlayerElement) {
 
 
 	
-existingPlayerElement.setAttribute('x', player.x);
-existingPlayerElement.setAttribute('y', player.y);
+existingPlayerElement.setAttribute('cx', player.x);
+existingPlayerElement.setAttribute('cy', player.y);
 //const radius = parseFloat(existingPlayerElement.getAttribute('r')); // Convertir a número
 const ptsf = parseFloat(player.puntos); 
 const sizeCalc = (0.2 * ptsf) + 9;
@@ -742,8 +742,8 @@ playerElement.setAttribute('id', playerId);
 playerElement.setAttribute('r', 14); // Radio del círculo
 playerElement.setAttribute('fill', 'yellow');	
 
-playerElement.setAttribute('x', player.x);
-playerElement.setAttribute('y', player.y );		
+playerElement.setAttribute('cx', player.x);
+playerElement.setAttribute('cy', player.y );		
 
 // Crea un elemento div para contener el contenido HTML
 //const div = document.createElement('div');
@@ -1017,8 +1017,8 @@ const newY = start.y + progress * (end.y - start.y);
 //circleElement.setAttribute('x', newX - (playerWidth/2));
 //circleElement.setAttribute('y', newY- (playerHeight/2));
 
-	circleElement.setAttribute('x', newX );
-circleElement.setAttribute('y', newY);
+	circleElement.setAttribute('cx', newX );
+circleElement.setAttribute('cy', newY);
 
 //const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
 //console.log(`VELOCIDAD!!!: ${playerSpeed}`);
