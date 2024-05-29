@@ -733,13 +733,13 @@ playerElement.setAttribute('cy', player.y);*/
 `;
 
 const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-playerElement.setAttribute('width', playerWidth);
-playerElement.setAttribute('height', playerHeight);
+//playerElement.setAttribute('width', playerWidth);
+//playerElement.setAttribute('height', playerHeight);
 playerElement.setAttribute('id', playerId);
 
 //playerElement.setAttribute('x', player.x - (playerWidth/2));
 //playerElement.setAttribute('y', player.y - (playerHeight/2));
-playerElement.setAttribute('r', player.radius); // Radio del círculo
+playerElement.setAttribute('r', 14); // Radio del círculo
 playerElement.setAttribute('fill', 'yellow');	
 
 playerElement.setAttribute('x', player.x);
