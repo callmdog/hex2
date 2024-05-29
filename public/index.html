@@ -726,6 +726,12 @@ playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);*/
 	/////////////
 
+ const svgString2 = `
+    <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12.5" cy="12.5" r="12.5" fill="yellow"/>
+    </svg>
+`;
+
 const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
 playerElement.setAttribute('width', playerWidth);
 playerElement.setAttribute('height', playerHeight);
@@ -739,7 +745,7 @@ playerElement.setAttribute('y', player.y );
 
 // Crea un elemento div para contener el contenido HTML
 const div = document.createElement('div');
-div.innerHTML = svgString; // Inserta el código SVG dentro del div
+div.innerHTML = svgString2; // Inserta el código SVG dentro del div
 
 // Agrega el div como hijo del foreignObject
 playerElement.appendChild(div);	
@@ -750,10 +756,6 @@ playerElement.setAttribute('data-player-id', 'jugador');
 }
 
 hexagonGroup.appendChild(playerElement);
-
-const xCoordinate2 = playerElement.getAttribute('y');
-  console.log(`!!!!!!!!!!!xCoordinate2 ${xCoordinate2}:`);
-
 
 	
 }
