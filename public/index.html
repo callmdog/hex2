@@ -774,6 +774,24 @@ playerElement.setAttribute('id', playerId);
 playerElement.setAttribute('data-x', player.x);
 playerElement.setAttribute('data-y', player.y );		
 
+
+const currentX = Number(playerGroup.getAttribute('data-x'));
+const currentY = Number(playerGroup.getAttribute('data-y'));
+
+// Nuevas coordenadas a las que se moverá el grupo
+const newX = player.x;
+const newY = player.y;
+
+// Calcula la diferencia entre las coordenadas actuales y las nuevas
+const deltaX = newX - currentX;
+const deltaY = newY - currentY;
+
+// Aplica la transformación de traslación al grupo
+playerGroup.setAttribute('transform', `translate(${deltaX},${deltaY})`);
+
+// Actualiza las coordenadas actuales del grupo
+playerGroup.setAttribute('data-x', newX);
+playerGroup.setAttribute('data-y', newY);	
 // Crea un elemento div para contener el contenido HTML
 //const div = document.createElement('div');
 //div.innerHTML = svgString2; // Inserta el código SVG dentro del div
