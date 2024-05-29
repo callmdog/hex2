@@ -912,7 +912,7 @@ console.log('playerElement: ', playerElement  );
 
 	
 const textElement2 = document.getElementById(playerId + '-name');
-const xCoordinate = playerElement.getAttribute('y');
+const xCoordinate = playerElement.getAttribute('data-y');
 //console.log('CordY1: ', xCoordinate  );
 
 animateCircleLocally(playerElement, data.start, data.end, playerId, playerSpeed);
@@ -921,7 +921,7 @@ animateNameLocally(textElement2, data.start, data.end);
 //FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 animateCircleLocally(playerElement, data.start, data.end, playerId,playerSpeed, function() {
 
-const xCoordinate = playerElement.getAttribute('y');
+const xCoordinate = playerElement.getAttribute('data-y');
 //console.log('CordY2: ', xCoordinate  );
 
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
