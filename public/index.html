@@ -732,6 +732,17 @@ playerElement.setAttribute('cy', player.y);*/
     </svg>
 `;
 
+const svgPattern = `
+  <svg width="100" height="100">
+    <defs>
+      <pattern id="image" patternUnits="userSpaceOnUse" height="100" width="100">
+        <image x="0" y="0" height="100" width="100" xlink:href="http://i.imgur.com/7Nlcay7.jpg"></image>
+      </pattern>
+    </defs>
+  </svg>
+`;
+	
+
 const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 //playerElement.setAttribute('width', playerWidth);
 //playerElement.setAttribute('height', playerHeight);
@@ -741,6 +752,9 @@ playerElement.setAttribute('id', playerId);
 //playerElement.setAttribute('y', player.y - (playerHeight/2));
 playerElement.setAttribute('r', 14); // Radio del círculo
 playerElement.setAttribute('fill', 'yellow');	
+
+playerElement.setAttribute('fill', 'url(#image)'); // Aplicar el patrón de imagen como relleno
+	
 
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y );		
@@ -756,6 +770,11 @@ if(playerId !== socket.id) {
 // Agregar atributo de jugador al círculo
 playerElement.setAttribute('data-player-id', 'jugador'); 
 }
+
+
+const parser = new DOMParser();
+const patternSVG = parser.parseFromString(svgPattern, "image/svg+xml");
+document.body.appendChild(patternSVG.documentElement);	
 
 hexagonGroup.appendChild(playerElement);
 
