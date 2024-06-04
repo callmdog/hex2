@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<title>Not-Hex-A</title>
+<!-- ESTILOS CSS ARCHIVO !!!!!!!!! -->	
+<link rel="stylesheet" href="styles.css">
+
+<style>
+	
+h2 {
+font-size: 2em; /* Tamaño de fuente grande */
+font-weight: bold; /* Texto en negrita */
+color: #ff5733; /* Color naranja */
+text-shadow: 2px 2px 6px rgba(0, 0, 255, 0.5); /* Sombra de texto azul */
+}
+
+p {
+font-size: 1.5em; /* Tamaño de fuente grande */
+font-style: italic; /* Texto en cursiva */
+color: #ffffff; /* Color blanco */
+text-shadow: 1px 1px 4px rgba(0, 0, 255, 0.7); /* Sombra de texto azul */
+}
+
+.no-select {
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none; /* Safari */
+-khtml-user-select: none; /* Konqueror HTML */
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* Internet Explorer/Edge */
+user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}	
+
+
+</style>	
+	
+</head>
+
+<body class="no-select">
+<!-- 
+ <svg style="display: none;">
+        <defs>
+            <pattern id="stripes" patternUnits="userSpaceOnUse" width="20" height="20">
+                <rect width="20" height="20" fill="white" />
+                <line x1="0" y1="0" x2="20" y2="20" stroke="black" stroke-width="3" />
+            </pattern>
+        </defs>
+    </svg>	
+
+
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <pattern id="image2" patternUnits="userSpaceOnUse" width="200" height="200">
+      <rect width="100%" height="100%" fill="transparent"></rect>
+      <circle cx="100" cy="100" r="100" fill="#00ff00"></circle>
+      <polygon stroke="#000000" stroke-width="17" fill="none" points="146.28573608398438,129.90476989746094 121.9047622680664,64.95548248291016 170.66670989990234,64.95548248291016"></polygon>
+      <polygon stroke="#000000" stroke-width="17" fill="none" points="111.23809814453125,105.14286041259766 130.6666717529297,146.85714721679688 91.80952453613281,146.85714721679688"></polygon>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#circlePattern)"></rect>
+</svg>
+
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100">   
+  <defs>
+    <pattern id="image3" x="0" y="0" patternUnits="objectBoundingBox" height="1" width="1">
+      <image x="0" y="0" xlink:href="https://trust.conversionbear.com/static/badges/americanexpress_1_color.svg"></image>
+    </pattern>   
+   
+  </defs>   
+  <circle cx = "20%" cy = "20%" r = "20" fill = "url(#image)"  stroke-width ="2px" stroke="red"/> 
+</svg>
+	 -->
+<div id="retryBox">
+<div id="contentR">	
+<div id="logoImg">	
+<img id="topImage" src="hexicon.png" alt="Hex3" class="no-select">
+</div>	
+<h2>Game Over</h2>
+<p id="points">Points: 1018</p>
+<button id="retryButton">Retry</button>
+</div> 
+</div>	
+
+<div class="container">
+<!-- PAINT CANVAS BOX !!!!!!!!! -->
+<!-- PAINT CANVAS BOX j!!!!!!!!! -->		
+<!-- PAINT CANVAS BOX !!!!!!!!! -->			
+<div id="paintBox">	
+<div id="canvasContainer">
+<svg id="svgCanvas" width="100%" height="100%">
+<rect width="100%" height="100%" fill="white"/>
+</svg>
+</div>
+<input type="color" id="colorPicker" value="#000000">
+<input type="range" id="brushSize" min="1" max="20" value="2">
+<button id="undoButton">&#x21A9; Deshacer</button>
+<button id="redoButton">Rehacer &#x21AA;</button>
+<button id="fillButton">Rellenar</button>
+<button id="clearButton">Limpiar</button>
+
+<!-- Agrega botones para el selector de formas -->
+<button class="shapeButton" data-shape="line">Línea</button>
+<button class="shapeButton" data-shape="circle">Círculo</button>
+<button class="shapeButton" data-shape="rectangle">Rectángulo</button>
+<button class="shapeButton" data-shape="triangle">Triángulo</button>	
+</div>
+	
+<!--<div id="paintBox"> LIENZO PAINT HTML !!!!!!!!! -->
+<!-- </div><iframe src="lienzoSVG.html" frameborder="0"></iframe>END LIENZO PAINT HTML !!!!!!!!! -->
+
+<div class="center-box">	
+<form id="nameForm">
+
+<div id="logoImg">	
+<img id="topImage" src="hexicon.png" alt="Hex3" class="no-select">
+</div>	
+
+<!--<label for="playerName">Introduce tu nombre:</label> -->
+<input type="text" id="playerName" name="playerName" required placeholder="Player name" minlength="1" maxlength="20" pattern=".{1,20}">
+	
+<div id="cameraOptions">
+<label class="radio-button">
+<input type="radio" name="camera" value="1" checked>
+<span class="radio-custom"></span>
+<span class="radio-label">Cam 1</span>
+</label>
+<label class="radio-button">
+<input type="radio" name="camera" value="2">
+<span class="radio-custom"></span>
+<span class="radio-label">Cam 2</span>
+</label>
+</div>
+
+<button type="button" id="submitButton">PLAY</button>
+<div id="errorMessage" style="display: none; color: red;">The player's name must be between 1 and 20 characters.</div>
+	
+	
+<div id="customizePlayerDiv">
+<button type="button" id="customPlayer">CUSTOMIZE SKIN</button>
+</div>	
+
+</form>
+</div>
+
+<!-- CONTAINER END !!!!!!!!! -->
+</div>
+	
+<canvas id="gameCanvas" height="0" style="background-color: #ff0000;"> </canvas>
+
+<svg id="firstP" xmlns="http://www.w3.org/2000/svg">  
+<g id="camera">
+  <g id="playerGroup" >
+       <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet"><clipPath id="clipCircle"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="50%" cy="50%" r="50%" fill="transparent" clip-path="url(#clipCircle)"></circle><circle cx="100" cy="100" r="100" fill="#00ff00" clip-path="url(#clipCircle)"></circle><polyline points="42.66666793823242,208" stroke="#00ff00" stroke-width="2" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="42,199" stroke="#00ff00" stroke-width="2" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="104.76190948486328,137.90476989746094 122.26752471923828,111.73075103759766 133.71722412109375,97.23443603515625 147.0158233642578,81.94186401367188 160.37423706054688,66.51732635498047 172.20872497558594,53.56661605834961 183.25424194335938,41.7627067565918 193.1440887451172,31.617839813232422 201.25772094726562,23.12323570251465 209.21026611328125,15.932594299316406 215.5842742919922,9.427745819091797 221.5634307861328,3.198486328125 226.63267517089844,-1.8707624673843384 230.9649200439453,-5.822068691253662 234.135009765625,-8.992147445678711 237.21226501464844,-11.813953399658203 239.82394409179688,-14.058425903320312 243.25521850585938,-16.58853530883789 246.3330078125,-19.035472869873047 249.72012329101562,-21.529640197753906 253.03269958496094,-24.216629028320312 256.46612548828125,-26.887184143066406 259.9836730957031,-29.507488250732422 263.6864929199219,-32.58728790283203 268.0538635253906,-35.82267761230469 273.71759033203125,-39.56745910644531 279.6838073730469,-43.65142059326172 285.14227294921875,-46.69353485107422 286.0952453613281,-47.238094329833984" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="174.09524536132812,113.14286041259766 174.09524536132812,122.3994369506836 175.08885192871094,133.5885467529297 179.88214111328125,141.55712890625 186.07850646972656,152.72842407226562 191.41317749023438,166.4071807861328 197.03240966796875,181.53343200683594 203.08096313476562,199.36190795898438 208.52821350097656,217.23338317871094 214.9382781982422,234.48849487304688 218.70452880859375,248.82754516601562 222.03102111816406,258.83013916015625 226.03529357910156,266.31103515625 230.11105346679688,272.0316162109375 233.2473602294922,276.87255859375 235.53195190429688,280.1033935546875 236.75350952148438,282.3683776855469 238.5520477294922,284.2663269042969 240.69573974609375,287.3293151855469 244.18148803710938,292.3674621582031 247.19224548339844,296.2283935546875 248.76190185546875,297.9047546386719" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="124.5714340209961,124.19047546386719 122.73412322998047,155.89688110351562 120.48810577392578,181.53555297851562 119.29431915283203,211.57781982421875 119.20606994628906,239.35604858398438 121.75836181640625,262.2038879394531 124.12035369873047,281.8251647949219 127.77898406982422,300.92498779296875 131.32452392578125,314.73492431640625 135.01943969726562,327.63751220703125 138.4763641357422,335.3526306152344 141.55056762695312,341.12872314453125 144.26736450195312,345.3345031738281 145.86268615722656,348.7840576171875 146.95956420898438,352.5417785644531 148.14584350585938,355.6309509277344 148.90940856933594,359.02325439453125 149.66102600097656,361.03631591796875 150.04281616210938,362.2332763671875 150.4761962890625,362.9991149902344 150.4761962890625,363.23809814453125 150.4761962890625,364.46820068359375 150.4761962890625,364.952392578125 150.15296936035156,364.1905212402344 149.90476989746094,364.1905212402344 150.09524536132812,363.8095397949219 149.71429443359375,363.0946960449219 149.71429443359375,359.0476379394531" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="60.9523811340332,158.4761962890625 44.77091979980469,182.59552001953125 38.802642822265625,193.9049072265625 33.27495574951172,203.71124267578125 28.655113220214844,214.40789794921875 24.450267791748047,226.1124267578125 20.798900604248047,238.25283813476562 17.716888427734375,250.03785705566406 15.423322677612305,260.49456787109375 11.480237007141113,270.2178649902344 10.20009708404541,280.74700927734375 9.29269790649414,288.78729248046875 10.103494644165039,300.3188781738281 11.481186866760254,302.4761962890625 12.649447441101074,303.23809814453125 14.09523868560791,304.4588623046875 13.174062728881836,315.073486328125 13.145541191101074,326.3420715332031 13.333333969116211,344.2310791015625 14.524582862854004,355.7673034667969 15.063492774963379,364.4603271484375 15.2380952835083,365.3333435058594" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="74.28571319580078,132.95237731933594 71.24359893798828,122.69419860839844 68.50728607177734,113.88676452636719 64.91966247558594,104.10541534423828 61.08102035522461,93.7192611694336 57.6313362121582,83.02243041992188 54.03524398803711,72.75740814208984 50.859798431396484,63.05914306640625 39.619049072265625,20.581127166748047 38.676231384277344,12.6096773147583 38.476192474365234,9.71755313873291 38.277889251708984,7.984352111816406 38.095237731933594,6.2785820960998535 38.095237731933594,4.763218402862549 37.71428680419922,3.4348959922790527 37.71428680419922,1.906877875328064 37.898311614990234,-0.1711193323135376 38.476192474365234,-2.8387510776519775 38.85714340209961,-5.874837398529053 39.42371368408203,-8.556856155395508 40.19635772705078,-10.874792098999023 40.761905670166016,-13.528907775878906 41.32688903808594,-16.171142578125 41.904762268066406,-18.294084548950195 41.904762268066406,-20.17619514465332 41.904762268066406,-21.90560531616211 41.904762268066406,-23.049171447753906 41.904762268066406,-24.585281372070312 41.52381134033203,-26.286802291870117 41.34123229980469,-27.793724060058594 40.761905670166016,-29.522171020507812 40.191123962402344,-31.99740219116211 38.86215591430664,-34.656646728515625 37.522220611572266,-37.339698791503906 36.191978454589844,-40.377960205078125 34.140281677246094,-43.36851501464844 31.853525161743164,-46.41752243041992 29.709470748901367,-49.340553283691406 27.995777130126953,-51.63172149658203 26.8564395904541,-53.334739685058594 25.716413497924805,-55.23384094238281 24.952131271362305,-56.19072723388672 23.803972244262695,-57.33888626098633 23.425771713256836,-58.4789924621582 22.677440643310547,-59.227325439453125 22.09416389465332,-60.95345687866211 21.71428680419922,-61.333335876464844" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="94.85714721679688,44.9523811340332 98.37293243408203,37.4147834777832 102.40763854980469,33.59236526489258 106.6018295288086,29.132312774658203 110.09809112548828,23.613340377807617 113.34564971923828,16.33992576599121 114.88253784179688,8.558732986450195 115.42857360839844,2.136085271835327 115.42857360839844,-8.1624755859375 114.26449584960938,-20.29654312133789 112.73551940917969,-27.126779556274414 111.40013885498047,-33.0377082824707 108.90826416015625,-36.234596252441406 106.4333267211914,-39.880958557128906 103.58872985839844,-43.65694808959961 99.797607421875,-46.29465103149414 95.40612030029297,-48.20395278930664 91.84213256835938,-50.45173645019531 88.74787139892578,-52.578453063964844 85.71273803710938,-54.2868766784668 82.83903503417969,-56.0120735168457 80.00883483886719,-58.469566345214844 76.91706085205078,-60.788394927978516 72.77496337890625,-63.04109191894531 71.61904907226562,-63.619049072265625" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="40.761905670166016,95.23809814453125 35.34558868408203,104.5192642211914 30.401403427124023,108.63553619384766 26.184452056884766,114.42073822021484 21.489585876464844,120.68054962158203 17.321338653564453,124.35921478271484 15.588800430297852,128.56243896484375 14.439675331115723,131.1206512451172 14.476190567016602,132.1904754638672" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="160.38095092773438,166.09524536132812 168.66558837890625,183.0454559326172 177.1437225341797,198.85879516601562 185.89891052246094,216.36923217773438 195.4557342529297,235.48739624023438 204.5259246826172,255.13954162597656 213.71429443359375,273.5238037109375" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline></svg> 
+
+    </g>	
+<g id="hexagonGroup"></g> 
+</g>
+	
+<text id="textLine1" x="20" y="40" fill="red"></text>
+<text id="textLine2" x="20" y="60" fill="blue"></text>
+<text id="textLine3" x="20" y="80" fill="green"></text>
+<text id="textLine4" x="20" y="100" fill="orange"></text>
+<text id="textLine5" x="20" y="120" fill="purple"></text>
+<text id="textLine6" x="95%" y="40" fill="red" text-anchor="end" font-weight="bold" >Points: 1018</text>
+<text id="textLine7" x="95%" y="60" fill="blue" text-anchor="end" font-weight="bold" > </text>
+	
+</svg>	
+
+
+
+
+  
+
+
+	
+	
+<circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="vertexFunciones.js">
+console.log('SCRIPT INI 4');
+</script>		
+	
+<script>  
+
+console.log('SCRIPT INI 1');
+	
+// COMIENZA EL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// CLIENT //////////////////////////////////////////////////////////
+	  
+document.addEventListener('DOMContentLoaded', function () {
+	
+const nameForm = document.getElementById('nameForm');
+const gameCanvas = document.getElementById('gameCanvas');
+const canvas = document.getElementById('gameCanvas');
+const modal = document.getElementById('gameOverModal');
+const context = canvas.getContext('2d');
+let NameSecure = '';
+	
+///CAM OPTIONS
+let Camara = 1;
+document.getElementById('cameraOptions').addEventListener('change', function(event) {
+const selectedValue = event.target.value;
+if (selectedValue === '1') { Camara = 1;
+} else if (selectedValue === '2') { Camara = 2; }
+console.log('Camara:', Camara);
+});	
+
+// DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//////////
+	
+document.getElementById('submitButton').addEventListener('click', function () {
+var playerNameInput = document.getElementById("playerName");
+    var errorMessage = document.getElementById("errorMessage");
+
+if (playerNameInput.checkValidity()) {
+        // El formulario es válido, iniciar el juego
+socket.on('connect_error', (error) => {
+console.error('Error de conexión:', error); });
+const playerName = document.getElementById('playerName').value;
+console.log(`CLIENT EJEC. Name: ${playerName}`);
+NameSecure = playerName;
+//Ocultar el formulario y mostrar el canvas
+nameForm.style.display = 'none';
+gameCanvas.style.display = 'block';
+hexagonGroup.style.display = 'block';
+firstP.style.display = 'block';
+// ACTIVAR EL SERVIDOR
+socket.emit('playerNameEntered', playerName);
+
+} else {
+        // Mostrar mensaje de error
+        errorMessage.style.display = "block";
+    }	
+	
+
+
+
+	
+});
+
+//CUSTOM PLAYER BUTTON
+document.getElementById('customPlayer').addEventListener('click', function () {
+document.getElementById('paintBox').style.display = 'block'; // Para mostrar el retryBox
+});
+
+function preventZoom(event) {
+event.preventDefault();
+}
+
+const socket = io();
+//initializeGreenCircles(socket);	
+socket.on('greenCirclesGenerated', (circles) => {
+console.log('GREEN CIRCLES GENERATED.');
+greenCircles = [];
+greenCircles2 = [];
+//console.log('CIRLES PUSH:', circles);
+greenCircles.push(...circles);
+//console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
+generateGreenCircles();
+});
+
+socket.on('borrarGreen', () => {
+console.log('BORRAR GREEN CIRCLES.');
+
+//borrar();
+
+const greenCircles = document.querySelectorAll('circle[fill="green"]');
+
+// Iterar sobre cada círculo verde y eliminarlo
+greenCircles.forEach(circle => {
+    circle.remove();
+});
+
+const blueCircles = document.querySelectorAll('circle[fill="blue"]');
+
+// Iterar sobre cada círculo verde y eliminarlo
+blueCircles.forEach(circle => {
+    circle.remove();
+});	
+
+	
+	
+});		
+
+////FUNCION TEXT DE PUNTO
+function pointText(x, y) {
+const pointText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+pointText.setAttribute('x', x);
+pointText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
+pointText.setAttribute('text-anchor', 'middle');
+pointText.setAttribute('fill', 'green');
+pointText.setAttribute('font-size', '14px');
+pointText.textContent = "+1 point";
+hexagonGroup.appendChild(pointText);
+// Después de 1 segundo, eliminar el texto
+setTimeout(() => {
+hexagonGroup.removeChild(pointText);
+}, 500);
+}
+
+////FUNCION TEXT DE PUNTO
+function speedText(x, y) {
+const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+speedText.setAttribute('x', x);
+speedText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
+speedText.setAttribute('text-anchor', 'middle');
+speedText.setAttribute('fill', 'blue');
+speedText.setAttribute('font-size', '14px');
+speedText.textContent = "+ speed";
+hexagonGroup.appendChild(speedText);
+// Después de 1 segundo, eliminar el texto
+setTimeout(() => {
+hexagonGroup.removeChild(speedText);
+}, 500);
+}
+
+////FUNCION JUGADOR TEXTO ELIMINATED
+function playerText(x, y, name) {
+const playerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+playerText.setAttribute('x', x);
+playerText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
+playerText.setAttribute('text-anchor', 'middle');
+playerText.setAttribute('fill', 'red');
+playerText.setAttribute('font-size', '16px');
+playerText.textContent =  name + " eliminated!";
+hexagonGroup.appendChild(playerText);
+// Después de 1 segundo, eliminar el texto
+setTimeout(() => {
+hexagonGroup.removeChild(playerText);
+}, 500);
+}		
+
+//MANDAR COLISION A TODOS ELIMINAR CIRCULO VERDE !!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////	
+
+socket.on('greenCircleCollision', (collisionIndex, indexToRemove, comproid) => {
+if (comproid !== socket.id) {
+//console.log(`BORRADOR ACTIVADO!!!`);	
+const circleToRemoveC = document.getElementById('greenCircle_'+collisionIndex);
+const circleToRemoveCB = document.getElementById('blueCircle_'+collisionIndex);
+	
+if (circleToRemoveC) {	
+circleToRemoveC.parentNode.removeChild(circleToRemoveC);
+let indice = greenCircles.findIndex(function(elemento) {
+return elemento.z === collisionIndex;
+});
+if (indice !== -1) {
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+// Mostrar el texto "+1 point" encima del círculo verde eliminado
+pointText(circleToRemoveC.getAttribute('cx'), circleToRemoveC.getAttribute('cy') - 20);
+} else {
+//console.log("No se encontró ningún elemento con z igual a 10");
+}	
+}	
+
+///BLUE VELOCIDAD CIRCLE:
+if (circleToRemoveCB) {	
+circleToRemoveCB.parentNode.removeChild(circleToRemoveCB);
+let indice = greenCircles.findIndex(function(elemento) {
+return elemento.z === collisionIndex;
+});
+if (indice !== -1) {
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+// Mostrar el texto "+1 point" encima del círculo verde eliminado
+speedText(circleToRemoveCB.getAttribute('cx'), circleToRemoveCB.getAttribute('cy') - 20);
+} else {
+//console.log("No se encontró ningún elemento con z igual a 10");
+}	
+}		
+	
+}
+	
+});	
+
+//DETECTAR COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////
+
+
+let segundosRestantes = 5;
+
+
+let intervalo;
+
+function detectarColisionesRectangulares(blueX, blueY, blueRadius, greenCircles) {
+for (const circle of greenCircles) {	
+const greenX = circle.x; 
+const greenY = circle.y;
+const greenRadius = 9;
+const greenIndex = circle.z;	
+// Calcular las coordenadas de los rectángulos delimitadores
+const blueBoundingBox = {
+x1: blueX - blueRadius, y1: blueY - blueRadius,
+x2: blueX + blueRadius, y2: blueY + blueRadius };
+const greenBoundingBox = {
+x1: greenX - greenRadius, y1: greenY - greenRadius,
+x2: greenX + greenRadius, y2: greenY + greenRadius };
+// Verificar la colisión entre los rectángulos delimitadores
+if (blueBoundingBox.x1 < greenBoundingBox.x2 && blueBoundingBox.x2 > greenBoundingBox.x1 &&
+blueBoundingBox.y1 < greenBoundingBox.y2 && blueBoundingBox.y2 > greenBoundingBox.y1) {
+const circleToRemoveC = document.getElementById('greenCircle_'+greenIndex);
+//console.log(`COLISION Z: ${greenIndex}:`);			
+//console.log(`REMOVE !!!!!!`, circleToRemoveC);
+const circleToRemoveCB = document.getElementById('blueCircle_'+greenIndex);
+	
+if (circleToRemoveC) {	
+circleToRemoveC.parentNode.removeChild(circleToRemoveC);
+var indice = greenCircles.findIndex(function(elemento) {
+    return elemento.z === circle.z;
+});
+if (indice !== -1) {
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+socket.emit('greenCircleEaten');
+socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+pointText(circleToRemoveC.getAttribute('cx'), circleToRemoveC.getAttribute('cy') - 20);
+} else {
+//console.log("No se encontró ningún elemento con z igual a 10");
+}	
+}
+
+//BLUE CIRCLE VELOCIDAD COLISION
+if (circleToRemoveCB) {	
+//speedPlayer = 50;
+
+function activarVelocidad() {
+	            clearInterval(intervalo);
+
+    Velocidad = true;
+    const newVel = { velocidad: Velocidad };
+    socket.emit('updateVelocidadServer', newVel);
+    console.log('Velocidad activada');
+    textLine7.textContent = `X2 SPEED`;
+
+    segundosRestantes = 5;
+    intervalo = setInterval(function() {
+        segundosRestantes--;
+        if (segundosRestantes > 0) {
+            textLine7.textContent = `X2 SPEED - ${segundosRestantes} s`;
+        } else {
+            clearInterval(intervalo);
+            Velocidad = false;
+            console.log('Velocidad desactivada');
+            const newVel = { velocidad: Velocidad };
+            socket.emit('updateVelocidadServer', newVel);
+            textLine7.textContent = ``;
+        }
+    }, 1000); // Actualizar cada segundo
+}
+
+// Llamar a la función para activar la velocidad
+activarVelocidad();
+
+
+	
+ 
+circleToRemoveCB.parentNode.removeChild(circleToRemoveCB);
+var indice = greenCircles.findIndex(function(elemento) {
+return elemento.z === circle.z;
+});
+if (indice !== -1) {
+//console.log("Elemento eliminado correctamente", greenCircles[indice]);
+greenCircles.splice(indice, 1);
+//socket.emit('greenCircleEaten');
+socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
+speedText(circleToRemoveCB.getAttribute('cx'), circleToRemoveCB.getAttribute('cy') - 20);
+} else {
+//console.log("No se encontró ningún elemento con z igual a 10");
+}	
+}
+//END BLUE CIRCLE VELOCIDAD COLISION
+	
+// Colisión detectada
+return true;
+}
+}
+//console.log(`NO COLISION`);
+// No hay colisión
+return false;
+}
+	
+createHexagons(socket, function() {
+console.log("createHexagons end");
+socket.emit('dibujarVerdes', 'numero');
+});	
+console.log('Camara:', Camara);	
+	
+//VARIABLES/////////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/////	
+let randomX = 0;	
+let randomY = 0;	
+let inicialX = 0;
+let inicialY = 0;
+let connectedUsers = 0;
+let isMoving = false
+const players = {}; // Objeto para almacenar la información de los jugadores
+const hexagonGroup = document.getElementById('hexagonGroup');
+const firstP = document.getElementById('firstP');
+const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
+let topplayers = [];
+const svgWidth = document.documentElement.clientWidth;
+const svgHeight = document.documentElement.clientHeight;
+let initialCameraX = svgWidth / 2 ;
+let initialCameraY = svgHeight / 2 ;
+let currentCameraX3 = 0;
+let currentCameraY3 = 0;
+let currentCamera10 = 0;
+let currentCameraY10 = 0;
+const camera = document.getElementById('camera');
+let playerElement = document.getElementById('playerGroup');
+	
+let currentCameraX4 = 0;	
+let currentCameraY4 = 0;	
+let textLine1 = document.getElementById('textLine1');
+let textLine2 = document.getElementById('textLine2');
+let textLine3 = document.getElementById('textLine3');
+let textLine4 = document.getElementById('textLine4');
+let textLine5 = document.getElementById('textLine5');
+let textLine6 = document.getElementById('textLine6');
+let textLine7 = document.getElementById('textLine7');
+	
+textLine1.classList.add('no-select');
+textLine2.classList.add('no-select');
+textLine3.classList.add('no-select');
+textLine4.classList.add('no-select');
+textLine5.classList.add('no-select');
+textLine6.classList.add('no-select');
+textLine7.classList.add('no-select');
+
+
+let playerHeight = 25;
+let playerWidth = 25;	
+
+	
+	
+let CalculoCam = 0;
+	
+	
+function addPlayer(nombre, puntos, color) {
+const nuevoJugador = {
+nombre: nombre,
+puntos: puntos,
+color: color
+};
+topplayers.push(nuevoJugador);
+}
+
+//CIRCULO AZUL DEFINIDO
+const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+bluePointElement.setAttribute('id', bluePoint.id);
+bluePointElement.setAttribute('r', '8');
+bluePointElement.setAttribute('fill', bluePoint.color);
+bluePointElement.setAttribute('cx', bluePoint.x);
+bluePointElement.setAttribute('cy', bluePoint.y);
+
+let bX = 0;
+let bY = 0;
+
+/////////////////////////////////////////////////////////////////////
+
+//CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+firstP.addEventListener('click', function (event) {
+//console.log('HEXAGON GROUP LOG');
+const mouseX = event.clientX - firstP.getBoundingClientRect().left;
+const mouseY = event.clientY - firstP.getBoundingClientRect().top;
+moveBluePoint(mouseX, mouseY);
+});
+
+//CONNECTED USERS////////////////////////////////
+///////////////////////////////////////////////// 
+//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
+socket.on('userCount', function (count) {
+connectedUsers = count;
+drawUserCount(); // Llamar a la función para actualizar el texto en el canvas
+});
+function drawUserCount() {
+context.fillStyle = 'black';
+context.font = '16px Arial';
+context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 5);
+}	
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+//IN ORDER FUNCIONTS OF GAME
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//IN ORDER FUNCIONTS OF GAME
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//5. ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+socket.on('assignColor', function (playerName) {
+console.log('SOCKET ASSIGN COLOR');
+socket.emit('updatePlayersRequest');
+//X e Y random for Player al principio	
+});	
+	
+	
+//6. UPDATE TOP PLAYERS 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+let camProb = false;
+socket.on('updatePlayers2', function (updatedPlayers2) {
+console.log('SOCKET UPDATE PLAYERS 2');
+topplayers = [];
+//Iterar sobre el objeto de jugadores y actualizar la información
+for (const playerId in updatedPlayers2) {
+const player = updatedPlayers2[playerId];
+//LOGS		
+//console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
+addPlayer(player.nombre, player.puntos, player.color);
+
+if(NameSecure === player.nombre){
+textLine6.textContent = `Points: ${player.puntos}`;
+textLine6.style.fill = player.color;
+initialCameraX = svgWidth / 2 - player.x;
+initialCameraY = svgHeight / 2 - player.y  ;
+//console.log('Coord circ:', initialCameraX, initialCameraY);  
+//bluePointElement.setAttribute('cx', player.x);
+//bluePointElement.setAttribute('cy', player.y);
+bX = player.x;
+bY = player.y;
+//CalculoCam = initialCameraY;	
+
+//CAMERA MOVEMENT
+if (camProb === false) {
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+playerElement.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+	
+}
+
+if (Camara===2){
+camProb = true;
+}
+// END CAMERA MOVEMENT
+
+inicialX = player.x;
+inicialY = player.y;
+findAndMarkClosestVertices(inicialX, inicialY,currentCameraX3,currentCameraY3);
+}
+	
+}
+
+const topPlayers = getTopPlayers();
+textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
+if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}
+
+
+
+	
+textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
+if (topPlayers[1] && topPlayers[1].color) {textLine2.style.fill = topPlayers[1].color; } else {}
+textLine3.textContent = topPlayers.length >= 3 ? `#3 ${topPlayers[2].nombre}: ${topPlayers[2].puntos}` : '';
+if (topPlayers[2] && topPlayers[2].color) {textLine3.style.fill = topPlayers[2].color; } else {}
+textLine4.textContent = topPlayers.length >= 4 ? `#4 ${topPlayers[3].nombre}: ${topPlayers[3].puntos}` : '';
+if (topPlayers[3] && topPlayers[3].color) {textLine4.style.fill = topPlayers[3].color; } else {}
+textLine5.textContent = topPlayers.length >= 5 ? `#5 ${topPlayers[4].nombre}: ${topPlayers[4].puntos}` : '';
+if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].color; } else {}
+
+});	
+
+//7. GET TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+function getTopPlayers() {
+const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
+const topPlayersx = sortedPlayers.slice(0, 5);
+topPlayersx.forEach(topplayer => { });
+return topPlayersx;
+}	
+
+//9. UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+socket.on('updatePlayers', function (updatedPlayers) {
+console.log('SOCKET UPDATE PLAYERS');
+//Iterar sobre el objeto de jugadores y actualizar la información
+for (const playerId in updatedPlayers) {
+const player = updatedPlayers[playerId];
+
+//PLAYER ELEMENT 
+const existingPlayerElement = document.getElementById(playerId);
+const svgString = `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet"><clipPath id="clipCircle"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="50%" cy="50%" r="50%" fill="transparent" clip-path="url(#clipCircle)"></circle><circle cx="100" cy="100" r="100" fill="#00ff00" clip-path="url(#clipCircle)"></circle><polyline points="42.66666793823242,208" stroke="#00ff00" stroke-width="2" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="42,199" stroke="#00ff00" stroke-width="2" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="104.76190948486328,137.90476989746094 122.26752471923828,111.73075103759766 133.71722412109375,97.23443603515625 147.0158233642578,81.94186401367188 160.37423706054688,66.51732635498047 172.20872497558594,53.56661605834961 183.25424194335938,41.7627067565918 193.1440887451172,31.617839813232422 201.25772094726562,23.12323570251465 209.21026611328125,15.932594299316406 215.5842742919922,9.427745819091797 221.5634307861328,3.198486328125 226.63267517089844,-1.8707624673843384 230.9649200439453,-5.822068691253662 234.135009765625,-8.992147445678711 237.21226501464844,-11.813953399658203 239.82394409179688,-14.058425903320312 243.25521850585938,-16.58853530883789 246.3330078125,-19.035472869873047 249.72012329101562,-21.529640197753906 253.03269958496094,-24.216629028320312 256.46612548828125,-26.887184143066406 259.9836730957031,-29.507488250732422 263.6864929199219,-32.58728790283203 268.0538635253906,-35.82267761230469 273.71759033203125,-39.56745910644531 279.6838073730469,-43.65142059326172 285.14227294921875,-46.69353485107422 286.0952453613281,-47.238094329833984" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="174.09524536132812,113.14286041259766 174.09524536132812,122.3994369506836 175.08885192871094,133.5885467529297 179.88214111328125,141.55712890625 186.07850646972656,152.72842407226562 191.41317749023438,166.4071807861328 197.03240966796875,181.53343200683594 203.08096313476562,199.36190795898438 208.52821350097656,217.23338317871094 214.9382781982422,234.48849487304688 218.70452880859375,248.82754516601562 222.03102111816406,258.83013916015625 226.03529357910156,266.31103515625 230.11105346679688,272.0316162109375 233.2473602294922,276.87255859375 235.53195190429688,280.1033935546875 236.75350952148438,282.3683776855469 238.5520477294922,284.2663269042969 240.69573974609375,287.3293151855469 244.18148803710938,292.3674621582031 247.19224548339844,296.2283935546875 248.76190185546875,297.9047546386719" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="124.5714340209961,124.19047546386719 122.73412322998047,155.89688110351562 120.48810577392578,181.53555297851562 119.29431915283203,211.57781982421875 119.20606994628906,239.35604858398438 121.75836181640625,262.2038879394531 124.12035369873047,281.8251647949219 127.77898406982422,300.92498779296875 131.32452392578125,314.73492431640625 135.01943969726562,327.63751220703125 138.4763641357422,335.3526306152344 141.55056762695312,341.12872314453125 144.26736450195312,345.3345031738281 145.86268615722656,348.7840576171875 146.95956420898438,352.5417785644531 148.14584350585938,355.6309509277344 148.90940856933594,359.02325439453125 149.66102600097656,361.03631591796875 150.04281616210938,362.2332763671875 150.4761962890625,362.9991149902344 150.4761962890625,363.23809814453125 150.4761962890625,364.46820068359375 150.4761962890625,364.952392578125 150.15296936035156,364.1905212402344 149.90476989746094,364.1905212402344 150.09524536132812,363.8095397949219 149.71429443359375,363.0946960449219 149.71429443359375,359.0476379394531" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="60.9523811340332,158.4761962890625 44.77091979980469,182.59552001953125 38.802642822265625,193.9049072265625 33.27495574951172,203.71124267578125 28.655113220214844,214.40789794921875 24.450267791748047,226.1124267578125 20.798900604248047,238.25283813476562 17.716888427734375,250.03785705566406 15.423322677612305,260.49456787109375 11.480237007141113,270.2178649902344 10.20009708404541,280.74700927734375 9.29269790649414,288.78729248046875 10.103494644165039,300.3188781738281 11.481186866760254,302.4761962890625 12.649447441101074,303.23809814453125 14.09523868560791,304.4588623046875 13.174062728881836,315.073486328125 13.145541191101074,326.3420715332031 13.333333969116211,344.2310791015625 14.524582862854004,355.7673034667969 15.063492774963379,364.4603271484375 15.2380952835083,365.3333435058594" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="74.28571319580078,132.95237731933594 71.24359893798828,122.69419860839844 68.50728607177734,113.88676452636719 64.91966247558594,104.10541534423828 61.08102035522461,93.7192611694336 57.6313362121582,83.02243041992188 54.03524398803711,72.75740814208984 50.859798431396484,63.05914306640625 39.619049072265625,20.581127166748047 38.676231384277344,12.6096773147583 38.476192474365234,9.71755313873291 38.277889251708984,7.984352111816406 38.095237731933594,6.2785820960998535 38.095237731933594,4.763218402862549 37.71428680419922,3.4348959922790527 37.71428680419922,1.906877875328064 37.898311614990234,-0.1711193323135376 38.476192474365234,-2.8387510776519775 38.85714340209961,-5.874837398529053 39.42371368408203,-8.556856155395508 40.19635772705078,-10.874792098999023 40.761905670166016,-13.528907775878906 41.32688903808594,-16.171142578125 41.904762268066406,-18.294084548950195 41.904762268066406,-20.17619514465332 41.904762268066406,-21.90560531616211 41.904762268066406,-23.049171447753906 41.904762268066406,-24.585281372070312 41.52381134033203,-26.286802291870117 41.34123229980469,-27.793724060058594 40.761905670166016,-29.522171020507812 40.191123962402344,-31.99740219116211 38.86215591430664,-34.656646728515625 37.522220611572266,-37.339698791503906 36.191978454589844,-40.377960205078125 34.140281677246094,-43.36851501464844 31.853525161743164,-46.41752243041992 29.709470748901367,-49.340553283691406 27.995777130126953,-51.63172149658203 26.8564395904541,-53.334739685058594 25.716413497924805,-55.23384094238281 24.952131271362305,-56.19072723388672 23.803972244262695,-57.33888626098633 23.425771713256836,-58.4789924621582 22.677440643310547,-59.227325439453125 22.09416389465332,-60.95345687866211 21.71428680419922,-61.333335876464844" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="94.85714721679688,44.9523811340332 98.37293243408203,37.4147834777832 102.40763854980469,33.59236526489258 106.6018295288086,29.132312774658203 110.09809112548828,23.613340377807617 113.34564971923828,16.33992576599121 114.88253784179688,8.558732986450195 115.42857360839844,2.136085271835327 115.42857360839844,-8.1624755859375 114.26449584960938,-20.29654312133789 112.73551940917969,-27.126779556274414 111.40013885498047,-33.0377082824707 108.90826416015625,-36.234596252441406 106.4333267211914,-39.880958557128906 103.58872985839844,-43.65694808959961 99.797607421875,-46.29465103149414 95.40612030029297,-48.20395278930664 91.84213256835938,-50.45173645019531 88.74787139892578,-52.578453063964844 85.71273803710938,-54.2868766784668 82.83903503417969,-56.0120735168457 80.00883483886719,-58.469566345214844 76.91706085205078,-60.788394927978516 72.77496337890625,-63.04109191894531 71.61904907226562,-63.619049072265625" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="40.761905670166016,95.23809814453125 35.34558868408203,104.5192642211914 30.401403427124023,108.63553619384766 26.184452056884766,114.42073822021484 21.489585876464844,120.68054962158203 17.321338653564453,124.35921478271484 15.588800430297852,128.56243896484375 14.439675331115723,131.1206512451172 14.476190567016602,132.1904754638672" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="160.38095092773438,166.09524536132812 168.66558837890625,183.0454559326172 177.1437225341797,198.85879516601562 185.89891052246094,216.36923217773438 195.4557342529297,235.48739624023438 204.5259246826172,255.13954162597656 213.71429443359375,273.5238037109375" stroke="#000000" stroke-width="20" fill="none" clip-path="url(#clipCircle)"></polyline></svg>`;
+	
+
+if (existingPlayerElement) {	
+
+
+	
+existingPlayerElement.setAttribute('x', player.x);
+existingPlayerElement.setAttribute('y', player.y);
+//const radius = parseFloat(existingPlayerElement.getAttribute('r')); // Convertir a número
+const ptsf = parseFloat(player.puntos); 
+const sizeCalc = (0.2 * ptsf) + 9;
+//existingPlayerElement.setAttribute('r', sizeCalc);
+
+//
+
+let velocidadD = player.velocidad;
+
+if (velocidadD===false){
+existingPlayerElement.setAttribute('stroke', 'white'); // Color del borde
+existingPlayerElement.setAttribute('stroke-width', '1'); // Ancho del borde
+existingPlayerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
+}
+if (velocidadD===true){
+existingPlayerElement.setAttribute('stroke', 'blue'); // Color del borde
+existingPlayerElement.setAttribute('stroke-width', '3'); // Ancho del borde
+existingPlayerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
+}
+//
+
+
+
+
+//	
+
+
+
+} else {		
+
+
+
+
+	
+/*const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+const ptsf = parseFloat(player.puntos); 
+const sizeCalc = (0.2 * ptsf) + 9;	
+playerElement.setAttribute('id', playerId);
+playerElement.setAttribute('r', sizeCalc);
+playerElement.setAttribute('fill', player.color);
+
+//BORDE DEL CIRCULO	
+playerElement.setAttribute('stroke', 'white'); // Color del borde
+playerElement.setAttribute('stroke-width', '1'); // Ancho del borde
+playerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
+	
+playerElement.setAttribute('cx', player.x);
+playerElement.setAttribute('cy', player.y);*/
+	/////////////
+
+ const svgString2 = `
+    <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12.5" cy="12.5" r="12.5" fill="yellow"/>
+    </svg>
+`;
+
+const svgPattern = `
+  <svg width="100" height="100">
+    <defs>
+      <pattern id="image" patternUnits="userSpaceOnUse" height="100" width="100">
+        <image x="0" y="0" height="100" width="100" xlink:href="http://i.imgur.com/7Nlcay7.jpg"></image>
+      </pattern>
+    </defs>
+  </svg>
+`;
+
+    const playerElement = document.getElementById('playerGroup');
+	
+
+//const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+//playerElement.setAttribute('width', playerWidth);
+//playerElement.setAttribute('height', playerHeight);
+playerElement.setAttribute('id', playerId);
+
+//playerElement.setAttribute('x', player.x - (playerWidth/2));
+//playerElement.setAttribute('y', player.y - (playerHeight/2));
+//playerElement.setAttribute('r', 14); // Radio del círculo
+//playerElement.setAttribute('fill', 'yellow');	
+
+//playerElement.setAttribute('fill', 'url(#image)'); // Aplicar el patrón de imagen como relleno
+	
+
+playerElement.setAttribute('data-x', player.x);
+playerElement.setAttribute('data-y', player.y );		
+
+
+const currentX = Number(playerElement.getAttribute('data-x'));
+const currentY = Number(playerElement.getAttribute('data-y'));
+
+// Nuevas coordenadas a las que se moverá el grupo
+const newX = player.x;
+const newY = player.y;
+
+// Calcula la diferencia entre las coordenadas actuales y las nuevas
+const deltaX = newX - currentX;
+const deltaY = newY - currentY;
+
+// Aplica la transformación de traslación al grupo
+playerElement.setAttribute('transform', `translate(${deltaX},${deltaY})`);
+
+// Actualiza las coordenadas actuales del grupo
+playerElement.setAttribute('data-x', newX);
+playerElement.setAttribute('data-y', newY);	
+// Crea un elemento div para contener el contenido HTML
+//const div = document.createElement('div');
+//div.innerHTML = svgString2; // Inserta el código SVG dentro del div
+
+// Agrega el div como hijo del foreignObject
+//playerElement.appendChild(div);	
+
+if(playerId !== socket.id) {
+// Agregar atributo de jugador al círculo
+playerElement.setAttribute('data-player-id', 'jugador'); 
+}
+
+
+hexagonGroup.appendChild(playerElement);
+
+	
+}
+
+//TEXT ELEMENT
+const existingTextElement = document.getElementById(playerId + '-name');
+if (existingTextElement) {
+existingTextElement.setAttribute('x', player.x);
+existingTextElement.setAttribute('y', player.y - 8);
+existingTextElement.textContent = player.nombre + ' ('+ player.puntos + ')';
+} else {
+const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+textElement2.setAttribute('id', playerId + '-name');
+textElement2.setAttribute('x', player.x);
+textElement2.setAttribute('y', player.y - 10);
+textElement2.setAttribute('text-anchor', 'middle');
+textElement2.setAttribute('fill', 'green');
+textElement2.setAttribute('font-size', '16px');
+textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
+textElement2.classList.add('no-select');
+hexagonGroup.appendChild(textElement2);
+}
+}
+});
+
+//WHEN MOVE FUNCTIONS```````````````````````````````````````````````````-------------------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-------------------------------------------------
+//WHEN MOVE FUNCTIONS```````````````````````````````````````````````````-------------------------------------------------
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-------------------------------------------------
+
+//1. MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////////
+	
+function moveBluePoint( clickX, clickY ) {
+//const circles = document.querySelectorAll('circle[data-player-id="jugador"]');
+//circles.forEach((circle, index) => {
+//   console.log(`!!!!!!!!!!!Círculo ${index + 1}:`);
+//   console.log(circle); // Esto imprimirá toda la información del círculo en la consola
+//});
+
+//CAMARA/////////////////////
+const transformAttribute = camera.getAttribute('transform');
+const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+if (match) {
+currentCameraX4 = parseFloat(match[1]);
+currentCameraY4 = parseFloat(match[2]);
+//console.log('Coordenadas cámara:', currentCameraX4, currentCameraY4);  
+} else { console.error('No cámara.'); }
+//CAMARA END/////////////////////
+	
+if (!isMoving) { 
+console.log('/////Move Player//////')
+isMoving = true;  
+drawUserCount();
+
+const closestGreenVertex = findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4,currentCameraX3,currentCameraY3); 
+//console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y); 
+animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);		
+}
+	
+}	
+
+    let Velocidad = false;
+	
+
+//3. ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/////////////////////////////////////////////////////////////////////////////	
+function animateBluePoint(destinationX, destinationY) {
+//console.log('1. Animate Blue Point');
+//const startX = parseFloat(bluePointElement.getAttribute('x'));
+//const startY = parseFloat(bluePointElement.getAttribute('y'));
+const startX = bX;
+const startY = bY;
+const startTime = performance.now();
+const duration = 50; // 1 seg
+function update() {
+const currentTime = performance.now();
+const elapsed = currentTime - startTime;
+const progress = Math.min(elapsed / duration, 1);
+const newX = startX + progress * (destinationX - startX);
+const newY = startY + progress * (destinationY - startY);	
+//bluePointElement.setAttribute('cx', newX);
+//bluePointElement.setAttribute('cy', newY);
+bX = newX;
+bY = newY;	
+if (progress < 1) { requestAnimationFrame(update);
+} else {
+// Animación completada, emitir datos al servidor
+socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+// Supongamos que newPosition es un objeto con las nuevas coordenadas
+const newPosition = { x:  newX , y: newY, velocidad: Velocidad };
+socket.emit('updatePosition', newPosition);
+inicialX = newX; inicialY = newY;	
+}
+} requestAnimationFrame(update);
+}		
+
+//4. SOCKET ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+//let CalculoCam = 0;
+let currentCameraX4p = 0;
+let currentCameraY4p = 0;
+let Resto;
+let Resto2;
+let Resto3;
+let Resto4;
+let Resto5;
+
+socket.on('animateBluePoint', function (animationData) {
+//console.log('SOCKET ANIMATE BLUE POINT');
+const playerId = animationData.playerId;
+const data = animationData.data;
+const txt = animationData.playerName;
+	const playerSpeed = animationData.playerSpeed;
+	
+//console.log('playerSpeed: ', playerSpeed  );
+
+	
+// Encuentra el círculo correspondiente al jugador
+const playerElement = document.getElementById(playerId);
+console.log('playerElement: ', playerElement  );
+
+	
+const textElement2 = document.getElementById(playerId + '-name');
+const xCoordinate = playerElement.getAttribute('data-y');
+//console.log('CordY1: ', xCoordinate  );
+
+animateCircleLocally(playerElement, data.start, data.end, playerId, playerSpeed);
+animateNameLocally(textElement2, data.start, data.end);
+
+//FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
+animateCircleLocally(playerElement, data.start, data.end, playerId,playerSpeed, function() {
+
+const xCoordinate = playerElement.getAttribute('data-y');
+//console.log('CordY2: ', xCoordinate  );
+
+//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
+//CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
+
+if(Camara===2) {
+//CAMARA/////////////////////
+const transformAttribute = camera.getAttribute('transform');
+const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+if (match) {
+currentCameraX4p = parseFloat(match[1]);
+currentCameraY4p = parseFloat(match[2]);
+} else {
+console.error('No se pudieron obtener las coordenadas de la cámara.');
+}
+console.log('1. CAM Y: ', currentCameraY4p  );
+//CAMARA END/////////////////////        
+
+const currentX = bX; 
+const currentY = bY; 
+const bluePointRect = playerElement.getBoundingClientRect();
+const bluePointWidth = bluePointRect.width;
+const bluePointHeight = bluePointRect.height;
+
+console.log('bluePointWidth!!!!!!:',   bluePointWidth );
+	
+
+//DERECHA!!!!!
+const bluePointRightX = currentX + bluePointWidth;
+const limitRightX = - currentCameraX4p + (window.innerWidth * 0.7);
+if (bluePointRightX > limitRightX) {      
+//if(MoveCam){
+CalculoCam = CalculoCam + svgWidth / 3;
+console.log('CalculoCam!!!!!!:',   limitRightX );
+animateCam (10,  10  ,bX, bY, svgWidth,  function() {
+//MoveCam = true;
+});   
+//}
+}
+
+///IZQUIERDA!!!!!!!
+const bluePointRightX2 = currentX - bluePointWidth;
+const limitRightX2 = - currentCameraX4p + (window.innerWidth * 0.3);
+if (bluePointRightX2 < limitRightX2) {
+//if(MoveCam){
+CalculoCam = CalculoCam - svgWidth / 3;
+console.log('CalculoCam !!!!!!:',   limitRightX2 );
+animateCam2 (10,  10  ,bX, bY,svgWidth,  function() {
+//MoveCam = true;
+});   
+//}
+}
+
+//ARRIBA!!!!!!! por modificar
+console.log('2. bY: ',   bY ); 
+const bluePointRightXA = currentY - bluePointHeight;
+console.log('3. bluePointRightXA: ',  bluePointRightXA  );
+const limitRightY = - currentCameraY4p + (window.innerHeight * 0.7);
+if (bluePointRightXA > limitRightY) {      
+//if(MoveCam){
+CalculoCam = CalculoCam + svgHeight / 3;
+//console.log('5. CalculoCam: ',   CalculoCam  );
+animateCam3 (10,  10  , bX, bY, svgHeight,function() {
+//MoveCam = true;
+});   
+//}
+}
+console.log('Limite tot. ', svgWidth   ); 
+console.log('Limite der. ',  limitRightX  ); 
+console.log('Limite izq. ',  limitRightX2  );
+	
+//ABAJO!!!!!!!!
+const bluePointRightXA2 = currentY + bluePointHeight;
+	
+const limitRightY2 = - currentCameraY4p + (window.innerHeight * 0.3);
+if (bluePointRightXA2 < limitRightY2) {      
+//if(MoveCam){
+//CalculoCam = CalculoCam + svgHeight / 3;
+//console.log('5. CalculoCam: ',   CalculoCam  );
+animateCam4 (10,  10  ,bX, bY, svgHeight, function() {
+//MoveCam = true;
+});   
+//}
+}
+
+}
+	
+// END 30% MENOS CAMARA IZQUIERDA!!!!!!!
+
+//console.log('La animación ha terminado');
+findAndMarkClosestVertices(inicialX, inicialY,currentCameraX3,currentCameraY3);
+isMoving = false;
+});
+});	
+
+////ATRAS///////////
+// ANIMATE CAM 2 CAMARA MOVIMIENTO !!!!!!!!!!!!
+////////////////////
+
+//5. ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+let speedPlayer = 500;			  
+function animateCircleLocally(circleElement, start, end, playerId, playerSpeed, callback) {
+//console.log('ANIMATE CIRCLE LOCALLY');
+		let duration = 500;
+
+if(playerSpeed === false){
+	 duration = 500;
+
+}
+if(playerSpeed === true){
+	 duration = 50;
+
+}	
+const startTime = performance.now();
+function update() {
+const currentTime = performance.now();
+const progress = Math.min((currentTime - startTime) / duration, 1);
+const newX = start.x + progress * (end.x - start.x);
+const newY = start.y + progress * (end.y - start.y);	
+
+	
+//circleElement.setAttribute('x', newX - (playerWidth/2));
+//circleElement.setAttribute('y', newY- (playerHeight/2));
+
+	circleElement.setAttribute('data-x', newX );
+circleElement.setAttribute('data-y', newY);
+
+//const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
+//console.log(`VELOCIDAD!!!: ${playerSpeed}`);
+
+
+//circleElement.setAttribute('cx', start.x);
+//circleElement.setAttribute('cy', start.y);	
+	
+if (socket.id===playerId) {
+	
+////CAMERA MOVEMENT
+const newXCam = svgWidth / 2 - newX;
+const newYCam = svgHeight / 2 - newY;	
+if(Camara===1)
+{
+camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+	playerElement.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+
+//console.log(`CamY: ${newYCam}`);
+//console.log(`bY: ${bY}`);    
+}
+////END CAMERA MOVEMENT
+
+// Obtener el radio del círculo como una cadena de texto
+const radiusAsString = circleElement.getAttribute('r');
+// Convertir la cadena a un número flotante (float)
+const radius = parseFloat(radiusAsString);
+detectarColisiones(circleElement);
+detectarColisionesRectangulares(newX, newY, radius, greenCircles);
+}	
+
+if (progress < 1) { requestAnimationFrame(update); } 
+else {
+// La animación ha terminado
+if (typeof callback === 'function') { callback(); } 	
+}	
+} requestAnimationFrame(update);
+	
+}
+
+//6. ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+function animateNameLocally(circleElement, start, end) {
+//console.log('ANIMATE TEXT LOCALLY');
+const duration = 100;
+const startTime = performance.now();
+function update() {
+const currentTime = performance.now();
+const progress = Math.min((currentTime - startTime) / duration, 1);
+const newX = start.x + progress * (end.x - start.x);
+const newY = start.y + progress * (end.y - start.y);
+	
+circleElement.setAttribute('x', newX);
+circleElement.setAttribute('y', newY - 8);
+
+if (progress < 1) {
+requestAnimationFrame(update); } }
+requestAnimationFrame(update);
+	
+}	
+
+//8. DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+function detectarColisiones(playerElement) {		
+document.querySelectorAll('circle[data-player-id]').forEach((otherCircle) => {
+const playerIdN = otherCircle.getAttribute('id');
+const blueRadius = parseFloat(playerElement.getAttribute('r')); 
+const greenRadius = parseFloat(otherCircle.getAttribute('r'));
+const blueX = parseFloat(playerElement.getAttribute('cx'));
+const blueY = parseFloat(playerElement.getAttribute('cy'));	
+const greenX = parseFloat(otherCircle.getAttribute('cx'));
+const greenY = parseFloat(otherCircle.getAttribute('cy'));
+
+// Calcular las coordenadas de los cuadros delimitadores
+
+const blueBoundingBox = {
+x1: blueX - blueRadius, y1: blueY - blueRadius,
+x2: blueX + blueRadius, y2: blueY + blueRadius };
+
+const greenBoundingBox = {
+x1: greenX - greenRadius, y1: greenY - greenRadius,
+x2: greenX + greenRadius, y2: greenY + greenRadius};
+	
+// Verificar la colisión entre los cuadros delimitadores
+if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
+blueBoundingBox.x2 > greenBoundingBox.x1 &&
+blueBoundingBox.y1 < greenBoundingBox.y2 &&
+blueBoundingBox.y2 > greenBoundingBox.y1 ) {
+
+if (blueRadius > greenRadius){ 
+console.log(`ID Jugador: (${socket.id}), (${blueRadius})`);
+console.log(`ID Enemigo: (${playerIdN}), (${greenRadius})`); 
+
+//console.log(`Radio Jugador:`, blueRadius); 
+//console.log(`Radio Enemigo:`, greenRadius); 
+	
+console.log(`HAS COMIDO AL OTRO JUGADOR`); 
+
+socket.emit('eliminarJugador', playerIdN);
+	
+}else if (blueRadius < greenRadius){
+console.log(`ID Jugador: (${socket.id}), (${blueRadius})`);
+console.log(`ID Enemigo: (${playerIdN}), (${greenRadius})`); 
+
+//console.log(`Radio Jugador:`, blueRadius); 
+//console.log(`Radio Enemigo:`, greenRadius); 
+
+socket.emit('eliminarJugador', socket.id);
+	
+console.log(`GAME OVER2!!`); 
+}
+}
+});	
+//console.log('La detección de colisiones ha terminado.');
+}	
+
+//ELIMINAR JUGADOR DE TODOS CLIENTES CUANDO COLISION !!!!!!!!!!!!!!!!!!
+////////////////////////////////////////////////////////////		
+socket.on('eliminarJugadorEnCliente', (playerIdN) => {
+
+var circulo = document.getElementById(playerIdN);
+var x = circulo.getAttribute('cx');
+var y = circulo.getAttribute('cy');	
+if (circulo) {
+circulo.parentNode.removeChild(circulo);
+
+	
+} else {
+console.log("El círculo con el ID especificado no fue encontrado.");
+}
+
+var nombre = document.getElementById(playerIdN + '-name');
+var texto = nombre.textContent;
+
+	
+if (nombre) {
+nombre.parentNode.removeChild(nombre);
+console.log("ELIMINADO: ." + texto);
+
+playerText(x, y, texto);
+	
+	
+} else {
+console.log("El nombre con el ID especificado no fue encontrado.");
+}
+	
+if (playerIdN===socket.id){
+var newPoints = textLine6.textContent;
+var pointsParagraph = document.getElementById("points");
+pointsParagraph.textContent =  newPoints;	
+gameCanvas.style.display = 'none';
+hexagonGroup.style.display = 'none';
+camera.style.display = 'none';
+document.getElementById("retryBox").style.visibility = "visible";
+var retryButton = document.getElementById("retryButton");
+retryButton.onclick = function() {
+console.log("Retry Game.");
+location.reload();
+};	
+}
+	
+console.log("ELIMINAR JUGADOR", playerIdN );
+	
+});	
+
+/////////////////////////////////////////////////////////////
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+//END DOM	 
+});
+//END DOM
+	
+</script>
+
+<script src="createHexagons.js">
+console.log('SCRIPT INI 2');
+</script>
+
+<script src="greenCircles.js">
+console.log('SCRIPT INI 3');
+</script>	
+
+<script src="cameraMov.js">
+console.log('SCRIPT INI 5');
+</script>
+
+<script src="lienzoFunciones.js"></script>
+	
+</body>
+</html>
