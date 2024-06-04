@@ -52,28 +52,7 @@ p {
 
 
 
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
-  <defs>
-    <pattern id="image2" patternUnits="userSpaceOnUse" width="200" height="200">
-      <rect width="100%" height="100%" fill="transparent"></rect>
-      <circle cx="100" cy="100" r="100" fill="#00ff00"></circle>
-      <polygon stroke="#000000" stroke-width="17" fill="none" points="146.28573608398438,129.90476989746094 121.9047622680664,64.95548248291016 170.66670989990234,64.95548248291016"></polygon>
-      <polygon stroke="#000000" stroke-width="17" fill="none" points="111.23809814453125,105.14286041259766 130.6666717529297,146.85714721679688 91.80952453613281,146.85714721679688"></polygon>
-    </pattern>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#circlePattern)"></rect>
-</svg>
 
-
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100">   
-  <defs>
-    <pattern id="image3" x="0" y="0" patternUnits="objectBoundingBox" height="1" width="1">
-      <image x="0" y="0" xlink:href="https://trust.conversionbear.com/static/badges/americanexpress_1_color.svg"></image>
-    </pattern>   
-   
-  </defs>   
-  <circle cx = "20%" cy = "20%" r = "20" fill = "url(#image)"  stroke-width ="2px" stroke="red"/> 
-</svg>
 	
 
 
@@ -645,37 +624,6 @@ existingPlayerElement.setAttribute('r', sizeCalc);
 
 	
 
-	///EFECTO A JUGADOR QUE TENGA VELOCIDAD
-      const shadow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    shadow.setAttribute('fill', 'blue'); // Color de la sombra
-    shadow.setAttribute('opacity', '0.5'); // Opacidad de la sombra
-    hexagonGroup.appendChild(shadow);
-
-    // Actualizar la posición y el tamaño del fondo azul
-    const updateShadow = () => {
-        shadow.setAttribute('cx', player.x);
-        shadow.setAttribute('cy', player.y);
-        const radius = parseFloat(existingPlayerElement.getAttribute('r'));
-        const shadowRadius = radius * 2; // Ajustar el tamaño del fondo azul según sea necesario
-        shadow.setAttribute('r', shadowRadius);
-    };
-
-    // Llamar a la función para actualizar el fondo azul
-    updateShadow();
-
-    // Ajustar la apariencia del fondo azul para que sea más prominente cuando el jugador tenga velocidad extra
-    const updateShadowAppearance = () => {
-        if (speedPlayer === 50) { // Si el jugador tiene velocidad extra
-            shadow.setAttribute('opacity', '0.7'); // Opacidad mayor para el fondo azul
-        } else {
-            shadow.setAttribute('opacity', '0.5'); // Opacidad normal para el fondo azul
-        }
-    };
-
-    // Llamar a la función para ajustar la apariencia del fondo azul
-    updateShadowAppearance();
-	///END EFECTO	
-
 
 
 
@@ -690,11 +638,7 @@ const ptsf = parseFloat(player.puntos);
 const sizeCalc = (0.2 * ptsf) + 9;	
 playerElement.setAttribute('id', playerId);
 playerElement.setAttribute('r', sizeCalc);
-//playerElement.setAttribute('fill', player.color);
-
-	//playerElement.style.fill = 'url(#stripes)';
-playerElement.setAttribute('fill', 'url(#image2)');
-
+playerElement.setAttribute('fill', player.color);
 	
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
