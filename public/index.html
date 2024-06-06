@@ -761,10 +761,9 @@ const svgPattern = `
     const playerElement = document.getElementById('playerGroup');
 
 	let svgElement = document.querySelector('#playerGroup svg');
-let boundingBox = svgElement.getBoundingClientRect();
 
-let width = boundingBox.width;
-let height = boundingBox.height;
+let width = svgElement.getAttribute('width');
+let height = svgElement.getAttribute('height');
 
 console.log("Width:", width);
 console.log("Height:", height);
