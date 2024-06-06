@@ -1131,7 +1131,9 @@ camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
 // Obtener el radio del círculo como una cadena de texto
 const radiusAsString = circleElement.getAttribute('r');
 // Convertir la cadena a un número flotante (float)
-const radius = parseFloat(radiusAsString);
+//const radius = parseFloat(radiusAsString);
+const radius = 10;
+	
 detectarColisiones(circleElement);
 detectarColisionesRectangulares(newX, newY, radius, greenCircles);
 }	
