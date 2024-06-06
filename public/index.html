@@ -807,7 +807,8 @@ const deltaY = newY - currentY;
 
 
 // Aplica la transformación de traslación al grupo
-playerElement.setAttribute('transform', `translate(${newX- (width/2)},${newY- (height/2)})`);
+//playerElement.setAttribute('transform', `translate(${newX- (width/2)},${newY- (height/2)})`);
+playerElement.setAttribute('transform', `translate(${newX},${newY})`);
 
 // Actualiza las coordenadas actuales del grupo
 //playerElement.setAttribute('data-x', newX);
