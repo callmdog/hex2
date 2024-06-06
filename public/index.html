@@ -759,13 +759,16 @@ const svgPattern = `
 `;
 
     const playerElement = document.getElementById('playerGroup');
-let boundingBox = playerElement.getBoundingClientRect();
+
+	let svgElement = document.querySelector('#playerGroup svg');
+let boundingBox = svgElement.getBoundingClientRect();
 
 let width = boundingBox.width;
 let height = boundingBox.height;
 
 console.log("Width:", width);
 console.log("Height:", height);
+
 				   
 	
 
@@ -801,9 +804,9 @@ const newY = player.y;
 
 // Calcula la diferencia entre las coordenadas actuales y las nuevas
 const deltaX = player.x - (width/2);
-const deltaY = newY - currentY;
+const deltaY = player.y  - (height/2);
 
-	console.log('dxy: ', deltaX, deltaY  );
+	console.log('dxy: ', width, deltaY  );
 
 
 // Aplica la transformación de traslación al grupo
