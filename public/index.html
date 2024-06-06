@@ -800,7 +800,7 @@ const newX = player.x;
 const newY = player.y;
 
 // Calcula la diferencia entre las coordenadas actuales y las nuevas
-const deltaX = newX - currentX;
+const deltaX = player.x - (width/2);
 const deltaY = newY - currentY;
 
 	console.log('dxy: ', deltaX, deltaY  );
@@ -808,7 +808,7 @@ const deltaY = newY - currentY;
 
 // Aplica la transformación de traslación al grupo
 //playerElement.setAttribute('transform', `translate(${newX- (width/2)},${newY- (height/2)})`);
-playerElement.setAttribute('transform', `translate(${newX},${newY})`);
+playerElement.setAttribute('transform', `translate(${deltaX},${newY})`);
 
 // Actualiza las coordenadas actuales del grupo
 //playerElement.setAttribute('data-x', newX);
