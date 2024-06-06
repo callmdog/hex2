@@ -1091,13 +1091,13 @@ const newY = start.y + progress * (end.y - start.y);
 //circleElement.setAttribute('y', newY- (playerHeight/2));
 
 
-let svgElement = document.querySelector('#playerGroup svg');
+    const svgElement = circleElement.querySelector('svg');
 
-let width = svgElement.getAttribute('width');
-let height = svgElement.getAttribute('height');
-
-console.log("Width:", width);
-console.log("Height:", height);	
+const width = svgElement.getAttribute('width');
+        const height = svgElement.getAttribute('height');
+        
+        console.log("SVG Width:", width);
+        console.log("SVG Height:", height);	
 	
 
 //	circleElement.setAttribute('data-x', newX );
