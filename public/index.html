@@ -810,7 +810,7 @@ const deltaY = player.y  - (height/2);
 
 // Aplica la transformación de traslación al grupo
 //playerElement.setAttribute('transform', `translate(${newX- (width/2)},${newY- (height/2)})`);
-playerElement.setAttribute('transform', `translate(${deltaX},${newY})`);
+playerElement.setAttribute('transform', `translate(${deltaX},${deltaY})`);
 
 // Actualiza las coordenadas actuales del grupo
 //playerElement.setAttribute('data-x', newX);
