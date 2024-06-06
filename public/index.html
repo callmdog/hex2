@@ -1,4 +1,4 @@
-e<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -1084,13 +1084,28 @@ const progress = Math.min((currentTime - startTime) / duration, 1);
 const newX = start.x + progress * (end.x - start.x);
 const newY = start.y + progress * (end.y - start.y);	
 
+
+	
 	
 //circleElement.setAttribute('x', newX - (playerWidth/2));
 //circleElement.setAttribute('y', newY- (playerHeight/2));
 
-	circleElement.setAttribute('data-x', newX );
-circleElement.setAttribute('data-y', newY);
 
+let svgElement = document.querySelector('#playerGroup svg');
+
+let width = svgElement.getAttribute('width');
+let height = svgElement.getAttribute('height');
+
+console.log("Width:", width);
+console.log("Height:", height);	
+	
+
+//	circleElement.setAttribute('data-x', newX );
+//circleElement.setAttribute('data-y', newY);
+
+
+circleElement.setAttribute('transform', `translate(${newX-(width/2)},${newY-(height/2)})`);
+	
 //const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
 //console.log(`VELOCIDAD!!!: ${playerSpeed}`);
 
@@ -1106,7 +1121,7 @@ const newYCam = svgHeight / 2 - newY;
 if(Camara===1)
 {
 camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
-	playerElement.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+	//playerElement.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
 
 //console.log(`CamY: ${newYCam}`);
 //console.log(`bY: ${bY}`);    
