@@ -759,6 +759,14 @@ const svgPattern = `
 `;
 
     const playerElement = document.getElementById('playerGroup');
+let boundingBox = playerElement.getBoundingClientRect();
+
+let width = boundingBox.width;
+let height = boundingBox.height;
+
+console.log("Width:", width);
+console.log("Height:", height);
+				   
 	
 
 //const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -799,7 +807,7 @@ const deltaY = newY - currentY;
 
 
 // Aplica la transformación de traslación al grupo
-playerElement.setAttribute('transform', `translate(${newX},${newY})`);
+playerElement.setAttribute('transform', `translate(${newX- (width/2)},${newY- (height/2)})`);
 
 // Actualiza las coordenadas actuales del grupo
 //playerElement.setAttribute('data-x', newX);
