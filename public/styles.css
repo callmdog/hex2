@@ -255,7 +255,7 @@ touch-action: pinch-zoom; }
 /* display: none;*/
 display: flex;
 width: 100%;
-	
+	flex-direction: column; 
 position: absolute; /* Posición absoluta */
 background-color: red; /* Fondo rojo */
 border-radius: 20px; /* Bordes redondeados */
