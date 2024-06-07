@@ -47,6 +47,11 @@ z-index: 999;
 
 }
 
+
+.skin.selected {
+    background-color: gray;
+}
+
 	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
