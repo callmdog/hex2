@@ -255,6 +255,7 @@ touch-action: pinch-zoom; }
 /* display: none;*/
 display: flex;
 width: 100%;
+	
 position: absolute; /* Posición absoluta */
 background-color: red; /* Fondo rojo */
 border-radius: 20px; /* Bordes redondeados */
@@ -279,7 +280,7 @@ z-index: -1;
 align-items: center;*/	
 position: relative;
 width: 300px; /* Ancho basado en la altura de la ventana */
-height: 100px; /* Altura basada en la altura de la ventana */
+height: 200px; /* Altura basada en la altura de la ventana */
 margin: auto;
 border: 1px solid black;
 overflow: hidden;
