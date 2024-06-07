@@ -8,6 +8,23 @@ height: 100vh;
 background-color: #000000; 
 position: relative; /* Establece el contexto de posición para los elementos secundarios */
 }
+
+
+
+
+       #selectSkin {
+            background-color: red;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #selectedSkin, #skinButton {
+            margin-top: 10px;
+        }
+
 	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
