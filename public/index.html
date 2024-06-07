@@ -247,16 +247,106 @@ console.log('SCRIPT INI 1');
 // CLIENT //////////////////////////////////////////////////////////
 	  
 document.addEventListener('DOMContentLoaded', function () {
+
+
+
+
+
+
+
+
+
+
 	
 
 const skins = document.querySelectorAll('.skin');
 
-        skins.forEach(skin => {
-            skin.addEventListener('click', function() {
-                skins.forEach(s => s.classList.remove('selected'));
-                this.classList.add('selected');
+        const skins = document.querySelectorAll('.skin');
+
+            function generateRandomSVG() {
+                const svgNamespace = "http://www.w3.org/2000/svg";
+                const radius = 30;
+                const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A8", "#A833FF"];
+                const shapes = ["circle", "rect", "line", "polyline", "polygon"];
+
+                // Create SVG element
+                const svg = document.createElementNS(svgNamespace, "svg");
+                svg.setAttribute("viewBox", "0 0 100 100");
+
+                // Create circle
+                const circle = document.createElementNS(svgNamespace, "circle");
+                circle.setAttribute("cx", 50);
+                circle.setAttribute("cy", 50);
+                circle.setAttribute("r", radius);
+                circle.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
+                svg.appendChild(circle);
+
+                // Add random shapes inside the circle
+                const numberOfShapes = Math.floor(Math.random() * 5) + 1; // 1 to 5 shapes
+                for (let i = 0; i < numberOfShapes; i++) {
+                    const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+                    const shape = document.createElementNS(svgNamespace, shapeType);
+
+                    switch (shapeType) {
+                        case "circle":
+                            shape.setAttribute("cx", Math.random() * 100);
+                            shape.setAttribute("cy", Math.random() * 100);
+                            shape.setAttribute("r", Math.random() * 15);
+                            break;
+                        case "rect":
+                            shape.setAttribute("x", Math.random() * 70);
+                            shape.setAttribute("y", Math.random() * 70);
+                            shape.setAttribute("width", Math.random() * 30);
+                            shape.setAttribute("height", Math.random() * 30);
+                            break;
+                        case "line":
+                            shape.setAttribute("x1", Math.random() * 100);
+                            shape.setAttribute("y1", Math.random() * 100);
+                            shape.setAttribute("x2", Math.random() * 100);
+                            shape.setAttribute("y2", Math.random() * 100);
+                            shape.setAttribute("stroke-width", Math.random() * 5);
+                            break;
+                        case "polyline":
+                            shape.setAttribute("points", `${Math.random() * 100},${Math.random() * 100} ${Math.random() * 100},${Math.random() * 100} ${Math.random() * 100},${Math.random() * 100}`);
+                            break;
+                        case "polygon":
+                            shape.setAttribute("points", `${Math.random() * 100},${Math.random() * 100} ${Math.random() * 100},${Math.random() * 100} ${Math.random() * 100},${Math.random() * 100} ${Math.random() * 100},${Math.random() * 100}`);
+                            break;
+                    }
+
+                    shape.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
+                    shape.setAttribute("stroke", colors[Math.floor(Math.random() * colors.length)]);
+                    svg.appendChild(shape);
+                }
+
+                return svg;
+            }
+
+            // Generate random SVGs for each skin
+            skins.forEach(skin => {
+                const svg = generateRandomSVG();
+                skin.appendChild(svg);
             });
-        });
+
+            // Add click event listener for selection
+            skins.forEach(skin => {
+                skin.addEventListener('click', function() {
+                    skins.forEach(s => s.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const nameForm = document.getElementById('nameForm');
