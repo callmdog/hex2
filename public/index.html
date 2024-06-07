@@ -244,6 +244,17 @@ console.log('SCRIPT INI 1');
 	  
 document.addEventListener('DOMContentLoaded', function () {
 	
+
+const skins = document.querySelectorAll('.skin');
+
+        skins.forEach(skin => {
+            skin.addEventListener('click', function() {
+                skins.forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+
 const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
