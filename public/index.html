@@ -119,17 +119,28 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 
 
 
-
-<div id="selectPlayer2">	
-<h2>Select your skin</h2>
-
-
-<div id="selectContainer2">
-
-</div>	
-
-<button id="selectPlayerButton">Select</button>
+<!-- PAINT CANVAS BOX !!!!!!!!! -->			
+<div id="paintBox">	
+<div id="canvasContainer">
+<svg id="svgCanvas" width="100%" height="100%">
+<rect width="100%" height="100%" fill="white"/>
+</svg>
 </div>
+<input type="color" id="colorPicker" value="#000000">
+<input type="range" id="brushSize" min="1" max="20" value="2">
+<button id="undoButton">&#x21A9; Deshacer</button>
+<button id="redoButton">Rehacer &#x21AA;</button>
+<button id="fillButton">Rellenar</button>
+<button id="clearButton">Limpiar</button>
+
+<!-- Agrega botones para el selector de formas -->
+<button class="shapeButton" data-shape="line">Línea</button>
+<button class="shapeButton" data-shape="circle">Círculo</button>
+<button class="shapeButton" data-shape="rectangle">Rectángulo</button>
+<button class="shapeButton" data-shape="triangle">Triángulo</button>	
+</div>
+
+
 
 
 
