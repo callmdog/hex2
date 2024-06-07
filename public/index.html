@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Create SVG element
                 const svg = document.createElementNS(svgNamespace, "svg");
-                svg.setAttribute("viewBox", "0 0 100 100");
+                svg.setAttribute("viewBox", "0 0 60 60");
 
                 // Create clipPath
                 const defs = document.createElementNS(svgNamespace, "defs");
@@ -279,8 +279,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 clipPath.setAttribute("id", "clipCircle");
 
                 const clipCircle = document.createElementNS(svgNamespace, "circle");
-                clipCircle.setAttribute("cx", 50);
-                clipCircle.setAttribute("cy", 50);
+                clipCircle.setAttribute("cx", 30);
+                clipCircle.setAttribute("cy", 30);
                 clipCircle.setAttribute("r", radius);
                 clipPath.appendChild(clipCircle);
                 defs.appendChild(clipPath);
@@ -298,28 +298,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     switch (shapeType) {
                         case "circle":
-                            shape.setAttribute("cx", 50 + (Math.random() * radius - radius / 2));
-                            shape.setAttribute("cy", 50 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("cx", 30 + Math.random() * radius - radius / 2);
+                            shape.setAttribute("cy", 30 + Math.random() * radius - radius / 2);
                             shape.setAttribute("r", Math.random() * 15);
                             break;
                         case "rect":
-                            shape.setAttribute("x", 50 + (Math.random() * radius - radius / 2));
-                            shape.setAttribute("y", 50 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("x", 30 + Math.random() * radius - radius / 2);
+                            shape.setAttribute("y", 30 + Math.random() * radius - radius / 2);
                             shape.setAttribute("width", Math.random() * 30);
                             shape.setAttribute("height", Math.random() * 30);
                             break;
                         case "line":
-                            shape.setAttribute("x1", 50 + (Math.random() * radius - radius / 2));
-                            shape.setAttribute("y1", 50 + (Math.random() * radius - radius / 2));
-                            shape.setAttribute("x2", 50 + (Math.random() * radius - radius / 2));
-                            shape.setAttribute("y2", 50 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("x1", 30 + Math.random() * radius - radius / 2);
+                            shape.setAttribute("y1", 30 + Math.random() * radius - radius / 2);
+                            shape.setAttribute("x2", 30 + Math.random() * radius - radius / 2);
+                            shape.setAttribute("y2", 30 + Math.random() * radius - radius / 2);
                             shape.setAttribute("stroke-width", Math.random() * 5);
                             break;
                         case "polyline":
-                            shape.setAttribute("points", `${50 + (Math.random() * radius - radius / 2)},${50 + (Math.random() * radius - radius / 2)} ${50 + (Math.random() * radius - radius / 2)},${50 + (Math.random() * radius - radius / 2)} ${50 + (Math.random() * radius - radius / 2)},${50 + (Math.random() * radius - radius / 2)}`);
+                            shape.setAttribute("points", `${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2}`);
                             break;
                         case "polygon":
-                            shape.setAttribute("points", `${50 + (Math.random() * radius - radius / 2)},${50 + (Math.random() * radius - radius / 2)} ${50 + (Math.random() * radius - radius / 2)},${50 + (Math.random() * radius - radius / 2)} ${50 + (Math.random() * radius - radius / 2)},${50 + (Math.random() * radius - radius / 2)} ${50 + (Math.random() * radius - radius / 2)},${50 + (Math.random() * radius - radius / 2)}`);
+                            shape.setAttribute("points", `${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2}`);
                             break;
                     }
 
