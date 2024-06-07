@@ -254,10 +254,7 @@ touch-action: pinch-zoom; }
 #selectPlayer {
 /* display: none;*/
 display: flex;
-justify-content: center;
-align-items: center;
 width: 100%;
-height: 100%;	
 position: absolute; /* Posición absoluta */
 background-color: red; /* Fondo rojo */
 border-radius: 20px; /* Bordes redondeados */
@@ -278,6 +275,8 @@ opacity: 0.8; /* Opacidad */
 z-index: -1;	
 }
 #selectContainer {
+/*justify-content: center;
+align-items: center;*/	
 position: relative;
 width: 300px; /* Ancho basado en la altura de la ventana */
 height: 100px; /* Altura basada en la altura de la ventana */
