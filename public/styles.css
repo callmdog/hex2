@@ -19,6 +19,9 @@ position: relative; /* Establece el contexto de posición para los elementos sec
             flex-direction: column;
             align-items: center;
             justify-content: center;
+position: fixed;
+
+
         }
 
         #selectedSkin, #skinButton {
