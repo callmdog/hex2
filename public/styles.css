@@ -26,14 +26,23 @@ position: relative; /* Establece el contexto de posición para los elementos sec
 width: 300px;
 z-index: 999;
 
-
-
 }
 
-        #selectedSkin, #skinButton {
-            margin-top: 10px;
-        }
+        #selectedSkin {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+}
 
+.skin {
+    width: 100%;
+    padding-top: 100%; /* Esto asegura que los recuadros sean cuadrados */
+    background-color: white;
+    border: 1px solid black;
+    box-sizing: border-box;
+    position: relative;
+}
 	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
