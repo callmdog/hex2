@@ -273,24 +273,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 const svg = document.createElementNS(svgNamespace, "svg");
                 svg.setAttribute("viewBox", "0 0 60 60");
 
-                // Create clipPath
-                const defs = document.createElementNS(svgNamespace, "defs");
-                const clipPath = document.createElementNS(svgNamespace, "clipPath");
-                clipPath.setAttribute("id", "clipCircle");
+                // Create the main circle
+                const mainCircle = document.createElementNS(svgNamespace, "circle");
+                mainCircle.setAttribute("cx", 30);
+                mainCircle.setAttribute("cy", 30);
+                mainCircle.setAttribute("r", radius);
+                mainCircle.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
+                svg.appendChild(mainCircle);
 
-                const clipCircle = document.createElementNS(svgNamespace, "circle");
-                clipCircle.setAttribute("cx", 30);
-                clipCircle.setAttribute("cy", 30);
-                clipCircle.setAttribute("r", radius);
-                clipPath.appendChild(clipCircle);
-                defs.appendChild(clipPath);
-                svg.appendChild(defs);
-
-                // Create a group to apply the clipPath
-                const g = document.createElementNS(svgNamespace, "g");
-                g.setAttribute("clip-path", "url(#clipCircle)");
-
-                // Add random shapes inside the group
+                // Add random shapes inside the circle
                 const numberOfShapes = Math.floor(Math.random() * 5) + 1; // 1 to 5 shapes
                 for (let i = 0; i < numberOfShapes; i++) {
                     const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
@@ -298,37 +289,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     switch (shapeType) {
                         case "circle":
-                            shape.setAttribute("cx", 30 + Math.random() * radius - radius / 2);
-                            shape.setAttribute("cy", 30 + Math.random() * radius - radius / 2);
-                            shape.setAttribute("r", Math.random() * 15);
+                            shape.setAttribute("cx", 30 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("cy", 30 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("r", Math.random() * 10);
                             break;
                         case "rect":
-                            shape.setAttribute("x", 30 + Math.random() * radius - radius / 2);
-                            shape.setAttribute("y", 30 + Math.random() * radius - radius / 2);
-                            shape.setAttribute("width", Math.random() * 30);
-                            shape.setAttribute("height", Math.random() * 30);
+                            shape.setAttribute("x", 30 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("y", 30 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("width", Math.random() * 20);
+                            shape.setAttribute("height", Math.random() * 20);
                             break;
                         case "line":
-                            shape.setAttribute("x1", 30 + Math.random() * radius - radius / 2);
-                            shape.setAttribute("y1", 30 + Math.random() * radius - radius / 2);
-                            shape.setAttribute("x2", 30 + Math.random() * radius - radius / 2);
-                            shape.setAttribute("y2", 30 + Math.random() * radius - radius / 2);
+                            shape.setAttribute("x1", 30 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("y1", 30 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("x2", 30 + (Math.random() * radius - radius / 2));
+                            shape.setAttribute("y2", 30 + (Math.random() * radius - radius / 2));
                             shape.setAttribute("stroke-width", Math.random() * 5);
                             break;
                         case "polyline":
-                            shape.setAttribute("points", `${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2}`);
+                            shape.setAttribute("points", `${30 + (Math.random() * radius - radius / 2)},${30 + (Math.random() * radius - radius / 2)} ${30 + (Math.random() * radius - radius / 2)},${30 + (Math.random() * radius - radius / 2)} ${30 + (Math.random() * radius - radius / 2)},${30 + (Math.random() * radius - radius / 2)}`);
                             break;
                         case "polygon":
-                            shape.setAttribute("points", `${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2} ${30 + Math.random() * radius - radius / 2},${30 + Math.random() * radius - radius / 2}`);
+                            shape.setAttribute("points", `${30 + (Math.random() * radius - radius / 2)},${30 + (Math.random() * radius - radius / 2)} ${30 + (Math.random() * radius - radius / 2)},${30 + (Math.random() * radius - radius / 2)} ${30 + (Math.random() * radius - radius / 2)},${30 + (Math.random() * radius - radius / 2)} ${30 + (Math.random() * radius - radius / 2)},${30 + (Math.random() * radius - radius / 2)}`);
                             break;
                     }
 
                     shape.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
                     shape.setAttribute("stroke", colors[Math.floor(Math.random() * colors.length)]);
-                    g.appendChild(shape);
+                    svg.appendChild(shape);
                 }
 
-                svg.appendChild(g);
                 return svg;
             }
 
@@ -345,9 +335,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.classList.add('selected');
                 });
             });
-
-
-
 
 
 
