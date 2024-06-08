@@ -176,7 +176,7 @@
 	  
 document.addEventListener('DOMContentLoaded', function () {
 
-
+let skinCode = 'sss';
 
 	
 const skins = document.querySelectorAll('.skin');
@@ -337,6 +337,8 @@ function addWaves(svg, colors) {
         // Print the SVG code to the console
         console.log(svg.outerHTML);
 
+skinCode = svg.outerHTML;
+
         // Hide the selectSkin element
         selectSkin.style.display = 'none';
     }
@@ -389,7 +391,7 @@ gameCanvas.style.display = 'block';
 hexagonGroup.style.display = 'block';
 firstP.style.display = 'block';
 // ACTIVAR EL SERVIDOR
-socket.emit('playerNameEntered', playerName);
+socket.emit('playerNameEntered', playerName, skinCode);
 } else {
 // Mostrar mensaje de error
 errorMessage.style.display = "block";
