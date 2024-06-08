@@ -337,39 +337,34 @@ event.preventDefault();
 }
 
 const socket = io();
-//initializeGreenCircles(socket);	
+
+//GREEN BALLS GENERATE AND DELETE
+//GREEN BALLS GENERATE AND DELETE
+//GREEN BALLS GENERATE AND DELETE
 socket.on('greenCirclesGenerated', (circles) => {
-console.log('GREEN CIRCLES GENERATED.');
-greenCircles = [];
-greenCircles2 = [];
-//console.log('CIRLES PUSH:', circles);
-greenCircles.push(...circles);
-//console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
-generateGreenCircles();
+	console.log('GREEN CIRCLES GENERATED.');
+	greenCircles = [];
+	greenCircles2 = [];
+	//console.log('CIRLES PUSH:', circles);
+	greenCircles.push(...circles);
+	//console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
+	generateGreenCircles();
 });
-
 socket.on('borrarGreen', () => {
-console.log('BORRAR GREEN CIRCLES.');
-
-//borrar();
-
-const greenCircles = document.querySelectorAll('circle[fill="green"]');
-
-// Iterar sobre cada círculo verde y eliminarlo
-greenCircles.forEach(circle => {
-    circle.remove();
+	console.log('BORRAR GREEN CIRCLES.');
+	const greenCircles = document.querySelectorAll('circle[fill="green"]');
+	// Iterar sobre cada círculo verde y eliminarlo
+	greenCircles.forEach(circle => {
+	circle.remove();
+	});
+	const blueCircles = document.querySelectorAll('circle[fill="blue"]');
+	// Iterar sobre cada círculo verde y eliminarlo
+	blueCircles.forEach(circle => {
+	circle.remove();
+	});		
 });
-
-const blueCircles = document.querySelectorAll('circle[fill="blue"]');
-
-// Iterar sobre cada círculo verde y eliminarlo
-blueCircles.forEach(circle => {
-    circle.remove();
-});	
-
+//END GREEN BALLS GENERATE AND DELETE
 	
-	
-});		
 
 ////FUNCION TEXT DE PUNTO
 function pointText(x, y) {
