@@ -288,6 +288,12 @@ const skins = document.querySelectorAll('.skin');
                     // Clone the selected SVG and append to playerGroup
                     const clone = selectedSkin.cloneNode(true);
                     playerGroup.appendChild(clone);
+
+selectSkin.style.display = 'none';
+
+console.log('Skin seleccionada!!!');
+
+
                 } else {
                     alert('Please select a skin first!');
                 }
