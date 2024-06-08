@@ -10,7 +10,6 @@ const fs = require('fs');
 const HIGHSCORE_FILE = 'highscore.txt';
 
 
-const { updateHighscores } = require('./highscore'); // Asegúrate de tener este módulo
 
 // Leer el archivo de highscore
 function readHighscores() {
