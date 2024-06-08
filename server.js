@@ -11,6 +11,8 @@ const HIGHSCORE_FILE = 'highscore.txt';
 
 // Leer el archivo de highscore
 function readHighscores() {
+console.log('Read highscore');
+
     try {
         const data = fs.readFileSync(HIGHSCORE_FILE, 'utf8');
         return JSON.parse(data);
@@ -21,11 +23,15 @@ function readHighscores() {
 
 // Guardar las puntuaciones en el archivo
 function writeHighscores(highscores) {
+console.log('Write highscore');
+
     fs.writeFileSync(HIGHSCORE_FILE, JSON.stringify(highscores), 'utf8');
 }
 
 // Comparar y actualizar las puntuaciones
 function updateHighscores(newScore) {
+console.log('Update highscore 1');
+
     let highscores = readHighscores();
     highscores.push(newScore);
     highscores.sort((a, b) => b.score - a.score);
@@ -384,6 +390,9 @@ socket.on('disconnect', () => {
 //HIGHSCORE SYSTEM
 // Guardar el puntaje del jugador antes de desconectar
         if (players[socket.id] && players[socket.id].puntos) {
+
+console.log('Update highscore');
+
             const playerScore = {
                 name: players[socket.id].nombre,
                 score: players[socket.id].puntos
