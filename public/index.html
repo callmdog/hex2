@@ -189,127 +189,125 @@ const closeSkinButton = document.getElementById('closeSkin');
 
 
 
-            function generateRandomSVG() {
+            function generateRandomSVG(size) {
     const svgNamespace = "http://www.w3.org/2000/svg";
-    const radius = 100;  // Adjusted for larger viewBox
+    const radius = size / 2;
     const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A8", "#A833FF", "#FFD700", "#40E0D0"];
     const patterns = ["stripes", "dots", "grid", "waves"];
 
     // Create SVG element
     const svg = document.createElementNS(svgNamespace, "svg");
-    svg.setAttribute("width", "20");
-    svg.setAttribute("height", "20");
-    svg.setAttribute("viewBox", "0 0 200 200");
+    svg.setAttribute("width", size);
+    svg.setAttribute("height", size);
+    svg.setAttribute("viewBox", `0 0 ${size*2} ${size*2}`);
     svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
     // Define clip path for the circle
     const defs = document.createElementNS(svgNamespace, "defs");
     const clipPath = document.createElementNS(svgNamespace, "clipPath");
-    clipPath.setAttribute("id", "clipCircle");
+    clipPath.setAttribute("id", `clipCircle${size}`);
     const clipCircle = document.createElementNS(svgNamespace, "circle");
-    clipCircle.setAttribute("cx", 100);
-    clipCircle.setAttribute("cy", 100);
-    clipCircle.setAttribute("r", 100);
+    clipCircle.setAttribute("cx", radius);
+    clipCircle.setAttribute("cy", radius);
+    clipCircle.setAttribute("r", radius);
     clipPath.appendChild(clipCircle);
     defs.appendChild(clipPath);
     svg.appendChild(defs);
 
     // Create the main circle and apply clip path
     const mainCircle = document.createElementNS(svgNamespace, "circle");
-    mainCircle.setAttribute("cx", 100);
-    mainCircle.setAttribute("cy", 100);
+    mainCircle.setAttribute("cx", radius);
+    mainCircle.setAttribute("cy", radius);
     mainCircle.setAttribute("r", radius);
     mainCircle.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
-    mainCircle.setAttribute("clip-path", "url(#clipCircle)");
+    mainCircle.setAttribute("clip-path", `url(#clipCircle${size})`);
     svg.appendChild(mainCircle);
 
     // Add random pattern inside the circle
     const patternType = patterns[Math.floor(Math.random() * patterns.length)];
     switch (patternType) {
         case "stripes":
-            addStripes(svg, colors);
+            addStripes(svg, colors, size);
             break;
         case "dots":
-            addDots(svg, colors);
+            addDots(svg, colors, size);
             break;
         case "grid":
-            addGrid(svg, colors);
+            addGrid(svg, colors, size);
             break;
         case "waves":
-            addWaves(svg, colors);
+            addWaves(svg, colors, size);
             break;
     }
 
     return svg;
 }
 
-function addStripes(svg, colors) {
+function addStripes(svg, colors, size) {
     const svgNamespace = "http://www.w3.org/2000/svg";
+    const step = size / 5;
     for (let i = 0; i < 10; i++) {
         const line = document.createElementNS(svgNamespace, "line");
         line.setAttribute("x1", 0);
-        line.setAttribute("y1", i * 20);
-        line.setAttribute("x2", 200);
-        line.setAttribute("y2", i * 20);
+        line.setAttribute("y1", i * step);
+        line.setAttribute("x2", size * 2);
+        line.setAttribute("y2", i * step);
         line.setAttribute("stroke", colors[Math.floor(Math.random() * colors.length)]);
-        line.setAttribute("stroke-width", 5);
-        line.setAttribute("clip-path", "url(#clipCircle)");
+        line.setAttribute("stroke-width", step / 4);
+        line.setAttribute("clip-path", `url(#clipCircle${size})`);
         svg.appendChild(line);
     }
 }
 
-function addDots(svg, colors) {
+function addDots(svg, colors, size) {
     const svgNamespace = "http://www.w3.org/2000/svg";
     for (let i = 0; i < 50; i++) {
         const dot = document.createElementNS(svgNamespace, "circle");
-        dot.setAttribute("cx", Math.random() * 200);
-        dot.setAttribute("cy", Math.random() * 200);
-        dot.setAttribute("r", 5);
+        dot.setAttribute("cx", Math.random() * size * 2);
+        dot.setAttribute("cy", Math.random() * size * 2);
+        dot.setAttribute("r", size / 10);
         dot.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
-        dot.setAttribute("clip-path", "url(#clipCircle)");
+        dot.setAttribute("clip-path", `url(#clipCircle${size})`);
         svg.appendChild(dot);
     }
 }
 
-function addGrid(svg, colors) {
+function addGrid(svg, colors, size) {
     const svgNamespace = "http://www.w3.org/2000/svg";
+    const step = size / 5;
     for (let i = 0; i < 10; i++) {
         const line1 = document.createElementNS(svgNamespace, "line");
-        line1.setAttribute("x1", i * 20);
+        line1.setAttribute("x1", i * step);
         line1.setAttribute("y1", 0);
-        line1.setAttribute("x2", i * 20);
-        line1.setAttribute("y2", 200);
+        line1.setAttribute("x2", i * step);
+        line1.setAttribute("y2", size * 2);
         line1.setAttribute("stroke", colors[Math.floor(Math.random() * colors.length)]);
-        line1.setAttribute("stroke-width", 2);
-        line1.setAttribute("clip-path", "url(#clipCircle)");
+        line1.setAttribute("stroke-width", step / 4);
+        line1.setAttribute("clip-path", `url(#clipCircle${size})`);
         svg.appendChild(line1);
 
         const line2 = document.createElementNS(svgNamespace, "line");
         line2.setAttribute("x1", 0);
-        line2.setAttribute("y1", i * 20);
-        line2.setAttribute("x2", 200);
-        line2.setAttribute("y2", i * 20);
+        line2.setAttribute("y1", i * step);
+        line2.setAttribute("x2", size * 2);
+        line2.setAttribute("y2", i * step);
         line2.setAttribute("stroke", colors[Math.floor(Math.random() * colors.length)]);
-        line2.setAttribute("stroke-width", 2);
-        line2.setAttribute("clip-path", "url(#clipCircle)");
+        line2.setAttribute("stroke-width", step / 4);
+        line2.setAttribute("clip-path", `url(#clipCircle${size})`);
         svg.appendChild(line2);
     }
 }
 
-function addWaves(svg, colors) {
+function addWaves(svg, colors, size) {
     const svgNamespace = "http://www.w3.org/2000/svg";
     const wavePath = document.createElementNS(svgNamespace, "path");
-    wavePath.setAttribute("d", "M0 100 Q 50 0, 100 100 T 200 100");
+    wavePath.setAttribute("d", `M0 ${size} Q ${size / 2} 0, ${size} ${size} T ${size * 2} ${size}`);
     wavePath.setAttribute("stroke", colors[Math.floor(Math.random() * colors.length)]);
-    wavePath.setAttribute("stroke-width", 5);
+    wavePath.setAttribute("stroke-width", size / 10);
     wavePath.setAttribute("fill", "none");
-    wavePath.setAttribute("clip-path", "url(#clipCircle)");
+    wavePath.setAttribute("clip-path", `url(#clipCircle${size})`);
     svg.appendChild(wavePath);
 }
-
-
-
-
 
 
 
@@ -329,29 +327,21 @@ function addWaves(svg, colors) {
 
             // Add click event listener to the select button
             skinButton.addEventListener('click', function() {
-                const selectedSkin = document.querySelector('.skin.selected svg');
-                if (selectedSkin) {
-                    // Clear the previous SVG in playerGroup
-                    while (playerGroup.firstChild) {
-                        playerGroup.removeChild(playerGroup.firstChild);
-                    }
-                    // Clone the selected SVG and append to playerGroup
-                    const clone = selectedSkin.cloneNode(true);
-                    playerGroup.appendChild(clone);
+    const selectedSkin = document.querySelector('.skin.selected');
+    if (selectedSkin) {
+        const svg = selectedSkin.querySelector('svg').cloneNode(true);
+        svg.setAttribute('width', '20');
+        svg.setAttribute('height', '20');
+        playerGroup.innerHTML = '';
+        playerGroup.appendChild(svg);
 
-selectSkin.style.display = 'none';
+        // Print the SVG code to the console
+        console.log(svg.outerHTML);
 
-console.log('Skin seleccionada!!!');
-
-
-console.log(new XMLSerializer().serializeToString(clone));
-
-
-
-                } else {
-                    alert('Please select a skin first!');
-                }
-            });
+        // Hide the selectSkin element
+        selectSkin.style.display = 'none';
+    }
+});
 
 
 // Add click event listener to the cancel button
