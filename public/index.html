@@ -83,6 +83,8 @@
         <div class="skin">Skin 16</div>
 	</div>	
 	<button id="skinButton">Select</button>
+<button id="closeSkin">Cancel</button>
+
 </div>	
 <!-- END SKIN BOX !!!!!!!!! -->
 
@@ -165,6 +167,9 @@ document.addEventListener('DOMContentLoaded', function () {
 const skins = document.querySelectorAll('.skin');
             const playerGroup = document.getElementById('playerGroup');
             const skinButton = document.getElementById('skinButton');
+
+const closeSkinButton = document.getElementById('closeSkin');
+
 
             function generateRandomSVG() {
                 const svgNamespace = "http://www.w3.org/2000/svg";
@@ -304,7 +309,11 @@ console.log(new XMLSerializer().serializeToString(clone));
             });
 
 
-
+// Add click event listener to the cancel button
+            closeSkinButton.addEventListener('click', function() {
+                // Hide the selectSkin div
+                selectSkin.style.display = 'none';
+            });
 
 
 
