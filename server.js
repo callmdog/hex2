@@ -214,7 +214,7 @@ socket.emit('allPlayersInfo', players);
 const colorsArray = Array.from(availableColors);
 const userColor = colorsArray[colorIndex % colorsArray.length];
 colorIndex++;
-assignedColors.set(socket.id, { color: userColor, name: playerName, skinP: skinP });
+assignedColors.set(socket.id, { color: userColor, name: playerName});
 ///////////!!!!!!!!!!!!!//////////////////
 
 players[socket.id] = {
@@ -223,7 +223,7 @@ color: assignedColors.get(socket.id).color,
 nombre: assignedColors.get(socket.id).name,
 puntos: 0,
 	velocidad: false
-skinP: assignedColors.get(socket.id).skinP
+skinP: skinP
 };	
 
 socket.emit('assignColor', { color: userColor, name: playerName, skinP: skinP });
