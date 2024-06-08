@@ -5,6 +5,39 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
+//HIGHSCORE SYSTEM
+const fs = require('fs');
+const HIGHSCORE_FILE = 'highscore.txt';
+
+// Leer el archivo de highscore
+function readHighscores() {
+    try {
+        const data = fs.readFileSync(HIGHSCORE_FILE, 'utf8');
+        return JSON.parse(data);
+    } catch (err) {
+        return [];
+    }
+}
+
+// Guardar las puntuaciones en el archivo
+function writeHighscores(highscores) {
+    fs.writeFileSync(HIGHSCORE_FILE, JSON.stringify(highscores), 'utf8');
+}
+
+// Comparar y actualizar las puntuaciones
+function updateHighscores(newScore) {
+    let highscores = readHighscores();
+    highscores.push(newScore);
+    highscores.sort((a, b) => b.score - a.score);
+    if (highscores.length > 10) {
+        highscores = highscores.slice(0, 10);
+    }
+    writeHighscores(highscores);
+}
+
+
+
+
 //VARIABLES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ///////////////////////////////////////////////////////
 const connectedUsers = new Set();
@@ -347,6 +380,20 @@ function desconectarJugador(socketId) {
   
 //USUARIOS DESCONECTADOS
 socket.on('disconnect', () => {
+
+//HIGHSCORE SYSTEM
+// Guardar el puntaje del jugador antes de desconectar
+        if (players[socket.id] && players[socket.id].puntos) {
+            const playerScore = {
+                name: players[socket.id].nombre,
+                score: players[socket.id].puntos
+            };
+            updateHighscores(playerScore);
+        }
+
+
+
+
 io.emit('eliminarJugadorEnCliente', socket.id);
 console.log('Usuario desconectado', socket.id);
 assignedColors.delete(socket.id);
