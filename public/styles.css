@@ -1,56 +1,79 @@
 body {
 margin: 0;
 display: flex;
-    overflow: hidden;	
+overflow: hidden;	
 justify-content: center; /* Centra horizontalmente */
 align-items: center; /* Centra verticalmente */
 height: 100vh;	
 background-color: #000000; 
 position: relative; /* Establece el contexto de posición para los elementos secundarios */
 }
+h2 {
+font-size: 2em; /* Tamaño de fuente grande */
+font-weight: bold; /* Texto en negrita */
+color: #ff5733; /* Color naranja */
+text-shadow: 2px 2px 6px rgba(0, 0, 255, 0.5); /* Sombra de texto azul */
+}
+p {
+font-size: 1.5em; /* Tamaño de fuente grande */
+font-style: italic; /* Texto en cursiva */
+color: #ffffff; /* Color blanco */
+text-shadow: 1px 1px 4px rgba(0, 0, 255, 0.7); /* Sombra de texto azul */
+}
+.no-select {
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none; /* Safari */
+-khtml-user-select: none; /* Konqueror HTML */
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* Internet Explorer/Edge */
+user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}	
 
 
 
+/* ///////////// SKIN RANDOM BALLS  ////////////////// */
+/* ///////////// SKIN RANDOM BALLS  ////////////////// */
+/* ///////////// SKIN RANDOM BALLS  ////////////////// */
+/* ///////////// SKIN RANDOM BALLS  ////////////////// */
 
-     #selectSkin {
-    background-color: red;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#selectSkin {
+background-color: red;
+padding: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 width: 300px;
 z-index: 999;
-
 }
 
-       #selectedSkin {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    width: 100%;
-    max-height: 300px;
-    overflow-y: auto;
+#selectedSkin {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 10px;
+width: 100%;
+max-height: 300px;
+overflow-y: auto;
 }
 
 .skin {
-    width: 100%;
-    padding-top: 100%; /* Esto asegura que los recuadros sean cuadrados */
-    background-color: white;
-    border: 1px solid black;
-    box-sizing: border-box;
-    position: relative;
-
+width: 100%;
+padding-top: 100%; /* Esto asegura que los recuadros sean cuadrados */
+background-color: white;
+border: 1px solid black;
+box-sizing: border-box;
+position: relative;
 }
-
 
 .skin.selected {
-    background-color: gray;
+background-color: gray;
 }
+
+
 
 	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
@@ -232,24 +255,6 @@ justify-content: center; /* Centra horizontalmente */
 align-items: center; /* Centra verticalmente */
 z-index: 999;	
 }
-#retryBox2 {
-/* display: none;*/
-position: absolute; /* Posición absoluta */
-top: 0;
-left: 50%; /* Centra horizontalmente */
-justify-content: center; /* Centra horizontalmente */
-transform: translateX(-50%);
-/* transform: translate(-50%, -50%);  Corrige el centro */
-width: auto; /* Ajuste automático al tamaño del contenido */
-height: auto;
-align-items: center; /* Centra verticalmente */
-background-color: red; /* Fondo rojo */
-padding: 20px; /* Espaciado interno */
-color: white; /* Texto blanco */
-font-family: Arial, sans-serif; /* Fuente del texto */
-text-align: center; /* Alinear texto al centro */
-z-index: 999; /* Para asegurarse de que esté encima de otros elementos */
-}
 #retryButton {
 padding: 10px 20px; 
 font-size: 16px;
@@ -294,44 +299,6 @@ touch-action: pinch-zoom; }
 /* ///////////// CANVAS PAINT BOX ////////////////// */
 /* ///////////// CANVAS PAINT BOX ////////////////// */	
 /* ///////////// CANVAS PAINT BOX ////////////////// */	
-
-#selectPlayer {
-/* display: none;*/
-display: flex;
-width: 100%;
-	flex-direction: column; 
-position: absolute; /* Posición absoluta */
-background-color: red; /* Fondo rojo */
-border-radius: 20px; /* Bordes redondeados */
-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
-overflow: hidden; /* Oculta el desbordamiento del iframe */
-z-index: 999;
-padding: 10px;
-}		
-#selectPlayer::before {
-content: ""; /* Crea un pseudo-elemento */
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(45deg, #000000, #ffd700); /* Degradado de negro a amarillo */
-opacity: 0.8; /* Opacidad */
-z-index: -1;	
-}
-#selectContainer {
-/*justify-content: center;
-align-items: center;*/	
-position: relative;
-width: 200px; /* Ancho basado en la altura de la ventana */
-height: 200px; /* Altura basada en la altura de la ventana */
-margin: auto;
-border: 1px solid black;
-overflow: hidden;
-}
-
-
-
 #paintBox {
 /* display: none;*/
 display: none;
