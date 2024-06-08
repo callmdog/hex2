@@ -62,7 +62,7 @@ overflow-y: auto;
 
 .skin {
 width: 100%;
-padding-top: 100%; /* Esto asegura que los recuadros sean cuadrados */
+/* padding-top: 100%; Esto asegura que los recuadros sean cuadrados */
 background-color: white;
 border: 1px solid black;
 box-sizing: border-box;
