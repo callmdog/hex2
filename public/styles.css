@@ -37,6 +37,8 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
 
 #selectSkin {
+
+border-radius: 20px;
 background-color: red;
 padding: 20px;
 display: flex;
@@ -61,6 +63,8 @@ overflow-y: auto;
 }
 
 .skin {
+
+border-radius: 20px;
     width: 70px;
     height: 70px;
 padding: 10px;
