@@ -163,6 +163,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	
 const skins = document.querySelectorAll('.skin');
+            const playerGroup = document.getElementById('playerGroup');
+            const skinButton = document.getElementById('skinButton');
 
             function generateRandomSVG() {
                 const svgNamespace = "http://www.w3.org/2000/svg";
@@ -274,6 +276,24 @@ const skins = document.querySelectorAll('.skin');
                     this.classList.add('selected');
                 });
             });
+
+            // Add click event listener to the select button
+            skinButton.addEventListener('click', function() {
+                const selectedSkin = document.querySelector('.skin.selected svg');
+                if (selectedSkin) {
+                    // Clear the previous SVG in playerGroup
+                    while (playerGroup.firstChild) {
+                        playerGroup.removeChild(playerGroup.firstChild);
+                    }
+                    // Clone the selected SVG and append to playerGroup
+                    const clone = selectedSkin.cloneNode(true);
+                    playerGroup.appendChild(clone);
+                } else {
+                    alert('Please select a skin first!');
+                }
+            });
+
+
 
 
 
