@@ -197,8 +197,12 @@ socket.emit('greenCirclesGenerated', greenCirclesS);
 ////
 
 //CONFIRMATION NOMBRE PARA INICIAR SERVER
-socket.on('playerNameEntered', (playerName) => {
+socket.on('playerNameEntered', (playerName, skinCode) => {
 console.log(`Nombre jugador Server: ${playerName}`);
+
+
+console.log(`SkinCODE: ${skinCode}`);
+
 //START SOCKET CONNECTION ///////    ///////    ///////  ///////    ///////    ///////    ///////    ///////    ///////    
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
 
