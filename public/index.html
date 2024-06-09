@@ -1270,7 +1270,7 @@ const newY = start.y + progress * (end.y - start.y);
 //circleElement.setAttribute('y', newY- (playerHeight/2));
 
 
-    const svgElement = circleElement.querySelector('svg');
+   /* const svgElement = circleElement.querySelector('svg');
 
 const width = svgElement.getAttribute('width');
         const height = svgElement.getAttribute('height');
@@ -1278,6 +1278,15 @@ const width = svgElement.getAttribute('width');
         console.log("SVG Width:", width);
         console.log("SVG Height:", height);	
 	
+*/
+
+
+const bbox = circleElement.getBBox();
+                   const width = bbox.width;
+                  const height = bbox.height;
+
+
+
 
 //	circleElement.setAttribute('data-x', newX );
 //circleElement.setAttribute('data-y', newY);
