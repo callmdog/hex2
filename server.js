@@ -225,7 +225,7 @@ puntos: 0,
 	velocidad: false
 };	
 
-socket.emit('assignColor', { color: userColor, name: playerName, skinP: skinP });
+socket.emit('assignColor', { color: userColor, name: playerName});
 io.emit('updatePlayers2', players);	
 console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
 
