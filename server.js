@@ -197,7 +197,7 @@ socket.emit('greenCirclesGenerated', greenCirclesS);
 ////
 
 //CONFIRMATION NOMBRE PARA INICIAR SERVER
-socket.on('playerNameEntered', (playerName, skinP) => {
+socket.on('playerNameEntered', (playerName) => {
 console.log(`Nombre jugador Server: ${playerName}`);
 //START SOCKET CONNECTION ///////    ///////    ///////  ///////    ///////    ///////    ///////    ///////    ///////    
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
@@ -223,7 +223,6 @@ color: assignedColors.get(socket.id).color,
 nombre: assignedColors.get(socket.id).name,
 puntos: 0,
 	velocidad: false
-skinP: skinP
 };	
 
 socket.emit('assignColor', { color: userColor, name: playerName, skinP: skinP });
