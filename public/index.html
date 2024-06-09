@@ -924,14 +924,16 @@ const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg
                     playerElement.appendChild(svgContainer);
 
 
-const svgElement = playerElement.querySelector('svg');
+//const svgElement = playerElement.querySelector('svg');
 
                         // Obtener y mostrar los atributos width y height
-                        const width = svgElement.getAttribute('width');
-                        const height = svgElement.getAttribute('height');
+                     //   const width = svgElement.getAttribute('width');
+                      //  const height = svgElement.getAttribute('height');
 
 
-
+ playerElement.getBBox();
+                    const width = bbox.width;
+                    const height = bbox.height;
 
 
 
