@@ -832,6 +832,17 @@ return topPlayersx;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 //9. UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 
@@ -897,17 +908,42 @@ playerElement.setAttribute('cy', player.y);*/
 
 
 
-    const playerElement = document.getElementById('playerGroup');
+   // const playerElement = document.getElementById('playerGroup');
+
+
+
+
+
+
+
+// Crear el elemento <g>
+                    const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    
+const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgContainer.innerHTML = player.skinCode;
+                    playerElement.appendChild(svgContainer);
+
+
+const svgElement = playerElement.querySelector('svg');
+
+                        // Obtener y mostrar los atributos width y height
+                        const width = svgElement.getAttribute('width');
+                        const height = svgElement.getAttribute('height');
+
+
+
+
+
 
 
 
 console.log("CompJugador:", playerElement, playerId, player);
 
 
-	let svgElement = document.querySelector('#playerGroup svg');
+//	let svgElement = document.querySelector('#playerGroup svg');
 
-let width = svgElement.getAttribute('width');
-let height = svgElement.getAttribute('height');
+//let width = svgElement.getAttribute('width');
+//let height = svgElement.getAttribute('height');
 
 console.log("Width:", width);
 console.log("Height:", height);
