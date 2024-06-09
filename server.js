@@ -5,7 +5,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-//HIGHSCORE SYSTEM
+///HIGHSCORE SYSTEM
 const fs = require('fs');
 const HIGHSCORE_FILE = 'highscore.txt';
 
