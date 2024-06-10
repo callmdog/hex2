@@ -351,27 +351,9 @@ function addWaves(svg, colors) {
 
 
 	    
-     const maskSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        maskSvg.setAttribute("width", "20");
-        maskSvg.setAttribute("height", "20");
-
-        // Crear el círculo de recorte para la máscara
-        const maskCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        maskCircle.setAttribute("cx", "10"); // Posición X del centro del círculo
-        maskCircle.setAttribute("cy", "10"); // Posición Y del centro del círculo
-        maskCircle.setAttribute("r", "10"); // Radio del círculo
-        maskCircle.setAttribute("fill", "#ffffff"); // Color de relleno blanco (área recortada)
-        maskSvg.appendChild(maskCircle);
-
-        // Convertir la máscara SVG a una cadena base64
-        const maskSvgString = new XMLSerializer().serializeToString(maskSvg);
-        const maskUrl = "data:image/svg+xml;base64," + btoa(maskSvgString);
-
-        // Aplicar la máscara al SVG del círculo seleccionado
-      //  const svg = selectedSkin.querySelector('svg').cloneNode(true);
-        svg.setAttribute('width', '20');
-        svg.setAttribute('height', '20');
-        svg.setAttribute('mask', `url(${maskUrl})`);
+    // Aplicar una transformación a escala al SVG para recortar las partes fuera del círculo
+        svg.setAttribute('viewBox', '0 0 20 20');
+        svg.setAttribute('transform', 'scale(0.5) translate(5 5)');
 
 
 
