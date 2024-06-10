@@ -350,24 +350,35 @@ function addWaves(svg, colors) {
 
 
 
+svg.setAttribute('viewBox', '0 0 20 20');
 
-const newClipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
+        // Crear el nuevo clip-path
+        const svgNamespace = "http://www.w3.org/2000/svg";
+        const newClipPath = document.createElementNS(svgNamespace, "clipPath");
         newClipPath.setAttribute("id", "clipCircle20");
-        const newClipCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        const newClipCircle = document.createElementNS(svgNamespace, "circle");
         newClipCircle.setAttribute("cx", 10);
         newClipCircle.setAttribute("cy", 10);
         newClipCircle.setAttribute("r", 10);
         newClipPath.appendChild(newClipCircle);
-        
-        const defs = svg.querySelector('defs') || document.createElementNS("http://www.w3.org/2000/svg", "defs");
-        defs.appendChild(newClipPath);
-        svg.appendChild(defs);
 
+        // Asegurar que el SVG tenga un elemento <defs> y añadir el nuevo clip-path
+        const defs = svg.querySelector('defs') || document.createElementNS(svgNamespace, "defs");
+        defs.appendChild(newClipPath);
+        if (!svg.querySelector('defs')) {
+            svg.appendChild(defs);
+        }
+
+        // Aplicar el nuevo clip-path a todos los elementos del SVG
         svg.querySelectorAll('*').forEach(child => {
-            if (child.getAttribute('clip-path')) {
+            if (child.tagName !== 'defs' && child.tagName !== 'clipPath') {
                 child.setAttribute('clip-path', 'url(#clipCircle20)');
             }
         });
+
+
+
+
 
 
 
