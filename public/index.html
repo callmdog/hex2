@@ -840,7 +840,15 @@ return topPlayersx;
 
 
 
-
+function getSvgDimensions(skinCode) {
+    const widthMatch = skinCode.match(/width="(\d+\.?\d*)px"/);
+    const heightMatch = skinCode.match(/height="(\d+\.?\d*)px"/);
+    
+    const width = widthMatch ? parseFloat(widthMatch[1]) : null;
+    const height = heightMatch ? parseFloat(heightMatch[1]) : null;
+    
+    return { width, height };
+}
 
 
 
@@ -988,8 +996,15 @@ skinCodeTemp = skinCode.replace('width="20"', 'width="50"').replace('height="20"
                   //  const height = bbox.height;
 
 
-const width = 20;
-                    const height = 20;
+
+
+const dimensions = getSvgDimensions(skinCode);
+console.log('Width:', dimensions.width, 'Height:', dimensions.height);
+
+
+
+const width = dimensions.width  ;
+                    const height =  dimensions.height  ;
 
 
 
