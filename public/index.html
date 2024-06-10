@@ -360,7 +360,7 @@ function addWaves(svg, colors) {
         const newClipCircle = document.createElementNS(svgNamespace, "circle");
         newClipCircle.setAttribute("cx", 30);
         newClipCircle.setAttribute("cy", 30);
-        newClipCircle.setAttribute("r", 30);
+        newClipCircle.setAttribute("r", 10);
         newClipPath.appendChild(newClipCircle);
         
         const defs = svg.querySelector('defs') || document.createElementNS(svgNamespace, "defs");
