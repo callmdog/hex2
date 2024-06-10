@@ -327,7 +327,15 @@ function addWaves(svg, colors) {
             });
 
             // Add click event listener to the select button
-            skinButton.addEventListener('click', function() {
+          
+
+
+
+
+
+
+
+  skinButton.addEventListener('click', function() {
     const selectedSkin = document.querySelector('.skin.selected');
     if (selectedSkin) {
         const svg = selectedSkin.querySelector('svg').cloneNode(true);
@@ -338,6 +346,32 @@ function addWaves(svg, colors) {
 
         // Print the SVG code to the console
         console.log(svg.outerHTML);
+
+
+
+
+
+const newClipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
+        newClipPath.setAttribute("id", "clipCircle20");
+        const newClipCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        newClipCircle.setAttribute("cx", 10);
+        newClipCircle.setAttribute("cy", 10);
+        newClipCircle.setAttribute("r", 10);
+        newClipPath.appendChild(newClipCircle);
+        
+        const defs = svg.querySelector('defs') || document.createElementNS("http://www.w3.org/2000/svg", "defs");
+        defs.appendChild(newClipPath);
+        svg.appendChild(defs);
+
+        svg.querySelectorAll('*').forEach(child => {
+            if (child.getAttribute('clip-path')) {
+                child.setAttribute('clip-path', 'url(#clipCircle20)');
+            }
+        });
+
+
+
+
 
 skinCode = svg.outerHTML;
 
@@ -352,6 +386,15 @@ skinCode = svg.outerHTML;
                 // Hide the selectSkin div
                 selectSkin.style.display = 'none';
             });
+
+
+
+
+
+
+
+
+
 
 
 
