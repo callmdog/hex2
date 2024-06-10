@@ -926,7 +926,6 @@ const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg
 var skinCodeTemp = player.skinCode;
 
 
-console.log("codeeeeeee:", skinCodeTemp);
 
 
 
@@ -935,7 +934,12 @@ console.log("codeeeeeee:", skinCodeTemp);
 
 
 
-                    svgContainer.innerHTML = player.skinCodeTemp;
+                    svgContainer.innerHTML = skinCodeTemp;
+
+
+//console.log("codeeeeeee:", svgContainer);
+
+
                     playerElement.appendChild(svgContainer);
 
 
