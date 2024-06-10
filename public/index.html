@@ -879,8 +879,22 @@ const svgContainer = existingPlayerElement.querySelector('svg');
                 //const sizeCalc = (0.2 * ptsf) + 9;
 
                 // Actualiza el width y height del contenedor SVG
-                svgContainer.setAttribute('width', sizeCalc + 'px');
-                svgContainer.setAttribute('height', sizeCalc + 'px');
+                //svgContainer.setAttribute('width', sizeCalc + 'px');
+                //svgContainer.setAttribute('height', sizeCalc + 'px');
+
+
+
+
+let skinCodeTemp = player.skinCode;
+                skinCodeTemp = skinCodeTemp.replace('width="20"', `width="${sizeCalc}"`).replace('height="20"', `height="${sizeCalc}"`);
+
+                // Reemplaza el contenido del SVG
+                svgContainer.innerHTML = skinCodeTemp;
+            
+
+
+
+
             }
 
 
