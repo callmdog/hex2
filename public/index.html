@@ -841,8 +841,8 @@ return topPlayersx;
 
 
 function getSvgDimensions(skinCode) {
-    const widthMatch = skinCode.match(/width="(\d+\.?\d*)px"/);
-    const heightMatch = skinCode.match(/height="(\d+\.?\d*)px"/);
+    const widthMatch = skinCode.match(/width="(\d+\.?\d*)"/);
+    const heightMatch = skinCode.match(/height="(\d+\.?\d*)"/);
     
     const width = widthMatch ? parseFloat(widthMatch[1]) : null;
     const height = heightMatch ? parseFloat(heightMatch[1]) : null;
