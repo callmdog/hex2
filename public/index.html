@@ -869,6 +869,25 @@ const ptsf = parseFloat(player.puntos);
 const sizeCalc = (0.2 * ptsf) + 9;
 //existingPlayerElement.setAttribute('r', sizeCalc);
 
+
+
+const svgContainer = existingPlayerElement.querySelector('svg');
+
+            if (svgContainer) {
+                // Calcula el nuevo tamaño basado en puntos
+                //const ptsf = parseFloat(player.puntos);
+                //const sizeCalc = (0.2 * ptsf) + 9;
+
+                // Actualiza el width y height del contenedor SVG
+                svgContainer.setAttribute('width', sizeCalc + 'px');
+                svgContainer.setAttribute('height', sizeCalc + 'px');
+            }
+
+
+
+
+
+
 //
 
 let velocidadD = player.velocidad;
