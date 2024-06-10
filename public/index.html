@@ -351,21 +351,30 @@ function addWaves(svg, colors) {
 
 
 	    
- // Crear el clip path para recortar el círculo
-        const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-        const clipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
-        clipPath.setAttribute("id", "clipCircle");
-        const clipCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        clipCircle.setAttribute("cx", 10);
-        clipCircle.setAttribute("cy", 10);
-        clipCircle.setAttribute("r", 10); // Ajustar el radio según sea necesario
-        clipPath.appendChild(clipCircle);
-        defs.appendChild(clipPath);
-        svg.appendChild(defs);
+ svg.setAttribute('viewBox', '0 0 60 60');  // Ajusta el viewBox según sea necesario
 
-        // Aplicar el clip path al SVG del círculo seleccionado
-        svg.setAttribute("clip-path", "url(#clipCircle)");
+        // Crear un nuevo clip-path para el SVG redimensionado
+        const svgNamespace = "http://www.w3.org/2000/svg";
+        const newClipPath = document.createElementNS(svgNamespace, "clipPath");
+        newClipPath.setAttribute("id", "clipCircle20");
+        const newClipCircle = document.createElementNS(svgNamespace, "circle");
+        newClipCircle.setAttribute("cx", 30);
+        newClipCircle.setAttribute("cy", 30);
+        newClipCircle.setAttribute("r", 30);
+        newClipPath.appendChild(newClipCircle);
+        
+        const defs = svg.querySelector('defs') || document.createElementNS(svgNamespace, "defs");
+        defs.appendChild(newClipPath);
+        if (!svg.querySelector('defs')) {
+            svg.insertBefore(defs, svg.firstChild);  // Asegúrate de insertar defs como el primer elemento hijo
+        }
 
+        // Aplica el nuevo clip-path a todos los elementos relevantes
+        svg.querySelectorAll('*').forEach(child => {
+            if (child.tagName !== 'defs' && child.tagName !== 'clipPath') {
+                child.setAttribute('clip-path', 'url(#clipCircle20)');
+            }
+        });
 
 
 
