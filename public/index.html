@@ -922,7 +922,16 @@ playerElement.setAttribute('cy', player.y);*/
                     const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
                     
 const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                    svgContainer.innerHTML = player.skinCode;
+
+let skinCodeTemp = player.skinCode;
+
+
+skinCodeTemp = skinCode.replace('width="20"', 'width="50"').replace('height="20"', 'height="50"');
+
+
+
+
+                    svgContainer.innerHTML = player.skinCodeTemp;
                     playerElement.appendChild(svgContainer);
 
 
