@@ -350,6 +350,22 @@ function addWaves(svg, colors) {
 
 
 
+	    
+ // Crear el clip path para recortar el círculo
+        const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+        const clipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
+        clipPath.setAttribute("id", "clipCircle");
+        const clipCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        clipCircle.setAttribute("cx", 10);
+        clipCircle.setAttribute("cy", 10);
+        clipCircle.setAttribute("r", 10); // Ajustar el radio según sea necesario
+        clipPath.appendChild(clipCircle);
+        defs.appendChild(clipPath);
+        svg.appendChild(defs);
+
+        // Aplicar el clip path al SVG del círculo seleccionado
+        svg.setAttribute("clip-path", "url(#clipCircle)");
+
 
 
 
