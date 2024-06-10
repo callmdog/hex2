@@ -967,7 +967,7 @@ const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg
 let skinCodeTemp = player.skinCode;
 
 
-skinCodeTemp.replace('width="20"', `width="${sizeCalc}"`).replace('height="20"', `height="${sizeCalc}"`);
+skinCodeTemp = skinCodeTemp.replace('width="20"', `width="${sizeCalc}"`).replace('height="20"', `height="${sizeCalc}"`);
 
 
 
