@@ -458,7 +458,7 @@ function createRandomPolygon(radius) {
 }
 
 // Generate random SVGs for each skin
-const skins = document.querySelectorAll('.skin');
+
 skins.forEach(skin => {
     const svg = generateCreativeCircleSVG(25); // Using a radius of 25 for 50x50 containers
     skin.appendChild(svg);
