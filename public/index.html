@@ -462,6 +462,8 @@ function createRandomPolygon(radius) {
 skins.forEach(skin => {
     const svg = generateCreativeCircleSVG(25); // Using a radius of 25 for 50x50 containers
     skin.appendChild(svg);
+
+skinCode = svg;
 });
 
 // Add click event listener for selection
@@ -555,7 +557,7 @@ function obtenerCodigoDibujadoConRecorte(svgElement) {
         console.log(svg.outerHTML);
 
 
-skinCode = svg.outerHTML;
+//skinCode = svg.outerHTML;
 
 	  
 
