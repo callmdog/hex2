@@ -340,10 +340,10 @@ function generateCreativeCircleSVG(radius) {
     svg.setAttribute("viewBox", `0 0 ${radius * 2} ${radius * 2}`);
     svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
-    // Create defs and clipPath
+    // Definir el clipPath del círculo
     const defs = document.createElementNS(svgNamespace, "defs");
     const clipPath = document.createElementNS(svgNamespace, "clipPath");
-    clipPath.setAttribute("id", `clipCircle${radius}`);
+    clipPath.setAttribute("id", "clipCircle");
     const clipCircle = document.createElementNS(svgNamespace, "circle");
     clipCircle.setAttribute("cx", radius);
     clipCircle.setAttribute("cy", radius);
@@ -352,13 +352,13 @@ function generateCreativeCircleSVG(radius) {
     defs.appendChild(clipPath);
     svg.appendChild(defs);
 
-    // Create main circle
+    // Create main circle (visible area)
     const mainCircle = document.createElementNS(svgNamespace, "circle");
     mainCircle.setAttribute("cx", radius);
     mainCircle.setAttribute("cy", radius);
     mainCircle.setAttribute("r", radius);
     mainCircle.setAttribute("fill", getRandomColor());
-    mainCircle.setAttribute("clip-path", `url(#clipCircle${radius})`);
+    mainCircle.setAttribute("clip-path", "url(#clipCircle)");
     svg.appendChild(mainCircle);
 
     // Add random shapes
@@ -366,20 +366,23 @@ function generateCreativeCircleSVG(radius) {
     const numShapes = 5 + Math.floor(Math.random() * 6);  // Between 5 and 10 shapes
     for (let i = 0; i < numShapes; i++) {
         const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+        let shape;
         switch (shapeType) {
             case 'circle':
-                svg.appendChild(createRandomCircle(radius));
+                shape = createRandomCircle(radius);
                 break;
             case 'rect':
-                svg.appendChild(createRandomRect(radius));
+                shape = createRandomRect(radius);
                 break;
             case 'line':
-                svg.appendChild(createRandomLine(radius));
+                shape = createRandomLine(radius);
                 break;
             case 'polygon':
-                svg.appendChild(createRandomPolygon(radius));
+                shape = createRandomPolygon(radius);
                 break;
         }
+        shape.setAttribute("clip-path", "url(#clipCircle)");
+        svg.appendChild(shape);
     }
 
     return svg;
@@ -397,47 +400,48 @@ function getRandomColor() {
 function createRandomCircle(radius) {
     const svgNamespace = "http://www.w3.org/2000/svg";
     const circle = document.createElementNS(svgNamespace, "circle");
-    const cx = Math.random() * radius * 2;
-    const cy = Math.random() * radius * 2;
+    const angle = Math.random() * 2 * Math.PI;
     const r = Math.random() * (radius / 2);
+    const cx = radius + (Math.random() * (radius - r) * Math.cos(angle));
+    const cy = radius + (Math.random() * (radius - r) * Math.sin(angle));
     circle.setAttribute("cx", cx);
     circle.setAttribute("cy", cy);
     circle.setAttribute("r", r);
     circle.setAttribute("fill", getRandomColor());
-    circle.setAttribute("clip-path", `url(#clipCircle${radius})`);
     return circle;
 }
 
 function createRandomRect(radius) {
     const svgNamespace = "http://www.w3.org/2000/svg";
     const rect = document.createElementNS(svgNamespace, "rect");
+    const angle = Math.random() * 2 * Math.PI;
     const width = Math.random() * radius;
     const height = Math.random() * radius;
-    const x = Math.random() * (radius * 2 - width);
-    const y = Math.random() * (radius * 2 - height);
+    const x = radius + (Math.random() * (radius - width) * Math.cos(angle)) - width / 2;
+    const y = radius + (Math.random() * (radius - height) * Math.sin(angle)) - height / 2;
     rect.setAttribute("x", x);
     rect.setAttribute("y", y);
     rect.setAttribute("width", width);
     rect.setAttribute("height", height);
     rect.setAttribute("fill", getRandomColor());
-    rect.setAttribute("clip-path", `url(#clipCircle${radius})`);
     return rect;
 }
 
 function createRandomLine(radius) {
     const svgNamespace = "http://www.w3.org/2000/svg";
     const line = document.createElementNS(svgNamespace, "line");
-    const x1 = Math.random() * radius * 2;
-    const y1 = Math.random() * radius * 2;
-    const x2 = Math.random() * radius * 2;
-    const y2 = Math.random() * radius * 2;
+    const angle1 = Math.random() * 2 * Math.PI;
+    const angle2 = Math.random() * 2 * Math.PI;
+    const x1 = radius + Math.random() * radius * Math.cos(angle1);
+    const y1 = radius + Math.random() * radius * Math.sin(angle1);
+    const x2 = radius + Math.random() * radius * Math.cos(angle2);
+    const y2 = radius + Math.random() * radius * Math.sin(angle2);
     line.setAttribute("x1", x1);
     line.setAttribute("y1", y1);
     line.setAttribute("x2", x2);
     line.setAttribute("y2", y2);
     line.setAttribute("stroke", getRandomColor());
     line.setAttribute("stroke-width", Math.random() * 2 + 1);
-    line.setAttribute("clip-path", `url(#clipCircle${radius})`);
     return line;
 }
 
@@ -447,23 +451,21 @@ function createRandomPolygon(radius) {
     const points = [];
     const numPoints = 3 + Math.floor(Math.random() * 5); // Between 3 and 7 points
     for (let i = 0; i < numPoints; i++) {
-        const x = Math.random() * radius * 2;
-        const y = Math.random() * radius * 2;
+        const angle = Math.random() * 2 * Math.PI;
+        const x = radius + Math.random() * radius * Math.cos(angle);
+        const y = radius + Math.random() * radius * Math.sin(angle);
         points.push(`${x},${y}`);
     }
     polygon.setAttribute("points", points.join(" "));
     polygon.setAttribute("fill", getRandomColor());
-    polygon.setAttribute("clip-path", `url(#clipCircle${radius})`);
     return polygon;
 }
 
 // Generate random SVGs for each skin
-
+const skins = document.querySelectorAll('.skin');
 skins.forEach(skin => {
     const svg = generateCreativeCircleSVG(25); // Using a radius of 25 for 50x50 containers
     skin.appendChild(svg);
-
-skinCode = svg;
 });
 
 // Add click event listener for selection
@@ -474,7 +476,6 @@ skins.forEach(skin => {
     });
 });
 
-// Handle select button click
 
 
 
@@ -482,18 +483,11 @@ skinButton.addEventListener('click', function() {
     const selectedSkin = document.querySelector('.skin.selected');
     if (selectedSkin) {
         const svg = selectedSkin.querySelector('svg').cloneNode(true);
-        
-        const recortadoSVG = obtenerCodigoDibujadoConRecorte(svg);
-        skinCode = recortadoSVG;
+        svg.setAttribute("width", 100);
+        svg.setAttribute("height", 100);
+        svg.setAttribute("viewBox", "0 0 100 100");
 
-
-    //    playerGroup.innerHTML = '';
-    //    playerGroup.appendChild(svg);
-
-
-
-//skinCode = svg.outerHTML;
-
+      skinCode = svg.outerHTML  ;
 
         // Print the SVG code to the console
         console.log(svg.outerHTML);
