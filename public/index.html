@@ -436,7 +436,7 @@ function createRandomLine(radius) {
     line.setAttribute("x2", x2);
     line.setAttribute("y2", y2);
     line.setAttribute("stroke", getRandomColor());
-    line.setAttribute("stroke-width", Math.random() * 3 + 1);
+    line.setAttribute("stroke-width", Math.random() * 2 + 1);
     line.setAttribute("clip-path", `url(#clipCircle${radius})`);
     return line;
 }
@@ -445,7 +445,7 @@ function createRandomPolygon(radius) {
     const svgNamespace = "http://www.w3.org/2000/svg";
     const polygon = document.createElementNS(svgNamespace, "polygon");
     const points = [];
-    const numPoints = 3 + Math.floor(Math.random() * 5);  // Between 3 and 7 points
+    const numPoints = 3 + Math.floor(Math.random() * 5); // Between 3 and 7 points
     for (let i = 0; i < numPoints; i++) {
         const x = Math.random() * radius * 2;
         const y = Math.random() * radius * 2;
@@ -457,12 +457,66 @@ function createRandomPolygon(radius) {
     return polygon;
 }
 
-// Usage example for skins
+// Generate random SVGs for each skin
 const skins = document.querySelectorAll('.skin');
 skins.forEach(skin => {
-    const svg = generateCreativeCircleSVG(25); // 25 is the radius for the skins
+    const svg = generateCreativeCircleSVG(25); // Using a radius of 25 for 50x50 containers
     skin.appendChild(svg);
 });
+
+// Add click event listener for selection
+skins.forEach(skin => {
+    skin.addEventListener('click', function() {
+        skins.forEach(s => s.classList.remove('selected'));
+        this.classList.add('selected');
+    });
+});
+
+// Handle select button click
+
+const playerGroup = document.getElementById('playerGroup');
+
+skinButton.addEventListener('click', function() {
+    const selectedSkin = document.querySelector('.skin.selected');
+    if (selectedSkin) {
+        const svg = selectedSkin.querySelector('svg').cloneNode(true);
+        svg.setAttribute('width', '20');
+        svg.setAttribute('height', '20');
+
+        const clipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
+        clipPath.setAttribute("id", "clipCircle20");
+        const clipCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        clipCircle.setAttribute("cx", 10);
+        clipCircle.setAttribute("cy", 10);
+        clipCircle.setAttribute("r", 10);
+        clipPath.appendChild(clipCircle);
+
+        const defs = svg.querySelector('defs') || document.createElementNS("http://www.w3.org/2000/svg", "defs");
+        defs.appendChild(clipPath);
+        svg.insertBefore(defs, svg.firstChild);
+
+        svg.querySelectorAll('*').forEach(child => {
+            if (child.getAttribute('clip-path')) {
+                child.setAttribute('clip-path', 'url(#clipCircle20)');
+            }
+        });
+
+    //    playerGroup.innerHTML = '';
+    //    playerGroup.appendChild(svg);
+
+        // Print the SVG code to the console
+        console.log(svg.outerHTML);
+
+        // Hide the selectSkin element
+        selectSkin.style.display = 'none';
+    }
+});
+
+
+
+
+
+
 
 
 
@@ -479,15 +533,6 @@ skins.forEach(skin => {
 
         // Print the SVG code to the console
         console.log(svg.outerHTML);
-
-
-
-
-	    
-   
-
-
-
 
 
 skinCode = svg.outerHTML;
