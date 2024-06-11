@@ -480,29 +480,9 @@ skinButton.addEventListener('click', function() {
     const selectedSkin = document.querySelector('.skin.selected');
     if (selectedSkin) {
         const svg = selectedSkin.querySelector('svg').cloneNode(true);
-        svg.setAttribute('width', '20');
-        svg.setAttribute('height', '20');
-        svg.setAttribute('viewBox', '0 0 20 20');
-        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-
-        // Update clipPath to fit new dimensions
-        const clipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
-        clipPath.setAttribute("id", "clipCircle20");
-        const clipCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        clipCircle.setAttribute("cx", 10);
-        clipCircle.setAttribute("cy", 10);
-        clipCircle.setAttribute("r", 10);
-        clipPath.appendChild(clipCircle);
-
-        const defs = svg.querySelector('defs') || document.createElementNS("http://www.w3.org/2000/svg", "defs");
-        defs.appendChild(clipPath);
-        svg.insertBefore(defs, svg.firstChild);
-
-        svg.querySelectorAll('*').forEach(child => {
-            if (child.getAttribute('clip-path')) {
-                child.setAttribute('clip-path', 'url(#clipCircle20)');
-            }
-        });
+        
+        const recortadoSVG = obtenerCodigoDibujadoConRecorte(svg);
+        skinCode = recortadoSVG;
 
 
     //    playerGroup.innerHTML = '';
@@ -510,7 +490,7 @@ skinButton.addEventListener('click', function() {
 
 
 
-skinCode = svg.outerHTML;
+//skinCode = svg.outerHTML;
 
 
         // Print the SVG code to the console
@@ -523,10 +503,41 @@ skinCode = svg.outerHTML;
 
 
 
+function obtenerCodigoDibujadoConRecorte(svgElement) {
+    const elementosSVG = svgElement.querySelectorAll('circle, rect, line, polygon');
+    const radius = 100;
+
+    let codigoSVG = `<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">`;
+    
+    // Definir el clipPath del círculo
+    codigoSVG += `<defs><clipPath id="clipCircle"><circle cx="100" cy="100" r="100"/></clipPath></defs>`;
+    
+    elementosSVG.forEach(elemento => {
+        let etiquetaSVG = elemento.tagName.toLowerCase();
+        let atributos = '';
+        
+        for (let i = 0; i < elemento.attributes.length; i++) {
+            let atributo = elemento.attributes[i];
+            atributos += ` ${atributo.name}="${atributo.value}"`;
+        }
+        
+        // Aplicar el clipPath a todos los elementos
+        atributos += ` clip-path="url(#clipCircle)"`;
+        
+        codigoSVG += `<${etiquetaSVG}${atributos}></${etiquetaSVG}>`;
+    });
+
+    codigoSVG += '</svg>';
+
+    return codigoSVG;
+}
 
 
 
 /*
+
+
+
 
 
 
