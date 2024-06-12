@@ -483,9 +483,9 @@ skinButton.addEventListener('click', function() {
     const selectedSkin = document.querySelector('.skin.selected');
     if (selectedSkin) {
         const svg = selectedSkin.querySelector('svg').cloneNode(true);
-        svg.setAttribute("width", 100);
-        svg.setAttribute("height", 100);
-        svg.setAttribute("viewBox", "0 0 100 100");
+        svg.setAttribute("width", 20);
+        svg.setAttribute("height", 20);
+        svg.setAttribute("viewBox", "0 0 20 20");
 
       skinCode = svg.outerHTML  ;
 
@@ -1138,14 +1138,14 @@ let skinCodeTemp = player.skinCode;
 let velocidadD = player.velocidad;
 
 if (velocidadD===false){
-existingPlayerElement.setAttribute('stroke', 'white'); // Color del borde
-existingPlayerElement.setAttribute('stroke-width', '1'); // Ancho del borde
+//existingPlayerElement.setAttribute('stroke', 'white'); // Color del borde
+//existingPlayerElement.setAttribute('stroke-width', '1'); // Ancho del borde
 //existingPlayerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
 }
 if (velocidadD===true){
-existingPlayerElement.setAttribute('stroke', 'blue'); // Color del borde
-existingPlayerElement.setAttribute('stroke-width', '3'); // Ancho del borde
-//existingPlayerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
+//existingPlayerElement.setAttribute('stroke', 'blue'); // Color del borde
+//existingPlayerElement.setAttribute('stroke-width', '3'); // Ancho del borde
+////existingPlayerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
 }
 
 
@@ -1575,7 +1575,8 @@ const bbox = circleElement.getBBox();
                   const height = bbox.height;
 
 
-
+  console.log("SVG!!!! Width:", width);
+        console.log("SVG!!!! Height:", height);
 
 //	circleElement.setAttribute('data-x', newX );
 //circleElement.setAttribute('data-y', newY);
