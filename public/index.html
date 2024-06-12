@@ -464,7 +464,7 @@ function createRandomPolygon(radius) {
 // Generate random SVGs for each skin
 
 skins.forEach(skin => {
-    const svg = generateCreativeCircleSVG(25); // Using a radius of 25 for 50x50 containers
+    const svg = generateCreativeCircleSVG(10); // Using a radius of 25 for 50x50 containers
     skin.appendChild(svg);
 });
 
@@ -484,12 +484,12 @@ skinButton.addEventListener('click', function() {
     if (selectedSkin) {
         const svg = selectedSkin.querySelector('svg').cloneNode(true);
         svg.setAttribute("width", 100);
-        svg.setAttribute("height", 100);
+        svg.setAttribute("height", 10);
         svg.setAttribute("viewBox", "0 0 100 100");
 
 
 const scale = 0.2;  // 20/100 = 0.2 para escalar de 100 a 20
-        svg.setAttribute("transform", `scale(${scale})`);
+    //    svg.setAttribute("transform", `scale(${scale})`);
 
 
 
