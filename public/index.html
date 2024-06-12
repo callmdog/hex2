@@ -484,7 +484,7 @@ skinButton.addEventListener('click', function() {
     if (selectedSkin) {
         const svg = selectedSkin.querySelector('svg').cloneNode(true);
         svg.setAttribute("width", 100);
-        svg.setAttribute("height", 10);
+        svg.setAttribute("height", 100);
         svg.setAttribute("viewBox", "0 0 100 100");
 
 
@@ -1193,6 +1193,12 @@ playerElement.setAttribute('cy', player.y);*/
                     const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
                     
 const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+
+const scale = 0.2;  // 20/100 = 0.2 para escalar de 100 a 20
+        playerElement.setAttribute("transform", `scale(${scale})`);
+
+
 
 let skinCodeTemp = player.skinCode;
 
