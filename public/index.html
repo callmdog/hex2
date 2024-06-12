@@ -483,9 +483,12 @@ skinButton.addEventListener('click', function() {
     const selectedSkin = document.querySelector('.skin.selected');
     if (selectedSkin) {
         const svg = selectedSkin.querySelector('svg').cloneNode(true);
-        svg.setAttribute("width", 100);
-        svg.setAttribute("height", 100);
+        svg.setAttribute("width", 20);
+        svg.setAttribute("height", 20);
         svg.setAttribute("viewBox", "0 0 100 100");
+
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
 
 
 const scale = 0.2;  // 20/100 = 0.2 para escalar de 100 a 20
