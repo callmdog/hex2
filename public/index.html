@@ -487,6 +487,13 @@ skinButton.addEventListener('click', function() {
         svg.setAttribute("height", 20);
         svg.setAttribute("viewBox", "0 0 100 100");
 
+
+const scale = 0.2;  // 20/100 = 0.2 para escalar de 100 a 20
+        svg.setAttribute("transform", `scale(${scale})`);
+
+
+
+
       skinCode = svg.outerHTML  ;
 
         // Print the SVG code to the console
