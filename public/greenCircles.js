@@ -1,3 +1,27 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+
+socket.on('greenCirclesGenerated', (circles) => {
+	console.log('GREEN CIRCLES GENERATED.');
+	greenCircles = [];
+	greenCircles2 = [];
+	//console.log('CIRLES PUSH:', circles);
+	greenCircles.push(...circles);
+	//console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
+	generateGreenCircles();
+});
+socket.on('borrarGreen', () => {
+	console.log('BORRAR GREEN CIRCLES.');
+	const greenCircles = document.querySelectorAll('circle[fill="green"]');
+	// Iterar sobre cada círculo verde y eliminarlo
+	greenCircles.forEach(circle => {
+	circle.remove();
+	});
+	const blueCircles = document.querySelectorAll('circle[fill="blue"]');
+	// Iterar sobre cada círculo verde y eliminarlo
+	blueCircles.forEach(circle => {
+	circle.remove();
+	});		
+});
 //8. GENERA CIRCULOS VERDES DEL SERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 
@@ -69,27 +93,16 @@ greenCircles.forEach((circle, index) => {
 
 
 function borrar(){
-
-//blueCircles = [];
-//blueCircles2 = [];
-	
-//greenCircles = [];
-//greenCircles2 = [];	
-
 const greenCircles = document.querySelectorAll('circle[fill="green"]');
-
 // Iterar sobre cada círculo verde y eliminarlo
 greenCircles.forEach(circle => {
     circle.remove();
 });
-
 const blueCircles = document.querySelectorAll('circle[fill="blue"]');
-
 // Iterar sobre cada círculo verde y eliminarlo
 blueCircles.forEach(circle => {
     circle.remove();
-});
-	
+});	
 }
 
 
@@ -127,3 +140,6 @@ yellowDot.setAttribute('r', '2'); yellowDot.setAttribute('fill', 'yellow');
 const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(yellowDot); }
 }
 //drawRandomYellowPointsOnHexLines();	
+
+
+});			  
