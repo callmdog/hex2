@@ -233,8 +233,7 @@ function preventZoom(event) {
 event.preventDefault();
 }
 
-
-
+	
 ////FUNCION JUGADOR TEXTO ELIMINATED
 function playerText(x, y, name) {
 const playerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -253,10 +252,9 @@ hexagonGroup.removeChild(playerText);
 
 	
 createHexagons(socket, function() {
-console.log("createHexagons end");
-socket.emit('dibujarVerdes', 'numero');
+	console.log("createHexagons end");
+	socket.emit('dibujarVerdes', 'numero');
 });	
-console.log('Camara:', Camara);	
 	
 //VARIABLES/////////////////////////////////////////////
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/////	
@@ -280,8 +278,8 @@ let currentCameraY3 = 0;
 let currentCamera10 = 0;
 let currentCameraY10 = 0;
 const camera = document.getElementById('camera');
-//let playerElement = document.getElementById('playerGroup');
-	
+let bX = 0;
+let bY = 0;	
 let currentCameraX4 = 0;	
 let currentCameraY4 = 0;	
 let textLine1 = document.getElementById('textLine1');
@@ -291,6 +289,7 @@ let textLine4 = document.getElementById('textLine4');
 let textLine5 = document.getElementById('textLine5');
 let textLine6 = document.getElementById('textLine6');
 let textLine7 = document.getElementById('textLine7');
+let CalculoCam = 0;	
 	
 textLine1.classList.add('no-select');
 textLine2.classList.add('no-select');
@@ -299,52 +298,27 @@ textLine4.classList.add('no-select');
 textLine5.classList.add('no-select');
 textLine6.classList.add('no-select');
 textLine7.classList.add('no-select');
-	
-let CalculoCam = 0;
-	
+		
 function addPlayer(nombre, puntos, color) {
-const nuevoJugador = {
-nombre: nombre,
-puntos: puntos,
-color: color
-};
-topplayers.push(nuevoJugador);
+	const nuevoJugador = { nombre: nombre, puntos: puntos, color: color };
+	topplayers.push(nuevoJugador);
 }
 
-//CIRCULO AZUL DEFINIDO
-const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-bluePointElement.setAttribute('id', bluePoint.id);
-bluePointElement.setAttribute('r', '8');
-bluePointElement.setAttribute('fill', bluePoint.color);
-bluePointElement.setAttribute('cx', bluePoint.x);
-bluePointElement.setAttribute('cy', bluePoint.y);
-
-let bX = 0;
-let bY = 0;
-
 /////////////////////////////////////////////////////////////////////
-
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	
 firstP.addEventListener('click', function (event) {
-//console.log('HEXAGON GROUP LOG');
-const mouseX = event.clientX - firstP.getBoundingClientRect().left;
-const mouseY = event.clientY - firstP.getBoundingClientRect().top;
-moveBluePoint(mouseX, mouseY);
+	//console.log('HEXAGON GROUP LOG');
+	const mouseX = event.clientX - firstP.getBoundingClientRect().left;
+	const mouseY = event.clientY - firstP.getBoundingClientRect().top;
+	moveBluePoint(mouseX, mouseY);
 });
 
 //CONNECTED USERS////////////////////////////////
 ///////////////////////////////////////////////// 
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 socket.on('userCount', function (count) {
-connectedUsers = count;
-drawUserCount(); // Llamar a la función para actualizar el texto en el canvas
-});
-function drawUserCount() {
-context.fillStyle = 'black';
-context.font = '16px Arial';
-context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 5);
-}	
+	connectedUsers = count;
+});	
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
@@ -356,9 +330,8 @@ context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 5);
 //5. ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 socket.on('assignColor', function (playerName) {
-console.log('SOCKET ASSIGN COLOR');
-socket.emit('updatePlayersRequest');
-//X e Y random for Player al principio	
+	console.log('SOCKET ASSIGN COLOR');
+	socket.emit('updatePlayersRequest');
 });	
 	
 	
@@ -371,7 +344,6 @@ topplayers = [];
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers2) {
 const player = updatedPlayers2[playerId];
-//LOGS		
 //console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
 addPlayer(player.nombre, player.puntos, player.color);
 
@@ -381,17 +353,12 @@ textLine6.style.fill = player.color;
 initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y  ;
 //console.log('Coord circ:', initialCameraX, initialCameraY);  
-//bluePointElement.setAttribute('cx', player.x);
-//bluePointElement.setAttribute('cy', player.y);
 bX = player.x;
 bY = player.y;
-//CalculoCam = initialCameraY;	
 
 //CAMERA MOVEMENT
 if (camProb === false) {
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-//playerElement.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-	
 }
 
 if (Camara===2){
@@ -599,8 +566,6 @@ animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 /////////////////////////////////////////////////////////////////////////////	
 function animateBluePoint(destinationX, destinationY) {
 //console.log('1. Animate Blue Point');
-//const startX = parseFloat(bluePointElement.getAttribute('x'));
-//const startY = parseFloat(bluePointElement.getAttribute('y'));
 const startX = bX;
 const startY = bY;
 const startTime = performance.now();
@@ -611,8 +576,6 @@ const elapsed = currentTime - startTime;
 const progress = Math.min(elapsed / duration, 1);
 const newX = startX + progress * (destinationX - startX);
 const newY = startY + progress * (destinationY - startY);	
-//bluePointElement.setAttribute('cx', newX);
-//bluePointElement.setAttribute('cy', newY);
 bX = newX;
 bY = newY;	
 if (progress < 1) { requestAnimationFrame(update);
