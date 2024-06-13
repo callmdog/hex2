@@ -200,6 +200,7 @@ const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(y
 //    let Velocidad = false;
 
 let segundosRestantes = 5;
+let Velocidad = false;
 
 
 let intervalo;
