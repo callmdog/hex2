@@ -197,7 +197,7 @@ const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(y
 //DETECTAR COLISION CON CIRCULOS VERDES !!!!!!!!!!!!!!!!!!
 ////////////////////////////////////////////////////////////
 
-    let Velocidad = false;
+//    let Velocidad = false;
 
 let segundosRestantes = 5;
 
