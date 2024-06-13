@@ -1122,7 +1122,7 @@ if (existingPlayerElement) {
 //existingPlayerElement.setAttribute('y', player.y);
 //const radius = parseFloat(existingPlayerElement.getAttribute('r')); // Convertir a número
 const ptsf = parseFloat(player.puntos); 
-const sizeCalc = (0.2 * ptsf) + 40;
+const sizeCalc = (0.4 * ptsf) + 40;
 //existingPlayerElement.setAttribute('r', sizeCalc);
 
 
@@ -1178,7 +1178,7 @@ if (velocidadD===true){
 } else {		
 
 const ptsf = parseFloat(player.puntos); 
-const sizeCalc = (0.2 * ptsf) + 20;	
+const sizeCalc = (0.4 * ptsf) + 40;	
 	
 /*const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 
@@ -1222,7 +1222,7 @@ const scale = 0.2;  // 20/100 = 0.2 para escalar de 100 a 20
 let skinCodeTemp = player.skinCode;
 
 
-skinCodeTemp = skinCodeTemp.replace('width="20"', `width="${sizeCalc}"`).replace('height="20"', `height="${sizeCalc}"`);
+skinCodeTemp = skinCodeTemp.replace('width="40"', `width="${sizeCalc}"`).replace('height="40"', `height="${sizeCalc}"`);
 
 
 
