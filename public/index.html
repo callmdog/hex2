@@ -132,7 +132,7 @@
 </div>
 	
 
-   <!-- SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
+<!-- SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 <!-- SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 <!-- SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 <canvas id="gameCanvas" height="0" style="background-color: #ff0000;"> </canvas>
@@ -172,18 +172,6 @@
 	  
 document.addEventListener('DOMContentLoaded', function () {
 
-
-	
-
-
-
-
-	
-
-
-
-
-	
 	
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -245,70 +233,7 @@ function preventZoom(event) {
 event.preventDefault();
 }
 
-//const socket = io();
 
-//GREEN BALLS GENERATE AND DELETE
-//GREEN BALLS GENERATE AND DELETE
-//GREEN BALLS GENERATE AND DELETE
-
-/*	
-socket.on('greenCirclesGenerated', (circles) => {
-	console.log('GREEN CIRCLES GENERATED.');
-	greenCircles = [];
-	greenCircles2 = [];
-	//console.log('CIRLES PUSH:', circles);
-	greenCircles.push(...circles);
-	//console.log(`GreenCircles LENGTH: ${greenCircles.length}:`);
-	generateGreenCircles();
-});
-socket.on('borrarGreen', () => {
-	console.log('BORRAR GREEN CIRCLES.');
-	const greenCircles = document.querySelectorAll('circle[fill="green"]');
-	// Iterar sobre cada círculo verde y eliminarlo
-	greenCircles.forEach(circle => {
-	circle.remove();
-	});
-	const blueCircles = document.querySelectorAll('circle[fill="blue"]');
-	// Iterar sobre cada círculo verde y eliminarlo
-	blueCircles.forEach(circle => {
-	circle.remove();
-	});		
-});
-*/	
-//END GREEN BALLS GENERATE AND DELETE
-	
-
-////FUNCION TEXT DE PUNTO
-/*function pointText(x, y) {
-const pointText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-pointText.setAttribute('x', x);
-pointText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
-pointText.setAttribute('text-anchor', 'middle');
-pointText.setAttribute('fill', 'green');
-pointText.setAttribute('font-size', '14px');
-pointText.textContent = "+1 point";
-hexagonGroup.appendChild(pointText);
-// Después de 1 segundo, eliminar el texto
-setTimeout(() => {
-hexagonGroup.removeChild(pointText);
-}, 500);
-}
-*/
-////FUNCION TEXT DE PUNTO
-/*function speedText(x, y) {
-const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-speedText.setAttribute('x', x);
-speedText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
-speedText.setAttribute('text-anchor', 'middle');
-speedText.setAttribute('fill', 'blue');
-speedText.setAttribute('font-size', '14px');
-speedText.textContent = "+ speed";
-hexagonGroup.appendChild(speedText);
-// Después de 1 segundo, eliminar el texto
-setTimeout(() => {
-hexagonGroup.removeChild(speedText);
-}, 500);
-}*/
 
 ////FUNCION JUGADOR TEXTO ELIMINATED
 function playerText(x, y, name) {
@@ -374,10 +299,8 @@ textLine4.classList.add('no-select');
 textLine5.classList.add('no-select');
 textLine6.classList.add('no-select');
 textLine7.classList.add('no-select');
-
 	
 let CalculoCam = 0;
-	
 	
 function addPlayer(nombre, puntos, color) {
 const nuevoJugador = {
@@ -574,6 +497,8 @@ console.log("CODE SVG:", svgContainer);
 //
 
 let velocidadD = player.velocidad;
+console.log("velocidadD:", velocidadD);
+	
 if (velocidadD===false){
 //existingPlayerElement.setAttribute('stroke', 'white'); 
 //existingPlayerElement.setAttribute('stroke-width', '1'); 
@@ -644,11 +569,6 @@ hexagonGroup.appendChild(textElement2); }
 //////////////////////////////////////////////////////////////////////////
 	
 function moveBluePoint( clickX, clickY ) {
-//const circles = document.querySelectorAll('circle[data-player-id="jugador"]');
-//circles.forEach((circle, index) => {
-//   console.log(`!!!!!!!!!!!Círculo ${index + 1}:`);
-//   console.log(circle); // Esto imprimirá toda la información del círculo en la consola
-//});
 
 //CAMARA/////////////////////
 const transformAttribute = camera.getAttribute('transform');
@@ -672,7 +592,7 @@ animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);
 	
 }	
 
-    let Velocidad = false;
+//let Velocidad = false;
 	
 
 //3. ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
