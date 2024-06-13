@@ -639,32 +639,22 @@ let Resto4;
 let Resto5;
 
 socket.on('animateBluePoint', function (animationData) {
-//console.log('SOCKET ANIMATE BLUE POINT');
 const playerId = animationData.playerId;
 const data = animationData.data;
 const txt = animationData.playerName;
-	const playerSpeed = animationData.playerSpeed;
-	
-//console.log('playerSpeed: ', playerSpeed  );
-
-	
-// Encuentra el círculo correspondiente al jugador
+const playerSpeed = animationData.playerSpeed;
 const playerElement = document.getElementById(playerId);
 console.log('playerElement: ', playerElement  );
-
-	
 const textElement2 = document.getElementById(playerId + '-name');
-const xCoordinate = playerElement.getAttribute('data-y');
-//console.log('CordY1: ', xCoordinate  );
-
 animateCircleLocally(playerElement, data.start, data.end, playerId, playerSpeed);
 animateNameLocally(textElement2, data.start, data.end);
 
+	
+//FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
+//FINISCHED ANIMATE CIRCLE LOCALLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!		
 animateCircleLocally(playerElement, data.start, data.end, playerId,playerSpeed, function() {
 
-const xCoordinate = playerElement.getAttribute('data-y');
-//console.log('CordY2: ', xCoordinate  );
 
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
 //CAMARAS MOVIMIENTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////////
@@ -737,7 +727,6 @@ console.log('Limite izq. ',  limitRightX2  );
 	
 //ABAJO!!!!!!!!
 const bluePointRightXA2 = currentY + bluePointHeight;
-	
 const limitRightY2 = - currentCameraY4p + (window.innerHeight * 0.3);
 if (bluePointRightXA2 < limitRightY2) {      
 //if(MoveCam){
@@ -753,7 +742,6 @@ animateCam4 (10,  10  ,bX, bY, svgHeight, function() {
 	
 // END 30% MENOS CAMARA IZQUIERDA!!!!!!!
 
-//console.log('La animación ha terminado');
 findAndMarkClosestVertices(inicialX, inicialY,currentCameraX3,currentCameraY3);
 isMoving = false;
 });
@@ -767,21 +755,11 @@ isMoving = false;
 //////////////////////////////////////////////////////////////////////
 let speedPlayer = 500;			  
 function animateCircleLocally(circleElement, start, end, playerId, playerSpeed, callback) {
-//console.log('ANIMATE CIRCLE LOCALLY');
-		let duration = 500;
+let duration = 500;
 
-if(playerSpeed === false){
-        console.log("SPEED:", playerSpeed);
+if(playerSpeed === false){ duration = 500; }
+if(playerSpeed === true){ duration = 50; }	
 	
-	 duration = 500;
-
-}
-if(playerSpeed === true){
-	        console.log("SPEED2:", playerSpeed);
-
-	 duration = 50;
-
-}	
 const startTime = performance.now();
 function update() {
 const currentTime = performance.now();
@@ -789,44 +767,11 @@ const progress = Math.min((currentTime - startTime) / duration, 1);
 const newX = start.x + progress * (end.x - start.x);
 const newY = start.y + progress * (end.y - start.y);	
 
-
-	
-	
-//circleElement.setAttribute('x', newX - (playerWidth/2));
-//circleElement.setAttribute('y', newY- (playerHeight/2));
-
-
-   /* const svgElement = circleElement.querySelector('svg');
-
-const width = svgElement.getAttribute('width');
-        const height = svgElement.getAttribute('height');
-        
-        console.log("SVG Width:", width);
-        console.log("SVG Height:", height);	
-	
-*/
-
-
 const bbox = circleElement.getBBox();
-                   const width = bbox.width;
-                  const height = bbox.height;
+const width = bbox.width;
+const height = bbox.height;
 
-
- // console.log("SVG!!!! Width:", width);
-   //     console.log("SVG!!!! Height:", height);
-
-//	circleElement.setAttribute('data-x', newX );
-//circleElement.setAttribute('data-y', newY);
-
-
-circleElement.setAttribute('transform', `translate(${newX-(width/2)},${newY-(height/2)})`);
-	
-//const velocidad = players[playerId].velocidad; // Aquí obtienes la velocidad del jugador
-//console.log(`VELOCIDAD!!!: ${playerSpeed}`);
-
-
-//circleElement.setAttribute('cx', start.x);
-//circleElement.setAttribute('cy', start.y);	
+circleElement.setAttribute('transform', `translate(${newX-(width/2)},${newY-(height/2)})`);	
 	
 if (socket.id===playerId) {
 	
@@ -836,17 +781,10 @@ const newYCam = svgHeight / 2 - newY;
 if(Camara===1)
 {
 camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
-	//playerElement.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
-
-//console.log(`CamY: ${newYCam}`);
-//console.log(`bY: ${bY}`);    
+  
 }
 ////END CAMERA MOVEMENT
 
-// Obtener el radio del círculo como una cadena de texto
-const radiusAsString = circleElement.getAttribute('r');
-// Convertir la cadena a un número flotante (float)
-//const radius = parseFloat(radiusAsString);
 const radius = 10;
 	
 detectarColisiones(circleElement);
