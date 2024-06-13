@@ -1137,38 +1137,25 @@ const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg
 playerElement.setAttribute('id', playerId);
 if(playerId !== socket.id) { playerElement.setAttribute('data-player-id', 'jugador'); }	
 
+//SKIN CODE OF PLAYER ELEMENT	
 let skinCodeTemp = player.skinCode;
 skinCodeTemp = skinCodeTemp.replace('width="40"', `width="${sizeCalc}"`).replace('height="40"', `height="${sizeCalc}"`);
 svgContainer.innerHTML = skinCodeTemp;
 playerElement.appendChild(svgContainer);
-
-const svgElement = playerElement.querySelector('svg');
-// Obtener y mostrar los atributos width y height
-const width2 = svgElement.getAttribute('width');
-const height2 = svgElement.getAttribute('height');
-console.log("Width2:", width2);
-console.log("Height2:", height2);
-		
-
+	
+//POSITION OF PLAYER ELEMENT
 const dimensions = getSvgDimensions(skinCodeTemp);
 console.log('Width:', dimensions.width, 'Height:', dimensions.height);
-
 const width = dimensions.width / 2 ;
 const height =  dimensions.height / 2 ;
+playerElement.setAttribute('transform', `translate(
+${player.x - (width/2)},
+${player.y  - (height/2)})`);
 
-console.log("CompJugador:", playerElement, playerId, player);
-console.log("Width:", width);
-console.log("Height:", height);	
-
-const deltaX = player.x - (width/2);
-const deltaY = player.y  - (height/2);
-
-console.log('dxy: ', width, deltaY  );
-
-playerElement.setAttribute('transform', `translate(${deltaX},${deltaY})`);
-
+//ADD PLAYERELEMENT TO HEXAGON MAP	
 hexagonGroup.appendChild(playerElement);
 
+console.log("CompJugador:", playerElement, playerId, player);
 /*playerElement.setAttribute('data-x', player.x);
 playerElement.setAttribute('data-y', player.y );		
 console.log('xy: ', player.x, player.y  );
@@ -1178,6 +1165,12 @@ console.log('cxy: ', currentX, currentY  );
 const bbox = playerElement.getBBox();
 const width2 = bbox.width;
 const height2 = bbox.height;
+console.log("Width2:", width2);
+console.log("Height2:", height2);
+const svgElement = playerElement.querySelector('svg');
+// Obtener y mostrar los atributos width y height
+const width2 = svgElement.getAttribute('width');
+const height2 = svgElement.getAttribute('height');
 console.log("Width2:", width2);
 console.log("Height2:", height2);
 */	
