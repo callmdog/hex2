@@ -299,3 +299,20 @@ return true;
 // No hay colisión
 return false;
 }
+
+
+function speedText(x, y) {
+const speedText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+speedText.setAttribute('x', x);
+speedText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
+speedText.setAttribute('text-anchor', 'middle');
+speedText.setAttribute('fill', 'blue');
+speedText.setAttribute('font-size', '14px');
+speedText.textContent = "+ speed";
+hexagonGroup.appendChild(speedText);
+// Después de 1 segundo, eliminar el texto
+setTimeout(() => {
+hexagonGroup.removeChild(speedText);
+}, 500);
+}
+
