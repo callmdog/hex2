@@ -162,13 +162,17 @@
 	  
 document.addEventListener('DOMContentLoaded', function () {
 
-let skinCode = 'sss';
 
 	
-const skins = document.querySelectorAll('.skin');
-            const playerGroup = document.getElementById('playerGroup');
-            const skinButton = document.getElementById('skinButton');
+//GENERAR CIRCULOS ALEATORIOS SKINS!!!!!!!!!!!!!
+//GENERAR CIRCULOS ALEATORIOS SKINS!!!!!!!!!!!!!
+//GENERAR CIRCULOS ALEATORIOS SKINS!!!!!!!!!!!!!
+//GENERAR CIRCULOS ALEATORIOS SKINS!!!!!!!!!!!!!
 
+let skinCode = 'sss';	
+const skins = document.querySelectorAll('.skin');
+const playerGroup = document.getElementById('playerGroup');
+const skinButton = document.getElementById('skinButton');
 const closeSkinButton = document.getElementById('closeSkin');
 
 
@@ -574,6 +578,9 @@ function obtenerCodigoDibujadoConRecorte(svgElement) {
 
 
 
+
+	
+	
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -594,7 +601,6 @@ if (selectedValue === '1') { Camara = 1;
 } else if (selectedValue === '2') { Camara = 2; }
 console.log('Camara:', Camara);
 });	
-
 
 	
 	
@@ -1020,11 +1026,7 @@ findAndMarkClosestVertices(inicialX, inicialY,currentCameraX3,currentCameraY3);
 
 const topPlayers = getTopPlayers();
 textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
-if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}
-
-
-
-	
+if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}	
 textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
 if (topPlayers[1] && topPlayers[1].color) {textLine2.style.fill = topPlayers[1].color; } else {}
 textLine3.textContent = topPlayers.length >= 3 ? `#3 ${topPlayers[2].nombre}: ${topPlayers[2].puntos}` : '';
@@ -1090,20 +1092,20 @@ function getSvgDimensions(skinCode) {
 //////////////////////////////////////////////////////////////////////
 
 socket.on('updatePlayers', function (updatedPlayers) {
-console.log('SOCKET UPDATE PLAYERS');
+console.log('SOCKET UPDATE PLAYERS');	
 	
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers) {
 const player = updatedPlayers[playerId];
 
-//PLAYER ELEMENT 
+const ptsf = parseFloat(player.puntos); 
+const sizeCalc = (0.4 * ptsf) + 40;		
+
+//EXISTING PLAYER ELEMENT//////////////////////////////////// 	 
 const existingPlayerElement = document.getElementById(playerId);
-
 if (existingPlayerElement) {	
-
 const ptsf = parseFloat(player.puntos); 
 const sizeCalc = (0.4 * ptsf) + 40;
-
 const svgContainer = existingPlayerElement.querySelector('svg');
 if (svgContainer) {
 let skinCodeTemp = player.skinCode;
@@ -1115,178 +1117,73 @@ console.log("CODE SVG:", svgContainer);
 //
 
 let velocidadD = player.velocidad;
-
 if (velocidadD===false){
-//existingPlayerElement.setAttribute('stroke', 'white'); // Color del borde
-//existingPlayerElement.setAttribute('stroke-width', '1'); // Ancho del borde
-//existingPlayerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
+//existingPlayerElement.setAttribute('stroke', 'white'); 
+//existingPlayerElement.setAttribute('stroke-width', '1'); 
+//existingPlayerElement.setAttribute('stroke-opacity', '0.5'); 
 }
 if (velocidadD===true){
-//existingPlayerElement.setAttribute('stroke', 'blue'); // Color del borde
-//existingPlayerElement.setAttribute('stroke-width', '3'); // Ancho del borde
-////existingPlayerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
+//existingPlayerElement.setAttribute('stroke', 'blue'); 
+//existingPlayerElement.setAttribute('stroke-width', '3');
+////existingPlayerElement.setAttribute('stroke-opacity', '0.5'); 
 }
 
 
-} else {		
-
-const ptsf = parseFloat(player.puntos); 
-const sizeCalc = (0.4 * ptsf) + 40;	
+//PLAYER ELEMENT//////////////////////////////////// 		
+} else {
 	
-/*const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-
-playerElement.setAttribute('id', playerId);
-playerElement.setAttribute('r', sizeCalc);
-playerElement.setAttribute('fill', player.color);
-
-//BORDE DEL CIRCULO	
-playerElement.setAttribute('stroke', 'white'); // Color del borde
-playerElement.setAttribute('stroke-width', '1'); // Ancho del borde
-playerElement.setAttribute('stroke-opacity', '0.5'); // Opacidad del borde
-	
-playerElement.setAttribute('cx', player.x);
-playerElement.setAttribute('cy', player.y);*/
-	/////////////
-
-
-
-
-
-
-   // const playerElement = document.getElementById('playerGroup');
-
-
-
-
-
-
-
-// Crear el elemento <g>
-                    const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                    
+const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 const svgContainer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
-
-const scale = 0.2;  // 20/100 = 0.2 para escalar de 100 a 20
-        playerElement.setAttribute("transform", `scale(${scale})`);
-
-
+playerElement.setAttribute('id', playerId);
+if(playerId !== socket.id) { playerElement.setAttribute('data-player-id', 'jugador'); }	
 
 let skinCodeTemp = player.skinCode;
-
-
 skinCodeTemp = skinCodeTemp.replace('width="40"', `width="${sizeCalc}"`).replace('height="40"', `height="${sizeCalc}"`);
-
-
-
 //skinCodeTemp = skinCode.replace('width="20"', 'width="50"').replace('height="20"', 'height="50"');
-
-
-
-
-                    svgContainer.innerHTML = skinCodeTemp;
-
-
-//console.log("codeeeeeee:", svgContainer);
-
-
-                    playerElement.appendChild(svgContainer);
-
+svgContainer.innerHTML = skinCodeTemp;
+playerElement.appendChild(svgContainer);
 
 //const svgElement = playerElement.querySelector('svg');
+// Obtener y mostrar los atributos width y height
+//const width = svgElement.getAttribute('width');
+//const height = svgElement.getAttribute('height');
 
-                        // Obtener y mostrar los atributos width y height
-                     //   const width = svgElement.getAttribute('width');
-                      //  const height = svgElement.getAttribute('height');
-
-
- const bbox = playerElement.getBBox();
-                   // const width = bbox.width;
-                  //  const height = bbox.height;
-
-
-
+const bbox = playerElement.getBBox();
+const width2 = bbox.width;
+const height2 = bbox.height;
+console.log("Width2:", width2);
+console.log("Height2:", height2);		
 
 const dimensions = getSvgDimensions(skinCodeTemp);
 console.log('Width:', dimensions.width, 'Height:', dimensions.height);
 
-
-
 const width = dimensions.width / 2 ;
-                    const height =  dimensions.height / 2 ;
-
-
-
-
+const height =  dimensions.height / 2 ;
 
 console.log("CompJugador:", playerElement, playerId, player);
-
-
-//	let svgElement = document.querySelector('#playerGroup svg');
-
-//let width = svgElement.getAttribute('width');
-//let height = svgElement.getAttribute('height');
-
 console.log("Width:", width);
-console.log("Height:", height);
-
-				   
-	
-
-//const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-//playerElement.setAttribute('width', playerWidth);
-//playerElement.setAttribute('height', playerHeight);
-playerElement.setAttribute('id', playerId);
-
-//playerElement.setAttribute('x', player.x - (playerWidth/2));
-//playerElement.setAttribute('y', player.y - (playerHeight/2));
-//playerElement.setAttribute('r', 14); // Radio del círculo
-//playerElement.setAttribute('fill', 'yellow');	
-
-//playerElement.setAttribute('fill', 'url(#image)'); // Aplicar el patrón de imagen como relleno
-	
+console.log("Height:", height);	
 
 playerElement.setAttribute('data-x', player.x);
 playerElement.setAttribute('data-y', player.y );		
-
-
 console.log('xy: ', player.x, player.y  );
 	
-
 const currentX = Number(playerElement.getAttribute('data-x'));
 const currentY = Number(playerElement.getAttribute('data-y'));
 
 console.log('cxy: ', currentX, currentY  );
-	
 
-// Nuevas coordenadas a las que se moverá el grupo
-const newX = player.x;
-const newY = player.y;
-
-// Calcula la diferencia entre las coordenadas actuales y las nuevas
 const deltaX = player.x - (width/2);
 const deltaY = player.y  - (height/2);
 
-	console.log('dxy: ', width, deltaY  );
-
-
+console.log('dxy: ', width, deltaY  );
 
 playerElement.setAttribute('transform', `translate(${deltaX},${deltaY})`);
 
-
-
-if(playerId !== socket.id) {
-// Agregar atributo de jugador al círculo
-playerElement.setAttribute('data-player-id', 'jugador'); 
+hexagonGroup.appendChild(playerElement);	
 }
 
-
-hexagonGroup.appendChild(playerElement);
-
-	
-}
-
-//TEXT ELEMENT
+//TEXT ELEMENT//////////////////////////////////////////////////////////
 const existingTextElement = document.getElementById(playerId + '-name');
 if (existingTextElement) {
 existingTextElement.setAttribute('x', player.x);
@@ -1302,8 +1199,8 @@ textElement2.setAttribute('fill', 'green');
 textElement2.setAttribute('font-size', '16px');
 textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
 textElement2.classList.add('no-select');
-hexagonGroup.appendChild(textElement2);
-}
+hexagonGroup.appendChild(textElement2); }
+	
 }
 });
 
