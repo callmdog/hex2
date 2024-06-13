@@ -8,7 +8,14 @@
 <!-- ESTILOS CSS ARCHIVO !!!!!!!!! -->	
 <link rel="stylesheet" href="styles.css">
 <style>
-</style>	
+</style>
+
+<script src="/socket.io/socket.io.js"></script>
+ <script>
+        const socket = io();
+    </script>	
+<script src="path/to/greenCircles.js" defer></script>
+	
 	
 </head>
 
@@ -150,7 +157,6 @@
 	
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
-<script src="/socket.io/socket.io.js"></script>
 <script src="vertexFunciones.js"></script>
 
 
@@ -640,11 +646,13 @@ function preventZoom(event) {
 event.preventDefault();
 }
 
-const socket = io();
+//const socket = io();
 
 //GREEN BALLS GENERATE AND DELETE
 //GREEN BALLS GENERATE AND DELETE
 //GREEN BALLS GENERATE AND DELETE
+
+/*	
 socket.on('greenCirclesGenerated', (circles) => {
 	console.log('GREEN CIRCLES GENERATED.');
 	greenCircles = [];
@@ -667,6 +675,7 @@ socket.on('borrarGreen', () => {
 	circle.remove();
 	});		
 });
+*/	
 //END GREEN BALLS GENERATE AND DELETE
 	
 
@@ -1104,8 +1113,6 @@ const sizeCalc = (0.4 * ptsf) + 40;
 //EXISTING PLAYER ELEMENT//////////////////////////////////// 	 
 const existingPlayerElement = document.getElementById(playerId);
 if (existingPlayerElement) {	
-const ptsf = parseFloat(player.puntos); 
-const sizeCalc = (0.4 * ptsf) + 40;
 const svgContainer = existingPlayerElement.querySelector('svg');
 if (svgContainer) {
 let skinCodeTemp = player.skinCode;
@@ -1148,32 +1155,13 @@ const dimensions = getSvgDimensions(skinCodeTemp);
 console.log('Width:', dimensions.width, 'Height:', dimensions.height);
 const width = dimensions.width / 2 ;
 const height =  dimensions.height / 2 ;
-playerElement.setAttribute('transform', `translate(
-${player.x - (width/2)},
-${player.y  - (height/2)})`);
+playerElement.setAttribute('transform', `translate(${player.x - (width/2)},${player.y  - (height/2)})`);
 
 //ADD PLAYERELEMENT TO HEXAGON MAP	
 hexagonGroup.appendChild(playerElement);
 
 console.log("CompJugador:", playerElement, playerId, player);
-/*playerElement.setAttribute('data-x', player.x);
-playerElement.setAttribute('data-y', player.y );		
-console.log('xy: ', player.x, player.y  );
-const currentX = Number(playerElement.getAttribute('data-x'));
-const currentY = Number(playerElement.getAttribute('data-y'));
-console.log('cxy: ', currentX, currentY  );
-const bbox = playerElement.getBBox();
-const width2 = bbox.width;
-const height2 = bbox.height;
-console.log("Width2:", width2);
-console.log("Height2:", height2);
-const svgElement = playerElement.querySelector('svg');
-// Obtener y mostrar los atributos width y height
-const width2 = svgElement.getAttribute('width');
-const height2 = svgElement.getAttribute('height');
-console.log("Width2:", width2);
-console.log("Height2:", height2);
-*/	
+
 }
 
 //TEXT ELEMENT//////////////////////////////////////////////////////////
