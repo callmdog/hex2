@@ -1080,7 +1080,7 @@ function getSvgDimensions(skinCode) {
     const width = widthMatch ? parseFloat(widthMatch[1]) : null;
     const height = heightMatch ? parseFloat(heightMatch[1]) : null;
     
-    return { width * 2 , height * 2 };
+    return { width, height };
 }
 
 
@@ -1162,7 +1162,7 @@ if (velocidadD===true){
 } else {		
 
 const ptsf = parseFloat(player.puntos); 
-const sizeCalc = (0.2 * ptsf) + 20;	
+const sizeCalc = (0.2 * ptsf) + 40;	
 	
 /*const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 
