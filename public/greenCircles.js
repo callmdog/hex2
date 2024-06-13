@@ -316,3 +316,18 @@ hexagonGroup.removeChild(speedText);
 }, 500);
 }
 
+function pointText(x, y) {
+const pointText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+pointText.setAttribute('x', x);
+pointText.setAttribute('y', y); // Ajusta la posición del texto según sea necesario
+pointText.setAttribute('text-anchor', 'middle');
+pointText.setAttribute('fill', 'green');
+pointText.setAttribute('font-size', '14px');
+pointText.textContent = "+1 point";
+hexagonGroup.appendChild(pointText);
+// Después de 1 segundo, eliminar el texto
+setTimeout(() => {
+hexagonGroup.removeChild(pointText);
+}, 500);
+}
+
