@@ -134,24 +134,8 @@
 	<g id="hexagonGroup"></g> 
 	</g>
 
-
-
-
-
 	<g id="playerGroup" >
-
-<!--
-      
-<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet"><clipPath id="clipCircle"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="50%" cy="50%" r="50%" fill="transparent" clip-path="url(#clipCircle)"></circle><circle cx="100" cy="100" r="100" fill="#ffff00" clip-path="url(#clipCircle)"></circle><polyline points="46.85714340209961,291.8095397949219" stroke="#ffff00" stroke-width="2" fill="none" clip-path="url(#clipCircle)"></polyline><polyline points="46,283" stroke="#ffff00" stroke-width="2" fill="none" clip-path="url(#clipCircle)"></polyline><line x1="41.904762268066406" y1="175.61904907226562" x2="144" y2="26.85714340209961" stroke="#00ff00" stroke-width="17" clip-path="url(#clipCircle)"></line></svg> 
-
--->
 	</g>			
-
-
-
-
-
-
 
 	<text id="textLine1" x="20" y="40" fill="red"></text>
 	<text id="textLine2" x="20" y="60" fill="blue"></text>
@@ -586,9 +570,15 @@ function obtenerCodigoDibujadoConRecorte(svgElement) {
 
 
 
+	
 
 
 
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
@@ -920,11 +910,6 @@ textLine5.classList.add('no-select');
 textLine6.classList.add('no-select');
 textLine7.classList.add('no-select');
 
-
-let playerHeight = 25;
-let playerWidth = 25;	
-
-	
 	
 let CalculoCam = 0;
 	
@@ -1106,6 +1091,7 @@ function getSvgDimensions(skinCode) {
 
 socket.on('updatePlayers', function (updatedPlayers) {
 console.log('SOCKET UPDATE PLAYERS');
+	
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers) {
 const player = updatedPlayers[playerId];
@@ -1113,51 +1099,18 @@ const player = updatedPlayers[playerId];
 //PLAYER ELEMENT 
 const existingPlayerElement = document.getElementById(playerId);
 
-
 if (existingPlayerElement) {	
 
-
-	
-//existingPlayerElement.setAttribute('x', player.x);
-//existingPlayerElement.setAttribute('y', player.y);
-//const radius = parseFloat(existingPlayerElement.getAttribute('r')); // Convertir a número
 const ptsf = parseFloat(player.puntos); 
 const sizeCalc = (0.4 * ptsf) + 40;
-//existingPlayerElement.setAttribute('r', sizeCalc);
-
-
 
 const svgContainer = existingPlayerElement.querySelector('svg');
-
-            if (svgContainer) {
-                // Calcula el nuevo tamaño basado en puntos
-                //const ptsf = parseFloat(player.puntos);
-                //const sizeCalc = (0.2 * ptsf) + 10;
-
-                // Actualiza el width y height del contenedor SVG
-                //svgContainer.setAttribute('width', sizeCalc + 'px');
-                //svgContainer.setAttribute('height', sizeCalc + 'px');
-
-
-
-
+if (svgContainer) {
 let skinCodeTemp = player.skinCode;
-                skinCodeTemp = skinCodeTemp.replace('width="40"', `width="${sizeCalc}"`).replace('height="40"', `height="${sizeCalc}"`);
-
-                // Reemplaza el contenido del SVG
-                svgContainer.innerHTML = skinCodeTemp;
-            
-
+skinCodeTemp = skinCodeTemp.replace('width="40"', `width="${sizeCalc}"`).replace('height="40"', `height="${sizeCalc}"`);
+svgContainer.innerHTML = skinCodeTemp;
 console.log("CODE SVG:", svgContainer);
-
-
-
-            }
-
-
-
-
-
+}
 
 //
 
