@@ -24,13 +24,13 @@ socket.on('borrarGreen', () => {
 });
 //8. GENERA CIRCULOS VERDES DEL SERVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
-
+/*
 let greenCircles = [];
 let greenCircles2 = [];
 
 let blueCircles = [];
 let blueCircles2 = [];
-
+*/
 function generateGreenCircles() {
 console.log('GENERATE GREEN CIRCLES 2.');
 const svg = document.querySelector('svg');
