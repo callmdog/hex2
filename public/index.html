@@ -1139,20 +1139,16 @@ if(playerId !== socket.id) { playerElement.setAttribute('data-player-id', 'jugad
 
 let skinCodeTemp = player.skinCode;
 skinCodeTemp = skinCodeTemp.replace('width="40"', `width="${sizeCalc}"`).replace('height="40"', `height="${sizeCalc}"`);
-//skinCodeTemp = skinCode.replace('width="20"', 'width="50"').replace('height="20"', 'height="50"');
 svgContainer.innerHTML = skinCodeTemp;
 playerElement.appendChild(svgContainer);
 
-//const svgElement = playerElement.querySelector('svg');
+const svgElement = playerElement.querySelector('svg');
 // Obtener y mostrar los atributos width y height
-//const width = svgElement.getAttribute('width');
-//const height = svgElement.getAttribute('height');
-
-const bbox = playerElement.getBBox();
-const width2 = bbox.width;
-const height2 = bbox.height;
+const width2 = svgElement.getAttribute('width');
+const height2 = svgElement.getAttribute('height');
 console.log("Width2:", width2);
-console.log("Height2:", height2);		
+console.log("Height2:", height2);
+		
 
 const dimensions = getSvgDimensions(skinCodeTemp);
 console.log('Width:', dimensions.width, 'Height:', dimensions.height);
@@ -1164,13 +1160,6 @@ console.log("CompJugador:", playerElement, playerId, player);
 console.log("Width:", width);
 console.log("Height:", height);	
 
-/*playerElement.setAttribute('data-x', player.x);
-playerElement.setAttribute('data-y', player.y );		
-console.log('xy: ', player.x, player.y  );
-const currentX = Number(playerElement.getAttribute('data-x'));
-const currentY = Number(playerElement.getAttribute('data-y'));
-console.log('cxy: ', currentX, currentY  );*/
-
 const deltaX = player.x - (width/2);
 const deltaY = player.y  - (height/2);
 
@@ -1178,7 +1167,20 @@ console.log('dxy: ', width, deltaY  );
 
 playerElement.setAttribute('transform', `translate(${deltaX},${deltaY})`);
 
-hexagonGroup.appendChild(playerElement);	
+hexagonGroup.appendChild(playerElement);
+
+/*playerElement.setAttribute('data-x', player.x);
+playerElement.setAttribute('data-y', player.y );		
+console.log('xy: ', player.x, player.y  );
+const currentX = Number(playerElement.getAttribute('data-x'));
+const currentY = Number(playerElement.getAttribute('data-y'));
+console.log('cxy: ', currentX, currentY  );
+const bbox = playerElement.getBBox();
+const width2 = bbox.width;
+const height2 = bbox.height;
+console.log("Width2:", width2);
+console.log("Height2:", height2);
+*/	
 }
 
 //TEXT ELEMENT//////////////////////////////////////////////////////////
