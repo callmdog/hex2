@@ -213,7 +213,7 @@ function generateCreativeCircleSVG(radius) {
     svg.appendChild(mainCircle);
 
     // Add random shapes
-    const shapes = ['circle', 'rect', 'line', 'polygon'];
+    const shapes = ['circle', 'rect', 'line', 'polygon', 'smiley'];
     const numShapes = 5 + Math.floor(Math.random() * 6);  // Between 5 and 10 shapes
     for (let i = 0; i < numShapes; i++) {
         const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
@@ -231,6 +231,10 @@ function generateCreativeCircleSVG(radius) {
             case 'polygon':
                 shape = createRandomPolygon(radius);
                 break;
+  case 'smiley':
+shape= createSmiley( radius);
+break;
+
         }
         shape.setAttribute("clip-path", "url(#clipCircle)");
         svg.appendChild(shape);
@@ -388,6 +392,55 @@ function obtenerCodigoDibujadoConRecorte(svgElement) {
 
     return codigoSVG;
 }
+
+
+
+
+
+
+// New function to create smiley faces
+function createSmiley(radius) {
+    const group = document.createElementNS(svgNamespace, "g");
+
+    const face = document.createElementNS(svgNamespace, "circle");
+    face.setAttribute("cx", radius);
+    face.setAttribute("cy", radius);
+    face.setAttribute("r", radius * 0.8);
+    face.setAttribute("fill", "yellow");
+    face.setAttribute("stroke", "black");
+    face.setAttribute("stroke-width", radius * 0.05);
+    group.appendChild(face);
+
+    const eye1 = document.createElementNS(svgNamespace, "circle");
+    eye1.setAttribute("cx", radius * 0.6);
+    eye1.setAttribute("cy", radius * 0.5);
+    eye1.setAttribute("r", radius * 0.1);
+    eye1.setAttribute("fill", "black");
+    group.appendChild(eye1);
+
+    const eye2 = document.createElementNS(svgNamespace, "circle");
+    eye2.setAttribute("cx", radius * 1.4);
+    eye2.setAttribute("cy", radius * 0.5);
+    eye2.setAttribute("r", radius * 0.1);
+    eye2.setAttribute("fill", "black");
+    group.appendChild(eye2);
+
+    const mouth = document.createElementNS(svgNamespace, "path");
+    const d = `M${radius * 0.7},${radius * 1.2} Q${radius},${radius * 1.5} ${radius * 1.3},${radius * 1.2}`;
+    mouth.setAttribute("d", d);
+    mouth.setAttribute("stroke", "black");
+    mouth.setAttribute("stroke-width", radius * 0.05);
+    mouth.setAttribute("fill", "none");
+    group.appendChild(mouth);
+
+    return group;
+}
+
+
+
+
+
+
 
 
 /////////////////////
