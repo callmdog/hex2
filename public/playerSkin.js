@@ -365,9 +365,9 @@ skinButton.addEventListener('click', function() {
     const selectedSkin = document.querySelector('.skin.selected');
     if (selectedSkin) {
         const svg = selectedSkin.querySelector('svg').cloneNode(true);
-        svg.setAttribute("width", 40);
-        svg.setAttribute("height", 40);
-        svg.setAttribute("viewBox", "0 0 100 100");
+        svg.setAttribute("width", 20);
+        svg.setAttribute("height", 20);
+        svg.setAttribute("viewBox", "0 0 50 50");
 
     svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
