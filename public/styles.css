@@ -335,8 +335,8 @@ z-index: -1;
 }
 #canvasContainer {
 position: relative;
-width: 300px; /* Ancho basado en la altura de la ventana */
-height: 300px; /* Altura basada en la altura de la ventana */
+width: 200px; /* Ancho basado en la altura de la ventana */
+height: 200px; /* Altura basada en la altura de la ventana */
 margin: auto;
 border: 1px solid black;
 border-radius: 50%;
