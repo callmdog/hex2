@@ -213,7 +213,8 @@ function generateCreativeCircleSVG(radius) {
     svg.appendChild(mainCircle);
 
     // Add random shapes
-    const shapes = ['circle', 'rect', 'line', 'polygon', 'smiley'];
+    const shapes = ['circle', 'rect', 'line', 'polygon', 'smiley', 'palmTree', 'flower', 'comet', 'eye', 'penguin', 'car'];
+
     const numShapes = 5 + Math.floor(Math.random() * 6);  // Between 5 and 10 shapes
     for (let i = 0; i < numShapes; i++) {
         const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
@@ -234,6 +235,27 @@ function generateCreativeCircleSVG(radius) {
   case 'smiley':
 shape= createSmiley( radius);
 break;
+
+case 'palmTree':
+                shape = createPalmTree(radius);
+                break;
+            case 'flower':
+                shape = createFlower(radius);
+                break;
+            case 'comet':
+                shape = createComet(radius);
+                break;
+            case 'eye':
+                shape = createEye(radius);
+                break;
+            case 'penguin':
+                shape = createPenguin(radius);
+                break;
+            case 'car':
+                shape = createCar(radius);
+                break;
+
+
 
         }
         shape.setAttribute("clip-path", "url(#clipCircle)");
@@ -442,6 +464,251 @@ const svgNamespace = "http://www.w3.org/2000/svg";
 
 
 
+
+function createPalmTree(radius) {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const group = document.createElementNS(svgNamespace, "g");
+
+    // Trunk
+    const trunk = document.createElementNS(svgNamespace, "rect");
+    trunk.setAttribute("x", radius * 0.9);
+    trunk.setAttribute("y", radius * 1.2);
+    trunk.setAttribute("width", radius * 0.2);
+    trunk.setAttribute("height", radius * 0.8);
+    trunk.setAttribute("fill", "saddlebrown");
+    group.appendChild(trunk);
+
+    // Leaves
+    const numLeaves = 5;
+    for (let i = 0; i < numLeaves; i++) {
+        const leaf = document.createElementNS(svgNamespace, "ellipse");
+        const angle = (i * 360 / numLeaves) * Math.PI / 180;
+        const cx = radius;
+        const cy = radius;
+        const rx = radius * 0.8;
+        const ry = radius * 0.2;
+        leaf.setAttribute("cx", cx);
+        leaf.setAttribute("cy", cy);
+        leaf.setAttribute("rx", rx);
+        leaf.setAttribute("ry", ry);
+        leaf.setAttribute("fill", "green");
+        leaf.setAttribute("transform", `rotate(${i * 360 / numLeaves} ${cx} ${cy})`);
+        group.appendChild(leaf);
+    }
+
+    return group;
+}
+
+
+
+
+function createFlower(radius) {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const group = document.createElementNS(svgNamespace, "g");
+
+    // Center
+    const center = document.createElementNS(svgNamespace, "circle");
+    center.setAttribute("cx", radius);
+    center.setAttribute("cy", radius);
+    center.setAttribute("r", radius * 0.2);
+    center.setAttribute("fill", "yellow");
+    group.appendChild(center);
+
+    // Petals
+    const numPetals = 6;
+    for (let i = 0; i < numPetals; i++) {
+        const petal = document.createElementNS(svgNamespace, "ellipse");
+        const angle = (i * 360 / numPetals) * Math.PI / 180;
+        const cx = radius;
+        const cy = radius;
+        const rx = radius * 0.6;
+        const ry = radius * 0.2;
+        petal.setAttribute("cx", cx);
+        petal.setAttribute("cy", cy);
+        petal.setAttribute("rx", rx);
+        petal.setAttribute("ry", ry);
+        petal.setAttribute("fill", "pink");
+        petal.setAttribute("transform", `rotate(${i * 360 / numPetals} ${cx} ${cy})`);
+        group.appendChild(petal);
+    }
+
+    return group;
+}
+
+
+
+
+function createComet(radius) {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const group = document.createElementNS(svgNamespace, "g");
+
+    // Comet body
+    const cometBody = document.createElementNS(svgNamespace, "polygon");
+    cometBody.setAttribute("points", `${radius},${radius * 0.2} ${radius * 1.2},${radius} ${radius},${radius * 1.8}`);
+    cometBody.setAttribute("fill", "lightblue");
+    group.appendChild(cometBody);
+
+    // Comet tail
+    const tail = document.createElementNS(svgNamespace, "polyline");
+    tail.setAttribute("points", `${radius * 1.2},${radius} ${radius * 1.5},${radius * 0.5} ${radius * 1.8},${radius} ${radius * 1.5},${radius * 1.5} ${radius * 1.2},${radius}`);
+    tail.setAttribute("stroke", "blue");
+    tail.setAttribute("stroke-width", 2);
+    tail.setAttribute("fill", "none");
+    group.appendChild(tail);
+
+    return group;
+}
+
+
+function createEye(radius) {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const group = document.createElementNS(svgNamespace, "g");
+
+    // Eyeball
+    const eyeball = document.createElementNS(svgNamespace, "ellipse");
+    eyeball.setAttribute("cx", radius);
+    eyeball.setAttribute("cy", radius);
+    eyeball.setAttribute("rx", radius);
+    eyeball.setAttribute("ry", radius * 0.6);
+    eyeball.setAttribute("fill", "white");
+    eyeball.setAttribute("stroke", "black");
+    eyeball.setAttribute("stroke-width", radius * 0.05);
+    group.appendChild(eyeball);
+
+    // Iris
+    const iris = document.createElementNS(svgNamespace, "circle");
+    iris.setAttribute("cx", radius);
+    iris.setAttribute("cy", radius);
+    iris.setAttribute("r", radius * 0.3);
+    iris.setAttribute("fill", "blue");
+    group.appendChild(iris);
+
+    // Pupil
+    const pupil = document.createElementNS(svgNamespace, "circle");
+    pupil.setAttribute("cx", radius);
+    pupil.setAttribute("cy", radius);
+    pupil.setAttribute("r", radius * 0.15);
+    pupil.setAttribute("fill", "black");
+    group.appendChild(pupil);
+
+    return group;
+}
+
+
+
+function createPenguin(radius) {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const group = document.createElementNS(svgNamespace, "g");
+
+    // Body
+    const body = document.createElementNS(svgNamespace, "ellipse");
+    body.setAttribute("cx", radius);
+    body.setAttribute("cy", radius * 1.3);
+    body.setAttribute("rx", radius * 0.5);
+    body.setAttribute("ry", radius * 0.8);
+    body.setAttribute("fill", "black");
+    group.appendChild(body);
+
+    // Belly
+    const belly = document.createElementNS(svgNamespace, "ellipse");
+    belly.setAttribute("cx", radius);
+    belly.setAttribute("cy", radius * 1.3);
+    belly.setAttribute("rx", radius * 0.4);
+    belly.setAttribute("ry", radius * 0.6);
+    belly.setAttribute("fill", "white");
+    group.appendChild(belly);
+
+    // Head
+    const head = document.createElementNS(svgNamespace, "circle");
+    head.setAttribute("cx", radius);
+    head.setAttribute("cy", radius * 0.8);
+    head.setAttribute("r", radius * 0.3);
+    head.setAttribute("fill", "black");
+    group.appendChild(head);
+
+    // Eyes
+    const eye1 = document.createElementNS(svgNamespace, "circle");
+    eye1.setAttribute("cx", radius * 0.85);
+    eye1.setAttribute("cy", radius * 0.75);
+    eye1.setAttribute("r", radius * 0.05);
+    eye1.setAttribute("fill", "white");
+    group.appendChild(eye1);
+
+    const eye2 = document.createElementNS(svgNamespace, "circle");
+    eye2.setAttribute("cx", radius * 1.15);
+    eye2.setAttribute("cy", radius * 0.75);
+    eye2.setAttribute("r", radius * 0.05);
+    eye2.setAttribute("fill", "white");
+    group.appendChild(eye2);
+
+    // Beak
+    const beak = document.createElementNS(svgNamespace, "polygon");
+    beak.setAttribute("points", `${radius * 0.95},${radius * 0.9} ${radius * 1.05},${radius * 0.9} ${radius},${radius}`);
+    beak.setAttribute("fill", "orange");
+    group.appendChild(beak);
+
+    return group;
+}
+
+
+
+
+function createCar(radius) {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const group = document.createElementNS(svgNamespace, "g");
+
+    // Body
+    const body = document.createElementNS(svgNamespace, "rect");
+    body.setAttribute("x", radius * 0.5);
+    body.setAttribute("y", radius);
+    body.setAttribute("width", radius);
+    body.setAttribute("height", radius * 0.5);
+    body.setAttribute("fill", "blue");
+    group.appendChild(body);
+
+    // Roof
+    const roof = document.createElementNS(svgNamespace, "rect");
+    roof.setAttribute("x", radius * 0.7);
+    roof.setAttribute("y", radius * 0.7);
+    roof.setAttribute("width", radius * 0.6);
+    roof.setAttribute("height", radius * 0.3);
+    roof.setAttribute("fill", "blue");
+    group.appendChild(roof);
+
+    // Windows
+    const window1 = document.createElementNS(svgNamespace, "rect");
+    window1.setAttribute("x", radius * 0.75);
+    window1.setAttribute("y", radius * 0.75);
+    window1.setAttribute("width", radius * 0.2);
+    window1.setAttribute("height", radius * 0.2);
+    window1.setAttribute("fill", "lightblue");
+    group.appendChild(window1);
+
+    const window2 = document.createElementNS(svgNamespace, "rect");
+    window2.setAttribute("x", radius * 1.05);
+    window2.setAttribute("y", radius * 0.75);
+    window2.setAttribute("width", radius * 0.2);
+    window2.setAttribute("height", radius * 0.2);
+    window2.setAttribute("fill", "lightblue");
+    group.appendChild(window2);
+
+    // Wheels
+    const wheel1 = document.createElementNS(svgNamespace, "circle");
+    wheel1.setAttribute("cx", radius * 0.75);
+    wheel1.setAttribute("cy", radius * 1.5);
+    wheel1.setAttribute("r", radius * 0.2);
+    wheel1.setAttribute("fill", "black");
+    group.appendChild(wheel1);
+
+    const wheel2 = document.createElementNS(svgNamespace, "circle");
+    wheel2.setAttribute("cx", radius * 1.25);
+    wheel2.setAttribute("cy", radius * 1.5);
+    wheel2.setAttribute("r", radius * 0.2);
+    wheel2.setAttribute("fill", "black");
+    group.appendChild(wheel2);
+
+    return group;
+}
 
 
 
