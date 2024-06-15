@@ -296,7 +296,7 @@ function obtenerCodigoDibujado() {
     const svgContenedor = document.getElementById('svgCanvas');
     const elementosSVG = svgContenedor.querySelectorAll('path, circle, rect, polyline, polygon, line');
 
-    let codigoSVG = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" >';
+    let codigoSVG = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" >';
     
     elementosSVG.forEach(elemento => {
         let etiquetaSVG = elemento.tagName.toLowerCase();
@@ -342,10 +342,10 @@ function obtenerCodigoDibujadoConRecorte() {
     const svgContenedor = document.getElementById('svgCanvas');
     const elementosSVG = svgContenedor.querySelectorAll('path, circle, rect, polyline, polygon, line');
 
-    let codigoSVG = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">';
+    let codigoSVG = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">';
     
     // Definir el clipPath del círculo
-    codigoSVG += `<clipPath id="clipCircle"><circle cx="150" cy="150" r="150"/></clipPath>`;
+    codigoSVG += `<clipPath id="clipCircle"><circle cx="100" cy="100" r="100"/></clipPath>`;
     
     elementosSVG.forEach(elemento => {
         let etiquetaSVG = elemento.tagName.toLowerCase();
