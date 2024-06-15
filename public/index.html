@@ -71,6 +71,9 @@
 <!-- SKIN BOX !!!!!!!!! -->
 <div id="selectSkin">	
 	<h2>Select your skin</h2>
+
+<button id="paintSkin">Create Skin</button>
+
 	<div id="selectedSkin">	
 	<div class="skin"></div>
         <div class="skin"></div>
@@ -233,6 +236,11 @@ errorMessage.style.display = "block";
 document.getElementById('customPlayer').addEventListener('click', function () {
 document.getElementById('paintBox').style.display = 'block'; // Para mostrar el retryBox
 });
+
+document.getElementById('paintSkin').addEventListener('click', function () {
+document.getElementById('paintBox').style.display = 'block'; // Para mostrar el retryBox
+});
+
 
 function preventZoom(event) {
 event.preventDefault();
