@@ -400,6 +400,9 @@ function obtenerCodigoDibujadoConRecorte(svgElement) {
 
 // New function to create smiley faces
 function createSmiley(radius) {
+
+const svgNamespace = "http://www.w3.org/2000/svg";
+
     const group = document.createElementNS(svgNamespace, "g");
 
     const face = document.createElementNS(svgNamespace, "circle");
