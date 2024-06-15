@@ -345,7 +345,7 @@ function obtenerCodigoDibujadoConRecorte() {
     let codigoSVG = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">';
     
     // Definir el clipPath del círculo
-    codigoSVG += `<clipPath id="clipCircle"><circle cx="100" cy="100" r="100"/></clipPath>`;
+    codigoSVG += `<clipPath id="clipCircle"><circle cx="150" cy="150" r="150"/></clipPath>`;
     
     elementosSVG.forEach(elemento => {
         let etiquetaSVG = elemento.tagName.toLowerCase();
