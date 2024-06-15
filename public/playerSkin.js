@@ -10,7 +10,6 @@ const closeSkinButton = document.getElementById('closeSkin');
 
 
 
-skinCode = '<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet"><clipPath id="clipCircle"><circle cx="100" cy="100" r="100"/></clipPath><circle cx="50%" cy="50%" r="50%" fill="transparent" clip-path="url(#clipCircle)"></circle><circle cx="100" cy="100" r="100" fill="#ff0000" clip-path="url(#clipCircle)"></circle></svg>';
 
 
 /*
