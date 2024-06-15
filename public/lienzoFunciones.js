@@ -129,6 +129,11 @@ const shapeButtons = document.querySelectorAll('.shapeButton');
 // Función para empezar a dibujar
 // Función para empezar a dibujar una línea o un círculo según la herramienta seleccionada
 // Función para empezar a dibujar
+
+
+const createPaint = document.getElementById('createPaint');
+
+
 function startDrawing(e) {
 isDrawing = true;
 const { clientX, clientY } = e.touches ? e.touches[0] : e;
@@ -279,6 +284,29 @@ undoButton.addEventListener('click', undoLastDraw);
 redoButton.addEventListener('click', redoLastDraw);
 // Event Listener para el botón de rellenar
 fillButton.addEventListener('click', fillCircle);
+
+
+
+
+
+
+
+//NUEVA FUNCION GUARDAR JUGADOR SKIN 
+
+createPaint.addEventListener('click', savePaint);
+
+function savePaint() {
+
+
+}
+
+
+
+
+
+
+
+
 // Event Listener para el botón de limpiar
 clearButton.addEventListener('click', clearCanvas);
 shapeButtons.forEach(button => {
