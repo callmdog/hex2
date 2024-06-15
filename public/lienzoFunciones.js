@@ -391,6 +391,9 @@ let codigoDibujado = obtenerCodigoDibujado();
  let codigoDibujado2 = obtenerCodigoDibujadoConRecorte();
     console.log(codigoDibujado2);
 
+skinCode = codigoDibujado2;
+
+
 document.getElementById('paintBox').style.display = 'none'; // Para mostrar el retryBox
 
 
