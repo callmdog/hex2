@@ -516,7 +516,7 @@ const dimensions = getSvgDimensions(skinCodeTemp);
 console.log('Width:', dimensions.width, 'Height:', dimensions.height);
 const width = dimensions.width / 2 ;
 const height =  dimensions.height / 2 ;
-playerElement.setAttribute('transform', `translate(${player.x - (width/2)},${player.y  - (height/2)})`);
+playerElement.setAttribute('transform', `translate(${player.x - (width)},${player.y  - (height)})`);
 
 //ADD PLAYERELEMENT TO HEXAGON MAP	
 hexagonGroup.appendChild(playerElement);
