@@ -292,10 +292,105 @@ fillButton.addEventListener('click', fillCircle);
 
 
 //NUEVA FUNCION GUARDAR JUGADOR SKIN 
+function obtenerCodigoDibujado() {
+    const svgContenedor = document.getElementById('svgCanvas');
+    const elementosSVG = svgContenedor.querySelectorAll('path, circle, rect, polyline, polygon, line');
+
+    let codigoSVG = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" >';
+    
+    elementosSVG.forEach(elemento => {
+        let etiquetaSVG = elemento.tagName.toLowerCase();
+        let atributos = '';
+        
+        for (let i = 0; i < elemento.attributes.length; i++) {
+            let atributo = elemento.attributes[i];
+            atributos += ` ${atributo.name}="${atributo.value}"`;
+        }
+        
+        codigoSVG += `<${etiquetaSVG}${atributos}>`;
+
+        // Si el elemento tiene contenido, como texto o coordenadas, añádelo
+        if (elemento.innerHTML) {
+            codigoSVG += elemento.innerHTML;
+        }
+
+        codigoSVG += `</${etiquetaSVG}>`;
+    });
+
+    codigoSVG += '</svg>';
+
+    return codigoSVG;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Obtener el SVG generado
+
+    
+    
+}
+
+// Función para obtener el código SVG con recorte al círculo
+function obtenerCodigoDibujadoConRecorte() {
+    const svgContenedor = document.getElementById('svgCanvas');
+    const elementosSVG = svgContenedor.querySelectorAll('path, circle, rect, polyline, polygon, line');
+
+    let codigoSVG = '<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">';
+    
+    // Definir el clipPath del círculo
+    codigoSVG += `<clipPath id="clipCircle"><circle cx="100" cy="100" r="100"/></clipPath>`;
+    
+    elementosSVG.forEach(elemento => {
+        let etiquetaSVG = elemento.tagName.toLowerCase();
+        let atributos = '';
+        
+        for (let i = 0; i < elemento.attributes.length; i++) {
+            let atributo = elemento.attributes[i];
+            atributos += ` ${atributo.name}="${atributo.value}"`;
+        }
+        
+        // Aplicar el clipPath a todos los elementos
+        atributos += ` clip-path="url(#clipCircle)"`;
+        
+        codigoSVG += `<${etiquetaSVG}${atributos}>`;
+
+        // Si el elemento tiene contenido, como texto o coordenadas, añádelo
+        if (elemento.innerHTML) {
+            codigoSVG += elemento.innerHTML;
+        }
+
+        codigoSVG += `</${etiquetaSVG}>`;
+    });
+
+    codigoSVG += '</svg>';
+
+    return codigoSVG;
+}
+
+
+
+
+
+
 
 createPaint.addEventListener('click', savePaint);
 
 function savePaint() {
+
+let codigoDibujado = obtenerCodigoDibujado();
+    console.log(codigoDibujado);
+ 
+ 
+ let codigoDibujado2 = obtenerCodigoDibujadoConRecorte();
+    console.log(codigoDibujado2);
+
 
 
 }
