@@ -86,6 +86,21 @@ background-color: gray;
 }
 
 
+#skinButtons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        #skinButtons button {
+            flex: 1;
+        }
+        #skinButtons button:first-child {
+            margin-right: 5px;
+        }
+        #skinButtons button:last-child {
+            margin-left: 5px;
+        }
+
 
 	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
