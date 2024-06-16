@@ -127,9 +127,11 @@ flex: 1;
 margin-bottom: 10px;
 
 }
-#submitButton:hover {
+#paintSkin:hover {
 background-color: #3CB371;
 box-shadow: 0px 6px 12px
+
+}
 
 
 	
