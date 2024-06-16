@@ -102,6 +102,13 @@ background-color: gray;
         }
 
 
+#closeSkin, #skinButton {
+width: 50%;
+
+}
+
+
+
 	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
