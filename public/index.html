@@ -805,10 +805,28 @@ requestAnimationFrame(update);
 //8. DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
 function detectarColisiones(playerElement) {		
-document.querySelectorAll('circle[data-player-id]').forEach((otherCircle) => {
+document.querySelectorAll('g[data-player-id]').forEach((otherCircle) => {
 const playerIdN = otherCircle.getAttribute('id');
-const blueRadius = parseFloat(playerElement.getAttribute('r')); 
+
+
+
+
+const playerBBox = playerElement.getBBox();
+const playerBBox2 = otherCircle.getBBox();
+    
+const playerSize = playerBBox.width;
+
+
+const blueRadius = parseFloat(playerSize/2); 
+
+
+
+
 const greenRadius = parseFloat(otherCircle.getAttribute('r'));
+
+
+
+
 const blueX = parseFloat(playerElement.getAttribute('cx'));
 const blueY = parseFloat(playerElement.getAttribute('cy'));	
 const greenX = parseFloat(otherCircle.getAttribute('cx'));
