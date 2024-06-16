@@ -820,14 +820,18 @@ const playerSize2 = playerBBox2.width;
 const blueRadius = parseFloat(playerSize/2); 
 const greenRadius = parseFloat(playerSize2/2);
 
-console.log(`COLISION:`playerSize, playerSize2, blueRadius, greenRadius ); 
-	
+console.log(`1: (${playerSize}), (${blueRadius})`);
+console.log(`2: (${playerSize2}), (${greenRadius})`); 	
 
 	
-const blueX = parseFloat(playerSize.x);
-const blueY = parseFloat(playerSize.y);	
+const blueX = parseFloat(playerBBox.x);
+const blueY = parseFloat(playerBBox.y);	
 const greenX = parseFloat(playerBBox2.x);
 const greenY = parseFloat(playerBBox2.y);
+
+	console.log(`1b: (${blueX}), (${blueY})`);
+console.log(`2b: (${greenX}), (${greenY})`); 	
+
 
 // Calcular las coordenadas de los cuadros delimitadores
 
