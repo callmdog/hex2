@@ -831,7 +831,7 @@ const translateValues = transform.match(/translate\(([^,]+),\s*([^\)]+)\)/);
   const x = parseFloat(translateValues[1]);
   const y = parseFloat(translateValues[2]);	
 
-const transform2 = otherCircle.getAttribute('transform2');
+const transform2 = otherCircle.getAttribute('transform');
 // Extrae los valores de x e y utilizando una expresión regular
 const translateValues2 = transform2.match(/translate\(([^,]+),\s*([^\)]+)\)/);
   const x2 = parseFloat(translateValues2[1]);
