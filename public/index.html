@@ -823,14 +823,27 @@ const greenRadius = parseFloat(playerSize2/2);
 console.log(`1: (${playerSize}), (${blueRadius})`);
 console.log(`2: (${playerSize2}), (${greenRadius})`); 	
 
-	
-const blueX = parseFloat(playerBBox.x);
-const blueY = parseFloat(playerBBox.y);	
-const greenX = parseFloat(playerBBox2.x);
-const greenY = parseFloat(playerBBox2.y);
 
-	console.log(`1b: (${blueX}), (${blueY})`);
-console.log(`2b: (${greenX}), (${greenY})`); 	
+const transform = playerElement.getAttribute('transform');
+// Extrae los valores de x e y utilizando una expresión regular
+const translateValues = transform.match(/translate\(([^,]+),\s*([^\)]+)\)/);
+  const x = parseFloat(translateValues[1]);
+  const y = parseFloat(translateValues[2]);	
+
+const transform2 = otherCircle.getAttribute('transform');
+// Extrae los valores de x e y utilizando una expresión regular
+const translateValues2 = transform.match(/translate\(([^,]+),\s*([^\)]+)\)/);
+  const x2 = parseFloat(translateValues2[1]);
+  const y2 = parseFloat(translateValues2[2]);		
+
+	
+const blueX = parseFloat(x);
+const blueY = parseFloat(y);	
+const greenX = parseFloat(x2);
+const greenY = parseFloat(y2);
+
+	console.log(`1b: (${x}), (${y})`);
+console.log(`2b: (${x2}), (${y2})`); 	
 
 
 // Calcular las coordenadas de los cuadros delimitadores
