@@ -91,6 +91,9 @@ background-color: gray;
             justify-content: space-between;
             gap: 10px;
  margin-top: 10px;
+width: 100%;
+
+
         }
         #skinButtons button {
             flex: 1;
@@ -104,7 +107,7 @@ background-color: gray;
 
 
 #closeSkin, #skinButton {
-width: 50vw;
+
 
 }
 
