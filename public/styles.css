@@ -14,6 +14,13 @@ font-weight: bold; /* Texto en negrita */
 color: #ff5733; /* Color naranja */
 text-shadow: 2px 2px 6px rgba(0, 0, 255, 0.5); /* Sombra de texto azul */
 }
+h3 {
+font-size: 2em; /* Tamaño de fuente grande */
+font-weight: bold; /* Texto en negrita */
+color: #ff5733; /* Color naranja */
+text-shadow: #00008b   ; /* Sombra de texto azul */
+
+
 p {
 font-size: 1.5em; /* Tamaño de fuente grande */
 font-style: italic; /* Texto en cursiva */
