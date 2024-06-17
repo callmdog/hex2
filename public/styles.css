@@ -46,7 +46,7 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 #selectSkin {
 
 border-radius: 20px;
-background-color: red;
+background-color:   f2f2f2  ;
 padding: 20px;
 display: flex;
 flex-direction: column;
@@ -113,16 +113,48 @@ width: 100%;
         }
 
 
-#closeSkin, #skinButton {
 
 
+
+#closeSkin {
+padding: 10px 20px; 
+font-size: 16px;
+background-color: #f443365a; 
+color: white;
+border: none; 
+border-radius: 5px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+transition: background-color 0.3s, box-shadow 0.3s;
 }
+#closeSkin:hover {
+background-color: #f44336;
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+}	
+
+
+#skinButton {
+padding: 10px 20px; 
+font-size: 16px;
+background-color: #4CAF50; 
+color: white;
+border: none; 
+border-radius: 5px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+cursor: pointer;
+transition: background-color 0.3s, box-shadow 0.3s;
+}
+#skinButton:hover {
+background-color: #4CAF50;
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+}	
+
 
 
 #paintSkin{
 padding: 10px 20px; 
 font-size: 16px;
-background-color: #3CB371; 
+background-color: #2196F3; 
 color: white;
 border: none; 
 border-radius: 5px;
@@ -135,7 +167,7 @@ margin-bottom: 10px;
 
 }
 #paintSkin:hover {
-background-color: #3CB371;
+background-color: #2196F3;
 box-shadow: 0px 6px 12px
 
 }
@@ -272,7 +304,7 @@ opacity: 1;
 /* ///////////// PLAY BUTTON  ////////////////// */
 /* ///////////// PLAY BUTTON  ////////////////// */
 /* ///////////// PLAY BUTTON  ////////////////// */
-#submitButton, #skinButton {
+#submitButton {
 padding: 10px 20px; 
 font-size: 16px;
 background-color: #04135a; 
@@ -291,7 +323,7 @@ box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
-#customPlayer, #closeSkin {
+#customPlayer{
 padding: 10px 20px; /* Ajusta el relleno según sea necesario */
 font-size: 16px;
 background-color: #cb9800; /* Color de fondo */
