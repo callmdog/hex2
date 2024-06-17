@@ -92,7 +92,7 @@ vertices.forEach((vertex, index) => {
 
 
 
-const hexRadius = 30;
+const hexRadius = 50;
 
     function drawHexagon(x, y) {
         const points = getHexagonPoints(x, y, hexRadius);
