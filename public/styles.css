@@ -37,19 +37,19 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 }	
 
 
-
-
-@keyframes fadeIn {
+@keyframes fadeInOut {
             0% {
                 opacity: 0;
                 transform: scale(0.5); /* Empieza más pequeño */
+            }
+            50% {
+                opacity: 1;
             }
             100% {
                 opacity: 1;
                 transform: scale(1); /* Termina a tamaño normal */
             }
         }
-
 
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
