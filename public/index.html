@@ -171,6 +171,11 @@
 	<text id="textLine5" x="20" y="120" fill="purple"></text>
 	<text id="textLine6" x="95%" y="40" fill="red" text-anchor="end" font-weight="bold" >Points: 1018</text>
 	<text id="textLine7" x="95%" y="60" fill="blue" text-anchor="end" font-weight="bold" > </text>
+
+<text id="textLine8" x="50%" y="50%" fill="blue" text-anchor="middle" font-size="54" font-weight="bold">+speed!</text>
+
+
+
 </svg>	
 <!-- END SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 
@@ -299,6 +304,8 @@ let textLine4 = document.getElementById('textLine4');
 let textLine5 = document.getElementById('textLine5');
 let textLine6 = document.getElementById('textLine6');
 let textLine7 = document.getElementById('textLine7');
+
+let textLine8 = document.getElementById('textLine8');
 let CalculoCam = 0;	
 	
 textLine1.classList.add('no-select');
@@ -308,6 +315,8 @@ textLine4.classList.add('no-select');
 textLine5.classList.add('no-select');
 textLine6.classList.add('no-select');
 textLine7.classList.add('no-select');
+
+textLine8.classList.add('no-select');
 		
 function addPlayer(nombre, puntos, color) {
 	const nuevoJugador = { nombre: nombre, puntos: puntos, color: color };
