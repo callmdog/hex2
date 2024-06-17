@@ -322,14 +322,25 @@ hexagonGroup.removeChild(speedText);
 }
 
 
+
+
+
 function mostrarTexto() {
             const textLine8 = document.getElementById('textLine8');
+            textLine8.textContent = '+speed!'; // Cambia el texto
             textLine8.style.opacity = '1'; // Hace visible el texto
+            textLine8.style.animation = 'fadeInOut 0.5s ease forwards'; // Aplica la animación
 
-textLine8.textContent = '+speed!';
-
-            textLine8.style.animation = 'fadeIn 0.5s ease forwards'; // Aplica la animación
+            setTimeout(function() {
+                textLine8.style.animation = 'fadeOut 0.5s ease forwards'; // Inicia animación de desaparición
+                setTimeout(function() {
+                    textLine8.style.opacity = '0'; // Hace invisible el texto
+                }, 500); // Espera 0.5 segundos antes de ocultar el texto
+            }, 2000); // Espera 2 segundos antes de iniciar la animación de desaparición
         }
+
+
+
 
 
 function pointText(x, y) {
