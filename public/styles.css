@@ -46,7 +46,7 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 #selectSkin {
 
 border-radius: 20px;
-background-color:   f2f2f2  ;
+background-color:  #f2f2f2  ;
 padding: 20px;
 display: flex;
 flex-direction: column;
