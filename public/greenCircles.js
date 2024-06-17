@@ -336,7 +336,7 @@ function mostrarTexto() {
                 setTimeout(function() {
                     textLine8.style.opacity = '0'; // Hace invisible el texto
                 }, 500); // Espera 0.5 segundos antes de ocultar el texto
-            }, 2000); // Espera 2 segundos antes de iniciar la animación de desaparición
+            }, 510); // Espera 2 segundos antes de iniciar la animación de desaparición
         }
 
 
