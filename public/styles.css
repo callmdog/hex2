@@ -46,7 +46,7 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 #selectSkin {
 
 border-radius: 20px;
-background-color:  #f2f2f2  ;
+background-color:  #d9d9d9  ;
 padding: 20px;
 display: flex;
 flex-direction: column;
@@ -97,7 +97,7 @@ background-color: gray;
             display: flex;
             justify-content: space-between;
             gap: 10px;
- margin-top: 10px;
+ 
 width: 100%;
 
 
@@ -117,6 +117,9 @@ width: 100%;
 
 
 #closeSkin {
+
+margin-top: 10px;
+
 padding: 10px 20px; 
 font-size: 16px;
 background-color: #f443365a; 
@@ -134,6 +137,10 @@ box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 
 
 #skinButton {
+
+margin-top: 10px;
+
+
 padding: 10px 20px; 
 font-size: 16px;
 background-color: #4CAF50; 
@@ -152,6 +159,8 @@ box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 
 
 #paintSkin{
+margin-top: 10px;
+
 padding: 10px 20px; 
 font-size: 16px;
 background-color: #2196F3; 
@@ -175,6 +184,11 @@ box-shadow: 0px 6px 12px
 #selectSkin h3 {
     margin-top: 0;
     margin-bottom: 20px; /* Puedes ajustar este margen según necesites */
+
+
+text-shadow: 2px 2px 4px rgba(33, 150, 243, 0.8); /* Sombra azul */
+
+
 }
 
 
