@@ -90,64 +90,38 @@ vertices.forEach((vertex, index) => {
 
 
 
+const hexRadius = 30;
 
+    function drawHexagon(x, y) {
+        const points = getHexagonPoints(x, y, hexRadius);
+        const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        hexagon.setAttribute('points', points);
+        hexagon.setAttribute('fill', 'none');
+        hexagon.setAttribute('stroke', 'gray');
+        hexagon.setAttribute('stroke-width', '2');
+        hexagonGroup.appendChild(hexagon);
+    }
 
-function createHexagons(socket, callback) {
-    const hexagonGroup = document.getElementById('hexagonGroup');
-    const hexagonSize = 50;
-    const numRows = hexagonMap.length;
-    const numCols = hexagonMap[0].length;
-    const hexWidth = hexagonSize * Math.sqrt(3);
-    const hexHeight = hexagonSize * 1.5;
-    let minX = Infinity; let maxX = -Infinity;
-    let minY = Infinity; let maxY = -Infinity;
-
-    for (let row = 0; row < numRows; row++) {
-        for (let col = 0; col < numCols; col++) {
-            const x = col * hexWidth * 0.75;
-            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-
-            minX = Math.min(minX, x);
-            maxX = Math.max(maxX, x);
-            minY = Math.min(minY, y);
-            maxY = Math.max(maxY, y);
-
-            const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-            hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
-            hexagon.setAttribute('fill', 'none');
-            hexagon.setAttribute('stroke', 'gray');
-            hexagon.setAttribute('stroke-width', '2');
-
-            // Accede al mapa de hexágonos para obtener la dirección
-            const direction = hexagonMap[row][col].direction;
-            hexagon.addEventListener('click', function() {
-                console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
-            });
-            hexagonGroup.appendChild(hexagon);
+    function drawGrid(rows, cols) {
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                const x = hexRadius * (3 / 2 * col);
+                const y = hexRadius * Math.sqrt(3) * (row + 0.5 * (col % 2));
+                drawHexagon(x + 50, y + 50);
+            }
         }
     }
 
-    const mapWidth = maxX - minX + hexWidth;
-    const mapHeight = maxY - minY + hexHeight;
-    console.log('Ancho total del mapa hexagonal:', mapWidth);
-    console.log('Altura total del mapa hexagonal:', mapHeight);
-
-    if (callback) {
-        callback();
+    function getHexagonPoints(x, y, size) {
+        const points = [];
+        for (let i = 0; i < 6; i++) {
+            const angle = (Math.PI / 3) * i;
+            const x_i = x + size * Math.cos(angle);
+            const y_i = y + size * Math.sin(angle);
+            points.push(`${x_i},${y_i}`);
+        }
+        return points.join(' ');
     }
-}
 
-function getHexagonPoints(x, y, size) {
-    const points = [];
-    for (let i = 0; i < 6; i++) {
-        const angle = (2 * Math.PI / 6) * i;
-        const pointX = x + size * Math.cos(angle);
-        const pointY = y + size * Math.sin(angle);
-        const coordinate = `${pointX},${pointY}`;   
-        //console.log(`Coordenada: (${coordinate})`); 
-        // Imprime la coordenada en consola
-        points.push(coordinate);
-    }
-    return points.join(' ');
-}
+    drawGrid(10, 10);
 
