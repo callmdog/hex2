@@ -416,6 +416,18 @@ touch-action: pinch-zoom; }
 /* ///////////// CANVAS PAINT BOX ////////////////// */
 /* ///////////// CANVAS PAINT BOX ////////////////// */	
 /* ///////////// CANVAS PAINT BOX ////////////////// */	
+
+#paintBox h3 {
+    margin-top: 0;
+    margin-bottom: 20px; /* Puedes ajustar este margen según necesites */
+
+
+text-shadow: 2px 2px 4px rgba(33, 150, 243, 0.8); /* Sombra azul */
+
+
+}
+
+
 #paintBox {
 /* display: none;*/
 display: none;
