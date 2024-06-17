@@ -140,6 +140,12 @@ box-shadow: 0px 6px 12px
 
 }
 
+#selectSkin h3 {
+    margin-top: 0;
+    margin-bottom: 20px; /* Puedes ajustar este margen según necesites */
+}
+
+
 
 	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
