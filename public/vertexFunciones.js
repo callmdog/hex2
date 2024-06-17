@@ -52,7 +52,7 @@ const [x1, y1] = points[i].split(',').map(Number);
 // Calculamos la distancia entre el punto azul y el vértice
 const distance = pointToPointDistance2(x, y, x1, y1);
 // Agregamos el vértice si está dentro del radio especificado
-if (distance < radius) {
+if (distance < radius && distance > 20) {
 result.push({ x: x1, y: y1 }); } } });
 return result;
 }
