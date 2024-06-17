@@ -9,7 +9,7 @@ const hexagonMap = [
 ];
 
 
-function createHexagons2(socket, callback) {
+function createHexagons(socket, callback) {
 const hexagonGroup = document.getElementById('hexagonGroup');
 const hexagonSize = 50;
 const numRows = hexagonMap.length;
@@ -34,7 +34,9 @@ const direction = hexagonMap[row][col].direction;
 hexagon.addEventListener('click', function() {
 console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
 });
-hexagonGroup.appendChild(hexagon);
+
+//hexagonGroup.appendChild(hexagon);
+
 } }
 const mapWidth = maxX - minX + hexWidth;
 const mapHeight = maxY - minY + hexHeight;
