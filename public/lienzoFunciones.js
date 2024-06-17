@@ -135,86 +135,97 @@ const createPaint = document.getElementById('createPaint');
 
 
 function startDrawing(e) {
-isDrawing = true;
-const { clientX, clientY } = e.touches ? e.touches[0] : e;
-if (currentShape === 'line') {
-currentLine = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-currentLine.setAttribute('x1', clientX);
-currentLine.setAttribute('y1', clientY);
-currentLine.setAttribute('x2', clientX);
-currentLine.setAttribute('y2', clientY);
-currentLine.setAttribute('stroke', colorPicker.value);
-currentLine.setAttribute('stroke-width', brushSize.value);
-svgCanvas.appendChild(currentLine);
-} else if (currentShape === 'circle') {
-startX = clientX;
-startY = clientY;
-currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-currentShapeElement.setAttribute('cx', startX);
-currentShapeElement.setAttribute('cy', startY);
-currentShapeElement.setAttribute('r', '0');
-currentShapeElement.setAttribute('stroke', colorPicker.value);
-currentShapeElement.setAttribute('stroke-width', brushSize.value);
-currentShapeElement.setAttribute('fill', 'none');
-svgCanvas.appendChild(currentShapeElement);
-} else if (currentShape === 'rectangle') {
-startX = clientX;
-startY = clientY;
-currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-currentShapeElement.setAttribute('x', startX);
-currentShapeElement.setAttribute('y', startY);
-currentShapeElement.setAttribute('width', '0');
-currentShapeElement.setAttribute('height', '0');
-currentShapeElement.setAttribute('stroke', colorPicker.value);
-currentShapeElement.setAttribute('stroke-width', brushSize.value);
-currentShapeElement.setAttribute('fill', 'none');
-svgCanvas.appendChild(currentShapeElement);
-} else if (currentShape === 'brocha') {
-currentLine = document.createElementNS("http://www.w3.org/2000/svg", 'polyline');
-currentLine.setAttribute('points', `${clientX},${clientY}`);
-currentLine.setAttribute('stroke', colorPicker.value);
-currentLine.setAttribute('stroke-width', brushSize.value);
-currentLine.setAttribute('fill', 'none');
-svgCanvas.appendChild(currentLine);
-}
-else if (currentShape === 'triangle') {
-startX = clientX;
-startY = clientY;
-currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'polygon');
-currentShapeElement.setAttribute('stroke', colorPicker.value);
-currentShapeElement.setAttribute('stroke-width', brushSize.value);
-currentShapeElement.setAttribute('fill', 'none');
-svgCanvas.appendChild(currentShapeElement);
-currentShapeElement.setAttribute('points', `${startX},${startY}`);
-}
+    isDrawing = true;
+    const { clientX, clientY } = e.touches ? e.touches[0] : e;
+
+    // Ajusta las coordenadas según la posición del contenedor del lienzo
+    const canvasRect = svgCanvas.getBoundingClientRect();
+    const x = clientX - canvasRect.left;
+    const y = clientY - canvasRect.top;
+
+    if (currentShape === 'line') {
+        currentLine = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+        currentLine.setAttribute('x1', x);
+        currentLine.setAttribute('y1', y);
+        currentLine.setAttribute('x2', x);
+        currentLine.setAttribute('y2', y);
+        currentLine.setAttribute('stroke', colorPicker.value);
+        currentLine.setAttribute('stroke-width', brushSize.value);
+        svgCanvas.appendChild(currentLine);
+    } else if (currentShape === 'circle') {
+        startX = x;
+        startY = y;
+        currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+        currentShapeElement.setAttribute('cx', startX);
+        currentShapeElement.setAttribute('cy', startY);
+        currentShapeElement.setAttribute('r', '0');
+        currentShapeElement.setAttribute('stroke', colorPicker.value);
+        currentShapeElement.setAttribute('stroke-width', brushSize.value);
+        currentShapeElement.setAttribute('fill', 'none');
+        svgCanvas.appendChild(currentShapeElement);
+    } else if (currentShape === 'rectangle') {
+        startX = x;
+        startY = y;
+        currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+        currentShapeElement.setAttribute('x', startX);
+        currentShapeElement.setAttribute('y', startY);
+        currentShapeElement.setAttribute('width', '0');
+        currentShapeElement.setAttribute('height', '0');
+        currentShapeElement.setAttribute('stroke', colorPicker.value);
+        currentShapeElement.setAttribute('stroke-width', brushSize.value);
+        currentShapeElement.setAttribute('fill', 'none');
+        svgCanvas.appendChild(currentShapeElement);
+    } else if (currentShape === 'brocha') {
+        currentLine = document.createElementNS("http://www.w3.org/2000/svg", 'polyline');
+        currentLine.setAttribute('points', `${x},${y}`);
+        currentLine.setAttribute('stroke', colorPicker.value);
+        currentLine.setAttribute('stroke-width', brushSize.value);
+        currentLine.setAttribute('fill', 'none');
+        svgCanvas.appendChild(currentLine);
+    } else if (currentShape === 'triangle') {
+        startX = x;
+        startY = y;
+        currentShapeElement = document.createElementNS("http://www.w3.org/2000/svg", 'polygon');
+        currentShapeElement.setAttribute('stroke', colorPicker.value);
+        currentShapeElement.setAttribute('stroke-width', brushSize.value);
+        currentShapeElement.setAttribute('fill', 'none');
+        svgCanvas.appendChild(currentShapeElement);
+        currentShapeElement.setAttribute('points', `${startX},${startY}`);
+    }
 }
 
-// Función para dibujar
 function draw(e) {
-if (isDrawing) {
-const { clientX, clientY } = e.touches ? e.touches[0] : e;
-if (currentShape === 'line') {
-currentLine.setAttribute('x2', clientX);
-currentLine.setAttribute('y2', clientY);
-} else if (currentShape === 'circle') {
-const radius = Math.sqrt(Math.pow(clientX - startX, 2) + Math.pow(clientY - startY, 2));
-currentShapeElement.setAttribute('r', radius);
-} else if (currentShape === 'rectangle') {
-const width = clientX - startX;
-const height = clientY - startY;
-currentShapeElement.setAttribute('x', Math.min(startX, startX + width));
-currentShapeElement.setAttribute('y', Math.min(startY, startY + height));
-currentShapeElement.setAttribute('width', Math.abs(width));
-currentShapeElement.setAttribute('height', Math.abs(height));
-}else if (currentShape === 'brocha') {
-const points = currentLine.getAttribute('points');
-currentLine.setAttribute('points', `${points} ${clientX},${clientY}`);
-}else if (currentShape === 'triangle') {
-const points = `${startX},${startY} ${clientX},${clientY} ${2 * startX - clientX},${clientY}`;
-currentShapeElement.setAttribute('points', points);
+    if (isDrawing) {
+        const { clientX, clientY } = e.touches ? e.touches[0] : e;
+
+        // Ajusta las coordenadas según la posición del contenedor del lienzo
+        const canvasRect = svgCanvas.getBoundingClientRect();
+        const x = clientX - canvasRect.left;
+        const y = clientY - canvasRect.top;
+
+        if (currentShape === 'line') {
+            currentLine.setAttribute('x2', x);
+            currentLine.setAttribute('y2', y);
+        } else if (currentShape === 'circle') {
+            const radius = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
+            currentShapeElement.setAttribute('r', radius);
+        } else if (currentShape === 'rectangle') {
+            const width = x - startX;
+            const height = y - startY;
+            currentShapeElement.setAttribute('x', Math.min(startX, startX + width));
+            currentShapeElement.setAttribute('y', Math.min(startY, startY + height));
+            currentShapeElement.setAttribute('width', Math.abs(width));
+            currentShapeElement.setAttribute('height', Math.abs(height));
+        } else if (currentShape === 'brocha') {
+            const points = currentLine.getAttribute('points');
+            currentLine.setAttribute('points', `${points} ${x},${y}`);
+        } else if (currentShape === 'triangle') {
+            const points = `${startX},${startY} ${x},${y} ${2 * startX - x},${y}`;
+            currentShapeElement.setAttribute('points', points);
+        }
+    }
 }
-}
-}
+
 
 // Función para terminar de dibujar
 function endDrawing() {
