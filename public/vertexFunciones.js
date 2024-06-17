@@ -64,6 +64,6 @@ greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y); 
 greenCircle.setAttribute('r', '3'); 
 greenCircle.setAttribute('fill', 'red');
-//console.log(`Verde agreg: (${x}, ${y}) marcado con círculo rojo.`);
+console.log(`rojo: (${x}, ${y})`);
 const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(greenCircle);
 }
