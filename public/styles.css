@@ -118,7 +118,6 @@ width: 100%;
 
 #closeSkin {
 
-margin-top: 10px;
 
 padding: 10px 20px; 
 font-size: 16px;
@@ -138,7 +137,6 @@ box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 
 #skinButton {
 
-margin-top: 10px;
 
 
 padding: 10px 20px; 
@@ -159,7 +157,8 @@ box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 
 
 #paintSkin{
-margin-top: 10px;
+margin-top: 20px;
+margin-bottom: 10px;
 
 padding: 10px 20px; 
 font-size: 16px;
