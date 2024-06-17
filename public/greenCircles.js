@@ -312,11 +312,25 @@ speedText.setAttribute('fill', 'blue');
 speedText.setAttribute('font-size', '14px');
 speedText.textContent = "+ speed";
 hexagonGroup.appendChild(speedText);
+
+mostrarTexto();
+
 // Después de 1 segundo, eliminar el texto
 setTimeout(() => {
 hexagonGroup.removeChild(speedText);
 }, 500);
 }
+
+
+function mostrarTexto() {
+            const textLine8 = document.getElementById('textLine8');
+            textLine8.style.opacity = '1'; // Hace visible el texto
+
+textLine8.textContent = '+speed!';
+
+            textLine8.style.animation = 'fadeIn 0.5s ease forwards'; // Aplica la animación
+        }
+
 
 function pointText(x, y) {
 const pointText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
