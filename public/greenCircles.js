@@ -335,8 +335,8 @@ function mostrarTexto() {
                 textLine8.style.animation = 'fadeOut 0.5s ease forwards'; // Inicia animación de desaparición
                 setTimeout(function() {
                     textLine8.style.opacity = '0'; // Hace invisible el texto
-                }, 500); // Espera 0.5 segundos antes de ocultar el texto
-            }, 510); // Espera 2 segundos antes de iniciar la animación de desaparición
+                }, 200); // Espera 0.5 segundos antes de ocultar el texto
+            },200); // Espera 2 segundos antes de iniciar la animación de desaparición
         }
 
 
