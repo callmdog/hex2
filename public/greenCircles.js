@@ -253,7 +253,7 @@ function activarVelocidad() {
     const newVel = { velocidad: Velocidad };
     socket.emit('updateVelocidadServer', newVel);
     console.log('Velocidad activada');
-    textLine7.textContent = `X2 SPEED`;
+    textLine7.textContent = `X2 SPEED - 5 s`;
 
     segundosRestantes = 5;
     intervalo = setInterval(function() {
