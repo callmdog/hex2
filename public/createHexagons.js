@@ -24,14 +24,8 @@ for (let col = 0; col < numCols; col++) {
 
 //const x = col * (hexWidth * 0.87);
 //const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-
-
-
 const x = hexRadius * (3 / 2 * col);
 const y = hexRadius * Math.sqrt(3) * (row + 0.5 * (col % 2));
-
-
-
 minX = Math.min(minX, x); maxX = Math.max(maxX, x);
 minY = Math.min(minY, y); maxY = Math.max(maxY, y);
 const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
@@ -44,6 +38,18 @@ const direction = hexagonMap[row][col].direction;
 hexagon.addEventListener('click', function() {
 console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
 });
+
+
+//HEXAGON2 NUEVO
+
+const hexagon2 = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+hexagon2.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+hexagon2.setAttribute('fill', 'none');
+hexagon2.setAttribute('stroke', 'red');
+hexagon2.setAttribute('stroke-width', '10');
+hexagonGroup.appendChild(hexagon2);
+
+//////////
 
 hexagonGroup.appendChild(hexagon);
 
