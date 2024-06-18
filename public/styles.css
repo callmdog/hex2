@@ -107,6 +107,11 @@ position: relative;
 background-color: gray;
 }
 
+#skinButtons img {
+    width: 136px; /* Cambia este valor según el tamaño deseado */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
 
 #skinButtons {
             display: flex;
