@@ -333,7 +333,7 @@ opacity: 1;
 /* ///////////// PLAY BUTTON  ////////////////// */
 /* ///////////// PLAY BUTTON  ////////////////// */
 #submitButton {
-padding: 10px 20px; 
+padding: 4px 4px; 
 font-size: 16px;
 background-color: #04135a; 
 color: white;
@@ -357,7 +357,7 @@ box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 #customPlayer{
-padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+padding: 4px 4px; /* Ajusta el relleno según sea necesario */
 font-size: 16px;
 background-color: #cb9800; /* Color de fondo */
 color: white; /* Color del texto */
@@ -370,6 +370,11 @@ transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suave
 #customPlayer:hover {
 background-color: #ac9f41; /* Cambia el color de fondo al pasar el cursor */
 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
+}
+
+#customPlayer img {
+    width: 112px; /* Cambia este valor según el tamaño deseado */
+    height: auto; /* Mantiene la proporción de la imagen */
 }
 
 /* ///////////// GAME OVER BOX ////////////////// */
