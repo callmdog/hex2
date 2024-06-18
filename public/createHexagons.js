@@ -48,7 +48,7 @@ hexagon2.setAttribute('fill', 'none');
 
 
         hexagon2.setAttribute('stroke', 'rgb(0, 119, 255)');
-        hexagon2.setAttribute('stroke-opacity', '0.5');
+        hexagon2.setAttribute('stroke-opacity', '0.2');
 
 hexagon2.setAttribute('stroke-width', '6');
 hexagonGroup.appendChild(hexagon2);
