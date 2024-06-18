@@ -59,7 +59,9 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 #selectSkin {
 
 border-radius: 20px;
-background-color:  #404040  ;
+/*background-color:  #404040  ;*/
+    background: linear-gradient(45deg, #0B1E00, #000000); /* Degradado de naranja a amarillo */
+
 padding: 20px;
 display: flex;
 flex-direction: column;
