@@ -429,84 +429,92 @@ touch-action: pinch-zoom; }
 /* ///////////// CANVAS PAINT BOX ////////////////// */
 /* ///////////// CANVAS PAINT BOX ////////////////// */	
 /* ///////////// CANVAS PAINT BOX ////////////////// */	
-
 #paintBox h3 {
     margin-top: 0;
-    margin-bottom: 20px; /* Puedes ajustar este margen según necesites */
-
-
-text-shadow: 2px 2px 4px rgba(33, 150, 243, 0.8); /* Sombra azul */
-
-
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(255, 165, 0, 0.8); /* Sombra naranja */
+    color: #ffffff; /* Color del texto blanco */
 }
-
 
 #paintBox {
+    text-align: center;
+    display: none; /* Cambiar a 'block' cuando sea necesario mostrar */
+    position: absolute;
+    background-color: #222; /* Fondo oscuro para combinar con el tema del juego */
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
+    overflow: hidden;
+    z-index: 999;
+    padding: 20px; /* Relleno adicional para mejor apariencia */
+}
 
-text-align: center;
-
-/* display: none;*/
-display: none;
-position: absolute; /* Posición absoluta */
-background-color: red; /* Fondo rojo */
-border-radius: 20px; /* Bordes redondeados */
-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Sombra */
-overflow: hidden; /* Oculta el desbordamiento del iframe */
-z-index: 999;
-padding: 10px;
-}		
 #paintBox::before {
-content: ""; /* Crea un pseudo-elemento */
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(45deg, #000000, #404040); /* Degradado de negro a amarillo */
-opacity: 0.8; /* Opacidad */
-z-index: -1;	
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff8008, #ffc837); /* Degradado de naranja a amarillo */
+    opacity: 0.8;
+    z-index: -1;
 }
+
 #canvasContainer {
-position: relative;
-width: 300px; /* Ancho basado en la altura de la ventana */
-height: 300px; /* Altura basada en la altura de la ventana */
-margin: auto;
-border: 1px solid black;
-border-radius: 50%;
-overflow: hidden;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    border: 2px solid #ff8008; /* Borde naranja para combinar con el tema */
+    border-radius: 50%;
+    overflow: hidden;
 }
+
 #svgCanvas {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
-#undoButton, #redoButton, #fillButton, #clearButton {
-padding: 5px 10px; /* Ajusta el relleno según sea necesario */
-font-size: 12px;
-background-color: #cb9800; /* Color de fondo */
-color: white; /* Color del texto */
-border: none; /* Quita el borde */
-border-radius: 5px; /* Añade bordes redondeados */
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */        }
-.shapeButton {
-padding: 5px 10px; /* Ajusta el relleno según sea necesario */
-font-size: 12px;
-background-color: #cb9800; /* Color de fondo */
-color: white; /* Color del texto */
-border: none; /* Quita el borde */
-border-radius: 5px; /* Añade bordes redondeados */
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
+
+#undoButton, #redoButton, #fillButton, #clearButton, .shapeButton {
+    padding: 5px 10px;
+    font-size: 14px; /* Aumenta el tamaño de fuente para mejor visibilidad */
+    background-color: #ff8008; /* Color de fondo naranja */
+    color: #000; /* Color del texto negro */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
-/*#customPlayer:hover {
-background-color: #ac9f41; 
-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
-}*/
+
+#undoButton:hover, #redoButton:hover, #fillButton:hover, #clearButton:hover, .shapeButton:hover {
+    background-color: #ffc837; /* Cambio de color al pasar el mouse */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+#colorPicker, #brushSize {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#colorPicker {
+    width: 60px; /* Ajusta el ancho del selector de color */
+    height: 30px; /* Ajusta la altura del selector de color */
+    border: 1px solid #ff8008; /* Borde naranja */
+    border-radius: 5px;
+}
+
+#brushSize {
+    width: 100%;
+}
+
+#paintBox button {
+    margin: 5px; /* Espaciado entre botones */
+}
+
 	
 	
 
