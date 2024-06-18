@@ -440,6 +440,12 @@ touch-action: pinch-zoom; }
     text-align: center;
     display: none; /* Cambiar a 'block' cuando sea necesario mostrar */
     position: absolute;
+
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+
     background-color: #222; /* Fondo oscuro para combinar con el tema del juego */
     border-radius: 20px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
