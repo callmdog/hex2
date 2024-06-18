@@ -45,8 +45,12 @@ console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado
 const hexagon2 = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
 hexagon2.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
 hexagon2.setAttribute('fill', 'none');
-hexagon2.setAttribute('stroke', 'red');
-hexagon2.setAttribute('stroke-width', '10');
+
+
+        hexagon2.setAttribute('stroke', 'rgb(0, 119, 255)');
+        hexagon2.setAttribute('stroke-opacity', '0.5');
+
+hexagon2.setAttribute('stroke-width', '6');
 hexagonGroup.appendChild(hexagon2);
 
 //////////
