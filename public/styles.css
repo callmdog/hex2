@@ -107,10 +107,6 @@ position: relative;
 background-color: gray;
 }
 
-#skinButtons img {
-    width: 136px; /* Cambia este valor según el tamaño deseado */
-    height: auto; /* Mantiene la proporción de la imagen */
-}
 
 
 #skinButtons {
@@ -353,10 +349,7 @@ background-color: #2f2c79;
 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }
 
-#submitButton img {
-    width: 112px; /* Cambia este valor según el tamaño deseado */
-    height: auto; /* Mantiene la proporción de la imagen */
-}
+
 
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
@@ -377,10 +370,7 @@ background-color: #ac9f41; /* Cambia el color de fondo al pasar el cursor */
 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
 }
 
-#customPlayer img {
-    width: 112px; /* Cambia este valor según el tamaño deseado */
-    height: auto; /* Mantiene la proporción de la imagen */
-}
+
 
 /* ///////////// GAME OVER BOX ////////////////// */
 /* ///////////// GAME OVER BOX ////////////////// */	
