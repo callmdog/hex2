@@ -191,13 +191,44 @@
 
 <text id="textLine8" x="50%" y="50%" fill="blue" text-anchor="middle" font-size="54" font-weight="bold"    > </text>
 
-    <div id="centeredCameraContainer">
-        <input type="checkbox" id="centeredCameraCheckbox" checked onchange="document.getElementById('centeredCameraCheckbox').checked ? window.Cam = 1 : window.Cam = 2;">
-        <label for="centeredCameraCheckbox" style="margin-left: 5px;">Centered Camera</label>
-    </div>
+
+
+
+
+
+<foreignObject id="checkboxContainer" width="200" height="30">
+            <body xmlns="http://www.w3.org/1999/xhtml" class="checkbox-container">
+                <input type="checkbox" id="centeredCameraCheckbox" class="checkbox" checked onchange="this.checked ? window.Cam = 1 : window.Cam = 2;">
+                <label for="centeredCameraCheckbox" style="margin-left: 5px;">Centered Camera</label>
+            </body>
+        </foreignObject>
+    </svg>
+
+    
+
+
 
 </svg>	
 <!-- END SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
+
+
+
+<script>
+        function positionCheckbox() {
+            const svg = document.getElementById('gameSVG');
+            const bbox = svg.getBBox();
+            const checkboxContainer = document.getElementById('checkboxContainer');
+            const offsetY = 40; // Altura del checkbox
+
+            checkboxContainer.setAttribute('x', 20);
+            checkboxContainer.setAttribute('y', bbox.height - offsetY);
+        }
+
+        window.addEventListener('resize', positionCheckbox);
+        window.addEventListener('load', positionCheckbox);
+    </script>
+
+
 
 	
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
@@ -205,6 +236,10 @@
 <script src="vertexFunciones.js"></script>
 
 <script src="playerSkin.js"></script>
+
+
+
+
 	
 
 	
@@ -217,11 +252,6 @@
 	  
 document.addEventListener('DOMContentLoaded', function () {
 
-let svgHeight = document.querySelector('svg').getBoundingClientRect().height;
-            let container = document.getElementById('centeredCameraContainer');
-            container.style.bottom = '20px';
-            container.style.left = '20px';
-    
 
 
 	
