@@ -37,6 +37,16 @@ user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera
 }	
 
 
+.checkbox-container {
+            display: flex;
+            align-items: center;
+            color: lightgreen;
+        }
+        .checkbox {
+            accent-color: lightgreen;
+        }
+
+
 @keyframes fadeInOut {
             0% {
                 opacity: 0;
