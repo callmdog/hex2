@@ -191,14 +191,10 @@
 
 <text id="textLine8" x="50%" y="50%" fill="blue" text-anchor="middle" font-size="54" font-weight="bold"    > </text>
 
-
-<foreignObject x="20" y="85%" width="200" height="130" style="position: absolute; bottom: 20px;">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center;">
-            <input type="checkbox" id="centeredCameraCheckbox" checked style="accent-color: lightgreen;" onchange="document.getElementById('centeredCameraCheckbox').checked ? window.Cam = 1 : window.Cam = 2;">
-            <label for="centeredCameraCheckbox" style="color: lightgreen; margin-left: 5px;">Centered Camera</label>
-        </div>
-    </foreignObject>
-
+    <div id="centeredCameraContainer">
+        <input type="checkbox" id="centeredCameraCheckbox" checked onchange="document.getElementById('centeredCameraCheckbox').checked ? window.Cam = 1 : window.Cam = 2;">
+        <label for="centeredCameraCheckbox" style="margin-left: 5px;">Centered Camera</label>
+    </div>
 
 </svg>	
 <!-- END SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
@@ -220,6 +216,13 @@
 	
 	  
 document.addEventListener('DOMContentLoaded', function () {
+
+let svgHeight = document.querySelector('svg').getBoundingClientRect().height;
+            let container = document.getElementById('centeredCameraContainer');
+            container.style.bottom = '20px';
+            container.style.left = '20px';
+    
+
 
 	
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
