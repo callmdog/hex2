@@ -215,13 +215,17 @@
 
 <script>
         function positionCheckbox() {
+
+const svgHeight2 = document.documentElement.clientHeight;
+
+
             const svg = document.getElementById('firstP');
             const bbox = svg.getBBox();
             const checkboxContainer = document.getElementById('checkboxContainer');
             const offsetY = 40; // Altura del checkbox
 
             checkboxContainer.setAttribute('x', 20);
-            checkboxContainer.setAttribute('y', bbox.height - offsetY);
+            checkboxContainer.setAttribute('y', svgHeight2 - offsetY);
         }
 
         window.addEventListener('resize', positionCheckbox);
