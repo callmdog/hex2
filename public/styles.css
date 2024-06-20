@@ -84,7 +84,7 @@ height: 40px;  /* Establece una altura fija */
 
 }
 
-#submitButton, #customPlayer {
+#submitButton, #customPlayer img{
 height: 40px;
             width: auto;
 
