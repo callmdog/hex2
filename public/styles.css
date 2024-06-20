@@ -1,5 +1,13 @@
 
 
+
+#customizePlayerDiv
+{
+display: flex;
+width: 140px;
+}
+
+
 #skinButtons {
 display: flex;
 width: 100%;
