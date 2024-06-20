@@ -32,8 +32,21 @@ border-radius: 5px;
 
 }
 
+#paintSkin {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+margin: 0;
+overflow: hidden;
+background-color: #2196F3; 
+border-radius: 5px;
 
-#skinButton img, #closeSkin img {
+}
+
+
+#skinButton img, #closeSkin img, #paintSkin img {
 /*width: 86%;
 height: 86%;
 object-fit: cover;
