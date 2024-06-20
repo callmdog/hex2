@@ -3,8 +3,8 @@
 
 #customizePlayerDiv
 {
-display: flex;
-width: 140px;
+flex-direction: column;
+
 }
 
 
