@@ -76,7 +76,13 @@ height: 40px;  /* Establece una altura fija */
 
 }
 
+#submitButton, #customPlayer {
+height: 60px;  /* Establece una altura fija */
+    width: auto;   /* Ajusta el ancho automáticamente para mantener la proporción */
+   /*  max-width: 80%; Limita el ancho máximo al 80% del contenedor */
+    object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
 
+}
 
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
