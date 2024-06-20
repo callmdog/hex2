@@ -1,77 +1,37 @@
-body {
-margin: 0;
+
+
+#skinButtons {
 display: flex;
-overflow: hidden;	
-justify-content: center; /* Centra horizontalmente */
-align-items: center; /* Centra verticalmente */
-height: 100vh;	
-background-color: #000000; 
-position: relative; /* Establece el contexto de posición para los elementos secundarios */
-}
-h2 {
-font-size: 2em; /* Tamaño de fuente grande */
-font-weight: bold; /* Texto en negrita */
-color: #ff5733; /* Color naranja */
-text-shadow: 2px 2px 6px rgba(0, 0, 255, 0.5); /* Sombra de texto azul */
-}
-h3 {
-font-size: 2em; /* Tamaño de fuente grande */
-font-weight: bold; /* Texto en negrita */
-color: #ff5733; /* Color naranja */
-text-shadow: #00008b   ; /* Sombra de texto azul */
+width: 100%;
+height: 100%;
 }
 
-p {
-font-size: 1.5em; /* Tamaño de fuente grande */
-font-style: italic; /* Texto en cursiva */
-color: #ffffff; /* Color blanco */
-text-shadow: 1px 1px 4px rgba(0, 0, 255, 0.7); /* Sombra de texto azul */
+#skinButton, #closeSkin {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+margin: 0;
+overflow: hidden;
+	padding: 10px;
 }
-.no-select {
--webkit-touch-callout: none; /* iOS Safari */
--webkit-user-select: none; /* Safari */
--khtml-user-select: none; /* Konqueror HTML */
--moz-user-select: none; /* Firefox */
--ms-user-select: none; /* Internet Explorer/Edge */
-user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
-}	
+
+#skinButton img, #closeSkin img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
 
 
-.checkbox-container {
-            display: flex;
-            align-items: center;
-            color: lightgreen;
-        }
-        .checkbox {
-            accent-color: lightgreen;
-        }
-
-
-@keyframes fadeInOut {
-            0% {
-                opacity: 0;
-                transform: scale(0.5); /* Empieza más pequeño */
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1); /* Termina a tamaño normal */
-            }
-        }
 
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
-
 #selectSkin {
-
 border-radius: 20px;
-/*background-color:  #404040  ;*/
-    background: linear-gradient(45deg, #3D5032, #000000); /* Degradado de naranja a amarillo */
-
+background: linear-gradient(45deg, #3D5032, #000000); /* Degradado de naranja a amarillo */
 padding: 20px;
 display: flex;
 flex-direction: column;
@@ -84,7 +44,6 @@ transform: translate(-50%, -50%);
 width: 300px;
 z-index: 999;
 }
-
 #selectedSkin {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
@@ -93,57 +52,31 @@ width: 100%;
 max-height: 300px;
 overflow-y: auto;
 }
-
 .skin {
-
 border-radius: 20px;
-    width: 70px;
-    height: 70px;
+width: 70px;
+height: 70px;
 padding: 10px;
-/* padding-top: 100%; Esto asegura que los recuadros sean cuadrados */
 background-color: white;
 border: 1px solid black;
 box-sizing: border-box;
-
-  display: flex;
-    align-items: center;
-    justify-content: center;
-
-
+display: flex;
+align-items: center;
+justify-content: center;
 position: relative;
 }
-
 .skin.selected {
 background-color: gray;
 }
-
+#selectSkin h3 {
+margin-top: 0;
+margin-bottom: 20px; /* Puedes ajustar este margen según necesites */
+text-shadow: 2px 2px 4px rgba(33, 150, 243, 0.8); /* Sombra azul */
+}
 
 
 /*
-#skinButtons {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
- 
-width: 100%;
-
-
-        }
-        #skinButtons button {
-            flex: 1;
-        }
-        #skinButtons button:first-child {
-            margin-right: 5px;
-        }
-        #skinButtons button:last-child {
-            margin-left: 5px;
-        }
-
-
-
 #closeSkin {
-
-
 padding: 10px 20px; 
 font-size: 16px;
 background-color: #9C0000; 
@@ -158,10 +91,7 @@ transition: background-color 0.3s, box-shadow 0.3s;
 background-color: #9C0000;
 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }	
-
-
 #skinButton {
-
 padding: 10px 20px; 
 font-size: 16px;
 background-color: #4CAF50; 
@@ -176,13 +106,9 @@ transition: background-color 0.3s, box-shadow 0.3s;
 background-color: #4CAF50;
 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }	
-
-
-
 #paintSkin{
 margin-top: 20px;
 margin-bottom: 10px;
-
 padding: 10px 20px; 
 font-size: 16px;
 background-color: #2196F3; 
@@ -193,60 +119,13 @@ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 cursor: pointer;
 transition: background-color 0.3s, box-shadow 0.3s;
 flex: 1;
-
 margin-bottom: 10px;
-
 }
 #paintSkin:hover {
 background-color: #2196F3;
 box-shadow: 0px 6px 12px
-
 }
-
-
 */
-#skinButtons {
-            display: flex;
-            width: 100%;
-            height: 100%;
-        }
-
-        #skinButton, #closeSkin {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        #skinButton img, #closeSkin img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-
-#texto3dImage {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-}
-
-
-
-
-#selectSkin h3 {
-    margin-top: 0;
-    margin-bottom: 20px; /* Puedes ajustar este margen según necesites */
-
-
-text-shadow: 2px 2px 4px rgba(33, 150, 243, 0.8); /* Sombra azul */
-
-
-}
-
 
 
 	
@@ -287,6 +166,17 @@ padding: 10px;
 border-radius: 5px;
 font-size: 2vw;
 max-width: 90%; }
+
+/* ///////////// CHECKBOX - CAMERA  ////////////////// */
+.checkbox-container {
+display: flex;
+align-items: center;
+color: lightgreen;
+}
+.checkbox {
+accent-color: lightgreen;
+}
+
 
 /* ///////////// LOGOTIPO ////////////////// */
 /* ///////////// LOGOTIPO ////////////////// */	
@@ -569,11 +459,77 @@ transform: translate(-50%, -50%);
     margin: 5px; /* Espaciado entre botones */
 }
 
-	
-	
+
+
+/* ///////////// PLAYER SPEED TEXT ANIMATION  ////////////////// */
+/* ///////////// PLAYER SPEED TEXT ANIMATION  ////////////////// */
+/* ///////////// PLAYER SPEED TEXT ANIMATION  ////////////////// */
+@keyframes fadeInOut {
+0% {
+opacity: 0;
+transform: scale(0.5); /* Empieza más pequeño */
+}
+50% {
+opacity: 1;
+}
+100% {
+opacity: 1;
+transform: scale(1); /* Termina a tamaño normal */
+}
+}
 
 
 /* ///////////// BLUE POINT  ////////////////// */
 /* ///////////// BLUE POINT  ////////////////// */
 /* ///////////// BLUE POINT  ////////////////// */	
 #bluePoint { display: none; }	
+
+
+/* ///////////// BODY AND TEXT h3, h2, p, NO-SELECT TEXT  ////////////////// */
+/* ///////////// BODY AND TEXT h3, h2, p, NO-SELECT TEXT  ////////////////// */
+/* ///////////// BODY AND TEXT h3, h2, p, NO-SELECT TEXT  ////////////////// */
+/* ///////////// BODY AND TEXT h3, h2, p, NO-SELECT TEXT  ////////////////// */
+/* ///////////// BODY AND TEXT h3, h2, p, NO-SELECT TEXT  ////////////////// */
+/* ///////////// BODY AND TEXT h3, h2, p, NO-SELECT TEXT  ////////////////// */
+/* ///////////// BODY AND TEXT h3, h2, p, NO-SELECT TEXT  ////////////////// */
+body {
+margin: 0;
+display: flex;
+overflow: hidden;	
+justify-content: center; /* Centra horizontalmente */
+align-items: center; /* Centra verticalmente */
+height: 100vh;	
+background-color: #000000; 
+position: relative; /* Establece el contexto de posición para los elementos secundarios */
+}
+h2 {
+font-size: 2em; /* Tamaño de fuente grande */
+font-weight: bold; /* Texto en negrita */
+color: #ff5733; /* Color naranja */
+text-shadow: 2px 2px 6px rgba(0, 0, 255, 0.5); /* Sombra de texto azul */
+}
+h3 {
+font-size: 2em; /* Tamaño de fuente grande */
+font-weight: bold; /* Texto en negrita */
+color: #ff5733; /* Color naranja */
+text-shadow: #00008b   ; /* Sombra de texto azul */
+}
+p {
+font-size: 1.5em; /* Tamaño de fuente grande */
+font-style: italic; /* Texto en cursiva */
+color: #ffffff; /* Color blanco */
+text-shadow: 1px 1px 4px rgba(0, 0, 255, 0.7); /* Sombra de texto azul */
+}
+.no-select {
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none; /* Safari */
+-khtml-user-select: none; /* Konqueror HTML */
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* Internet Explorer/Edge */
+user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+#texto3dImage {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
