@@ -6,7 +6,7 @@ width: 100%;
 height: 100%;
 }
 
-#skinButton, #closeSkin {
+#skinButton {
 flex: 1;
 display: flex;
 align-items: center;
@@ -14,7 +14,24 @@ justify-content: center;
 padding: 0;
 margin: 0;
 overflow: hidden;
+background-color: #4CAF50; 
+border-radius: 5px;
+	
 }
+
+#closeSkin {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+margin: 0;
+overflow: hidden;
+background-color: #9C0000; 
+border-radius: 5px;
+
+}
+
 
 #skinButton img, #closeSkin img {
 width: 86%;
