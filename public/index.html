@@ -18,6 +18,18 @@
       align-items: center;
     		}
 	
+    #text {
+      color: white;
+      font-size: 9px;
+      margin: 0;
+      padding-left: 5px;
+      transition: opacity 1s ease;
+    }
+    .hidden {
+      opacity: 0;
+    }
+
+
 </style>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -153,13 +165,21 @@
 
 
 <!-- INSTRUCTIONS OF GAME !!!!!!!!! -->	
-<!-- INSTRUCTIONS OF GAME !!!!!!!!! -->		
+<!-- INSTRUCTIONS OF GAME !!!!!!!!! 		
 <div id="greenCirlceI" style="display: flex; align-items: center;">
   <svg id="greenCircle" width="22" height="22" xmlns="http://www.w3.org/2000/svg" style="display: inline-block;">
     <circle cx="11" cy="11" r="10" fill="blue" opacity="0.8" />
   </svg>
   <p style="color: white; font-size: 9px; margin: 0; padding-left: 5px;">+ 1 Point: Collect the green circles to grow your player.</p>
 </div>
+
+-->
+<div id="greenCirlceI">
+    <svg id="greenCircle" width="22" height="22" xmlns="http://www.w3.org/2000/svg" style="display: inline-block;">
+      <circle cx="11" cy="11" r="10" fill="blue" opacity="0.8" />
+    </svg>
+    <p id="text">+ 1 Point: Collect the green circles to grow your player.</p>
+  </div>
 
 
 
@@ -279,6 +299,35 @@
       loop: true
     });
   </script>	
+
+
+
+
+<script>
+    const texts = [
+      { message: "helooooo", color: "yellow" },
+      { message: "looooool", color: "purple" },
+      { message: "+ 1 Point: Collect the green circles to grow your player.", color: "blue" }
+    ];
+
+    let currentIndex = 0;
+    const textElement = document.getElementById("text");
+    const circleElement = document.querySelector("#greenCircle circle");
+
+    function changeContent() {
+      textElement.classList.add("hidden");
+
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % texts.length;
+        textElement.textContent = texts[currentIndex].message;
+        circleElement.setAttribute("fill", texts[currentIndex].color);
+        textElement.classList.remove("hidden");
+      }, 1000); // Wait for the opacity transition to complete (1 second)
+    }
+
+    setInterval(changeContent, 2000);
+  </script>
+
 
 <script>
         function positionCheckbox() {
