@@ -166,14 +166,8 @@
 
 <div id="instructions">
         Eat green circles to grow your player.
-        <svg id="greenCircle" width="20" height="20" viewBox="0 0 20 20">
-        <circle cx="10" cy="10" r="8" fill="green">
-            <animate 
-                attributeName="r" 
-                values="8;10;8" 
-                dur="2s" 
-                repeatCount="indefinite" />
-        </circle>
+         <svg id="greenCircle" width="20" height="20" viewBox="0 0 20 20">
+        <circle id="greenCircleCircle" cx="10" cy="10" r="8" fill="green"></circle>
     </svg>
     </div>
 
@@ -310,6 +304,14 @@ const svgHeight2 = document.documentElement.clientHeight;
 	  
 document.addEventListener('DOMContentLoaded', function () {
 
+anime({
+        targets: '#greenCircleCircle',
+        r: [8, 10],
+        duration: 1000,
+        easing: 'easeInOutSine',
+        direction: 'alternate',
+        loop: true
+    });	
 
 positionCheckbox();
 	
