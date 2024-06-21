@@ -4,6 +4,7 @@
 #customizePlayerDiv
 {
 flex-direction: column;
+display: flex;
 
 }
 
