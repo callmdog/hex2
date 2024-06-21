@@ -11,6 +11,13 @@
 <!-- ESTILOS CSS ARCHIVO !!!!!!!!! -->	
 <link rel="stylesheet" href="styles.css">
 <style>
+
+ #greenCirlceI {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    		}
+	
 </style>
 
 <script src="/socket.io/socket.io.js"></script>
@@ -147,15 +154,18 @@
 
 <!-- INSTRUCTIONS OF GAME !!!!!!!!! -->	
 <!-- INSTRUCTIONS OF GAME !!!!!!!!! -->		
-	<div class="instructor">
-   	<svg id="svgCanvas2" width="100%" height="100%">
-            <circle cx="50%" cy="50%" r="100" fill="white"/>
-        </svg>
+<div id="greenCirlceI">
+    
+<svg id="greenCircle" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="10" fill="green" opacity="0.8" />
+</svg>
 
-	  <p style="color: white;>Collect green circles for grow your player</p>
+<p>+ 1 Point: Collect the green circles for grow your player.</p>
+
+</div>
+
 
 		
-  	</div>	
 		
 	<!--<label for="playerName">Introduce tu nombre:</label> -->
 	<input type="text" id="playerName" name="playerName" required placeholder="Player name" minlength="1" maxlength="20" pattern=".{1,20}">	
@@ -258,6 +268,19 @@
 <!-- END SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 
 
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+  <script>
+    // Añade la animación al círculo verde
+    anime({
+      targets: '#greenCircle circle',
+      r: 6,
+      duration: 1000,
+      easing: 'easeInOutSine',
+      direction: 'alternate',
+      loop: true
+    });
+  </script>	
 
 <script>
         function positionCheckbox() {
