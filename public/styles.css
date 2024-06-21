@@ -620,7 +620,7 @@ font-weight: bold; /* Texto en negrita */
 color: #ff5733; /* Color naranja */
 text-shadow: #00008b   ; /* Sombra de texto azul */
 }
-p {
+retryBox p {
 font-size: 1.5em; /* Tamaño de fuente grande */
 font-style: italic; /* Texto en cursiva */
 color: #ffffff; /* Color blanco */
