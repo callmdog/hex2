@@ -1,5 +1,35 @@
 
 
+#instructions {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre el texto y el círculo */
+}
+
+@keyframes pulsate {
+    0% {
+        r: 8;
+    }
+    50% {
+        r: 10;
+    }
+    100% {
+        r: 8;
+    }
+}
+
+#greenCircle circle {
+    animation: pulsate 2s infinite;
+}
+
+
+
+
+
+
+
+
+
 
 #customizePlayerDiv
 {
