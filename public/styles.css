@@ -3,6 +3,9 @@
 #instructions {
     display: flex;
     align-items: center;
+color: white;
+
+
     gap: 5px; /* Espacio entre el texto y el círculo */
 }
 
