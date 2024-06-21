@@ -370,7 +370,7 @@ opacity: 1;
 /* ///////////// PLAY BUTTON  ////////////////// */
 #submitButton {
     display: flex;
-	
+	width: 100px;
 padding: 4px 4px; 
 font-size: 16px;
 background-color: #04135a; 
