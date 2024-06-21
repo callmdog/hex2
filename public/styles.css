@@ -1,4 +1,11 @@
 
+ .instructor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #000; /* Borde opcional para visualizar el div */
+    }
+
 
 #instructions {
     display: flex;
