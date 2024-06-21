@@ -38,6 +38,8 @@ color: white;
 {
 flex-direction: column;
 display: flex;
+    display: inline-block;
+	
 
 }
 
