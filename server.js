@@ -11,7 +11,7 @@ const HIGHSCORE_FILE = 'highscore.txt';
 
 
 
-/// Leer el archivo de highscore
+/// Leer el archivo de highscores
 function readHighscores() {
 console.log('Read highscore');
 
