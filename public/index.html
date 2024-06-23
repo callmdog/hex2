@@ -400,6 +400,15 @@ console.log('Camara:', Camara);
 document.getElementById('centeredCameraCheckbox').addEventListener('change', function(event) {
         if (event.target.checked) {
             Camara = 1;
+
+initialCameraX = svgWidth / 2 - bX;
+initialCameraY = svgHeight / 2 - bY;
+//console.log('Coord circ:', initialCameraX, initialCameraY);  
+//CAMERA MOVEMENT
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
+
+
         } else {
             Camara = 2;
         }
