@@ -256,9 +256,8 @@
 <text id="textLine8" x="50%" y="50%" fill="blue" text-anchor="middle" font-size="54" font-weight="bold"    > </text>
 
 
-
 <foreignObject id="checkboxContainer" x="20" y="20" width="200" height="30">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center;">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center;" class="checkbox-container" onclick="event.stopPropagation();">
             <input type="checkbox" id="centeredCameraCheckbox" checked style="accent-color: lightgreen;">
             <label for="centeredCameraCheckbox" style="color: lightgreen; margin-left: 5px;">Centered Camera</label>
         </div>
@@ -552,6 +551,13 @@ const checkbox = document.getElementById('centeredCameraCheckbox');
     });
 
 
+
+const checkboxContainers = document.querySelectorAll('.checkbox-container');
+    checkboxContainers.forEach(container => {
+        container.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    });
 
 
 
