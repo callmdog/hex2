@@ -518,6 +518,26 @@ firstP.addEventListener('click', function (event) {
 	moveBluePoint(mouseX, mouseY);
 });
 
+
+
+
+const checkbox = document.getElementById('centeredCameraCheckbox');
+
+    checkbox.addEventListener('change', function(event) {
+        event.stopPropagation();  // Detiene la propagación del evento
+        Camara = event.target.checked ? 1 : 2;
+        console.log('Camara:', Camara);
+    });
+
+    // También agregar un manejador de clic para evitar la propagación
+    checkbox.addEventListener('click', function(event) {
+        event.stopPropagation();  // Detiene la propagación del evento
+    });
+
+
+
+
+
 //CONNECTED USERS////////////////////////////////
 ///////////////////////////////////////////////// 
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
