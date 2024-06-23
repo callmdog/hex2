@@ -397,6 +397,16 @@ console.log('Camara:', Camara);
 });	
 
 	
+document.getElementById('centeredCameraCheckbox').addEventListener('change', function(event) {
+        if (event.target.checked) {
+            Camara = 1;
+        } else {
+            Camara = 2;
+        }
+        console.log('Camara:', Camara);
+    });
+
+
 	
 // DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//////////
