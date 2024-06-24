@@ -321,8 +321,12 @@ width: 80vw;
     const texts = [
       { message: "Collect green circles to grow your player", color: "#008001" },
       { message: "Boost your speed by collecting blue circles", color: "blue" },
-      { message: "Battle to stay at the top of the high score!", color: " " }
+{ message: "Compete with players worldwide", color: "" },
+      { message: "Battle to stay at the top of the high score!", color: "" }
     ];
+
+
+
 
     let currentIndex = 0;
     const textElement = document.getElementById("text");
@@ -334,7 +338,16 @@ width: 80vw;
       setTimeout(() => {
         currentIndex = (currentIndex + 1) % texts.length;
         textElement.textContent = texts[currentIndex].message;
-        circleElement.setAttribute("fill", texts[currentIndex].color);
+
+
+        if (texts[currentIndex].color === "") {
+            circleElement.style.display = "none";
+        } else {
+            circleElement.setAttribute("fill", texts[currentIndex].color);
+            circleElement.style.display = "block";
+        }
+
+
         textElement.classList.remove("hidden");
       }, 1000); // Wait for the opacity transition to complete (1 second)
     }
