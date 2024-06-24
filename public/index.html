@@ -342,11 +342,22 @@ width: 80vw;
 
 
 if (texts[currentIndex].color === "") {
-            circleElement.style.visibility = "hidden";
+            if (circleElement) {
+                circleParent.removeChild(circleElement);
+                circleElement = null;
+            }
         } else {
+            if (!circleElement) {
+                circleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circleElement.setAttribute("cx", "50");
+                circleElement.setAttribute("cy", "50");
+                circleElement.setAttribute("r", "40");
+                circleParent.appendChild(circleElement);
+            }
             circleElement.setAttribute("fill", texts[currentIndex].color);
-            circleElement.style.visibility = "visible";
         }
+
+
 
 
         textElement.classList.remove("hidden");
