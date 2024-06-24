@@ -328,7 +328,7 @@ width: 80vw;
 
 
 
-    let currentIndex = 1;
+    let currentIndex = 0;
     const textElement = document.getElementById("text");
     const circleElement = document.querySelector("#greenCircle circle");
 
@@ -340,23 +340,26 @@ width: 80vw;
         textElement.textContent = texts[currentIndex].message;
 
 
-
 if (texts[currentIndex].color === "") {
+            // Si no hay color especificado, ocultamos cualquier círculo presente
+            const circleElement = document.querySelector("#greenCircle circle");
             if (circleElement) {
-                circleParent.removeChild(circleElement);
-                circleElement = null;
+                circleElement.style.display = "none";
             }
         } else {
+            // Si hay color especificado, mostramos o creamos el círculo
+            let circleElement = document.querySelector("#greenCircle circle");
             if (!circleElement) {
                 circleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
                 circleElement.setAttribute("cx", "50");
                 circleElement.setAttribute("cy", "50");
                 circleElement.setAttribute("r", "40");
-                circleParent.appendChild(circleElement);
+                circleElement.setAttribute("id", "circleElement"); // Agregamos un ID al círculo
+                document.getElementById("greenCircle").appendChild(circleElement);
             }
             circleElement.setAttribute("fill", texts[currentIndex].color);
+            circleElement.style.display = "block"; // Aseguramos que el círculo esté visible
         }
-
 
 
 
