@@ -340,12 +340,24 @@ width: 80vw;
         textElement.textContent = texts[currentIndex].message;
 
 
-        if (texts[currentIndex].color === "") {
-            circleElement.style.display = "none";
+
+if (texts[currentIndex].color === "") {
+            if (circleElement) {
+                circleParent.removeChild(circleElement);
+                circleElement = null;
+            }
         } else {
+            if (!circleElement) {
+                circleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circleElement.setAttribute("cx", "11");
+                circleElement.setAttribute("cy", "11");
+                circleElement.setAttribute("r", "10");
+                circleParent.appendChild(circleElement);
+            }
             circleElement.setAttribute("fill", texts[currentIndex].color);
-            circleElement.style.display = "block";
         }
+
+
 
 
         textElement.classList.remove("hidden");
