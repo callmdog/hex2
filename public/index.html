@@ -328,7 +328,7 @@ width: 80vw;
 
 
 
-    let currentIndex = 0;
+    let currentIndex = 1;
     const textElement = document.getElementById("text");
     const circleElement = document.querySelector("#greenCircle circle");
 
@@ -342,22 +342,11 @@ width: 80vw;
 
 
 if (texts[currentIndex].color === "") {
-            if (circleElement) {
-                circleParent.removeChild(circleElement);
-                circleElement = null;
-            }
+            circleElement.style.visibility = "hidden";
         } else {
-            if (!circleElement) {
-                circleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                circleElement.setAttribute("cx", "11");
-                circleElement.setAttribute("cy", "11");
-                circleElement.setAttribute("r", "10");
-                circleParent.appendChild(circleElement);
-            }
             circleElement.setAttribute("fill", texts[currentIndex].color);
+            circleElement.style.visibility = "visible";
         }
-
-
 
 
         textElement.classList.remove("hidden");
