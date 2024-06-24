@@ -327,6 +327,7 @@ width: 80vw;
 
 
 
+const circleParent = document.getElementById("greenCircle");
 
     let currentIndex = 0;
     const textElement = document.getElementById("text");
@@ -339,26 +340,19 @@ width: 80vw;
         currentIndex = (currentIndex + 1) % texts.length;
         textElement.textContent = texts[currentIndex].message;
 
+const existingCircle = circleParent.querySelector("circle");
+        if (existingCircle) {
+            circleParent.removeChild(existingCircle);
+        }
 
-if (texts[currentIndex].color === "") {
-            // Si no hay color especificado, ocultamos cualquier círculo presente
-            const circleElement = document.querySelector("#greenCircle circle");
-            if (circleElement) {
-                circleElement.style.display = "none";
-            }
-        } else {
-            // Si hay color especificado, mostramos o creamos el círculo
-            let circleElement = document.querySelector("#greenCircle circle");
-            if (!circleElement) {
-                circleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                circleElement.setAttribute("cx", "50");
-                circleElement.setAttribute("cy", "50");
-                circleElement.setAttribute("r", "40");
-                circleElement.setAttribute("id", "circleElement"); // Agregamos un ID al círculo
-                document.getElementById("greenCircle").appendChild(circleElement);
-            }
-            circleElement.setAttribute("fill", texts[currentIndex].color);
-            circleElement.style.display = "block"; // Aseguramos que el círculo esté visible
+        // If there's a color specified, create a new circle
+        if (texts[currentIndex].color !== "") {
+            const newCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            newCircle.setAttribute("cx", "50");
+            newCircle.setAttribute("cy", "50");
+            newCircle.setAttribute("r", "40");
+            newCircle.setAttribute("fill", texts[currentIndex].color);
+            circleParent.appendChild(newCircle);
         }
 
 
