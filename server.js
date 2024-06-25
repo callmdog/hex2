@@ -8,7 +8,6 @@ const io = socketIo(server);
 const path = require('path');
 const axios = require('axios');
 const fs = require('fs').promises;
-const atob = require('atob');
 app.use(express.json());
 
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
@@ -27,11 +26,10 @@ async function getCurrentHighscores() {
             'Accept': 'application/vnd.github.v3.raw'
         }
     });
-    const content = atob(response.data.content);
+    const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
     const sha = response.data.sha;
     return { content, sha };
 }
-
 
 // Función para llamar getCurrentHighscores y hacer console.log
 async function main() {
