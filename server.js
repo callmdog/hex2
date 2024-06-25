@@ -35,6 +35,29 @@ const WORKFLOW_ID = 'sync.yml'; // Reemplaza con el nombre del archivo de flujo 
 
 const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
 
+const highscoreFilePath = path.resolve(__dirname, 'public', 'highscore.txt');
+
+// Middleware para parsear JSON en las solicitudes POST
+app.use(express.json());
+
+// Función para actualizar el highscore
+async function updateHighScore(newScore) {
+    try {
+        let currentScores = await fs.readFile(highscoreFilePath, 'utf8');
+        currentScores = currentScores.trim();
+
+        // Ejemplo: Agregar el nuevo score (asumiendo que newScore es un objeto con { name, score })
+        currentScores += `\n${newScore.name}: ${newScore.score}`;
+
+        await fs.writeFile(highscoreFilePath, currentScores);
+        console.log('Highscore actualizado correctamente');
+    } catch (error) {
+        console.error('Error al actualizar highscore:', error);
+        throw error;
+    }
+}
+
+
 /*
 app.post('/update-highscores', async (req, res) => {
     try {
