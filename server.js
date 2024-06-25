@@ -14,7 +14,7 @@ app.use(express.json());
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const REPO_OWNER = 'calmdog';
+const REPO_OWNER = 'callmdog';
 const REPO_NAME = 'hex2';
 const FILE_PATH = 'public/highscore.txt';
 
