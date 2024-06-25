@@ -8,106 +8,21 @@ const io = socketIo(server);
 const path = require('path');
 const axios = require('axios');
 const fs = require('fs').promises;
-
-
-const HIGHSCORE_FILE = 'highscore.txt';
-
-
-
-
-
-
-
-
-
-
-
-
-// Ruta al archivo highscore.txt dentro de la carpeta public
-//const filePath = path.join(__dirname, 'public', 'highscore.txt');
-
-
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Configura tu token de GitHub como variable de entorno
-const REPO_OWNER = 'callmdog'; // Reemplaza con tu nombre de usuario de GitHub
-const REPO_NAME = 'hex2'; // Reemplaza con el nombre de tu repositorio
-const WORKFLOW_ID = 'sync.yml'; // Reemplaza con el nombre del archivo de flujo de trabajo de GitHub Actions
-
-
-const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
-
-const highscoreFilePath = path.resolve(__dirname, 'public', 'highscore.txt');
-
-// Middleware para parsear JSON en las solicitudes POST
 app.use(express.json());
 
-// Función para actualizar el highscore
-async function updateHighScore(newScore) {
-    try {
-        let currentScores = await fs.readFile(highscoreFilePath, 'utf8');
-        currentScores = currentScores.trim();
-
-        // Ejemplo: Agregar el nuevo score (asumiendo que newScore es un objeto con { name, score })
-        currentScores += `\n${newScore.name}: ${newScore.score}`;
-
-        await fs.writeFile(highscoreFilePath, currentScores);
-        console.log('Highscore actualizado correctamente');
-    } catch (error) {
-        console.error('Error al actualizar highscore:', error);
-        throw error;
-    }
-}
-
-// Endpoint POST para actualizar el highscore
-app.post('/actualizar-highscore', async (req, res) => {
-    try {
-        const { name, score } = req.body; // Suponiendo que recibes el nombre y la puntuación en el cuerpo de la solicitud
-
-        await updateHighScore({ name, score });
-
-        res.status(200).send('Highscore actualizado correctamente');
-    } catch (error) {
-        console.error('Error al actualizar highscore:', error);
-        res.status(500).send('Error al actualizar highscore');
-    }
-});
-
-// Middleware para mostrar logs de las solicitudes
-app.use((req, res, next) => {
-    console.log(`Solicitud recibida en ${req.method} ${req.path}`);
-    next();
-});
-
-// Endpoint de prueba para escribir en highscore.txt
-app.get('/escribir-highscore', async (req, res) => {
-    try {
-        const data = 'Prueba de escritura en highscore.txt\n';
-        await fs.appendFile(highscoreFilePath, data);
-
-        res.status(200).send('Escritura en highscore.txt exitosa');
-    } catch (error) {
-        console.error('Error al escribir en highscore.txt:', error);
-        res.status(500).send('Error al escribir en highscore.txt');
-    }
-});
-
-// Función para realizar una solicitud POST interna
-async function llamarEndpointPost() {
-    try {
-        const response = await axios.post(`http://localhost:${PORT}/actualizar-highscore`, {
-            name: 'JugadorInterno',
-            score: 2000
-        });
-
-        console.log('Respuesta del endpoint POST:', response.data);
-    } catch (error) {
-        console.error('Error al llamar al endpoint POST:', error);
-    }
-}
+//////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
+///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 
 
+
+
+
+
+//////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
+///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 
 /*
-
+const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
 // Leer el contenido del archivo
 fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
@@ -117,66 +32,6 @@ fs.readFile(filePath, 'utf8', (err, data) => {
     console.log('Contenido de highscore.txt:');
     console.log(data);
 });
-
-*/
-
-/*
-const textToAdd = 'houlaaaa\n'; // Añade una nueva línea para que el texto añadido esté en una nueva línea
-
-// Añadir el texto al archivo
-
-async function appendToFile() {
-    try {
-        await fs.appendFile(filePath, textToAdd);
-        console.log('Texto añadido correctamente a highscore.txt');
-
-        const data = await fs.readFile(filePath, 'utf8');
-        console.log('Contenido actual de highscore.txt:');
-        console.log(data);
-    } catch (err) {
-        console.error('Error al manejar el archivo:', err);
-    }
-}
-
-appendToFile();
-
-*/
-
-
-/// Leer el archivo de highscores
-function readHighscores() {
-console.log('Read highscore');
-
-    try {
-        const data = fs.readFileSync(HIGHSCORE_FILE, 'utf8');
-console.log('Data read:', data);
-    
-
-        return JSON.parse(data);
-    } catch (err) {
-
-console.error('Error reading highscores:', err);
-      
-
-        return [];
-    }
-}
-
-// Guardar las puntuaciones en el archivo
-function writeHighscores(highscores) {
-console.log('Write highscore');
-
-    try {
-        fs.writeFileSync(HIGHSCORE_FILE, JSON.stringify(highscores), 'utf8');
-        console.log('Highscores written successfully.');
-    } catch (err) {
-        console.error('Error writing highscores:', err);
-    }
-
-
-
-}
-
 // Comparar y actualizar las puntuaciones
 function updateHighscores(newScore) {
 console.log('Update highscore 1');
@@ -189,9 +44,7 @@ console.log('Update highscore 1');
     }
     writeHighscores(highscores);
 }
-
-
-
+*/
 
 //VARIABLES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ///////////////////////////////////////////////////////
@@ -543,21 +396,21 @@ function desconectarJugador(socketId) {
 //USUARIOS DESCONECTADOS
 socket.on('disconnect', () => {
 
+
+	
 //HIGHSCORE SYSTEM
 // Guardar el puntaje del jugador antes de desconectar
-        if (players[socket.id] && players[socket.id].puntos) {
-
+if (players[socket.id] && players[socket.id].puntos) {
 console.log('Update highscore');
 
-            const playerScore = {
-                name: players[socket.id].nombre,
-                score: players[socket.id].puntos
-            };
-            updateHighscores(playerScore);
-        }
+const playerScore = {
+        name: players[socket.id].nombre,
+        score: players[socket.id].puntos
+};
+}
+//END HIGHSCORE SYSTEM
 
-
-
+	
 
 io.emit('eliminarJugadorEnCliente', socket.id);
 console.log('Usuario desconectado', socket.id);
