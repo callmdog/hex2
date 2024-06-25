@@ -16,8 +16,15 @@ console.log('Read highscore');
 
     try {
         const data = fs.readFileSync(HIGHSCORE_FILE, 'utf8');
+console.log('Data read:', data);
+    
+
         return JSON.parse(data);
     } catch (err) {
+
+console.error('Error reading highscores:', err);
+      
+
         return [];
     }
 }
@@ -26,7 +33,15 @@ console.log('Read highscore');
 function writeHighscores(highscores) {
 console.log('Write highscore');
 
-    fs.writeFileSync(HIGHSCORE_FILE, JSON.stringify(highscores), 'utf8');
+    try {
+        fs.writeFileSync(HIGHSCORE_FILE, JSON.stringify(highscores), 'utf8');
+        console.log('Highscores written successfully.');
+    } catch (err) {
+        console.error('Error writing highscores:', err);
+    }
+
+
+
 }
 
 // Comparar y actualizar las puntuaciones
