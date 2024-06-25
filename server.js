@@ -18,6 +18,7 @@ const REPO_OWNER = 'callmdog';
 const REPO_NAME = 'hex2';
 const FILE_PATH = 'public/highscore.txt';
 
+
 async function getCurrentHighscores() {
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
     
@@ -28,6 +29,8 @@ async function getCurrentHighscores() {
                 'Accept': 'application/vnd.github.v3.raw'
             }
         });
+
+        console.log('Response:', response.data);
 
         if (!response.data || !response.data.content) {
             throw new Error('Response does not contain content.');
@@ -60,8 +63,6 @@ async function main() {
 
 // Llama a la función principal
 main();
-
-
 
 
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
