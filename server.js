@@ -35,7 +35,7 @@ const WORKFLOW_ID = 'sync.yml'; // Reemplaza con el nombre del archivo de flujo 
 
 const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
 
-
+/*
 app.post('/update-highscores', async (req, res) => {
     try {
         // Añadir el texto al archivo
@@ -76,7 +76,7 @@ app.post('/update-highscores', async (req, res) => {
     }
 });
 
-
+*/
 
 
 app.use((req, res, next) => {
@@ -85,6 +85,40 @@ app.use((req, res, next) => {
 });
 
 
+
+app.post('/actualizar-highscore', async (req, res) => {
+    try {
+        const { name, score } = req.body; // Suponiendo que recibes el nombre y la puntuación en el cuerpo de la solicitud
+
+        await updateHighScore({ name, score });
+
+        res.status(200).send('Highscore actualizado correctamente');
+    } catch (error) {
+        console.error('Error al actualizar highscore:', error);
+        res.status(500).send('Error al actualizar highscore');
+    }
+});
+
+
+
+
+// Lógica de tu aplicación
+async function procesarAlgoImportante() {
+    try {
+        const newScore = {
+            name: 'Jugador1',
+            score: 1500
+        };
+
+        await updateHighScore(newScore);
+        console.log('Highscore actualizado exitosamente');
+    } catch (error) {
+        console.error('Error al procesar algo importante:', error);
+    }
+}
+
+// Llamar a procesarAlgoImportante() cuando sea necesario
+procesarAlgoImportante();
 
 
 
