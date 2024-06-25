@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 const path = require('path');
-
+const axios = require('axios');
 const fs = require('fs').promises;
 
 
@@ -15,8 +15,63 @@ const HIGHSCORE_FILE = 'highscore.txt';
 
 
 
+
+
+
+
+
+
+
+
 // Ruta al archivo highscore.txt dentro de la carpeta public
-const filePath = path.join(__dirname, 'public', 'highscore.txt');
+//const filePath = path.join(__dirname, 'public', 'highscore.txt');
+
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Configura tu token de GitHub como variable de entorno
+const REPO_OWNER = 'callmdog'; // Reemplaza con tu nombre de usuario de GitHub
+const REPO_NAME = 'hex2'; // Reemplaza con el nombre de tu repositorio
+const WORKFLOW_ID = 'sync.yml'; // Reemplaza con el nombre del archivo de flujo de trabajo de GitHub Actions
+
+
+const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
+
+
+app.post('/update-highscores', async (req, res) => {
+    try {
+        // Añadir el texto al archivo
+        await fs.appendFile(filePath, 'houlaaaa\n');
+        console.log('Texto añadido correctamente a highscore.txt');
+
+        // Iniciar el workflow de GitHub Actions
+        await axios.post(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${WORKFLOW_ID}/dispatches`, {
+            ref: 'main'
+        }, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+
+        res.status(200).send('Highscores actualizados y sincronizados con GitHub');
+    } catch (error) {
+        console.error('Error al actualizar highscores:', error);
+        res.status(500).send('Error al actualizar highscores');
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -33,7 +88,7 @@ fs.readFile(filePath, 'utf8', (err, data) => {
 
 */
 
-
+/*
 const textToAdd = 'houlaaaa\n'; // Añade una nueva línea para que el texto añadido esté en una nueva línea
 
 // Añadir el texto al archivo
@@ -53,7 +108,7 @@ async function appendToFile() {
 
 appendToFile();
 
-
+*/
 
 
 /// Leer el archivo de highscores
