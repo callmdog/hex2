@@ -13,8 +13,13 @@ const fs = require('fs').promises;
 const HIGHSCORE_FILE = 'highscore.txt';
 
 
+
+
 // Ruta al archivo highscore.txt dentro de la carpeta public
 const filePath = path.join(__dirname, 'public', 'highscore.txt');
+
+
+/*
 
 // Leer el contenido del archivo
 fs.readFile(filePath, 'utf8', (err, data) => {
@@ -26,7 +31,7 @@ fs.readFile(filePath, 'utf8', (err, data) => {
     console.log(data);
 });
 
-
+*/
 
 
 const textToAdd = 'houlaaaa\n'; // Añade una nueva línea para que el texto añadido esté en una nueva línea
