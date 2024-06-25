@@ -20,15 +20,32 @@ const FILE_PATH = 'public/highscore.txt';
 
 async function getCurrentHighscores() {
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-    const response = await axios.get(url, {
-        headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`,
-            'Accept': 'application/vnd.github.v3.raw'
+    
+    try {
+        const response = await axios.get(url, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3.raw'
+            }
+        });
+
+        if (!response.data || !response.data.content) {
+            throw new Error('Response does not contain content.');
         }
-    });
-    const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
-    const sha = response.data.sha;
-    return { content, sha };
+
+        const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
+        const sha = response.data.sha;
+
+        if (!sha) {
+            throw new Error('Response does not contain SHA.');
+        }
+
+        return { content, sha };
+
+    } catch (error) {
+        console.error('Error in getCurrentHighscores:', error.response ? error.response.data : error.message);
+        throw error;
+    }
 }
 
 // Función para llamar getCurrentHighscores y hacer console.log
