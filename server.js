@@ -43,7 +43,7 @@ app.post('/update-highscores', async (req, res) => {
         console.log('Texto añadido correctamente a highscore.txt');
 
         // Iniciar el workflow de GitHub Actions
-        await axios.post(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${WORKFLOW_ID}/dispatches`, {
+        const response = await axios.post(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${WORKFLOW_ID}/dispatches`, {
             ref: 'main'
         }, {
             headers: {
@@ -51,6 +51,8 @@ app.post('/update-highscores', async (req, res) => {
                 'Accept': 'application/vnd.github.v3+json'
             }
         });
+
+        console.log('GitHub Actions response:', response.data);
 
         res.status(200).send('Highscores actualizados y sincronizados con GitHub');
     } catch (error) {
