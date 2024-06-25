@@ -5,8 +5,24 @@ const fs = require('fs');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+const path = require('path');
+
 
 const HIGHSCORE_FILE = 'highscore.txt';
+
+
+// Ruta al archivo highscore.txt dentro de la carpeta public
+const filePath = path.join(__dirname, 'public', 'highscore.txt');
+
+// Leer el contenido del archivo
+fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+        console.error('Error al leer el archivo:', err);
+        return;
+    }
+    console.log('Contenido de highscore.txt:');
+    console.log(data);
+});
 
 
 
