@@ -8,12 +8,43 @@ const io = socketIo(server);
 const path = require('path');
 const axios = require('axios');
 const fs = require('fs').promises;
+const atob = require('atob');
 app.use(express.json());
 
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const REPO_OWNER = 'calmdog';
+const REPO_NAME = 'hex2';
+const FILE_PATH = 'public/highscore.txt';
 
+async function getCurrentHighscores() {
+    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+    const response = await axios.get(url, {
+        headers: {
+            'Authorization': `token ${GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github.v3.raw'
+        }
+    });
+    const content = atob(response.data.content);
+    const sha = response.data.sha;
+    return { content, sha };
+}
+
+
+// Función para llamar getCurrentHighscores y hacer console.log
+async function main() {
+    try {
+        const highscores = await getCurrentHighscores();
+        console.log(highscores);
+    } catch (error) {
+        console.error('Error fetching highscores:', error);
+    }
+}
+
+// Llama a la función principal
+main();
 
 
 
