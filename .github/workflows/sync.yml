@@ -1,0 +1,26 @@
+name: Sync Highscore
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Update highscore.txt
+      run: |
+        echo "houlaaaa" >> public/highscore.txt
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add public/highscore.txt
+        git commit -m "Actualizar highscore.txt"
+        git push
