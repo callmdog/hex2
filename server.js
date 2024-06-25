@@ -79,7 +79,10 @@ app.post('/update-highscores', async (req, res) => {
 
 
 
-
+app.use((req, res, next) => {
+    console.log(`Solicitud recibida en ${req.method} ${req.path}`);
+    next();
+});
 
 
 
