@@ -26,6 +26,22 @@ fs.readFile(filePath, 'utf8', (err, data) => {
 
 
 
+
+const textToAdd = 'houlaaaa\n'; // Añade una nueva línea para que el texto añadido esté en una nueva línea
+
+// Añadir el texto al archivo
+fs.appendFile(filePath, textToAdd, (err) => {
+    if (err) {
+        console.error('Error al añadir el texto al archivo:', err);
+        return;
+    }
+    console.log('Texto añadido correctamente a highscore.txt');
+});
+
+
+
+
+
 /// Leer el archivo de highscores
 function readHighscores() {
 console.log('Read highscore');
