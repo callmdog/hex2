@@ -64,6 +64,17 @@ app.post('/update-highscores', async (req, res) => {
 
 
 
+app.post('/update-highscores', async (req, res) => {
+    try {
+        console.log('Recibida solicitud POST en /update-highscores');
+        // Aquí va la lógica para actualizar los highscores
+
+        res.status(200).send('Highscores actualizados correctamente');
+    } catch (error) {
+        console.error('Error al actualizar highscores:', error);
+        res.status(500).send('Error al actualizar highscores');
+    }
+});
 
 
 
