@@ -57,58 +57,7 @@ async function updateHighScore(newScore) {
     }
 }
 
-
-/*
-app.post('/update-highscores', async (req, res) => {
-    try {
-        // Añadir el texto al archivo
-        await fs.appendFile(filePath, 'houlaaaa\n');
-        console.log('Texto añadido correctamente a highscore.txt');
-
-        // Iniciar el workflow de GitHub Actions
-        const response = await axios.post(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/workflows/${WORKFLOW_ID}/dispatches`, {
-            ref: 'main'
-        }, {
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3+json'
-            }
-        });
-
-        console.log('GitHub Actions response:', response.data);
-
-        res.status(200).send('Highscores actualizados y sincronizados con GitHub');
-    } catch (error) {
-        console.error('Error al actualizar highscores:', error);
-        res.status(500).send('Error al actualizar highscores');
-    }
-});
-
-
-
-
-app.post('/update-highscores', async (req, res) => {
-    try {
-        console.log('Recibida solicitud POST en /update-highscores');
-        // Aquí va la lógica para actualizar los highscores
-
-        res.status(200).send('Highscores actualizados correctamente');
-    } catch (error) {
-        console.error('Error al actualizar highscores:', error);
-        res.status(500).send('Error al actualizar highscores');
-    }
-});
-
-*/
-
-
-app.use((req, res, next) => {
-    console.log(`Solicitud recibida en ${req.method} ${req.path}`);
-    next();
-});
-
-
-
+// Endpoint POST para actualizar el highscore
 app.post('/actualizar-highscore', async (req, res) => {
     try {
         const { name, score } = req.body; // Suponiendo que recibes el nombre y la puntuación en el cuerpo de la solicitud
@@ -122,28 +71,38 @@ app.post('/actualizar-highscore', async (req, res) => {
     }
 });
 
+// Middleware para mostrar logs de las solicitudes
+app.use((req, res, next) => {
+    console.log(`Solicitud recibida en ${req.method} ${req.path}`);
+    next();
+});
 
-
-
-// Lógica de tu aplicación
-async function procesarAlgoImportante() {
+// Endpoint de prueba para escribir en highscore.txt
+app.get('/escribir-highscore', async (req, res) => {
     try {
-        const newScore = {
-            name: 'Jugador1',
-            score: 1500
-        };
+        const data = 'Prueba de escritura en highscore.txt\n';
+        await fs.appendFile(highscoreFilePath, data);
 
-        await updateHighScore(newScore);
-        console.log('Highscore actualizado exitosamente');
+        res.status(200).send('Escritura en highscore.txt exitosa');
     } catch (error) {
-        console.error('Error al procesar algo importante:', error);
+        console.error('Error al escribir en highscore.txt:', error);
+        res.status(500).send('Error al escribir en highscore.txt');
+    }
+});
+
+// Función para realizar una solicitud POST interna
+async function llamarEndpointPost() {
+    try {
+        const response = await axios.post(`http://localhost:${PORT}/actualizar-highscore`, {
+            name: 'JugadorInterno',
+            score: 2000
+        });
+
+        console.log('Respuesta del endpoint POST:', response.data);
+    } catch (error) {
+        console.error('Error al llamar al endpoint POST:', error);
     }
 }
-
-// Llamar a procesarAlgoImportante() cuando sea necesario
-procesarAlgoImportante();
-
-
 
 
 
