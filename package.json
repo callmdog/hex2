@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-  "postinstall": "touch highscores.txt && chmod 666 highscore.txt"
+  "postinstall": "touch highscore.txt && chmod 666 highscore.txt"
 
 
   },
