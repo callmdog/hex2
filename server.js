@@ -1,12 +1,11 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
+const fs = require('fs');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-///HIGHSCORE SYSTEM
-const fs = require('fs');
 const HIGHSCORE_FILE = 'highscore.txt';
 
 
