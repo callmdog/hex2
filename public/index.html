@@ -584,7 +584,7 @@ document.getElementById('paintBox').style.display = 'block'; // Para mostrar el 
 document.getElementById('highscoreButton').addEventListener('click', function () {
 
 
-socket.emit('obtenerLista');
+socket.emit('enviarLista');
 
 
 
@@ -596,7 +596,7 @@ document.getElementById('highscoreDiv').style.display = 'block'; // Para mostrar
 
 
 
-socket.on('highscoreList', function (jsonData) {
+socket.on('obtenerLista', function (jsonData) {
 
      let   scoreList = count;
 console.log('Lista HS:', scoreList);
