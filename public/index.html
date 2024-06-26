@@ -12,6 +12,16 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 
+#scorelist {
+            margin-top: 20px;
+        }
+        .score-item {
+            font-size: 20px;
+            margin: 5px 0;
+        }
+
+
+
 #greenCirlceI {
     display: flex;
     align-items: center;
@@ -598,8 +608,27 @@ document.getElementById('highscoreDiv').style.display = 'block'; // Para mostrar
 
 socket.on('obtenerLista', function (jsonData) {
 
-     let   scoreList = jsonData;
+     let   hscore = jsonData;
 console.log('Lista HS:', scoreList);
+
+
+hscore.sort((a, b) => b.score - a.score);
+        let topScores = hscore.slice(0, 20);
+
+        // Get the scorelist div
+        let scorelistDiv = document.getElementById('scorelist');
+
+        // Generate the list items
+        topScores.forEach((player, index) => {
+            let listItem = document.createElement('div');
+            listItem.className = 'score-item';
+            listItem.style.color = player.color;
+            listItem.textContent = `#${index + 1} ${player.name}: ${player.score}`;
+            scorelistDiv.appendChild(listItem);
+        });
+
+
+
 
 });        
 
