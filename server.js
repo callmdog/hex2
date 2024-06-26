@@ -26,7 +26,7 @@ async function getCurrentHighscores() {
         const response = await axios.get(url, {
             headers: {
                 'Authorization': `token ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3.raw'
+                'Accept': 'application/vnd.github.v3+.raw'
             }
         });
 
@@ -81,7 +81,7 @@ async function updateHighscores(newScore) {
     const { content, sha } = await getCurrentHighscores();
     const updatedContent = content + `\n${newScore}`;
     const base64Content = Buffer.from(updatedContent).toString('base64');
-    
+
     return { base64Content, sha };
 }
 
@@ -100,14 +100,12 @@ async function uploadUpdatedHighscores(newScore) {
     }, {
         headers: {
             'Authorization': `token ${GITHUB_TOKEN}`,
-            'Accept': 'application/vnd.github.v3.raw'
+            'Accept': 'application/vnd.github.v3+json'
         }
     });
 
     return response.data;
 }
-
-
 
 app.post('/update-highscore', async (req, res) => {
     const { score } = req.body;
@@ -118,7 +116,6 @@ app.post('/update-highscore', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
 
 
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
