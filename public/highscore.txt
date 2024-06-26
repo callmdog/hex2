@@ -4,3 +4,4 @@ HighScore
 {"name":"LAUTARO","score":4,"color":"orange"}
 {"name":"Kenzo","score":1,"color":"pink"}
 {"name":"ARSEN","score":10,"color":"yellow"}
+{"name":"Vbb","score":1,"color":"blue"}
