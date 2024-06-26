@@ -71,6 +71,10 @@ async function main() {
 
 console.log(`VALOR HS: ${highscores}`);
 
+console.log('VALOR HS2:', JSON.stringify(highscores, null, 2));
+
+        // Si deseas solo el contenido (los datos JSON), puedes hacer lo siguiente
+        console.log('Highscores content:', JSON.parse(highscores.content));
 
     } catch (error) {
         console.error('Error fetching highscores:', error);
