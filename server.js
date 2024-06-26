@@ -325,6 +325,32 @@ return randomValue;
 app.use(express.static('public'));
 io.on('connection', (socket) => {
 
+
+//HIGHSCORE!!!!!!!!
+
+socket.on('enviarLista', () => {
+console.log('Enviar Lista HS');
+socket.emit('obtenerLista', jsonData);
+});        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let randomV = printRandomValue(1,  todosVertices.length  );
 let randomX = todosVertices[randomV].x;
 let randomY = todosVertices[randomV].y;
