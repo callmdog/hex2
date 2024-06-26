@@ -1,1 +1,3 @@
 HighScore
+
+{"name":"Pepe","score":3,"color":"purple"}
