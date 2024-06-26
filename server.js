@@ -75,6 +75,47 @@ async function main() {
 main();
 
 
+
+
+async function updateHighscores(newScore) {
+    const { content, sha } = await getCurrentHighscores();
+    const updatedContent = content + `\n${newScore}`;
+    const base64Content = Buffer.from(updatedContent).toString('base64');
+    
+    return { base64Content, sha };
+}
+
+async function uploadUpdatedHighscores(newScore) {
+    const { base64Content, sha } = await updateHighscores(newScore);
+
+    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+    const response = await axios.put(url, {
+        message: 'Update highscore.txt',
+        content: base64Content,
+        sha: sha
+    }, {
+        headers: {
+            'Authorization': `token ${GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github.v3.raw'
+        }
+    });
+
+    return response.data;
+}
+
+
+app.post('/update-highscore', async (req, res) => {
+    const { score } = req.body;
+    try {
+        const result = await uploadUpdatedHighscores(score);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 
