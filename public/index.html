@@ -566,6 +566,16 @@ document.getElementById('paintBox').style.display = 'block'; // Para mostrar el 
 });
 
 
+
+document.getElementById('highscoreButton').addEventListener('click', function () {
+var highscoreDiv = document.getElementById('highscoreDiv');
+    highscoreDiv.style.opacity = '1'; // Hacer visible cambiando la opacidad a 1
+
+});
+
+
+
+
 function preventZoom(event) {
 event.preventDefault();
 }	
