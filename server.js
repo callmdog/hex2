@@ -492,7 +492,7 @@ function desconectarJugador(socketId) {
 ////////////////////////////////////////////////////////////////////////////    
   
 //USUARIOS DESCONECTADOS
-socket.on('disconnect', () => {
+socket.on('disconnect', async () => {
 
 
 	
