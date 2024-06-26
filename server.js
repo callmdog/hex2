@@ -296,45 +296,40 @@ io.on('connection', (socket) => {
 //HIGHSCORE!!!!!!!!
 
 socket.on('enviarLista', () => {
+    let jsonData = [];
 
-
-
-let jsonData = [];
-
-
-const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
-// Leer el contenido del archivo
-fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error al leer el archivo:', err);
-        return;
-    }
-
-const lines = data.trim().split('\n');
-
-    // Procesar cada línea
-    lines.forEach(line => {
-        try {
-            const obj = JSON.parse(line);
-            jsonData.push(obj);
-        } catch (error) {
-            console.error('Error al analizar JSON:', error);
+    const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
+    // Leer el contenido del archivo
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error al leer el archivo:', err);
+            return;
         }
+
+        const lines = data.trim().split('\n');
+
+        // Procesar cada línea
+        lines.forEach(line => {
+            try {
+                const obj = JSON.parse(line);
+                jsonData.push(obj);
+            } catch (error) {
+                console.error('Error al analizar JSON:', error);
+            }
+        });
+
+        // Ahora jsonData contiene todos los objetos JSON
+        console.log('Datos en formato JSON:');
+        console.log(jsonData);
+
+        console.log('Contenido de highscore.txt:');
+        console.log(data);
+
+        // Emitir la lista al cliente solo después de procesar los datos
+        console.log('Enviar Lista HS');
+        socket.emit('obtenerLista', jsonData);
     });
-
-    // Ahora jsonData contiene todos los objetos JSON
-    console.log('Datos en formato JSON:');
-    console.log(jsonData);
-
-    console.log('Contenido de highscore.txt:');
-    console.log(data);
 });
-
-
-
-console.log('Enviar Lista HS');
-socket.emit('obtenerLista', jsonData);
-});        
 
 
 
