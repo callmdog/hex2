@@ -609,7 +609,7 @@ document.getElementById('highscoreDiv').style.display = 'block'; // Para mostrar
 socket.on('obtenerLista', function (jsonData) {
 
      let   hscore = jsonData;
-console.log('Lista HS:', scoreList);
+console.log('Lista HS:', hscore);
 
 
 hscore.sort((a, b) => b.score - a.score);
