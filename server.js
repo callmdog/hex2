@@ -7,7 +7,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 const path = require('path');
 const axios = require('axios');
-const fs = require('fs').promises;
+const fs = require('fs');
 app.use(express.json());
 
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
