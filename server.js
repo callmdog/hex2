@@ -79,7 +79,10 @@ main();
 
 async function updateHighscores(newScore) {
     const { content, sha } = await getCurrentHighscores();
-    const updatedContent = content + `\n${newScore}`;
+    
+    // Asegurarse de que newScore sea una cadena
+    const scoreString = typeof newScore === 'object' ? JSON.stringify(newScore) : newScore;
+    const updatedContent = content + `\n${scoreString}`;
     const base64Content = Buffer.from(updatedContent).toString('base64');
 
     return { base64Content, sha };
@@ -116,6 +119,7 @@ app.post('/update-highscore', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
