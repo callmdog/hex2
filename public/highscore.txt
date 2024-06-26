@@ -1,3 +1,0 @@
-hs
-[object Object]
-{"name":"Pepe","score":4}
