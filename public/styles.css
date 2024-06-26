@@ -433,6 +433,8 @@ box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 /* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
 #customPlayer{
     display: flex;
+margin-bottom:10px;
+
 width: auto;
 padding: 4px 4px; /* Ajusta el relleno según sea necesario */
 font-size: 16px;
