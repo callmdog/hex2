@@ -505,6 +505,15 @@ const playerScore = {
         name: players[socket.id].nombre,
         score: players[socket.id].puntos
 };
+
+
+try {
+            await uploadUpdatedHighscores(playerScore);
+            console.log('Highscore updated successfully for player:', playerScore);
+        } catch (error) {
+            console.error('Error updating highscore:', error.message);
+        }
+	
 }
 //END HIGHSCORE SYSTEM
 
