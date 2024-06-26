@@ -88,6 +88,10 @@ async function updateHighscores(newScore) {
 async function uploadUpdatedHighscores(newScore) {
     const { base64Content, sha } = await updateHighscores(newScore);
 
+    if (!sha) {
+        throw new Error('SHA is missing. Cannot update file without SHA.');
+    }
+
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
     const response = await axios.put(url, {
         message: 'Update highscore.txt',
@@ -102,6 +106,7 @@ async function uploadUpdatedHighscores(newScore) {
 
     return response.data;
 }
+
 
 
 app.post('/update-highscore', async (req, res) => {
