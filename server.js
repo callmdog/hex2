@@ -13,6 +13,20 @@ app.use(express.json());
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 
+const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
+// Leer el contenido del archivo
+fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+        console.error('Error al leer el archivo:', err);
+        return;
+    }
+    console.log('Contenido de highscore.txt:');
+    console.log(data);
+});
+
+
+
+
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO_OWNER = 'callmdog';
 const REPO_NAME = 'hex2';
