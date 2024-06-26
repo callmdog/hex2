@@ -6,3 +6,4 @@
 {"name":"Vbb","score":1,"color":"blue"}
 {"name":"FERKOOOO","score":29,"color":"blue"}
 {"name":"Zezezezezezez","score":9,"color":"blue"}
+{"name":"RODRIGI","score":38,"color":"blue"}
