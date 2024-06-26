@@ -65,7 +65,12 @@ async function getCurrentHighscores() {
 async function main() {
     try {
         const highscores = await getCurrentHighscores();
-        console.log(highscores);
+
+     //   console.log(highscores);
+
+console.log(`VALOR HS: ${highscores}`);
+
+
     } catch (error) {
         console.error('Error fetching highscores:', error);
     }
