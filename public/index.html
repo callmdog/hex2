@@ -567,19 +567,45 @@ document.getElementById('paintBox').style.display = 'block'; // Para mostrar el 
 
 
 
-document.getElementById('highscoreButton').addEventListener('click', function () {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('highscoreButton').addEventListener('click', function () {
 
 socket.on('highscoreList', function (count) {
      let   scoreList = count;
 });        
 
 
-
+socket.emit('obtenerLista');
 
 document.getElementById('highscoreDiv').style.display = 'block'; // Para mostrar el retryBox
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
