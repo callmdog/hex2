@@ -21,7 +21,7 @@ const FILE_PATH = 'public/highscore.txt';
 
 async function getCurrentHighscores() {
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-    
+
     try {
         const response = await axios.get(url, {
             headers: {
@@ -32,7 +32,17 @@ async function getCurrentHighscores() {
 
         console.log('Response:', response.data);
 
-        if (!response.data || !response.data.content) {
+        if (!response.data) {
+            throw new Error('Response does not contain data.');
+        }
+
+        // Si la respuesta es una cadena (contenido bruto)
+        if (typeof response.data === 'string') {
+            return { content: response.data, sha: null }; 
+        }
+
+        // Si la respuesta es un objeto (metadatos del archivo)
+        if (!response.data.content) {
             throw new Error('Response does not contain content.');
         }
 
