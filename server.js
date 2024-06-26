@@ -133,7 +133,7 @@ console.log('VALOR HS2:', JSON.stringify(highscores, null, 2));
 }
 
 // Llama a la función principal
-main();
+//main();
 
 
 
@@ -353,7 +353,13 @@ io.on('connection', (socket) => {
 socket.on('enviarLista', () => {
     let jsonData = [];
 
-    const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
+  
+
+
+
+/*
+
+  const filePath = path.resolve(__dirname, 'public', 'highscore.txt');
     // Leer el contenido del archivo
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -384,7 +390,48 @@ socket.on('enviarLista', () => {
         console.log('Enviar Lista HS');
         socket.emit('obtenerLista', jsonData);
     });
+
+*/
+
+
+
+
+try {
+        const highscores = await getCurrentHighscores();
+
+
+console.log('Enviar Lista HS');
+        socket.emit('obtenerLista', highscores);
+
+
+     //  console.log(highscores);
+
+console.log(`VALOR HS: ${highscores}`);
+
+console.log('VALOR HS2:', JSON.stringify(highscores, null, 2));
+
+        // Si deseas solo el contenido (los datos JSON), puedes hacer lo siguiente
+        console.log('Highscores content:', JSON.parse(highscores.content));
+
+    } catch (error) {
+        console.error('Error fetching highscores:', error);
+    }
+
+
+
+
+
 });
+
+
+
+
+
+
+
+
+
+
 
 
 
