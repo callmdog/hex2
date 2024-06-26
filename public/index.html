@@ -598,7 +598,7 @@ document.getElementById('highscoreDiv').style.display = 'block'; // Para mostrar
 
 socket.on('obtenerLista', function (jsonData) {
 
-     let   scoreList = count;
+     let   scoreList = jsonData;
 console.log('Lista HS:', scoreList);
 
 });        
