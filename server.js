@@ -350,7 +350,7 @@ io.on('connection', (socket) => {
 
 //HIGHSCORE!!!!!!!!
 
-socket.on('enviarLista', () => {
+socket.on('enviarLista', async () => {
     let jsonData = [];
 
   
