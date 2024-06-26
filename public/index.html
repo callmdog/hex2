@@ -190,6 +190,15 @@ width: 80vw;
 <!-- Hs BOX !!!!!!!!! -->		
 <!-- Hs BOX !!!!!!!!! -->
 <div id="highscoreDiv">	
+
+
+ <button id="closeHighscore">
+            
+                <img src="images/back.png" alt="BACK">
+            
+        </button>
+
+
 	<h3>        <img src="images/highscore.png" alt="HIGHSCORE" id="texto3dImage">
 </h3>
 
@@ -601,6 +610,15 @@ socket.emit('enviarLista');
 
 
 document.getElementById('highscoreDiv').style.display = 'block'; // Para mostrar el retryBox
+
+});
+
+
+
+document.getElementById('closeHighscore').addEventListener('click', function () {
+
+
+document.getElementById('highscoreDiv').style.display = 'none'; // Para mostrar el retryBox
 
 });
 
