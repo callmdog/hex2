@@ -20,7 +20,7 @@ const REPO_NAME = 'hex2';
 const FILE_PATH = 'public/highscore.txt';
 
 
-async function getCurrentHighscores() {
+async function getCurrentHighscores2() {
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
 
     try {
@@ -62,12 +62,63 @@ async function getCurrentHighscores() {
     }
 }
 
+
+
+async function getCurrentHighscores() {
+    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+
+    try {
+        const response = await axios.get(url, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+.raw'
+            }
+        });
+
+        if (!response.data) {
+            throw new Error('Response does not contain data.');
+        }
+
+        let content;
+        if (typeof response.data === 'string') {
+            content = response.data;
+        } else {
+            if (!response.data.content) {
+                throw new Error('Response does not contain content.');
+            }
+            content = Buffer.from(response.data.content, 'base64').toString('utf-8');
+        }
+
+        // Divide el contenido en líneas y procesa cada línea como JSON
+        const lines = content.trim().split('\n');
+        let jsonData = [];
+
+        lines.forEach(line => {
+            try {
+                const obj = JSON.parse(line);
+                jsonData.push(obj);
+            } catch (error) {
+                console.error('Error al analizar JSON:', error);
+            }
+        });
+
+        // Retorna los datos JSON procesados
+        return jsonData;
+
+    } catch (error) {
+        console.error('Error in getCurrentHighscores:', error.response ? error.response.data : error.message);
+        throw error;
+    }
+}
+
+
+
 // Función para llamar getCurrentHighscores y hacer console.log
 async function main() {
     try {
         const highscores = await getCurrentHighscores();
 
-     //   console.log(highscores);
+     //  console.log(highscores);
 
 console.log(`VALOR HS: ${highscores}`);
 
