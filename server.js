@@ -139,7 +139,7 @@ console.log('VALOR HS2:', JSON.stringify(highscores, null, 2));
 
 
 async function updateHighscores(newScore) {
-    const { content, sha } = await getCurrentHighscores();
+    const { content, sha } = await getCurrentHighscores2();
     
     // Asegurarse de que newScore sea una cadena
     const scoreString = typeof newScore === 'object' ? JSON.stringify(newScore) : newScore;
