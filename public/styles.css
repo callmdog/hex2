@@ -4,7 +4,7 @@
 border-radius: 20px;
 background: linear-gradient(45deg, #3D5032, #000000); /* Degradado de naranja a amarillo */
 padding: 20px;
-display: flex;
+display: none;
 flex-direction: column;
 align-items: center;
 justify-content: center;
@@ -14,7 +14,7 @@ left: 50%;
 transform: translate(-50%, -50%);
 width: 300px;
 z-index: 999;
-opacity: 0; 
+
 
 }
 
