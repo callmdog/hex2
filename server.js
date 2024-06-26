@@ -509,7 +509,8 @@ console.log('Update highscore');
 
 const playerScore = {
         name: players[socket.id].nombre,
-        score: players[socket.id].puntos
+        score: players[socket.id].puntos,
+        color: players[socket.id].color
 };
 
 
