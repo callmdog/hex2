@@ -569,6 +569,14 @@ document.getElementById('paintBox').style.display = 'block'; // Para mostrar el 
 
 document.getElementById('highscoreButton').addEventListener('click', function () {
 
+
+socket.on('highscoreList', function (count) {
+     let   scoreList = count;
+});        
+
+
+
+
 document.getElementById('highscoreDiv').style.display = 'block'; // Para mostrar el retryBox
 
 });
