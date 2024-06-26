@@ -2,3 +2,4 @@ HighScore
 
 {"name":"Pepe","score":3,"color":"purple"}
 {"name":"LAUTARO","score":4,"color":"orange"}
+{"name":"Kenzo","score":1,"color":"pink"}
