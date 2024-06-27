@@ -1,5 +1,8 @@
+/* ///////////// STYLES!!!!!!!!!!!!!!!!!!!!!!!!!  ////////////////// */
 
-
+/* ///////////// HIGHSCORE DIV RECUADRO  ////////////////// */
+/* ///////////// HIGHSCORE DIV RECUADRO  ////////////////// */
+/* ///////////// HIGHSCORE DIV RECUADRO  ////////////////// */
 #highscoreDiv {
 border-radius: 20px;
 background: linear-gradient(45deg, #3D5032, #000000); /* Degradado de naranja a amarillo */
@@ -14,27 +17,40 @@ left: 50%;
 transform: translate(-50%, -50%);
 width: 300px;
 z-index: 999;
-
-
 }
-
 #closeHighscore {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
+position: absolute;
+top: 10px;
+right: 10px;
+background-color: transparent;
+border: none;
+color: white;
+font-size: 20px;
+cursor: pointer;
+}
+#closeHighscore:hover {
+color: red;
 }
 
-#closeButton:hover {
-    color: red;
+/* ///////////// BOTONES INICIO HOME SCREEN  ////////////////// */
+/* ///////////// BOTONES INICIO HOME SCREEN  ////////////////// */
+/* ///////////// BOTONES INICIO HOME SCREEN  ////////////////// */
+#homeScreenButtons {
+flex-direction: column;
+display: flex;
+justify-content: center; /* Centra horizontalmente */
+align-items: center; /* Centra verticalmente */
 }
 
-#highscoreButton {
-    display: flex;
+#submitButton img, 
+#customPlayer img, 
+#highscoreButton img{
+height: 40px;
+width: auto;
+}
+
+#submitButton {
+display: flex;
 width: auto;
 padding: 4px 4px; /* Ajusta el relleno según sea necesario */
 font-size: 16px;
@@ -47,134 +63,55 @@ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
 cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
 transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
 }
+#submitButton:hover {
+background-color: #2f2c79;
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+#customPlayer{
+display: flex;
+margin-bottom:10px;
+width: auto;
+padding: 4px 4px; /* Ajusta el relleno según sea necesario */
+font-size: 16px;
+background-color: #cb9800; /* Color de fondo */
+color: white; /* Color del texto */
+border: none; /* Quita el borde */
+border-radius: 5px; /* Añade bordes redondeados */
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
+}
+#customPlayer:hover {
+background-color: #ac9f41; /* Cambia el color de fondo al pasar el cursor */
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
+}
+
+#highscoreButton {
+display: flex;
+width: auto;
+padding: 4px 4px; 
+font-size: 16px;
+background-color: #04135a; 
+color: white; 
+border: none; 
+margin-bottom:10px;
+border-radius: 5px; 
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+cursor: pointer; 
+transition: background-color 0.3s, box-shadow 0.3s; 
+}
 #highscoreButton:hover {
 background-color: #2f2c79;
 box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
 }
 
-
-
- .instructor {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #000; /* Borde opcional para visualizar el div */
-    }
-
-
-#instructions {
-    display: flex;
-    align-items: center;
-color: white;
-
-
-    gap: 5px; /* Espacio entre el texto y el cínrculo */
-}
-
-
-  #greenCircle {
-            display: block;
-            margin: 20px auto;
-        }
-
-
-
-
-
-
-
-
-
-#customizePlayerDiv
-{
-  flex-direction: column;
-    display: flex;
-	justify-content: center; /* Centra horizontalmente */
-align-items: center; /* Centra verticalmente */
-
-}
-
-
-#skinButtons {
-display: flex;
-width: 100%;
-height: 100%;
-margin-top: 4px;
-}
-#skinButtons2 {
-display: flex;
-width: 100%;
-height: 100%;
-margin-bottom: 4px;
-}
-
-#skinButton {
-flex: 1;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 0;
-margin: 0;
-overflow: hidden;
-background-color: #4CAF50; 
-border-radius: 5px;
-	opacity: 0.5;
-}
-
-#closeSkin {
-flex: 1;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 0;
-margin: 0;
-overflow: hidden;
-background-color: #9C0000; 
-border-radius: 5px;
-opacity: 0.5;
-}
-
-#paintSkin {
-flex: 1;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 0;
-margin: 0;
-overflow: hidden;
-background-color: #2196F3; 
-border-radius: 5px;
-opacity: 0.5;
-}
-
-
-#skinButton img, #closeSkin img, #paintSkin img {
-/*width: 86%;
-height: 86%;
-object-fit: cover;
-*/
-
-/*
-
-max-width: 80%;
-            max-height: 80%;
-            object-fit: contain;
-*/
-
-
-height: 40px;  /* Establece una altura fija */
-    width: auto;   /* Ajusta el ancho automáticamente para mantener la proporción */
-    max-width: 80%; /* Limita el ancho máximo al 80% del contenedor */
-    object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
-
-
-
-}
-
-#submitButton img, #customPlayer img, #highscoreButton img{
-height: 40px;
-            width: auto;
-
+/* ///////////// INSTRUCCIONES HOME SCREEN  ////////////////// */
+/* ///////////// INSTRUCCIONES HOME SCREEN  ////////////////// */
+/* ///////////// INSTRUCCIONES HOME SCREEN  ////////////////// */
+#greenCircle {
+display: block;
+margin: 20px auto;
 }
 
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
@@ -225,62 +162,61 @@ margin-top: 0;
 margin-bottom: 20px; /* Puedes ajustar este margen según necesites */
 text-shadow: 2px 2px 4px rgba(33, 150, 243, 0.8); /* Sombra azul */
 }
-
-
-/*
-#closeSkin {
-padding: 10px 20px; 
-font-size: 16px;
-background-color: #9C0000; 
-color: white;
-border: none; 
-border-radius: 5px;
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-cursor: pointer;
-transition: background-color 0.3s, box-shadow 0.3s;
+#skinButtons {
+display: flex;
+width: 100%;
+height: 100%;
+margin-top: 4px;
 }
-#closeSkin:hover {
-background-color: #9C0000;
-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
-}	
+#skinButtons2 {
+display: flex;
+width: 100%;
+height: 100%;
+margin-bottom: 4px;
+}
 #skinButton {
-padding: 10px 20px; 
-font-size: 16px;
-background-color: #4CAF50; 
-color: white;
-border: none; 
-border-radius: 5px;
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-cursor: pointer;
-transition: background-color 0.3s, box-shadow 0.3s;
-}
-#skinButton:hover {
-background-color: #4CAF50;
-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
-}	
-#paintSkin{
-margin-top: 20px;
-margin-bottom: 10px;
-padding: 10px 20px; 
-font-size: 16px;
-background-color: #2196F3; 
-color: white;
-border: none; 
-border-radius: 5px;
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-cursor: pointer;
-transition: background-color 0.3s, box-shadow 0.3s;
 flex: 1;
-margin-bottom: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+margin: 0;
+overflow: hidden;
+background-color: #4CAF50; 
+border-radius: 5px;
+opacity: 0.5;
 }
-#paintSkin:hover {
-background-color: #2196F3;
-box-shadow: 0px 6px 12px
+#closeSkin {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+margin: 0;
+overflow: hidden;
+background-color: #9C0000; 
+border-radius: 5px;
+opacity: 0.5;
 }
-*/
+#paintSkin {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+margin: 0;
+overflow: hidden;
+background-color: #2196F3; 
+border-radius: 5px;
+opacity: 0.5;
+}
+#skinButton img, #closeSkin img, #paintSkin img {
+height: 40px;  /* Establece una altura fija */
+width: auto;   /* Ajusta el ancho automáticamente para mantener la proporción */
+max-width: 80%; /* Limita el ancho máximo al 80% del contenedor */
+object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
+}
 
-
-	
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
 /* ///////////// GAME CANVAS JUEGO ADENTRO  ////////////////// */
@@ -329,15 +265,12 @@ color: lightgreen;
 accent-color: lightgreen;
 }
 
-
 /* ///////////// LOGOTIPO ////////////////// */
 /* ///////////// LOGOTIPO ////////////////// */	
 /* ///////////// LOGOTIPO ////////////////// */	
 #topImage {
 height: auto;
 max-width: 320px;
-
-
 z-index: -1; /* Para que esté detrás de otros elementos */
 }   
 
@@ -366,9 +299,8 @@ color: #333;
 /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
 /* ///////////// CAMERA OPTIONS AND RADIO BUTTONS  ////////////////// */	
 #cameraOptions {
-
 display: none;
-  /*  display: flex; */
+/* display: flex; */
 justify-content: center;
 z-index: -1;
 font-weight: bold;
@@ -416,55 +348,6 @@ color: #333;
 .radio-button input:checked + .radio-custom::after {
 opacity: 1;
 }
-
-/* ///////////// PLAY BUTTON  ////////////////// */
-/* ///////////// PLAY BUTTON  ////////////////// */
-/* ///////////// PLAY BUTTON  ////////////////// */
-#submitButton {
-    display: flex;
-width: auto;
-padding: 4px 4px; /* Ajusta el relleno según sea necesario */
-font-size: 16px;
-background-color: #04135a; /* Color de fondo */
-color: white; /* Color del texto */
-border: none; /* Quita el borde */
-margin-bottom:10px;
-border-radius: 5px; /* Añade bordes redondeados */
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
-}
-#submitButton:hover {
-background-color: #2f2c79;
-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); 
-}
-
-
-
-/* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
-/* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
-/* ///////////// BUTTON CUSTOMIZE SKIN  ////////////////// */
-#customPlayer{
-    display: flex;
-margin-bottom:10px;
-
-width: auto;
-padding: 4px 4px; /* Ajusta el relleno según sea necesario */
-font-size: 16px;
-background-color: #cb9800; /* Color de fondo */
-color: white; /* Color del texto */
-border: none; /* Quita el borde */
-border-radius: 5px; /* Añade bordes redondeados */
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
-cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-transition: background-color 0.3s, box-shadow 0.3s; /* Agrega transiciones suaves */
-}
-#customPlayer:hover {
-background-color: #ac9f41; /* Cambia el color de fondo al pasar el cursor */
-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
-}
-
-
 
 /* ///////////// GAME OVER BOX ////////////////// */
 /* ///////////// GAME OVER BOX ////////////////// */	
@@ -531,98 +414,93 @@ touch-action: pinch-zoom; }
 /* ///////////// CANVAS PAINT BOX ////////////////// */	
 /* ///////////// CANVAS PAINT BOX ////////////////// */	
 #paintBox h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(255, 165, 0, 0.8); /* Sombra naranja */
-    color: #ffffff; /* Color del texto blanco */
+margin-top: 0;
+margin-bottom: 20px;
+text-shadow: 2px 2px 4px rgba(255, 165, 0, 0.8); /* Sombra naranja */
+color: #ffffff; /* Color del texto blanco */
 }
 
 #paintBox {
-    text-align: center;
-    display: none; /* Cambiar a 'block' cuando sea necesario mostrar */
-    position: absolute;
-
+text-align: center;
+display: none; /* Cambiar a 'block' cuando sea necesario mostrar */
+position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-
-
-    background-color: #222; /* Fondo oscuro para combinar con el tema del juego */
-    border-radius: 20px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
-    overflow: hidden;
-    z-index: 999;
-    padding: 20px; /* Relleno adicional para mejor apariencia */
+background-color: #222; /* Fondo oscuro para combinar con el tema del juego */
+border-radius: 20px;
+box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
+overflow: hidden;
+z-index: 999;
+padding: 20px; /* Relleno adicional para mejor apariencia */
 }
 
 #paintBox::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #0B1E00, #000000); /* Degradado de naranja a amarillo */
-    opacity: 0.8;
-    z-index: -1;
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(45deg, #0B1E00, #000000); /* Degradado de naranja a amarillo */
+opacity: 0.8;
+z-index: -1;
 }
 
 #canvasContainer {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: auto;
-    border: 2px solid #ff8008; /* Borde naranja para combinar con el tema */
-    border-radius: 50%;
-    overflow: hidden;
+position: relative;
+width: 300px;
+height: 300px;
+margin: auto;
+border: 2px solid #ff8008; /* Borde naranja para combinar con el tema */
+border-radius: 50%;
+overflow: hidden;
 }
 
 #svgCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
 }
 
 #undoButton, #redoButton, #fillButton, #clearButton, .shapeButton {
-    padding: 5px 10px;
-    font-size: 14px; /* Aumenta el tamaño de fuente para mejor visibilidad */
-    background-color: #ff8008; /* Color de fondo naranja */
-    color: #000; /* Color del texto negro */
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
+padding: 5px 10px;
+font-size: 14px; /* Aumenta el tamaño de fuente para mejor visibilidad */
+background-color: #ff8008; /* Color de fondo naranja */
+color: #000; /* Color del texto negro */
+border: none;
+border-radius: 5px;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+cursor: pointer;
+transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 #undoButton:hover, #redoButton:hover, #fillButton:hover, #clearButton:hover, .shapeButton:hover {
-    background-color: #ffc837; /* Cambio de color al pasar el mouse */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+background-color: #ffc837; /* Cambio de color al pasar el mouse */
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 #colorPicker, #brushSize {
-    margin-top: 10px;
-    margin-bottom: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
 }
 
 #colorPicker {
-    width: 60px; /* Ajusta el ancho del selector de color */
-    height: 30px; /* Ajusta la altura del selector de color */
-    border: 1px solid #ff8008; /* Borde naranja */
-    border-radius: 5px;
+width: 60px; /* Ajusta el ancho del selector de color */
+height: 30px; /* Ajusta la altura del selector de color */
+border: 1px solid #ff8008; /* Borde naranja */
+border-radius: 5px;
 }
 
 #brushSize {
-    width: 100%;
+width: 100%;
 }
 
 #paintBox button {
-    margin: 5px; /* Espaciado entre botones */
+margin: 5px; /* Espaciado entre botones */
 }
-
-
 
 /* ///////////// PLAYER SPEED TEXT ANIMATION  ////////////////// */
 /* ///////////// PLAYER SPEED TEXT ANIMATION  ////////////////// */
@@ -640,7 +518,6 @@ opacity: 1;
 transform: scale(1); /* Termina a tamaño normal */
 }
 }
-
 
 /* ///////////// BLUE POINT  ////////////////// */
 /* ///////////// BLUE POINT  ////////////////// */
@@ -692,7 +569,7 @@ text-shadow: 1px 1px 4px rgba(0, 0, 255, 0.7); /* Sombra de texto azul */
 user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 #texto3dImage {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
+width: 100%;
+height: auto;
+max-width: 100%;
 }
