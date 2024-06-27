@@ -237,6 +237,24 @@ let randomY = todosVertices[randomV].y;
 console.log("RandomHex:", randomX, randomY);
 console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);	
 
+//HIGHSCORE LISTA AL CLIENTE!!!!!!!!
+//HIGHSCORE LISTA AL CLIENTE!!!!!!!!
+//HIGHSCORE LISTA AL CLIENTE!!!!!!!!
+socket.on('enviarLista', async () => {
+let jsonData = [];
+try {
+const highscores = await getCurrentHighscores();
+console.log('Enviar Lista HS');
+socket.emit('obtenerLista', highscores);
+console.log(`VALOR HS: ${highscores}`);
+//console.log('VALOR HS2:', JSON.stringify(highscores, null, 2));
+// Si deseas solo el contenido (los datos JSON), puedes hacer lo siguiente
+console.log('Highscores content:', JSON.parse(highscores.content));
+} catch (error) {
+console.error('Error fetching highscores:', error);
+}
+});		
+
 socket.on('dibujarVerdes', (numero) => {
 console.log(`DIBUJAR VERDES`);
 socket.emit('greenCirclesGenerated', greenCirclesS);
@@ -386,23 +404,7 @@ io.emit('updatePlayers2', players);
 io.emit('userCount', connectedUsers.size);
 });
 
-//HIGHSCORE LISTA AL CLIENTE!!!!!!!!
-//HIGHSCORE LISTA AL CLIENTE!!!!!!!!
-//HIGHSCORE LISTA AL CLIENTE!!!!!!!!
-socket.on('enviarLista', async () => {
-let jsonData = [];
-try {
-const highscores = await getCurrentHighscores();
-console.log('Enviar Lista HS');
-socket.emit('obtenerLista', highscores);
-console.log(`VALOR HS: ${highscores}`);
-//console.log('VALOR HS2:', JSON.stringify(highscores, null, 2));
-// Si deseas solo el contenido (los datos JSON), puedes hacer lo siguiente
-console.log('Highscores content:', JSON.parse(highscores.content));
-} catch (error) {
-console.error('Error fetching highscores:', error);
-}
-});	
+
 
 //END SOCKET CONNECTION////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
