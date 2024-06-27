@@ -140,37 +140,30 @@ return randomValue;
 //////////////////////////////////////////////////////////////////////////////////////
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
+
 /////// SE INICIA EL SERVIDOR!!!!!!!    ///////    ///////    ///////    ///////    ///////  
+//START SOCKET CONNECTION ///////    ///////    ///////  ///////    ///////    ///////    ///////    ///////    ///////    
+///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
 
 io.on('connection', (socket) => {
-
-
-
-
 
 let randomV = printRandomValue(1,  todosVertices.length  );
 let randomX = todosVertices[randomV].x;
 let randomY = todosVertices[randomV].y;
 console.log("RandomHex:", randomX, randomY);
-//greenCirclesS.push(todosVertices[randomV]);	
 console.log(`LENGTH GreenCirclesS: ${greenCirclesS.length}:`);	
 
 socket.on('dibujarVerdes', (numero) => {
 console.log(`DIBUJAR VERDES`);
 socket.emit('greenCirclesGenerated', greenCirclesS);
 });
-	
-////
 
 //CONFIRMATION NOMBRE PARA INICIAR SERVER
+/////////////////////////////////////////
 socket.on('playerNameEntered', (playerName, skinCode) => {
+	
 console.log(`Nombre jugador Server: ${playerName}`);
-
-
 console.log(`SkinCODE: ${skinCode}`);
-
-//START SOCKET CONNECTION ///////    ///////    ///////  ///////    ///////    ///////    ///////    ///////    ///////    
-///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
 
 //USUARIOS CONECTADOS
 console.log(`Total de usuarios: ${connectedUsers.size}`);
@@ -179,7 +172,6 @@ connectedUsers.add(socket.id);
 io.emit('userCount', connectedUsers.size);
 socket.emit('allPlayersInfo', players);
 
-
 //OBTENER COLOR PARA JUGADOR    
 const colorsArray = Array.from(availableColors);
 const userColor = colorsArray[colorIndex % colorsArray.length];
@@ -187,15 +179,14 @@ colorIndex++;
 assignedColors.set(socket.id, { color: userColor, name: playerName});
 ///////////!!!!!!!!!!!!!//////////////////
 
+//VALORES PLAYER	
 players[socket.id] = {
 x: randomX, y: randomY,
 color: assignedColors.get(socket.id).color,
 nombre: assignedColors.get(socket.id).name,
 puntos: 0,
-	velocidad: false,
+velocidad: false,
 skinCode: skinCode
-
-
 };	
 
 socket.emit('assignColor', { color: userColor, name: playerName});
@@ -205,7 +196,6 @@ console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
 socket.on('updatePlayersRequest', () => {
 console.log(`updatePlayersRequest Function`);
 io.emit('updatePlayers', players);
-//io.emit('updatePlayers2', players);
 });	
 
 //ACTUALIZAR POSICION JUGADOR	
@@ -215,9 +205,7 @@ console.log(`Update Position: ${players[socket.id].nombre}`);
 players[socket.id].x = position.x;
 players[socket.id].y = position.y;
 players[socket.id].velocidad = position.velocidad;
-	
 // Emite la actualización a todos los clientes
-//io.emit('updatePlayers', players);
 socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
 });
 
@@ -228,24 +216,19 @@ players[socket.id].velocidad = position.velocidad;
 socket.emit('updateVelocidadCliente', { [socket.id]: { velocidad: players[socket.id].velocidad } });
 });	
 	
-	
 //MOVER JUGADOR EN CLIENTE	
 socket.on('animationData', function (data) {
 const playerName = assignedColors.get(socket.id).name;
-    const playerSpeed = players[socket.id].velocidad; // Acceso a la velocidad del jugador
-	console.log(`Annimation Speed: ${playerSpeed}`);
-
+const playerSpeed = players[socket.id].velocidad; // Acceso a la velocidad del jugador
+console.log(`Annimation Speed: ${playerSpeed}`);
 // Emitir datos a todos los clientes
 io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playerName, playerSpeed: playerSpeed });
-//console.log(`Annimation name: ${playerName}`);
 });
 	
-
-
 ///SISTEMA PUNTOS CUNADO CIRCULO VERDE HA SIDO COMIDO////////////////////
 socket.on('greenCircleEaten', () => {
 const playerId = socket.id;
-players[playerId].puntos += 1; // Sumar 10 puntos por cada círculo verde comido
+players[playerId].puntos += 1; 
 io.emit('updatePlayers', players); 
 // Actualizar la información de los jugadores para todos
 io.emit('updatePlayers2', players);
@@ -255,113 +238,45 @@ console.log(`+ Puntos: ${players[playerId].puntos}, ${players[playerId].nombre} 
 //COLISION GREEN CIRCLE BORRAR EN TODOS CLIENTES	
 socket.on('collisionWithGreenCircle2', (collisionIndex, indexToRemove, comproid) => {
 var indice = greenCirclesS.findIndex(function(elemento) {
-return elemento.z === collisionIndex;
-});
+return elemento.z === collisionIndex; });
 if (indice !== -1) {
 console.log("Elemento eliminado correctamente", greenCirclesS[indice]);
 greenCirclesS.splice(indice, 1);
-//socket.emit('greenCircleEaten');
-//socket.emit('collisionWithGreenCircle2', circle.z, indice, socket.id);
 } else {
-console.log("No se encontró ningún elemento con z igual a 10");
-}        
+console.log("No se encontró ningún elemento con z igual a 10"); }        
 io.emit('greenCircleCollision', collisionIndex, indexToRemove, comproid);
-
 console.log(`GreenCircleS QUEDAN: ${greenCirclesS.length}:`);	
 	
-
 // Comprobar si quedan menos de 5 círculos verdes
 if (greenCirclesS.length < 5) {
 io.emit('borrarGreen');
-	
 greenCirclesS = [];	
 // Generar 15 círculos verdes nuevos
 const newGreenCircles = generateRandomLineCoordinates();
 for (let i = 0; i < newGreenCircles.length; i++) {
-newGreenCircles[i].z = greenCirclesS.length + i + 1;
-}
+newGreenCircles[i].z = greenCirclesS.length + i + 1; }
 // Agregar los nuevos círculos verdes a la lista existente
 greenCirclesS.push(...newGreenCircles);
 console.log(`GreenCircleS RENOVADO: ${greenCirclesS.length}:`);	
 
 io.emit('greenCirclesGenerated', greenCirclesS);
-	
-	
-}	
-
-	
-
-	
+}		
 });	
-
-
-
-
-
-
-// Manejar la generación de nuevos círculos verdes
-/*socket.on('generateGreenCircles', () => 
-{
-const intervalo = 10 * 1000; // Convertir segundos a milisegundos
-setInterval(() => {
-    generateGreenCircles();
-    console.log(`LENGTH2: ${greenCirclesS.length}:`);
-}, intervalo);
-
-	//generateGreenCircles();
-	//console.log(`LENGTH2: ${greenCircles.length}:`);
-});*/
-
-	    
-/*socket.on('collisionWithGreenCircle', (collisionIndex) => 
-{
-	console.log(`COLISION: ${greenCircles.length}:`);
-	
-	// Verificar si el índice es válido
-	if (collisionIndex >= 0 && collisionIndex < greenCirclesS.length) 
-	{
-		// Eliminar el círculo verde colisionado
-		greenCirclesS.splice(collisionIndex, 1);
-		//Emitir evento a todos los clientes para actualizar los círculos verdes
-		//io.emit('updateGreenCircles', greenCircles);
-		io.emit('greenCirclesGenerated', greenCirclesS);
-	}
-});
-*/
-	    
-
-
-/////////////////////
-
-/*
-function desconectarJugador(socketId) {
-    const socket = io.sockets.sockets[socketId];
-    if (socket) {
-        socket.disconnect(true); // Forzar la desconexión del jugador
-        console.log('Jugador desconectado:', socketId);
-    } else {
-        console.log('Socket no encontrado para el jugador:', socketId);
-    }
-}
-
-*/
 
 ////////////////////////////////////////////////////////////////////////////    
 
 //ELIMINAR JUGADOR DE TODOS CLIENTES
 socket.on('eliminarJugador', (playerIdN) => {
-console.log('Usuario desconectado222');
-//desconectarJugador(playerIdN);
-//console.log('Usuario desconectado', playerIdN);
+console.log('Usuario desconectado', playerIdN);
 assignedColors.delete(playerIdN);
 connectedUsers.delete(playerIdN);
-delete players[playerIdN]; //
-io.emit('updatePlayers', players); //
+delete players[playerIdN]; 
+io.emit('updatePlayers', players); 
 io.emit('userCount', connectedUsers.size);
 io.emit('eliminarJugadorEnCliente', playerIdN);
 });		
 	
-//USUARIOS DESCONECTADOS
+//USUARIOS DESCONECTADOS SISTEMA DE DESCONEXION
 socket.on('disconnect', async () => {
 
 //HIGHSCORE SYSTEM
