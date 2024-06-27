@@ -10,7 +10,6 @@ const fs = require('fs');
 app.use(express.json());
 app.use(express.static('public'));
 
-
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 //////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
@@ -137,10 +136,7 @@ return randomValue;
 //2. END GENERAR POSICION INICIAL X e Y de JUGADOR!!!!!!!!!!!!
 ///////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////////////
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
-///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
-
 /////// SE INICIA EL SERVIDOR!!!!!!!    ///////    ///////    ///////    ///////    ///////  
 //START SOCKET CONNECTION ///////    ///////    ///////  ///////    ///////    ///////    ///////    ///////    ///////    
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
@@ -275,34 +271,23 @@ io.emit('updatePlayers', players);
 io.emit('userCount', connectedUsers.size);
 io.emit('eliminarJugadorEnCliente', playerIdN);
 });		
-	
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 //USUARIOS DESCONECTADOS SISTEMA DE DESCONEXION
 socket.on('disconnect', async () => {
-
-//HIGHSCORE SYSTEM
-// Guardar el puntaje del jugador antes de desconectar
+//HIGHSCORE SYSTEM // UPDATE Highscore.TXT
 if (players[socket.id] && players[socket.id].puntos) {
 console.log('Update highscore');
-
 const playerScore = {
-        name: players[socket.id].nombre,
-        score: players[socket.id].puntos,
-        color: players[socket.id].color
-};
-
-try {
-await uploadUpdatedHighscores(playerScore);
+name: players[socket.id].nombre, score: players[socket.id].puntos, color: players[socket.id].color };
+try { await uploadUpdatedHighscores(playerScore);
 console.log('Highscore updated successfully for player:', playerScore);
-} catch (error) {
-console.error('Error updating highscore:', error.message);
+} catch (error) { console.error('Error updating highscore:', error.message); }	
 }
-	
-}
-//END HIGHSCORE SYSTEM
+//END HIGHSCORE SYSTEM // Highscore.txt	
 
-
-	
-
+//ELIMINAR JUGADOR // FUNCION EN CLIENTE INDEX	
 io.emit('eliminarJugadorEnCliente', socket.id);
 console.log('Usuario desconectado', socket.id);
 assignedColors.delete(socket.id);
