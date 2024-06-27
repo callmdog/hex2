@@ -1,7 +1,6 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
-//const fs = require('fs');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
@@ -14,171 +13,91 @@ app.use(express.json());
 ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////  
 
 
+//HIGHSCORE SYSTEM SAVE, UPDATE!!! HIGH SCORE //// ///// ////
+//HIGHSCORE SYSTEM SAVE, UPDATE!!! HIGH SCORE //// ///// ////
+//HIGHSCORE SYSTEM SAVE, UPDATE!!! HIGH SCORE //// ///// ////
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO_OWNER = 'callmdog';
 const REPO_NAME = 'hex2';
 const FILE_PATH = 'public/highscore.txt';
 
-
 async function getCurrentHighscores2() {
-    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-
-    try {
-        const response = await axios.get(url, {
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3+.raw'
-            }
-        });
-
-        console.log('Response:', response.data);
-
-        if (!response.data) {
-            throw new Error('Response does not contain data.');
-        }
-
-        // Si la respuesta es una cadena (contenido bruto)
-        if (typeof response.data === 'string') {
-            return { content: response.data, sha: null }; 
-        }
-
-        // Si la respuesta es un objeto (metadatos del archivo)
-        if (!response.data.content) {
-            throw new Error('Response does not contain content.');
-        }
-
-        const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
-        const sha = response.data.sha;
-
-        if (!sha) {
-            throw new Error('Response does not contain SHA.');
-        }
-
-        return { content, sha };
-
-    } catch (error) {
-        console.error('Error in getCurrentHighscores:', error.response ? error.response.data : error.message);
-        throw error;
-    }
+const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+try {
+const response = await axios.get(url, {
+headers: { 'Authorization': `token ${GITHUB_TOKEN}`,
+'Accept': 'application/vnd.github.v3+.raw' }
+});
+console.log('Response:', response.data);
+if (!response.data) { throw new Error('Response does not contain data.'); }
+// Si la respuesta es una cadena (contenido bruto)
+if (typeof response.data === 'string') { return { content: response.data, sha: null }; }
+// Si la respuesta es un objeto (metadatos del archivo)
+if (!response.data.content) { throw new Error('Response does not contain content.'); }
+const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
+const sha = response.data.sha;
+if (!sha) { throw new Error('Response does not contain SHA.'); }
+return { content, sha };
+} catch (error) {
+console.error('Error in getCurrentHighscores:', error.response ? error.response.data : error.message);
+throw error; }
 }
-
-
 
 async function getCurrentHighscores() {
-    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-
-    try {
-        const response = await axios.get(url, {
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3+.raw'
-            }
-        });
-
-        if (!response.data) {
-            throw new Error('Response does not contain data.');
-        }
-
-        let content;
-        if (typeof response.data === 'string') {
-            content = response.data;
-        } else {
-            if (!response.data.content) {
-                throw new Error('Response does not contain content.');
-            }
-            content = Buffer.from(response.data.content, 'base64').toString('utf-8');
-        }
-
-        // Divide el contenido en líneas y procesa cada línea como JSON
-        const lines = content.trim().split('\n');
-        let jsonData = [];
-
-        lines.forEach(line => {
-            try {
-                const obj = JSON.parse(line);
-                jsonData.push(obj);
-            } catch (error) {
-                console.error('Error al analizar JSON:', error);
-            }
-        });
-
-        // Retorna los datos JSON procesados
-        return jsonData;
-
-    } catch (error) {
-        console.error('Error in getCurrentHighscores:', error.response ? error.response.data : error.message);
-        throw error;
-    }
+const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+try {
+const response = await axios.get(url, {
+headers: { 'Authorization': `token ${GITHUB_TOKEN}`,
+'Accept': 'application/vnd.github.v3+.raw' }
+});
+if (!response.data) { throw new Error('Response does not contain data.'); }
+let content;
+if (typeof response.data === 'string') { content = response.data; } else {
+if (!response.data.content) { throw new Error('Response does not contain content.'); }
+content = Buffer.from(response.data.content, 'base64').toString('utf-8');
 }
-
-
-
-// Función para llamar getCurrentHighscores y hacer console.log
-async function main() {
-    try {
-        const highscores = await getCurrentHighscores();
-
-     //  console.log(highscores);
-
-console.log(`VALOR HS: ${highscores}`);
-
-console.log('VALOR HS2:', JSON.stringify(highscores, null, 2));
-
-        // Si deseas solo el contenido (los datos JSON), puedes hacer lo siguiente
-        console.log('Highscores content:', JSON.parse(highscores.content));
-
-    } catch (error) {
-        console.error('Error fetching highscores:', error);
-    }
+// Divide el contenido en líneas y procesa cada línea como JSON
+const lines = content.trim().split('\n');
+let jsonData = [];
+lines.forEach(line => {
+try {
+const obj = JSON.parse(line);
+jsonData.push(obj);
+} catch (error) { console.error('Error al analizar JSON:', error); }
+});
+// Retorna los datos JSON procesados
+return jsonData;
+} catch (error) {
+console.error('Error in getCurrentHighscores:', error.response ? error.response.data : error.message);
+throw error; }
 }
-
-// Llama a la función principal
-//main();
-
-
-
 
 async function updateHighscores(newScore) {
-    const { content, sha } = await getCurrentHighscores2();
-    
-    // Asegurarse de que newScore sea una cadena
-    const scoreString = typeof newScore === 'object' ? JSON.stringify(newScore) : newScore;
-    const updatedContent = content + `\n${scoreString}`;
-    const base64Content = Buffer.from(updatedContent).toString('base64');
-
-    return { base64Content, sha };
+const { content, sha } = await getCurrentHighscores2();
+// Asegurarse de que newScore sea una cadena
+const scoreString = typeof newScore === 'object' ? JSON.stringify(newScore) : newScore;
+const updatedContent = content + `\n${scoreString}`;
+const base64Content = Buffer.from(updatedContent).toString('base64');
+return { base64Content, sha };
 }
 
 async function uploadUpdatedHighscores(newScore) {
-    const { base64Content, sha } = await updateHighscores(newScore);
-
-    if (!sha) {
-        throw new Error('SHA is missing. Cannot update file without SHA.');
-    }
-
-    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-    const response = await axios.put(url, {
-        message: 'Update highscore.txt',
-        content: base64Content,
-        sha: sha
-    }, {
-        headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`,
-            'Accept': 'application/vnd.github.v3+json'
-        }
-    });
-
-    return response.data;
+const { base64Content, sha } = await updateHighscores(newScore);
+if (!sha) { throw new Error('SHA is missing. Cannot update file without SHA.'); }
+const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+const response = await axios.put(url, {
+message: 'Update highscore.txt', content: base64Content, sha: sha }, {
+headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
+});
+return response.data;
 }
 
 app.post('/update-highscore', async (req, res) => {
-    const { score } = req.body;
-    try {
-        const result = await uploadUpdatedHighscores(score);
-        res.json(result);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+const { score } = req.body;
+try {
+const result = await uploadUpdatedHighscores(score);
+res.json(result);
+} catch (error) { res.status(500).json({ error: error.message }); }
 });
 
 
