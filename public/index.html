@@ -562,6 +562,8 @@ document.getElementById('paintBox').style.display = 'block'; // Para mostrar el 
 document.getElementById('highscoreButton').addEventListener('click', function () {
 
 
+console.log('ENVIAR LISTA!');
+	
 socket.emit('enviarLista');
 
 
