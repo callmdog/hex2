@@ -8,3 +8,4 @@
 {"name":"Zezezezezezez","score":9,"color":"blue"}
 {"name":"RODRIGI","score":38,"color":"blue"}
 {"name":"asdasddsaads","score":4,"color":"blue"}
+{"name":"asdasd","score":5,"color":"purple"}
