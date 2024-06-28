@@ -329,6 +329,8 @@ io.emit('userCount', connectedUsers.size);
 //HIGHSCORE SYSTEM SAVE, UPDATE!!! HIGH SCORE //// ///// ////
 //HIGHSCORE SYSTEM SAVE, UPDATE!!! HIGH SCORE //// ///// ////
 //HIGHSCORE SYSTEM SAVE, UPDATE!!! HIGH SCORE //// ///// ////
+//Proceso para hacerlo: desde Github web. settings. Create new personal Token. Repo checked. Copy Token API CODE. Paste Api Token code on Render Environment Key. And Code below change user info. highscore.txt
+
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO_OWNER = 'callmdog';
 const REPO_NAME = 'hex2';
