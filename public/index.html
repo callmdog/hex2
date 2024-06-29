@@ -154,83 +154,69 @@
 <!-- HOME NAME FORM !!!!!!!!! -->	
 <!--<label for="playerName">Introduce tu nombre:</label> -->
 <input type="text" id="playerName" name="playerName" required placeholder="Player name" minlength="1" maxlength="20" pattern=".{1,20}">	
+
+<!-- CAMERA RADIO BUTTONS !!!!!!!!! -->		
 <div id="cameraOptions">
-	<label class="radio-button">
-	<input type="radio" name="camera" value="1" checked>
-	<span class="radio-custom"></span>
-	<span class="radio-label">Cam 1</span>
-	</label>
-	<label class="radio-button">
-	<input type="radio" name="camera" value="2">
-	<span class="radio-custom"></span>
-	<span class="radio-label">Cam 2</span>
-	</label>
-	</div>
+<label class="radio-button">
+<input type="radio" name="camera" value="1" checked>
+<span class="radio-custom"></span>
+<span class="radio-label">Cam 1</span>
+</label>
+<label class="radio-button">
+<input type="radio" name="camera" value="2">
+<span class="radio-custom"></span>
+<span class="radio-label">Cam 2</span>
+</label>
+</div>
+<!-- END CAMERA RADIO BUTTONS !!!!!!!!! -->		
 
-		
 
-
+<!-- HOME BUTTON - PLAY, SKIN, HIGHSCORE BUTTONS !!!!!!!!! -->			
 <div id="homeScreenButtons">
 	
-		
-	<button type="button" id="submitButton">
-		    <img src="images/play.png" alt="PLAY" >
-	</button>
+<button type="button" id="submitButton">
+<img src="images/play.png" alt="PLAY" >
+</button>
 
+<div id="errorMessage" style="display: none; color: red;">The player's name must be between 1 and 20 characters.</div>	
 
+<button type="button" id="customPlayer">
+<img src="images/skin.png" alt="SKIN" >
+</button>
 
+<button type="button" id="highscoreButton">
+<img src="images/highscore.png" alt="HIGHSCORE" >
+</button>
 
+</div>	
+<!-- END HOME BUTTON - PLAY, SKIN, HIGHSCORE BUTTONS !!!!!!!!! -->			
 
-	<div id="errorMessage" style="display: none; color: red;">The player's name must be between 1 and 20 characters.</div>	
-
-
-	<button type="button" id="customPlayer">
-		    <img src="images/skin.png" alt="SKIN" >
-	</button>
-
-
-
-	<button type="button" id="highscoreButton">
-		    <img src="images/highscore.png" alt="HIGHSCORE" >
-	</button>
-
-
-
-
-	</div>	
-
-
-
-	</form>
+</form>
 </div>
 <!-- END HOME NAME FORM !!!!!!!!! -->		
 	
-
 <!-- CONTAINER END !!!!!!!!! -->
 </div>
-	
 
 <!-- SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 <!-- SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 <!-- SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 <canvas id="gameCanvas" height="0" style="background-color: #ff0000;"> </canvas>
 <svg id="firstP" xmlns="http://www.w3.org/2000/svg">  
-	<g id="camera">
-	<g id="hexagonGroup"></g> 
-	</g>
+<g id="camera">
+<g id="hexagonGroup"> </g> 
+</g>
 
-	<g id="playerGroup" >
-	</g>			
+<g id="playerGroup"> </g>			
 
-	<text id="textLine1" x="20" y="40" fill="red"></text>
-	<text id="textLine2" x="20" y="60" fill="blue"></text>
-	<text id="textLine3" x="20" y="80" fill="green"></text>
-	<text id="textLine4" x="20" y="100" fill="orange"></text>
-	<text id="textLine5" x="20" y="120" fill="purple"></text>
-	<text id="textLine6" x="95%" y="40" fill="red" text-anchor="end" font-weight="bold" >Points: 1018</text>
-	<text id="textLine7" x="95%" y="60" fill="blue" text-anchor="end" font-weight="bold" > </text>
-
-<text id="textLine8" x="50%" y="50%" fill="blue" text-anchor="middle" font-size="54" font-weight="bold"    > </text>
+<text id="textLine1" x="20" y="40" fill="red"></text>
+<text id="textLine2" x="20" y="60" fill="blue"></text>
+<text id="textLine3" x="20" y="80" fill="green"></text>
+<text id="textLine4" x="20" y="100" fill="orange"></text>
+<text id="textLine5" x="20" y="120" fill="purple"></text>
+<text id="textLine6" x="95%" y="40" fill="red" text-anchor="end" font-weight="bold" >Points: 1018</text>
+<text id="textLine7" x="95%" y="60" fill="blue" text-anchor="end" font-weight="bold" > </text>
+<text id="textLine8" x="50%" y="50%" fill="blue" text-anchor="middle" font-size="54" font-weight="bold"> </text>
 
 
 <foreignObject id="checkboxContainer" x="20" y="20" width="200" height="30">
