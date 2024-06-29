@@ -329,6 +329,7 @@ if (selectedValue === '1') { Camara = 1;
 console.log('Camara:', Camara);
 });	
 
+//CHECKBOX ABAJO IZQUIERDA	
 document.getElementById('centeredCameraCheckbox').addEventListener('change', function(event) {
 if (event.target.checked) {
 Camara = 1;
@@ -341,6 +342,22 @@ Camara = 2;
 }
 console.log('Camara:', Camara);
 });
+const checkbox = document.getElementById('centeredCameraCheckbox');
+checkbox.addEventListener('change', function(event) {
+event.stopPropagation();  // Detiene la propagación del evento
+Camara = event.target.checked ? 1 : 2;
+console.log('Camara:', Camara);
+});
+// También agregar un manejador de clic para evitar la propagación
+checkbox.addEventListener('click', function(event) {
+event.stopPropagation();  // Detiene la propagación del evento
+});
+const checkboxContainers = document.querySelectorAll('.checkbox-container');
+checkboxContainers.forEach(container => {
+container.addEventListener('click', function(event) {
+event.stopPropagation();
+});
+});	
 	
 // DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//////////
@@ -456,7 +473,6 @@ let textLine4 = document.getElementById('textLine4');
 let textLine5 = document.getElementById('textLine5');
 let textLine6 = document.getElementById('textLine6');
 let textLine7 = document.getElementById('textLine7');
-
 let textLine8 = document.getElementById('textLine8');
 let CalculoCam = 0;	
 	
@@ -467,7 +483,6 @@ textLine4.classList.add('no-select');
 textLine5.classList.add('no-select');
 textLine6.classList.add('no-select');
 textLine7.classList.add('no-select');
-
 textLine8.classList.add('no-select');
 		
 function addPlayer(nombre, puntos, color) {
@@ -478,38 +493,11 @@ function addPlayer(nombre, puntos, color) {
 /////////////////////////////////////////////////////////////////////
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 firstP.addEventListener('click', function (event) {
-	//console.log('HEXAGON GROUP LOG');
-	const mouseX = event.clientX - firstP.getBoundingClientRect().left;
-	const mouseY = event.clientY - firstP.getBoundingClientRect().top;
-	moveBluePoint(mouseX, mouseY);
+//console.log('HEXAGON GROUP LOG');
+const mouseX = event.clientX - firstP.getBoundingClientRect().left;
+const mouseY = event.clientY - firstP.getBoundingClientRect().top;
+moveBluePoint(mouseX, mouseY);
 });
-
-
-
-
-const checkbox = document.getElementById('centeredCameraCheckbox');
-
-    checkbox.addEventListener('change', function(event) {
-        event.stopPropagation();  // Detiene la propagación del evento
-        Camara = event.target.checked ? 1 : 2;
-        console.log('Camara:', Camara);
-    });
-
-    // También agregar un manejador de clic para evitar la propagación
-    checkbox.addEventListener('click', function(event) {
-        event.stopPropagation();  // Detiene la propagación del evento
-    });
-
-
-
-const checkboxContainers = document.querySelectorAll('.checkbox-container');
-    checkboxContainers.forEach(container => {
-        container.addEventListener('click', function(event) {
-            event.stopPropagation();
-        });
-    });
-
-
 
 //CONNECTED USERS////////////////////////////////
 ///////////////////////////////////////////////// 
@@ -531,7 +519,6 @@ socket.on('assignColor', function (playerName) {
 	console.log('SOCKET ASSIGN COLOR');
 	socket.emit('updatePlayersRequest');
 });	
-	
 	
 //6. UPDATE TOP PLAYERS 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
@@ -594,39 +581,8 @@ topPlayersx.forEach(topplayer => { });
 return topPlayersx;
 }	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //9. UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
-
 socket.on('updatePlayers', function (updatedPlayers) {
 console.log('SOCKET UPDATE PLAYERS');	
 	
@@ -745,16 +701,12 @@ currentCameraY4 = parseFloat(match[2]);
 if (!isMoving) { 
 console.log('/////Move Player//////')
 isMoving = true;  
-
 const closestGreenVertex = findClosestGreenVertexToClick(clickX - currentCameraX4, clickY - currentCameraY4,currentCameraX3,currentCameraY3); 
 //console.log('Vértice cercano: ', closestGreenVertex.x, closestGreenVertex.y); 
 animateBluePoint(closestGreenVertex.x, closestGreenVertex.y);		
 }
 	
-}	
-
-//let Velocidad = false;
-	
+}		
 
 //3. ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /////////////////////////////////////////////////////////////////////////////	
@@ -789,11 +741,6 @@ inicialX = newX; inicialY = newY;
 //let CalculoCam = 0;
 let currentCameraX4p = 0;
 let currentCameraY4p = 0;
-let Resto;
-let Resto2;
-let Resto3;
-let Resto4;
-let Resto5;
 
 socket.on('animateBluePoint', function (animationData) {
 const playerId = animationData.playerId;
