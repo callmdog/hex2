@@ -203,12 +203,10 @@
 <!-- SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 <canvas id="gameCanvas" height="0" style="background-color: #ff0000;"> </canvas>
 <svg id="firstP" xmlns="http://www.w3.org/2000/svg">  
-<g id="camera">
-<g id="hexagonGroup"> </g> 
-</g>
-
+<g id="camera"> <g id="hexagonGroup"> </g>  </g>
 <g id="playerGroup"> </g>			
 
+<!-- TEXT BOXES, #TOP PLAYERS, POINTS, SPEED 5s -->	
 <text id="textLine1" x="20" y="40" fill="red"></text>
 <text id="textLine2" x="20" y="60" fill="blue"></text>
 <text id="textLine3" x="20" y="80" fill="green"></text>
@@ -218,140 +216,103 @@
 <text id="textLine7" x="95%" y="60" fill="blue" text-anchor="end" font-weight="bold" > </text>
 <text id="textLine8" x="50%" y="50%" fill="blue" text-anchor="middle" font-size="54" font-weight="bold"> </text>
 
-
+<!-- CHECK-BOX for CAMERA - Centered Camera -->		
 <foreignObject id="checkboxContainer" x="20" y="20" width="200" height="30">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center;" class="checkbox-container" onclick="event.stopPropagation();">
-            <input type="checkbox" id="centeredCameraCheckbox" checked style="accent-color: lightgreen;">
-            <label for="centeredCameraCheckbox" style="color: lightgreen; margin-left: 5px;">Centered Camera</label>
-        </div>
-    </foreignObject>
-
-
-
-
-
-
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center;" class="checkbox-container" onclick="event.stopPropagation();">
+<input type="checkbox" id="centeredCameraCheckbox" checked style="accent-color: lightgreen;">
+<label for="centeredCameraCheckbox" style="color: lightgreen; margin-left: 5px;">Centered Camera</label>
+</div>
+</foreignObject>
 
 </svg>	
-<!-- END SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
+<!-- END FirstP SVG GAME ELEMENT (CAMERA, PLAYER, etc !!!!!!!!! -->
 
 
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-
-  <script>
-    // Añade la animación al círculo verde
-    anime({
-      targets: '#greenCircle circle',
-      r: 6,
-      duration: 1000,
-      easing: 'easeInOutSine',
-      direction: 'alternate',
-      loop: true
-    });
-  </script>	
-
-
-
+<!-- INSTRUCTIONS SCRIPT!!!!!!! -->	
+<!-- INSTRUCTIONS SCRIPT!!!!!!! -->	
+<!-- INSTRUCTIONS SCRIPT!!!!!!! -->		
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
 
 <script>
-    const texts = [
-      { message: "Collect green circles to grow your player", color: "#008001" },
-      { message: "Boost your speed by collecting blue circles", color: "blue" },
+anime({ targets: '#greenCircle circle', r: 6, duration: 1000, easing: 'easeInOutSine', direction: 'alternate', loop: true });
+</script>	
+
+<script>
+const texts = [
+{ message: "Collect green circles to grow your player", color: "#008001" },
+{ message: "Boost your speed by collecting blue circles", color: "blue" },
 { message: "Compete with players worldwide", color: "" },
-      { message: "Battle to stay at the top of the high score!", color: "" }
-    ];
-
-
+{ message: "Battle to stay at the top of the high score!", color: "" }
+];
 
 const circleParent = document.getElementById("greenCircle");
-
-    let currentIndex = 0;
-    const textElement = document.getElementById("text");
-    const circleElement = document.querySelector("#greenCircle circle");
-
-    function changeContent() {
-      textElement.classList.add("hidden");
-
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % texts.length;
-        textElement.textContent = texts[currentIndex].message;
-
+let currentIndex = 0;
+const textElement = document.getElementById("text");
+const circleElement = document.querySelector("#greenCircle circle");
+function changeContent() {
+textElement.classList.add("hidden");
+setTimeout(() => {
+currentIndex = (currentIndex + 1) % texts.length;
+textElement.textContent = texts[currentIndex].message;
 const existingCircle = circleParent.querySelector("circle");
-        if (existingCircle) {
-            circleParent.removeChild(existingCircle);
-        }
+if (existingCircle) {
+circleParent.removeChild(existingCircle);
+}
 
-        // If there's a color specified, create a new circle
-        if (texts[currentIndex].color !== "") {
-            const newCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            newCircle.setAttribute("cx", "50");
-            newCircle.setAttribute("cy", "50");
-            newCircle.setAttribute("r", "40");
-            newCircle.setAttribute("fill", texts[currentIndex].color);
-            circleParent.appendChild(newCircle);
-        }
-
-
-
-        textElement.classList.remove("hidden");
-      }, 1000); // Wait for the opacity transition to complete (1 second)
-    }
-
-    setInterval(changeContent, 2000);
-  </script>
+// If there's a color specified, create a new circle
+if (texts[currentIndex].color !== "") {
+const newCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+newCircle.setAttribute("cx", "50");
+newCircle.setAttribute("cy", "50");
+newCircle.setAttribute("r", "40");
+newCircle.setAttribute("fill", texts[currentIndex].color);
+circleParent.appendChild(newCircle);
+}
+textElement.classList.remove("hidden");
+}, 1000); // Wait for the opacity transition to complete (1 second)
+}
+setInterval(changeContent, 2000);
+</script>
+<!-- END INSTRUCTIONS SCRIPT!!!!!!! -->	
 
 
+<!-- CheckBOX Centered CAMERA SRIPT LOGIC -->	
+<!-- CheckBOX Centered CAMERA SRIPT LOGIC -->	
+<!-- CheckBOX Centered CAMERA SRIPT LOGIC -->		
 <script>
-        function positionCheckbox() {
-
+function positionCheckbox() {
 const svgHeight2 = document.documentElement.clientHeight;
+const svg = document.getElementById('firstP');
+const bbox = svg.getBBox();
+const checkboxContainer = document.getElementById('checkboxContainer');
+const offsetY = 40; // Altura del checkbox
+checkboxContainer.setAttribute('x', 20);
+checkboxContainer.setAttribute('y', svgHeight2 - offsetY);
+}
+window.addEventListener('resize', positionCheckbox);
+window.addEventListener('load', positionCheckbox);
+</script>
+<!-- END CheckBOX Centered CAMERA SRIPT LOGIC -->	
 
-
-            const svg = document.getElementById('firstP');
-            const bbox = svg.getBBox();
-            const checkboxContainer = document.getElementById('checkboxContainer');
-            const offsetY = 40; // Altura del checkbox
-
-            checkboxContainer.setAttribute('x', 20);
-            checkboxContainer.setAttribute('y', svgHeight2 - offsetY);
-        }
-
-        window.addEventListener('resize', positionCheckbox);
-        window.addEventListener('load', positionCheckbox);
-    </script>
-
-
-
-	
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
 <script src="vertexFunciones.js"></script>
 
 <script src="playerSkin.js"></script>
 
-
-
-
-	
-
-	
 <!-- COMIENZA JUEGO LOGICA !!!!!!!!! -->
 <!-- COMIENZA JUEGO LOGICA !!!!!!!!! -->
 <!-- COMIENZA JUEGO LOGICA !!!!!!!!! -->	
 <script>  
 
 	
-	  
-document.addEventListener('DOMContentLoaded', function () {
-
-
-positionCheckbox();
-	
+document.addEventListener('DOMContentLoaded', function () {	
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+positionCheckbox();	
 const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
@@ -359,8 +320,7 @@ const modal = document.getElementById('gameOverModal');
 const context = canvas.getContext('2d');
 let NameSecure = '';
 
-	
-///CAM OPTIONS
+///CAM OPTIONS & CAM CHECKBOX
 let Camara = 1;
 document.getElementById('cameraOptions').addEventListener('change', function(event) {
 const selectedValue = event.target.value;
@@ -369,26 +329,18 @@ if (selectedValue === '1') { Camara = 1;
 console.log('Camara:', Camara);
 });	
 
-	
 document.getElementById('centeredCameraCheckbox').addEventListener('change', function(event) {
-        if (event.target.checked) {
-            Camara = 1;
-
+if (event.target.checked) {
+Camara = 1;
 initialCameraX = svgWidth / 2 - bX;
 initialCameraY = svgHeight / 2 - bY;
-//console.log('Coord circ:', initialCameraX, initialCameraY);  
 //CAMERA MOVEMENT
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-
-
-
-        } else {
-            Camara = 2;
-        }
-        console.log('Camara:', Camara);
-    });
-
-
+} else {
+Camara = 2;
+}
+console.log('Camara:', Camara);
+});
 	
 // DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//////////
@@ -415,104 +367,56 @@ errorMessage.style.display = "block";
 }		
 });
 
-	
+//HOME BUTTONS LOGIC!!!!!!!!!!!!!!!!!!!!!!!////// ///////// ///////// ////////// /////////
+//HOME BUTTONS LOGIC!!!!!!!!!!!!!!!!!!!!!!!
+//HOME BUTTONS LOGIC!!!!!!!!!!!!!!!!!!!!!!!////// ////////// ///////// ////////// ////////
 
-//CUSTOM PLAYER BUTTON
+//HOME CUSTOM PLAYER BUTTON
 document.getElementById('customPlayer').addEventListener('click', function () {
-document.getElementById('paintBox').style.display = 'block'; // Para mostrar el retryBox
+document.getElementById('paintBox').style.display = 'block';
 });
 
+//OPEN CANVAS CIRCLE SKIN DRAW BUTTON	
 document.getElementById('paintSkin').addEventListener('click', function () {
-                selectSkin.style.display = 'none';
-
-document.getElementById('paintBox').style.display = 'block'; // Para mostrar el retryBox
+selectSkin.style.display = 'none';
+document.getElementById('paintBox').style.display = 'block';
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//HOME HIGHScore BUTTON	
 document.getElementById('highscoreButton').addEventListener('click', function () {
-
-
 console.log('ENVIAR LISTA!');
-	
 socket.emit('enviarLista');
-
-
-
-
-
-document.getElementById('highscoreDiv').style.display = 'block'; // Para mostrar el retryBox
-
+document.getElementById('highscoreDiv').style.display = 'block'; 
 });
 
-
-
+//HIGHScore Close BUTTON	
 document.getElementById('closeHighscore').addEventListener('click', function () {
-
-
-document.getElementById('highscoreDiv').style.display = 'none'; // Para mostrar el retryBox
-
+document.getElementById('highscoreDiv').style.display = 'none';
 });
 
-
-
+//CALL HighScore Text from SERVER!!!!!!	
+//CALL HighScore Text from SERVER!!!!!!	
+//CALL HighScore Text from SERVER!!!!!!	
 socket.on('obtenerLista', function (jsonData) {
-
-     let   hscore = jsonData;
+let hscore = jsonData;
 console.log('Lista HS:', hscore);
-
-
 hscore.sort((a, b) => b.score - a.score);
-        let topScores = hscore.slice(0, 20);
-
-        // Get the scorelist div
-        let scorelistDiv = document.getElementById('scorelist');
-
-        // Generate the list items
-        topScores.forEach((player, index) => {
-            let listItem = document.createElement('div');
-            listItem.className = 'score-item';
-            listItem.style.color = player.color;
-            listItem.textContent = `#${index + 1} ${player.name}: ${player.score}`;
-            scorelistDiv.appendChild(listItem);
-        });
-
-
-
-
+let topScores = hscore.slice(0, 20);
+// Get the scorelist div
+let scorelistDiv = document.getElementById('scorelist');
+// Generate the list items
+topScores.forEach((player, index) => {
+let listItem = document.createElement('div');
+listItem.className = 'score-item';
+listItem.style.color = player.color;
+listItem.textContent = `#${index + 1} ${player.name}: ${player.score}`;
+scorelistDiv.appendChild(listItem);
+});
 });        
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function preventZoom(event) {
 event.preventDefault();
 }	
-
 	
 createHexagons(socket, function() {
 	console.log("createHexagons end");
