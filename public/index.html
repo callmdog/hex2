@@ -305,13 +305,14 @@ window.addEventListener('load', positionCheckbox);
 <!-- COMIENZA JUEGO LOGICA !!!!!!!!! -->	
 <script>  
 
-	
+
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
 document.addEventListener('DOMContentLoaded', function () {	
-//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//LOGICA DEL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
 positionCheckbox();	
 const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
@@ -521,6 +522,7 @@ socket.on('assignColor', function (playerName) {
 });	
 	
 //6. UPDATE TOP PLAYERS 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//UPDATE POINTS, NAME, TOP PLAYERS of Players	
 //////////////////////////////////////////////////////////////////////	
 let camProb = false;
 socket.on('updatePlayers2', function (updatedPlayers2) {
@@ -532,12 +534,12 @@ const player = updatedPlayers2[playerId];
 //console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
 addPlayer(player.nombre, player.puntos, player.color);
 
+//INDIVIDUAL CAM MOVEMENT	
 if(NameSecure === player.nombre){
 textLine6.textContent = `Points: ${player.puntos}`;
 textLine6.style.fill = player.color;
 initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y  ;
-//console.log('Coord circ:', initialCameraX, initialCameraY);  
 bX = player.x;
 bY = player.y;
 
@@ -545,7 +547,6 @@ bY = player.y;
 if (camProb === false) {
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 }
-
 if (Camara===2){
 camProb = true;
 }
@@ -558,6 +559,7 @@ findAndMarkClosestVertices(inicialX, inicialY,currentCameraX3,currentCameraY3);
 	
 }
 
+//UPDATE TOP PLAYERS NAME, COLOR	
 const topPlayers = getTopPlayers();
 textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
 if (topPlayers[0] && topPlayers[0].color) { textLine1.style.fill = topPlayers[0].color; } else {}	
@@ -582,6 +584,7 @@ return topPlayersx;
 }	
 
 //9. UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//UPDATE POSITION, SIZE of Players	
 //////////////////////////////////////////////////////////////////////
 socket.on('updatePlayers', function (updatedPlayers) {
 console.log('SOCKET UPDATE PLAYERS');	
@@ -589,7 +592,6 @@ console.log('SOCKET UPDATE PLAYERS');
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers) {
 const player = updatedPlayers[playerId];
-
 const ptsf = parseFloat(player.puntos); 
 const sizeCalc = (0.4 * ptsf) + 20;		
 
@@ -603,7 +605,6 @@ skinCodeTemp = skinCodeTemp.replace('width="20"', `width="${sizeCalc}"`).replace
 svgContainer.innerHTML = skinCodeTemp;
 console.log("CODE SVG:", svgContainer);
 }
-
 //
 
 let velocidadD = player.velocidad;
