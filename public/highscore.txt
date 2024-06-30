@@ -11,3 +11,4 @@
 {"name":"asdasd","score":5,"color":"purple"}
 {"name":"jhkhk","score":5,"color":"blue"}
 {"name":"qweqewqwe","score":7,"color":"purple"}
+{"name":"lll","score":12,"color":"blue"}
