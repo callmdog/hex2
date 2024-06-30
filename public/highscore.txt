@@ -10,3 +10,4 @@
 {"name":"asdasddsaads","score":4,"color":"blue"}
 {"name":"asdasd","score":5,"color":"purple"}
 {"name":"jhkhk","score":5,"color":"blue"}
+{"name":"qweqewqwe","score":7,"color":"purple"}
