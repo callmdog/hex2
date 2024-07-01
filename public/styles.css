@@ -256,7 +256,7 @@ background-color: #2196F3;
 border-radius: 5px;
 }
 #skinButton img, #paintSkin img {
-height: 40px;  /* Establece una altura fija */
+height: 32px;  /* Establece una altura fija */
 width: auto;   /* Ajusta el ancho automáticamente para mantener la proporción */
 }
 
