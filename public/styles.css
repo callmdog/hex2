@@ -147,7 +147,7 @@ opacity: 0;
 /* ///////////// SKIN RANDOM BALLS  ////////////////// */
 #selectSkin {
 border-radius: 20px;
-background: linear-gradient(45deg, #3D5032, #000000); /* Degradado de naranja a amarillo */
+background: linear-gradient(45deg, #808080, #00008B); /* Degradado de naranja a amarillo */
 padding: 20px;
 display: flex;
 flex-direction: column;
@@ -232,7 +232,7 @@ border-radius: 5px;
   position: absolute;
   top: 4px;
   right: 4px;
-  background-color: #transparent; 
+  background-color: transparent; 
   cursor: pointer; 
 
 }
