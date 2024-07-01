@@ -16,3 +16,4 @@
 {"name":"7uuuu","score":5,"color":"blue"}
 {"name":"Ping","score":1,"color":"purple"}
 {"name":"sdsad","score":2,"color":"blue"}
+{"name":"vvvb","score":2,"color":"blue"}
