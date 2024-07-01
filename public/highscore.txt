@@ -17,3 +17,4 @@
 {"name":"Ping","score":1,"color":"purple"}
 {"name":"sdsad","score":2,"color":"blue"}
 {"name":"vvvb","score":2,"color":"blue"}
+{"name":"kkkllkkl","score":6,"color":"purple"}
