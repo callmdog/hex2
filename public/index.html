@@ -160,6 +160,8 @@
 <!--<label for="playerName">Introduce tu nombre:</label> -->
 <input type="text" id="playerName" name="playerName" required placeholder="Player name" minlength="1" maxlength="20" pattern=".{1,20}">	
 
+<div id="errorMessage" style="display: none; color: red;">The player's name must be between 1 and 20 characters.</div>	
+	
 <!-- CAMERA RADIO BUTTONS !!!!!!!!! -->		
 <div id="cameraOptions">
 <label class="radio-button">
@@ -182,8 +184,6 @@
 <button type="button" id="submitButton">
 <img src="images/play.png" alt="PLAY" >
 </button>
-
-<div id="errorMessage" style="display: none; color: red;">The player's name must be between 1 and 20 characters.</div>	
 
 <button type="button" id="customPlayer">
 <img src="images/skin.png" alt="SKIN" >
