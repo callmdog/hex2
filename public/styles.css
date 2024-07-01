@@ -212,6 +212,12 @@ overflow: hidden;
 background-color: #4CAF50; 
 border-radius: 5px;
 }
+#texto3dImage {
+width: 100%;
+height: auto;
+max-width: 100%;
+margin-bottom: 10px; 
+}
 #closeSkin {
 /*flex: 1;
 display: flex;
@@ -607,8 +613,4 @@ text-shadow: 1px 1px 4px rgba(0, 0, 255, 0.7); /* Sombra de texto azul */
 -ms-user-select: none; /* Internet Explorer/Edge */
 user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
-#texto3dImage {
-width: 100%;
-height: auto;
-max-width: 100%;
-}
+
