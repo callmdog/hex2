@@ -248,7 +248,7 @@ overflow: hidden;
 background-color: #2196F3; 
 border-radius: 5px;
 }
-#skinButton img, #closeSkin img, #paintSkin img {
+#skinButton img, #paintSkin img {
 height: 40px;  /* Establece una altura fija */
 width: auto;   /* Ajusta el ancho automáticamente para mantener la proporción */
 max-width: 80%; /* Limita el ancho máximo al 80% del contenedor */
