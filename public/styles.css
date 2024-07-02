@@ -17,6 +17,9 @@ left: 50%;
 transform: translate(-50%, -50%);
 width: 300px;
 z-index: 999;
+
+  max-height: 300px;  /* Limitar la altura máxima */
+    overflow-y: auto;   
 }
 /* X CLOSE BUTTON!!! */ 
 #closeHighscore {
