@@ -496,6 +496,7 @@ background-color: #222; /* Fondo oscuro para combinar con el tema del juego */
 border-radius: 20px;
 box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
 overflow: hidden;
+width: 300px; 
 z-index: 999;
 padding: 20px; /* Relleno adicional para mejor apariencia */
 }
