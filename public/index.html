@@ -419,6 +419,12 @@ socket.emit('enviarLista');
 document.getElementById('highscoreDiv').style.display = 'block'; 
 });
 
+//CLOSE PAINT BUTTON	
+document.getElementById('closePaint').addEventListener('click', function () {
+selectSkin.style.display = 'none';
+document.getElementById('paintBox').style.display = 'none';
+});	
+
 //HIGHScore Close BUTTON	
 document.getElementById('closeHighscore').addEventListener('click', function () {
 document.getElementById('highscoreDiv').style.display = 'none';
