@@ -16,10 +16,7 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 width: 300px;
-z-index: 999;
-
-  max-height: 300px;  /* Limitar la altura máxima */
-    overflow-y: auto;   
+z-index: 999; 
 }
 /* X CLOSE BUTTON!!! */ 
 #closeHighscore {
@@ -47,7 +44,7 @@ margin-top: 20px;
 }
 
 #scorelistS {
-max-height: 300px;
+max-height: 400px;
 overflow-y: auto;  
 }
 
