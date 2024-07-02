@@ -44,9 +44,13 @@ object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
 }
 #scorelist {
 margin-top: 20px;
+}
+
+#scorelistS {
 max-height: 300px;
 overflow-y: auto;  
 }
+
 .score-item {
 font-size: 20px;
 margin: 5px 0;
