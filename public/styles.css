@@ -568,6 +568,46 @@ width: 100%;
 margin: 5px; /* Espaciado entre botones */
 }
 
+#createPaint {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+margin: 0;
+cursor: pointer; /* Cambia el cursor al pasar sobre el botón */   
+overflow: hidden;
+background-color: #2196F3; 
+border-radius: 5px;
+}
+#createPaint:hover {
+background-color: blue; /* Cambia el color de fondo al pasar el cursor */
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
+}
+#createPaint img {
+height: 32px;  /* Establece una altura fija */
+width: auto;   /* Ajusta el ancho automáticamente para mantener la proporción */
+}
+
+#closePaint {
+position: absolute;
+top: 2px;
+right: 2px;
+background-color: transparent; 
+cursor: pointer; 
+border-radius: 20px;
+}
+#closePaint:hover {
+background-color: red; /* Cambia el color de fondo al pasar el cursor */
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
+}
+#closePaint img {
+height: 20px;  /* Establece una altura fija */
+width: auto;   /* Ajusta el ancho automáticamente para mantener la proporción */
+max-width: 80%; /* Limita el ancho máximo al 80% del contenedor */
+object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
+}
+
 /* ///////////// PLAYER SPEED TEXT ANIMATION  ////////////////// */
 /* ///////////// PLAYER SPEED TEXT ANIMATION  ////////////////// */
 /* ///////////// PLAYER SPEED TEXT ANIMATION  ////////////////// */
