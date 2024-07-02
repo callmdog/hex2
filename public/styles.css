@@ -18,20 +18,25 @@ transform: translate(-50%, -50%);
 width: 300px;
 z-index: 999;
 }
+/* X CLOSE BUTTON!!! */ 
 #closeHighscore {
-position: absolute;
-top: 10px;
-right: 10px;
-background-color: transparent;
-border: none;
-color: white;
-font-size: 20px;
-cursor: pointer;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: transparent; 
+  cursor: pointer; 
+  border-radius: 20px;
 }
 #closeHighscore:hover {
-color: red;
-background-color: red;
- 
+background-color: red; /* Cambia el color de fondo al pasar el cursor */
+box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
+}
+#closeHighscore img {
+height: 20px;  /* Establece una altura fija */
+width: auto;   /* Ajusta el ancho automáticamente para mantener la proporción */
+max-width: 80%; /* Limita el ancho máximo al 80% del contenedor */
+object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
+} 
   
 }
 #scorelist {
