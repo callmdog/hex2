@@ -5,7 +5,7 @@
 /* ///////////// HIGHSCORE DIV RECUADRO  ////////////////// */
 #highscoreDiv {
 border-radius: 20px;
-background: linear-gradient(45deg, #3D5032, #000000); /* Degradado de naranja a amarillo */
+background: linear-gradient(45deg, #000000, #3D5032); /* Degradado de naranja a amarillo */
 padding: 20px;
 display: none;
 flex-direction: column;
