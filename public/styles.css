@@ -51,6 +51,7 @@ overflow-y: auto;
 .score-item {
 font-size: 20px;
 margin: 5px 0;
+text-shadow: 2px 2px 5px blue;   
 }
 
 /* ///////////// BOTONES INICIO HOME SCREEN  ////////////////// */
