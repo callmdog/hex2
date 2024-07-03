@@ -21,3 +21,4 @@
 {"name":"dsads","score":2,"color":"blue"}
 {"name":"dassadsa","score":3,"color":"blue"}
 {"name":"dsaasdsa","score":1,"color":"blue"}
+{"name":"ALEX","score":11,"color":"purple"}
