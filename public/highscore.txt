@@ -20,3 +20,4 @@
 {"name":"kkkllkkl","score":6,"color":"purple"}
 {"name":"dsads","score":2,"color":"blue"}
 {"name":"dassadsa","score":3,"color":"blue"}
+{"name":"dsaasdsa","score":1,"color":"blue"}
