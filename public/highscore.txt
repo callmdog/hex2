@@ -24,3 +24,4 @@
 {"name":"ALEX","score":11,"color":"purple"}
 {"name":"Player","score":1,"color":"blue"}
 {"name":"Marco","score":5,"color":"blue"}
+{"name":"pELE","score":25,"color":"blue"}
