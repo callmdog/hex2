@@ -25,3 +25,4 @@
 {"name":"Player","score":1,"color":"blue"}
 {"name":"Marco","score":5,"color":"blue"}
 {"name":"pELE","score":25,"color":"blue"}
+{"name":"fdsfdsfds","score":2,"color":"blue"}
