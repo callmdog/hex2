@@ -27,3 +27,4 @@
 {"name":"pELE","score":25,"color":"blue"}
 {"name":"fdsfdsfds","score":2,"color":"blue"}
 {"name":"Fggcff","score":4,"color":"blue"}
+{"name":"Jeje","score":6,"color":"blue"}
